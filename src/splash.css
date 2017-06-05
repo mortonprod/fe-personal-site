@@ -1,14 +1,89 @@
 .splash{
+    position:absolute;
     background-image: linear-gradient(-180deg, #FFFFFF 0%, #000000 55%);
     border: 1px solid #979797;
     height:100vh;
     width:100vw;
+    left:0;
+    top:0;
     display:flex;
-    direction:vertical;
+    flex-direction:row;
     align-items:center;
+    z-index:100;
 }
 
-.splash__logo{
-    width:100%;
-    height:30%;
+.splash--hidden{
+    opacity:0;
+    transition:all 1s;
 }
+
+.splash--left {
+    transform:translate(-100px);
+    transition: all 1s ease-in-out;
+}
+
+.splash--right {
+    transform: translate(100px);
+    transition: all 1s;
+}
+
+.splash__container {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.splash__container__animation{
+    position:relative;
+    width:100%;
+}
+
+.splash__container__animation__element {
+    width: 10%;
+    transition: all 1s;
+}
+
+.splash__container__animation__element--left {
+    animation: blink 2s infinite;
+}
+
+.splash__container__animation__element--center {
+    animation: pendulum 2s infinite;
+}
+
+.splash__container__animation__element--right {
+    animation: blink 2s infinite;
+    animation-delay: 1s;
+}
+
+@keyframes pendulum {
+    0% {
+        transform: translate(-50px);
+    }
+
+    50% {
+        transform: translate(50px);
+    }
+
+    100% {
+        transform: translate(-50px);
+    }
+}
+
+
+
+@keyframes blink{
+    0%{
+        opacity:0;
+    }
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+
+}
+
