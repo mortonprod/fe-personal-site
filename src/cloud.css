@@ -1,0 +1,44 @@
+.cloud {
+    position: relative;
+    width: 100%;
+    height: auto;
+    opacity: 1;
+}
+
+.cloud--absolute {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    left: 0;
+    top: 0;
+    opacity: 1;
+    transition: all 2s ease-in-out;
+}
+
+.cloud--hide{
+    opacity:0;
+    transition: all 2s ease-in-out;
+}
+
+@keyframes flash{
+    0%{
+        opacity:0;
+    }
+    85% {
+        opacity: 0;
+    }
+    90% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.cloud--flash {
+    animation:flash 2s infinite;
+        
+}

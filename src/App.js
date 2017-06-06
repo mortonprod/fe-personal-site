@@ -8,101 +8,75 @@ import who from './assets/who.png';
 import how from './assets/how.png';
 import what from './assets/what.png';
 
+import Cloud from './cloud';
+
 import Splash from './splash';
 require('smoothscroll-polyfill').polyfill();
 
 
 class App extends Component {
-  header = null;
-  footer=null;
   constructor(){
       super()
-      this.state = {isDraw:false,classHeader:"",isLoading:true};
+      this.state = {isLoading:true,isShowTitle:false};
   }
-  click(){
-      this.setState({
-        isDraw:this.state.isDraw,
-        classHeader:"app__header--invisible",
-        isLoading:this.state.isLoading
-      })
-      if(header !==null){
-        setTimeout(function(){
-            let bool = null;
-            if(this.state.isDraw){
-              bool=false
-            }else{
-              bool=true;
-            }
-            this.setState({
-              isDraw:bool,
-              classHeader:"",
-              isLoading:this.state.isLoading
-            })
-        }.bind(this),2000);
-      }else{
-          console.log("Header was null")
-      }
+  componentDidMount(){
+    setTimeout(() => {
+        this.setState({
+            isLoading:false,
+            isShowTitle:this.state.isShowTitle
+        });
+    },1000);
   }
-    componentDidMount(){
-        setTimeout(() =>{
-            this.setState({
-                isDraw:this.state.isDraw,
-                classHeader:this.state.classHeader,
-                isLoading:true
-            })
-        },2000)
-        //var rect = window.getBoundingClientRect();
-      //  window.scrollTo({
-      //                  top: 10000,
-      //                  left: 0,
-      //                  behavior: 'smooth'
-      //  });
-        //window.scrollTo(0, document.documentElement.scrollHeight)
-        //this.footer.scrollIntoView();
-        //this.footer.scrollTop = 0;
-        ReactDOM.findDOMNode(this).scrollTop = 100;
-    }
+  complete(){
+     this.setState({
+        isLoading:this.state.isLoading,
+        isShowTitle:true
+    });
+  }
   render() {
-      let title = null;
-      let howCloud,whoCloud,whatCloud = null;
-      if(this.state.isDraw){
-          title = (
-                   <Canvas translateY={50} txt="Questions?" speed={10} font={"pacifico"}/>
-          )
-          howCloud = (
-            <img src={how} className="app__cloud app__cloud--how" alt="How cloud" />
-          )
-          whatCloud = (
-            <img src={what} className="app__cloud app__cloud--what" alt="What cloud" />
-                      )
-          whoCloud = (
-            <img src={who} className="app__cloud app__cloud--who" alt="Who cloud" />
-          )
-
-      }else{
-        title = (
-          <img src={header} className="app__header" alt="Zeith Solutions" />
-
+    let content = null;
+    if(this.state.isShowTitle){
+        content = (
+            <div>
+                <img src={background} className="app__background" alt="mountain background" />
+                <div className={"app__header"} >
+                    <Canvas maxSize={200}txt={this.props.title} speed={this.props.titleSpeed} font={this.props.titleFont}/>
+                </div>
+                <div className={"app__cloud--right--slow"} style={{position:'absolute',width:'10%',left:'10%',top:'10%'}}>
+                    <Cloud delay={500}/>
+                </div>
+                <div className={"app__cloud--left--slow"} style={{position:'absolute',width:'20%',left:'70%',top:'20%'}}>
+                    <Cloud delay={1000}/>
+                </div>
+                <div className={"app__cloud--right"} style={{position:'absolute',width:'30%',left:'30%',top:'25%'}}>
+                    <Cloud delay={1500}/>
+                </div>
+                <div className={"app__cloud--left"} style={{position:'absolute',width:'30%',left:'80%',top:'30%'}}>
+                    <Cloud delay={2000}/>
+                </div>
+                <footer> this.props.title </footer>
+            </div>
+                
         )
-      }
+    }else{
+        content = (
+            <div>
+                <Splash isLoading={this.state.isLoading} cbAnimation={this.complete.bind(this)}/>
+            </div>
+        )
+    }
     return (
             <div className="app">
-
-            <img src={background} className="app__background" alt="mountain background" />
-            <div ref={(header) => { this.header = header; }} className={"app__header " + this.state.classHeader} >
-            {title}
-            </div>
-            {whoCloud}
-            {whatCloud}
-            {howCloud}
-            <button onClick={this.click.bind(this)}>
-            Click me
-            </button>
-            <Splash isLoading={this.state.isLoading}/>
-            <footer ref ={ (footer) =>{this.footer =footer} } > Zenith Software </footer>
+                {content}
             </div>
     );
   }
+}
+
+App.defaultProps = {
+    title:" Zenith Software",
+    titleFont:"Lobster",
+    titleSpeed:10
 }
 
 export default App;

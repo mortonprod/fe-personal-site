@@ -12,20 +12,27 @@ class App extends Component {
   header = null;
   constructor(){
       super()
-      this.state = {isDraw:false,classHeader:""};
+      this.state = {};
   }
-  componentDidMount(){
+  componentWillReceiveProps(){
+    if(!this.props.isloading){
+        setTimeout(()=>{
+            this.props.cbAnimation(); 
+        },1000)
+    }
+    this.props.cbAnimation(); 
   }
 
   render() {
-      let hidden = null;
-      if(this.props.isLoading){
-          hidden = ""
-      }else{
-          hidden = "splash--hidden"
-      }
+    let hide = null;
+    if(this.props.isLoading){
+        hide = ""
+    }else{
+        hide = "splash--hidden"
+    }
+
     return (
-        <div className={"splash " + hidden} >   
+        <div className={"splash " + hide} >   
             <div className={"splash__container"}>
                 <div className={"splash__container__animation"}>
                     <img className={"splash__container__animation__element splash__container__animation__element--left "} src={windRight} alt="wind"/>
@@ -37,6 +44,13 @@ class App extends Component {
       </div>
     );
   }
+}
+
+App.defaultProps = {
+    isloading:true,
+    cbAnimation: function(){
+        console.log("Default cbAnimation call")
+    }
 }
 
 export default App;

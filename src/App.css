@@ -3,25 +3,30 @@
   position:relative;
   min-height:100vh;
   text-align:center;
+  overflow-x:hidden;
 }
 
 .app__background{
-    position:relative;
+    position:absolute;
     left:0;
     top:0;
     width:100%;
     height:auto;
 }
 
-.app__header{
-    position:relative;
-    width:90%;
-    height:auto;
-    z-index:100;
-    margin:auto;
-    padding-top:10px;
-    opacity:1;
+.app__header {
+    position: relative;
+    margin: auto;
+    width: 90%;
+    height: 20vh;
+    z-index: 100;
+    opacity: 1;
     transition: opacity 2s;
+}
+
+.splash--hidden {
+    opacity: 0;
+    transition: all 1s;
 }
 
 button{
@@ -42,41 +47,41 @@ button{
     0%{
         transform:translate(0,0);
     }
-    100%{
-        transform:translate(-200px,0);
+    50%{
+        transform:translate(-400px,0);
+    }
+    100% {
+        transform: translate(0,0);
     }
 }
 
 @keyframes right{
-    0%{
-        transform:translate(0,0);
+    0% {
+        transform: translate(0,0);
     }
-    100%{
-        transform:translate(200px,0);
+
+    50% {
+        transform: translate(400px,0);
+    }
+
+    100% {
+        transform: translate(0,0);
     }
 }
 
-.app__cloud{
-    position:absolute;
-    width:15%;
-    height:auto;
-    top:50px;
+.app__cloud--right{
+    animation:right 100s;
 }
 
-.app__cloud--how{
-    top:50px;
-    left:20%;
-    animation:right 20s;
+.app__cloud--left{
+    animation:left 100s;
 }
 
-.app__cloud--what{
-    top:100px;
-    left:45%;
-    animation:right 20s;
+.app__cloud--right--slow {
+    animation: right 200s;
 }
 
-.app__cloud--who{
-    top:150px;
-    left:80%;
-    animation:left 20s;
+.app__cloud--left--slow {
+    animation: left 200s;
 }
+
