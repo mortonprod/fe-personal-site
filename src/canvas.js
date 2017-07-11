@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './canvas.css';
 
-
 class Canvas extends Component {
   canvas = null;
   constructor(){
@@ -16,6 +15,14 @@ class Canvas extends Component {
     if(Number(this.state.width.substring(0, width.length - 2)) !== width || Number(this.state.height.substring(0, height.length - 2)) !== height){
         this.setState({ width:width, height:height});
     }
+   }
+   ///Don't rerender with the parent div rerenders and passes new props in.
+   shouldComponentUpdate(nextProps, nextState){
+        if(Object.is(nextState,this.state)){
+            return false;
+        }else{
+            return true;
+        }
    }
    componentDidUpdate(){ 
     let dashLen = 220, dashOffset = dashLen, x = 1, i = 0, fontSize = 20;
