@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="157px" height="164px" viewBox="0 0 157 164" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.1 (43504) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="50%" x2="50%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#000000" offset="0%"></stop>
+            <stop stop-color="#FFF9F9" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="42.5375418%" id="linearGradient-2">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#000000" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="35.931521%" x2="50%" y2="96.5481505%" id="linearGradient-3">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#C1C1C1" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="65.7924107%" id="linearGradient-4">
+            <stop stop-color="#A4A3A3" offset="7.41988202%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-5">
+            <stop stop-color="#EEEEEE" offset="100%"></stop>
+            <stop stop-color="#D8D8D8" offset="63.5742188%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="splash" transform="translate(-129.000000, -430.000000)">
+            <g id="Group" transform="translate(132.000000, 433.000000)">
+                <ellipse id="Oval" fill="url(#linearGradient-1)" cx="75.5" cy="79" rx="75.5" ry="79"></ellipse>
+                <ellipse id="Oval" stroke="url(#linearGradient-2)" stroke-width="5" cx="75.5" cy="79" rx="75.5" ry="79"></ellipse>
+                <polyline id="Path-4" stroke="#FFFFFF" points="50.2338107 57.0279403 73.3244582 13.2772778 93.9395939 54.2997234"></polyline>
+                <polyline id="Path-5" stroke="#FFFDFD" points="65.7481487 28.8910902 60.8352547 20.3383827 39.9426393 54.4509548"></polyline>
+                <polyline id="Path-5" stroke="#FFFDFD" transform="translate(93.902755, 37.056286) scale(-1, 1) translate(-93.902755, -37.056286) " points="106.805509 28.5527075 101.892615 20 81 54.1125722"></polyline>
+                <polygon id="Path-6" fill="url(#linearGradient-3)" points="77.5519242 23.5774836 74.0556426 27.4006283 72.6459013 24.5488439 70.4955266 27.7259532 67.976758 24.9749195 73.3719219 15.2705463"></polygon>
+                <polygon id="Path-8" fill="url(#linearGradient-4)" points="81.9388487 26.9703379 83.2911643 28.1488922 84.0840023 26.6349871 85.5080888 28.2756456 86.1351401 26.0952361 87.9583738 28.1274868 88.8208842 25.4518159 85.943751 20.4773764"></polygon>
+                <text id="AM" font-family="Lobster-Regular, Lobster" font-size="48" font-weight="normal" fill="#C4C4C4">
+                    <tspan x="40.08" y="112">AM</tspan>
+                </text>
+                <polygon id="Path-7" fill="url(#linearGradient-5)" points="60.9960793 20.3781888 56.5124153 27.6546525 58.7115407 29.064497 59.5445827 27.0093086 61.095728 28.5641446 62.044236 26.6729283 64.3393194 27.060451"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

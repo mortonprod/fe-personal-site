@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="34px" height="37px" viewBox="0 0 34 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>menu</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="welcome" transform="translate(-380.000000, 0.000000)">
+            <g id="menu" transform="translate(379.000000, 0.000000)">
+                <rect id="Rectangle-2" fill="#000000" opacity="0.496490036" x="1.82926829" y="0" width="33.1707317" height="37" rx="8"></rect>
+                <g id="" font-family="material" fill="#FBFBFB" font-size="36" font-weight="normal">
+                    <text>
+                        <tspan x="0" y="31"></tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
