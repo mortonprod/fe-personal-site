@@ -1,0 +1,24 @@
+{
+  "name": "welcome-page-react",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://mortonprod.github.io/welcome-page-react",
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "smoothscroll-polyfill": "^0.3.5"
+  },
+  "devDependencies": {
+    "gh-pages": "^1.0.0",
+    "react-scripts": "1.0.7"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  }
+}
