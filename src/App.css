@@ -3,7 +3,6 @@
   position:relative;
   min-height:100vh;
   text-align:center;
-  overflow-x:hidden;
 }
 
 .app__background{
@@ -13,6 +12,16 @@
     width:100%;
     height:auto;
 }
+
+.app__blackBackground {
+    position:absolute;
+    opacity:0;
+    width:100%;
+    height:100%;
+    background-image: linear-gradient(-180deg, #C2B7FF 0%, #000000 100%);
+    border: 1px solid #979797;
+}
+
 
 .app__header {
     position: relative;
@@ -29,21 +38,21 @@
     transition: all 1s;
 }
 
-button{
-    position:relative;
-    top:300px;
-    width:100px;
-    height:100px;
-    z-index:100;
-    color:white;
-}
 
 .app__header--invisible{
     opacity:0;
     transition: opacity 2s;
 }
 
-@keyframes left{
+.app__cloudInfo {
+}
+
+.app__cloudInfo > div:nth-child(1){
+    height:100vh;
+}
+
+
+@keyframes left {
     0%{
         transform:translate(0,0);
     }

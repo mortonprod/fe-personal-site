@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import * as _ from "lodash";
 import Canvas from "./canvas.js";
+import CloudInfo from "./cloudInfo";
 import './App.css';
 import background from './assets/peak.jpg';
 import header from './assets/text.png';
@@ -17,7 +19,14 @@ require('smoothscroll-polyfill').polyfill();
 class App extends Component {
   constructor(){
       super()
-      this.state = {isLoading:true,isShowTitle:false};
+      this.state = {isLoading:true,isShowTitle:false,opacity:0};
+      this.scroll = _.throttle(this.scroll.bind(this),100);
+  }
+  scroll(event){
+    let scrollTop = event.srcElement.body.scrollTop;
+    let windowHeight = window.innerHeight;
+    this.setState({opacity:scrollTop/windowHeight});
+    console.log("top/window: " + scrollTop + " " + windowHeight);
   }
   componentDidMount(){
     setTimeout(() => {
@@ -26,6 +35,7 @@ class App extends Component {
             isShowTitle:this.state.isShowTitle
         });
     },1000);
+    window.addEventListener('scroll', this.scroll.bind(this));
   }
   complete(){
      this.setState({
@@ -39,6 +49,7 @@ class App extends Component {
         content = (
             <div>
                 <img src={background} className="app__background" alt="mountain background" />
+                <div style={{opacity:this.state.opacity}} className={"app__blackBackground"}/>
                 <div className={"app__header"} >
                     <Canvas maxSize={200}txt={this.props.title} speed={this.props.titleSpeed} font={this.props.titleFont}/>
                 </div>
@@ -54,6 +65,10 @@ class App extends Component {
                 <div className={"app__cloud--left"} style={{position:'absolute',width:'30%',left:'80%',top:'30%'}}>
                     <Cloud delay={2000}/>
                 </div>
+                <article className={"app__cloudInfo"}>
+                    <div></div>
+                    <CloudInfo delay={1000}/>
+                </article>
                 <footer> this.props.title </footer>
             </div>
                 
@@ -74,7 +89,7 @@ class App extends Component {
 }
 
 App.defaultProps = {
-    title:" Zenith Software",
+    title:"Aleander Morton",
     titleFont:"Lobster",
     titleSpeed:10
 }
