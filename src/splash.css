@@ -17,16 +17,6 @@
     transition:all 1s;
 }
 
-.splash--left {
-    transform:translate(-100px);
-    transition: all 1s ease-in-out;
-}
-
-.splash--right {
-    transform: translate(100px);
-    transition: all 1s;
-}
-
 .splash__container {
     width: 100%;
     height: 30%;
