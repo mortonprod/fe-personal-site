@@ -52,6 +52,7 @@ class App extends Component {
                 <div style={{opacity:this.state.opacity}} className={"app__blackBackground"}/>
                 <div className={"app__header"} >
                     <Canvas maxSize={200}txt={this.props.title} speed={this.props.titleSpeed} font={this.props.titleFont}/>
+                    <Canvas maxSize={100}txt={this.props.subTitle} speed={this.props.titleSpeed} font={this.props.titleFont}/>
                 </div>
                 <div className={"app__cloud--right--slow"} style={{position:'absolute',width:'10%',left:'10%',top:'10%'}}>
                     <Cloud delay={500}/>
@@ -67,7 +68,11 @@ class App extends Component {
                 </div>
                 <article className={"app__cloudInfo"}>
                     <div></div>
-                    <CloudInfo delay={1000}/>
+                    <CloudInfo delay={500}/>
+                </article>
+                <article className={"app__cloudInfo"}>
+                    <div></div>
+                    <CloudInfo delay={500}/>
                 </article>
                 <footer> this.props.title </footer>
             </div>
@@ -90,6 +95,7 @@ class App extends Component {
 
 App.defaultProps = {
     title:"Aleander Morton",
+    subTitle:"Freelancer Web Developer",
     titleFont:"Lobster",
     titleSpeed:10
 }
