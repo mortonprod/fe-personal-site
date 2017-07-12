@@ -1,20 +1,106 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import * as _ from "lodash";
 import './canvas.css';
 
 class Canvas extends Component {
   canvas = null;
+  lineJoin = "round";
+  strokeStyle = "#1f2f90";
+  fillStyle = "white";
+  lineWidth = 5;
+  globalAlpha = 1;
+  startFont = 5;
+  xBetweenLetters = 10;
+  isResized=false;
   constructor(){
     super();
     this.state = { width:'1000px', height:'1000px'}
+    this.resize = _.debounce(this.resize.bind(this),500,{trailing:true,leading:false});
   }
-  componentDidMount(){
+  resize(){
+    this.run(true);
+  }
+  setSizeFromText(){
+    return new Promise((resolve,reject)=>{
+	    let ctx = null;
+	    if(this.canvas !== null){
+	        ctx = this.canvas.getContext("2d")
+	    }else{
+	        console.log("Canvas is null");
+	    }
+	    let width = ReactDOM.findDOMNode(this.canvas).parentElement.clientWidth;
+	    if(ctx !== null){
+	        ctx.font = this.startFont + "px " + this.props.font;
+	        let textWidth = ctx.measureText(this.props.txt).width;
+	        var numberPattern = /\d+/g;
+	        //console.log("width/textWidth: " + width + "  " + textWidth);
+	        let fontSize = this.startFont;
+            let tempFont = null;
+	        while (width > textWidth + this.props.txt.length*this.xBetweenLetters ) { //Must take into account the space between letters.
+	            fontSize = fontSize + 1;
+	            let numberOfDigits = ctx.font.match( numberPattern )[0].split("").length 
+	            ctx.font = fontSize + ctx.font.slice(numberOfDigits);
+                tempFont = ctx.font;
+	            textWidth = ctx.measureText(this.props.txt).width;
+	            //console.log("FontSize/text width/canvas width/text: " + fontSize + "  " + ctx.font + " " + textWidth + " " + width + "  " + this.props.txt)
+	        }
+            //MUST SET FONT SIZE AFTER CHANGING CANVAS FONT SO PASS TO RESOLVE.
+            this.setState({width:width,height:parseInt(ctx.font)+30});
+            resolve({ctx,tempFont});
+	    }else{
+	        console.log("Context is null");
+	    }
 
-    let width = ReactDOM.findDOMNode(this.canvas).parentElement.clientWidth;
-    let height = ReactDOM.findDOMNode(this.canvas).parentElement.clientHeight;
-    if(Number(this.state.width.substring(0, width.length - 2)) !== width || Number(this.state.height.substring(0, height.length - 2)) !== height){
-        this.setState({ width:width, height:height});
+    })
+  }
+  run(isClear){
+    let i = 0;
+    let dashLen = 220;
+    let dashOffset = dashLen;
+    let x = 1;
+
+    this.setSizeFromText().then((obj)=>{
+        console.log("Pass " + obj.tempFont);
+        if(isClear){
+            console.log("Is clear : " + this.state.width + "  " + this.state.height);
+            //obj.ctx.clearRect(0, 0, this.state.width, this.state.height);
+            obj.ctx.clearRect(0, 0, 10000, 10000);
+        }
+        obj.ctx.font = obj.tempFont;
+        obj.ctx.fillStyle = this.fillStyle;
+        obj.ctx.lineWidth = this.lineWidth; 
+        obj.ctx.lineJoin = this.lineJoin; 
+        obj.ctx.globalAlpha = this.globalAlpha;
+        obj.ctx.strokeStyle = this.strokeStyle;
+        obj.ctx.fillStyle = this.fillStyle
+        this.isResized = false;
+        draw.bind(this)(obj.ctx);
+    });
+    function draw(ctx) {
+      if(!this.isResized){
+	      ctx.setLineDash([dashLen - dashOffset, dashOffset - this.props.speed]);
+	      dashOffset -= this.props.speed;
+	      ctx.strokeText(this.props.txt[i], x, parseInt(ctx.font));
+	      if (dashOffset > 0){
+	        requestAnimationFrame(()=>{draw.bind(this)(ctx)});
+	      }else{
+	        //console.log("FILL");
+	        ctx.fillText(this.props.txt[i], x, parseInt(ctx.font));
+	        dashOffset = dashLen;
+	        x += ctx.measureText(this.props.txt[i++]).width + this.xBetweenLetters;
+	        if (i < this.props.txt.length) {
+	          requestAnimationFrame(()=>{draw.bind(this)(ctx)});
+	        }
+	      }
+       }else{
+        console.log("Resizing");
+       }
     }
+   }
+   componentDidMount(){
+    this.run(false);
+    window.addEventListener('resize',()=>{ this.isResized = true; this.resize.bind(this)()});
    }
    ///Don't rerender with the parent div rerenders and passes new props in.
    shouldComponentUpdate(nextProps, nextState){
@@ -24,48 +110,6 @@ class Canvas extends Component {
             return true;
         }
    }
-   componentDidUpdate(){ 
-    let dashLen = 220, dashOffset = dashLen, x = 1, i = 0, fontSize = 20;
-    let ctx = null;
-    if(this.canvas !== null){
-        ctx = this.canvas.getContext("2d")
-    }else{
-        console.log("Canvas is null");
-    }
-    if(ctx !== null){
-        ctx.font = fontSize + "px " + this.props.font;
-        ctx.lineWidth = 5; ctx.lineJoin = "round"; ctx.globalAlpha = 1;
-        ctx.strokeStyle = "#1f2f90";
-        ctx.fillStyle = "white"
-    }else{
-        console.log("Context is null");
-    }
-    let textWidth = ctx.measureText(this.props.txt).width;
-    var numberPattern = /\d+/g;
-    while (this.canvas.width - this.props.maxSize > textWidth) {
-        fontSize = fontSize + 1;
-        let numberOfDigits = ctx.font.match( numberPattern )[0].split("").length 
-        ctx.font = fontSize + ctx.font.slice(numberOfDigits);
-        textWidth = ctx.measureText(this.props.txt).width;
-    }
-    function draw() {
-      //ctx.clearRect(x, 0, 0, 150);
-      ctx.setLineDash([dashLen - dashOffset, dashOffset - this.props.speed]);
-      dashOffset -= this.props.speed;
-      ctx.strokeText(this.props.txt[i], x, this.canvas.height -this.canvas.height/5);
-      if (dashOffset > 0){
-        requestAnimationFrame(draw.bind(this));
-      }else{
-        ctx.fillText(this.props.txt[i], x, this.canvas.height -this.canvas.height/5);
-        dashOffset = dashLen;
-        x += ctx.measureText(this.props.txt[i++]).width + 10;
-        if (i < this.props.txt.length) {
-          requestAnimationFrame(draw.bind(this));
-        }
-      }
-    }
-    draw.bind(this)();
-  }
 
   render() {
     return (
