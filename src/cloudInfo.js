@@ -20,7 +20,7 @@ export default class CloudInfo extends Component {
     if(this.ref){
         let pos = this.ref.getBoundingClientRect(); 
         console.log("top pos: " + pos.top);
-        if(pos.top < window.innerHeight/2){//If below middle of screen
+        if(pos.top < window.innerHeight*(4/5)){//If below middle of screen
             if(!this.state.isShow){//If not shown yet then expose.
                 this.setState({isShow: true});
                 let update = this.state.hide;
@@ -35,13 +35,13 @@ export default class CloudInfo extends Component {
                     if(i === 0){
 	                    setTimeout(()=> {
                             this.setState({hideText:""});
-	                    },1000*3 + this.props.delay);
+	                    },250*3 + this.props.delay);
                     }else{
 	                    setTimeout((index)=> {
 	                        let update = this.state.hide;
 	                        update[index] = "cloudInfo--hide"
 	                        this.setState({hide:update});
-	                    },1000*(3-i) + this.props.delay, i);
+	                    },250*(3-i) + this.props.delay, i);
                     }
                     i--;
                 } 
@@ -49,10 +49,12 @@ export default class CloudInfo extends Component {
         }else{
             if(this.state.isShow){//If below and set to true then move to side and reset
                 this.setState({isShow: false});
-                setTimeout(()=> {               
-	                let update = this.state.hide.map(()=>{return "cloudInfo--hide"});
-	                this.setState({hide:update,hideText:"cloudInfo--hide"});    
-                },1000);
+                let update = this.state.hide.map(()=>{return "cloudInfo--hide"});
+                this.setState({isShow:false,hide:update,hideText:"cloudInfo--hide"}); 
+                //setTimeout(()=> {               
+	            //    let update = this.state.hide.map(()=>{return "cloudInfo--hide"});
+	            //    this.setState({hide:update,hideText:"cloudInfo--hide"});    
+                //},1000);
             }
         }
     }
