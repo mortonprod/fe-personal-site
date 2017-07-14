@@ -22,7 +22,6 @@ class Cloud extends Component {
     @function
   */
   componentDidMount(){
-    console.log("Mount");
     removeAllHide(this.props.period,this.props.delay,this.state,this.setState.bind(this));
   }
   /**
@@ -77,7 +76,6 @@ function copy(state){
 
 export function removeHide(i,stateTemp){
     let state = copy(stateTemp);
-    //console.log("state " + JSON.stringify(state) );
 	state.hide[i] = ""
     return state;
 }
@@ -88,11 +86,10 @@ export function removeHide(i,stateTemp){
 */
 
 export function removeAllHide(period,delay,state,cb){
-    //console.log("removeAllHide " + JSON.stringify(state) + period + "  " + delay);
+    
     let stateTemp = state;
     for(let i=0; i< state.hide.length-1; i++){
         setTimeout((i)=> {
-            //console.log("Call timeout " + JSON.stringify(removeHide(i,stateTemp)) + "  i: " + i);
             stateTemp = removeHide(i,stateTemp);
             cb(removeHide(i,stateTemp));
         },period*i + delay,i);
