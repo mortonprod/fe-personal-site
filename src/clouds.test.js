@@ -34,14 +34,14 @@ describe("<Clouds/>", ()=>{
     });
 
 
-    it('renders 10 random clouds when no clouds passed', () => {
+    it('renders 30 random clouds when no clouds passed', () => {
         const wrapper = shallow(
             <Clouds>
                 <div className={""} style={{width:'1000px',height:"1000px"}}></div>
             </Clouds>
 
         );
-        expect(wrapper.find(Cloud).length).toBe(10);
+        expect(wrapper.find(Cloud).length).toBe(30);
     });
 
 

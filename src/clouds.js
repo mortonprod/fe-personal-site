@@ -71,7 +71,6 @@ export default class Clouds extends Component {
                 clouds.push(cloud);
             }
         }
-        console.log("clouds: " + clouds);
         return (
             <div className={"clouds"}>
                 {clouds}
