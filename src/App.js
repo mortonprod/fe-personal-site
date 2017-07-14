@@ -1,103 +1,96 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import * as _ from "lodash";
-import Canvas from "./canvas.js";
 import CloudInfo from "./cloudInfo";
+import Clouds from "./clouds";  
+import FadeBackground from "./fadeBackground";  
+import Squares from "./squares";
 import './App.css';
-import background from './assets/peak.jpg';
-import header from './assets/text.png';
-import who from './assets/who.png';
-import how from './assets/how.png';
-import what from './assets/what.png';
 
-import Cloud from './cloud';
 
-import Splash from './splash';
-require('smoothscroll-polyfill').polyfill();
-
+/** 
+    App for welcome page of portfolio.
+    Contains fade in background/clouds/squares components.
+    @class
+*/
 
 class App extends Component {
-  constructor(){
-      super()
-      this.state = {isLoading:true,isShowTitle:false,opacity:0};
-      this.scroll = _.throttle(this.scroll.bind(this),100);
+
+  squares = [];
+  constructor(props){
+      super(props)
+      this.state = {yCanvas:0,isShow:[]};
+      this.scroll = _.throttle(this.scroll.bind(this),10,{trailing:true,leading:false});
   }
+  /** 
+    Scroll event updates y position of title and if squares should move in.
+    @function
+    */
   scroll(event){
-    let scrollTop = event.srcElement.body.scrollTop;
-    let windowHeight = window.innerHeight;
-    this.setState({opacity:scrollTop/windowHeight});
-    console.log("top/window: " + scrollTop + " " + windowHeight);
-  }
-  componentDidMount(){
-    setTimeout(() => {
-        this.setState({
-            isLoading:false,
-            isShowTitle:this.state.isShowTitle
-        });
-    },1000);
-    window.addEventListener('scroll', this.scroll.bind(this));
-  }
-  complete(){
-     this.setState({
-        isLoading:this.state.isLoading,
-        isShowTitle:true
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    this.setState({yCanvas:-scrollTop*0.5});
+    ///
+    this.squares.map((ref,i)=>{
+        let pos = ref.getBoundingClientRect();
+        if(pos.top < window.innerHeight*(4/5)){
+            let isShow = this.state.isShow;
+            isShow[i] = true;
+            this.setState({isShow:isShow});
+        }else{
+            let isShow = this.state.isShow;
+            isShow[i] = false;
+            this.setState({isShow:isShow});
+        }
+
     });
   }
-  render() {
-    let content = null;
-    if(this.state.isShowTitle){
-        content = (
-            <div>
-                <img src={background} className="app__background" alt="mountain background" />
-                <div style={{opacity:this.state.opacity}} className={"app__blackBackground"}/>
-                <div className={"app__header"} >
-                    <Canvas maxSize={200}txt={this.props.title} speed={this.props.titleSpeed} font={this.props.titleFont}/>
-                    <Canvas maxSize={100}txt={this.props.subTitle} speed={this.props.titleSpeed} font={this.props.titleFont}/>
-                </div>
-                <div className={"app__cloud--right--slow"} style={{position:'absolute',width:'10%',left:'10%',top:'10%'}}>
-                    <Cloud delay={500}/>
-                </div>
-                <div className={"app__cloud--left--slow"} style={{position:'absolute',width:'20%',left:'70%',top:'20%'}}>
-                    <Cloud delay={1000}/>
-                </div>
-                <div className={"app__cloud--right"} style={{position:'absolute',width:'30%',left:'30%',top:'25%'}}>
-                    <Cloud delay={1500}/>
-                </div>
-                <div className={"app__cloud--left"} style={{position:'absolute',width:'30%',left:'80%',top:'30%'}}>
-                    <Cloud delay={2000}/>
-                </div>
-                <article className={"app__cloudInfo"}>
-                    <div></div>
-                    <CloudInfo delay={500}/>
-                </article>
-                <article className={"app__cloudInfo"}>
-                    <div></div>
-                    <CloudInfo delay={500}/>
-                </article>
-                <footer> this.props.title </footer>
-            </div>
-                
-        )
-    }else{
-        content = (
-            <div>
-                <Splash isLoading={this.state.isLoading} cbAnimation={this.complete.bind(this)}/>
-            </div>
-        )
+  /** 
+    Update isShow array so we have the right length. Must be called here so we get the refs.
+    @function
+  */
+  componentDidMount(){
+    window.addEventListener('scroll', this.scroll.bind(this));
+    let isShow= [];
+    for(let i=0; i < this.refs.length ; i++){
+        isShow.push(false);
     }
+    this.setState({isShow:isShow});
+  }
+  /** 
+	Don't update state here or repeated call to render.
+	@function
+  */
+  addRef(ref){
+    //console.log("refs: " + this.squares);
+    this.squares.push(ref);
+  }
+  render() {
     return (
             <div className="app">
-                {content}
+                <FadeBackground>
+	                <Clouds>
+	                    <div style={{transform:'translateY(' + this.state.yCanvas + 'px)'}} className={"app__header"} >
+	                        <h1>Alexander Morton</h1>
+	                        <h2>Web Developer</h2>
+	                    </div>
+                        <Squares isShow={this.state.isShow[0]} ref={(ref)=>{this.addRef.bind(this)(ref)}}>
+                        </Squares>
+                        <Squares isShow={this.state.isShow[1]} ref={(ref)=>{this.addRef.bind(this)(ref)}}>
+                        </Squares>
+                        <Squares isShow={this.state.isShow[1]} ref={(ref)=>{this.addRef.bind(this)(ref)}}>
+                        </Squares>
+	                    <footer> {this.props.title} </footer>
+	                </Clouds>
+                </FadeBackground>
             </div>
     );
   }
 }
 
 App.defaultProps = {
-    title:"Aleander Morton",
-    subTitle:"Freelancer Web Developer",
-    titleFont:"Lobster",
-    titleSpeed:10
+    title:"Alexander Morton",
+    subTitle:"Web Developer",
+    titleFont:"Lobster"
 }
 
 export default App;
