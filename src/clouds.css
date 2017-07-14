@@ -26,6 +26,20 @@
     }
 }
 
+.clouds__container{
+    position:relative;
+    z-index:1000;
+    margin:0;
+    padding:0;
+}
+
+
+.clouds__cloud {
+    position: relative;
+    z-index: 10;
+}
+
+
 .clouds__cloud--right {
     animation: right 100s;
 }

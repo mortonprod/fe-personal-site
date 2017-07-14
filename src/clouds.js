@@ -4,52 +4,108 @@ import "./clouds.css";
 /** 
     The clouds component is absolute positioned element relative to its children.
     It will place the clouds at positions specified as fractions of the whole.
+    Generate random will place the clouds randomly. You control the range or generation.
+    If you pass clouds then draw them, otherwise, draw random clouds. 
+    Place children in container so we can move it above the absolutely positioned clouds.
     @class
 */
 export default class Clouds extends Component {
+    randomInfo = [];
 	constructor(){
         super();
 	}
+    /**
+        Must calculate random numbers here and not in render. So we do not change the values when the underlying child component updates.
+        @function
+    */
+    componentWillMount(){
+        let topFrac = 100/this.props.random.number;
+	    for(let i=0; i < this.props.random.number ; i++ ){
+	        let moveInt =  getRandomInt(0, 5);
+	        let width = getRandomArbitrary(this.props.random.widthRange[0], this.props.random.widthRange[1]);
+	        let left = getRandomArbitrary(0, 100);
+	        let period = getRandomArbitrary(1000, 3000);
+	        let delay = getRandomArbitrary(1000, 5000);
+	        let top = topFrac*i;
+            this.randomInfo.push({moveInt,width,left,period,delay,top});
+	    }
+    }
     /** 
         Will render clouds over child component passed via props.
         Position can be in pixels or percentages. The clouds will be placed behind the children
 	    @function
     */
     render(){
-        let clouds = this.props.clouds.map((el,i)=>{
-            let classString = "";
-            if(el.isRight){
-                if(el.isSlow){
-                    classString = "clouds__cloud--rightSlow";
-                }else{
-                    classString = "clouds__cloud--right";
-                }
-            }else{
-                if(el.isSlow){
-                    classString = "clouds__cloud--leftSlow";
-                }else{
-                    classString = "clouds__cloud--left";
-                }
+        let clouds = null;
+        if(this.props.clouds){
+	        clouds = this.props.clouds.map((el,i)=>{
+	            let classString = "";
+	            if(el.isRight){
+	                if(el.isSlow){
+	                    classString = "clouds__cloud--rightSlow";
+	                }else{
+	                    classString = "clouds__cloud--right";
+	                }
+	            }else{
+	                if(el.isSlow){
+	                    classString = "clouds__cloud--leftSlow";
+	                }else{
+	                    classString = "clouds__cloud--left";
+	                }
+	            }
+	            return(
+	                <div key={i} className={"clouds__cloud "+classString} style={{position:'absolute',width:el.width,left:el.left,top:el.top}}>
+	                    <Cloud period={el.period} delay={el.delay}/>
+	                </div>  
+	            )
+	        });
+        }else{
+            clouds = [];
+            let moves = ["clouds__cloud--rightSlow","clouds__cloud--right","clouds__cloud--leftSlow","clouds__cloud--left"];
+            for(let i=0; i < this.props.random.number ; i++ ){
+                let cloud = (
+                    <div key={i} className={"clouds__cloud "+moves[this.randomInfo[i].moveInt]} style={{position:'absolute',width:this.randomInfo[i].width+"%",left:this.randomInfo[i].left+"%",top:this.randomInfo[i].top+"%"}}>
+                        <Cloud period={this.randomInfo[i].period} delay={this.randomInfo[i].delay}/>
+                    </div>  
+                )
+                clouds.push(cloud);
             }
-            return(
-                <div key={i} className={classString} style={{position:'absolute',width:el.width,left:el.left,top:el.top}}>
-                    <Cloud period={el.period} delay={el.delay}/>
-                </div>  
-            )
-        });
+        }
+        console.log("clouds: " + clouds);
         return (
             <div className={"clouds"}>
                 {clouds}
-                {this.props.children}
+                <div className={"clouds__container"}>
+                    {this.props.children}
+                </div>
             </div>
         )
     }
 }
 
 Clouds.defaultProps = {
-    clouds:[
-        {top:"10%",left:"0",width:"10%",period:1000,delay:1000,isRight:true,isSlow:true},
-        {top:"20%",left:"10%",width:"10%",period:1000,delay:1000,isRight:true,isSlow:false},
-        {top:"80%",left:"50%",width:"20%",period:1000,delay:1000,isRight:false,isSlow:false}
-    ]
+    random:{
+        number:30,
+	    widthRange:[10,40]
+    }
+}
+
+/**
+    Get random int between two values.
+    The maximum is exclusive and the minimum is inclusive
+    @function
+*/
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min; 
+}
+
+/**
+    Get random number between two values
+    @function
+*/
+
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
 }
