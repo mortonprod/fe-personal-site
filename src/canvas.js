@@ -11,8 +11,9 @@ class Canvas extends Component {
   lineWidth = 5;
   globalAlpha = 1;
   startFont = 5;
-  xBetweenLetters = 10;
+  xBetweenLetters = 5;
   isResized=false;
+  error = 50;
   constructor(){
     super();
     this.state = { width:'1000px', height:'1000px'}
@@ -37,7 +38,7 @@ class Canvas extends Component {
 	        //console.log("width/textWidth: " + width + "  " + textWidth);
 	        let fontSize = this.startFont;
             let tempFont = null;
-	        while (width > textWidth + this.props.txt.length*this.xBetweenLetters ) { //Must take into account the space between letters.
+	        while (width - this.error > textWidth + this.props.txt.length*this.xBetweenLetters ) { //Must take into account the space between letters.
 	            fontSize = fontSize + 1;
 	            let numberOfDigits = ctx.font.match( numberPattern )[0].split("").length 
 	            ctx.font = fontSize + ctx.font.slice(numberOfDigits);
@@ -46,7 +47,7 @@ class Canvas extends Component {
 	            //console.log("FontSize/text width/canvas width/text: " + fontSize + "  " + ctx.font + " " + textWidth + " " + width + "  " + this.props.txt)
 	        }
             //MUST SET FONT SIZE AFTER CHANGING CANVAS FONT SO PASS TO RESOLVE.
-            this.setState({width:width,height:parseInt(ctx.font)+30});
+            this.setState({width:width,height:1.5*parseInt(ctx.font)});
             resolve({ctx,tempFont});
 	    }else{
 	        console.log("Context is null");
@@ -104,7 +105,7 @@ class Canvas extends Component {
    }
    ///Don't rerender with the parent div rerenders and passes new props in.
    shouldComponentUpdate(nextProps, nextState){
-        if(Object.is(nextState,this.state)){
+        if(Object.is(nextState,this.state) && nextProps.title === this.props.title ){
             return false;
         }else{
             return true;
