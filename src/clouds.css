@@ -1,0 +1,43 @@
+@keyframes left {
+    0% {
+        transform: translate(0,0);
+    }
+
+    50% {
+        transform: translate(-400px,0);
+    }
+
+    100% {
+        transform: translate(0,0);
+    }
+}
+
+@keyframes right {
+    0% {
+        transform: translate(0,0);
+    }
+
+    50% {
+        transform: translate(400px,0);
+    }
+
+    100% {
+        transform: translate(0,0);
+    }
+}
+
+.clouds__cloud--right {
+    animation: right 100s;
+}
+
+.clouds__cloud--left {
+    animation: left 100s;
+}
+
+.clouds__cloud--rightSlow {
+    animation: right 200s;
+}
+
+.clouds__cloud--leftSlow {
+    animation: left 200s;
+}
