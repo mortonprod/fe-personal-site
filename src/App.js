@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom'
 import * as _ from "lodash";
 import CloudInfo from "./cloudInfo";
 import Clouds from "./clouds";  
@@ -65,10 +70,19 @@ class App extends Component {
     this.squares.push(ref);
   }
   render() {
+    function About(){
+    return (
+        <div>
+            hello
+        </div>
+    )
+  }
       return (
-            <div className="app">
-                <span style={{color:"white"}}>Hello</span>
-            </div>
+     <Router>
+            <Switch>
+                <Route path="/" component={About}/>
+            </Switch>
+      </Router>
     );
     return (
             <div className="app">
