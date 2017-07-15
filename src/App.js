@@ -65,6 +65,11 @@ class App extends Component {
     this.squares.push(ref);
   }
   render() {
+      return (
+            <div className="app">
+                <span style={{color:"white"}}>Hello</span>
+            </div>
+    );
     return (
             <div className="app">
                 <FadeBackground>

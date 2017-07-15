@@ -6,6 +6,7 @@
     transition:all 1s ease-in-out;
     text-align:center;
     margin:auto;
+    z-index:100;
 }
 
 .cloudInfo--left {
@@ -21,14 +22,15 @@
     position: absolute;
     display: flex;
     z-index: 10;
-    width: 60%;
+    width: 70%;
     left: 15%;
-    top: 30%;
-    height: 50%;
+    top: 20%;
+    height: 70%;
     justify-content: center;
     align-content: center;
     transition: all 1s ease-in-out;
     opacity: 1;
+    z-index: 101;
 }
 
 
@@ -39,6 +41,13 @@
     color: #2B20F6;
     text-align: center;
     margin: auto;
+}
+
+.cloudInfo__table > p {
+    font-family: Dosis-ExtraBold;
+    font-size: 3vw;
+    text-align: center;
+    margin-top:50px;
 }
 
 
@@ -97,4 +106,59 @@
 
 .cloudInfo--flash {
     animation: flash 0.25s infinite;
+}
+
+
+.expand-enter {
+    /*transform:translateX(0);*/
+    opacity: 0;
+    transform: scale(0);
+    transition: all 500ms ease-in;
+}
+
+.expand-enter.expand-enter-active {
+    /*transform: translateX(1000px);*/
+    opacity: 1;
+    transform: scale(1);
+    transition: all 500ms ease-in;
+}
+
+.expand-leave {
+    /*transform: translateX(-1000px);*/
+    opacity: 1;
+    transform: scale(1);
+    transition: all 500ms ease-in;
+}
+
+.expand-leave.expand-leave-active {
+    /*transform: translateX(0px);*/
+    opacity: 0;
+    transform: scale(0);
+    transition: all 500ms ease-in;
+}
+
+
+@media screen and (max-width: 850px) {
+    .cloudInfo__table > p {
+        margin-top: 30px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .cloudInfo__table > p {
+        margin-top: 25px;
+    }
+}
+
+
+@media screen and (max-width: 500px) {
+    .cloudInfo__table > p {
+        margin-top: 15px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .cloudInfo__table > p {
+        margin-top: 10px;
+    }
 }
