@@ -1,0 +1,23 @@
+.start {
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(-180deg, #C2B7FF 0%, #000000 100%);
+    border: 1px solid #979797;
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    align-content: center;
+    color:white;
+}
+
+.start > div {
+    height:200px; /**Why does height not resize with text?*/
+    text-align:center;
+    margin:auto;
+
+}
+
+
+@media screen and (min-width: 500px) {
+
+}

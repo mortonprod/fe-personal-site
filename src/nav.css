@@ -1,0 +1,30 @@
+.nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100vw;
+    height:50px;
+    justify-content:center;
+    transition:0.5s all ease-in-out;
+    display:flex;
+    text-align:center;
+    z-index:100;
+}
+
+.nav--hide{
+    transform:translateY(-200px);
+}
+
+.nav > * {
+    width: 20%;
+    height: 100%;
+}
+
+.nav__header >h1{
+    font-size:3vw;
+    margin:0;
+}
+
+
+.nav__links {
+}
