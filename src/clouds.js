@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+    import React, { Component } from 'react';
 import Cloud from "./cloud";
 import "./clouds.css";
 /** 
@@ -7,15 +7,18 @@ import "./clouds.css";
     Generate random will place the clouds randomly. You control the range or generation.
     If you pass clouds then draw them, otherwise, draw random clouds. 
     Place children in container so we can move it above the absolutely positioned clouds.
+    The clouds overflow should be hidden so we can't scroll off the page.
     @class
 */
 export default class Clouds extends Component {
     randomInfo = [];
 	constructor(){
         super();
+        this.state= {clouds:null}
 	}
     /**
         Must calculate random numbers here and not in render. So we do not change the values when the underlying child component updates.
+        Render clouds here so we don't have to build the clouds on each render.
         @function
     */
     componentWillMount(){
@@ -29,38 +32,30 @@ export default class Clouds extends Component {
 	        let top = topFrac*i;
             this.randomInfo.push({moveInt,width,left,period,delay,top});
 	    }
-    }
-    /** 
-        Will render clouds over child component passed via props.
-        Position can be in pixels or percentages. The clouds will be placed behind the children
-	    @function
-    */
-    render(){
-        let clouds = null;
         if(this.props.clouds){
-	        clouds = this.props.clouds.map((el,i)=>{
-	            let classString = "";
-	            if(el.isRight){
-	                if(el.isSlow){
-	                    classString = "clouds__cloud--rightSlow";
-	                }else{
-	                    classString = "clouds__cloud--right";
-	                }
-	            }else{
-	                if(el.isSlow){
-	                    classString = "clouds__cloud--leftSlow";
-	                }else{
-	                    classString = "clouds__cloud--left";
-	                }
-	            }
-	            return(
-	                <div key={i} className={"clouds__cloud "+classString} style={{position:'absolute',width:el.width,left:el.left,top:el.top}}>
-	                    <Cloud period={el.period} delay={el.delay}/>
-	                </div>  
-	            )
-	        });
+            this.state.clouds = this.props.clouds.map((el,i)=>{
+                let classString = "";
+                if(el.isRight){
+                    if(el.isSlow){
+                        classString = "clouds__cloud--rightSlow";
+                    }else{
+                        classString = "clouds__cloud--right";
+                    }
+                }else{
+                    if(el.isSlow){
+                        classString = "clouds__cloud--leftSlow";
+                    }else{
+                        classString = "clouds__cloud--left";
+                    }
+                }
+                return(
+                    <div key={i} className={"clouds__cloud "+classString} style={{position:'absolute',width:el.width,left:el.left,top:el.top}}>
+                        <Cloud period={el.period} delay={el.delay}/>
+                    </div>  
+                )
+            });
         }else{
-            clouds = [];
+            this.state.clouds = [];
             let moves = ["clouds__cloud--rightSlow","clouds__cloud--right","clouds__cloud--leftSlow","clouds__cloud--left"];
             for(let i=0; i < this.props.random.number ; i++ ){
                 let cloud = (
@@ -68,13 +63,23 @@ export default class Clouds extends Component {
                         <Cloud period={this.randomInfo[i].period} delay={this.randomInfo[i].delay}/>
                     </div>  
                 )
-                clouds.push(cloud);
+                this.state.clouds.push(cloud);
             }
         }
+    }
+    /** 
+        Will render clouds over child component passed via props.
+        Position can be in pixels or percentages. The clouds will be placed behind the children
+	    @function
+    */
+    render(){
+
         return (
             <div className={"clouds"}>
-                {clouds}
                 <div className={"clouds__container"}>
+                    {this.state.clouds}
+                </div>
+                <div className={"clouds__children"}>
                     {this.props.children}
                 </div>
             </div>
@@ -84,7 +89,7 @@ export default class Clouds extends Component {
 
 Clouds.defaultProps = {
     random:{
-        number:30,
+        number:10,
 	    widthRange:[10,40]
     }
 }

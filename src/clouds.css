@@ -26,11 +26,25 @@
     }
 }
 
-.clouds__container{
+.clouds {
     position:relative;
-    z-index:1000;
-    margin:0;
-    padding:0;
+    width:100%;
+}
+
+
+.clouds__container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+
+.clouds__children {
+    position: relative;
+    z-index: 1000;
+    margin: 0;
+    padding: 0;
 }
 
 

@@ -34,9 +34,9 @@ describe("<Clouds/>", ()=>{
     });
 
 
-    it('renders 30 random clouds when no clouds passed', () => {
+    it('renders 30 random', () => {
         const wrapper = shallow(
-            <Clouds>
+            <Clouds random={{number:30,widthRange:[10,40]}}>
                 <div className={""} style={{width:'1000px',height:"1000px"}}></div>
             </Clouds>
 
