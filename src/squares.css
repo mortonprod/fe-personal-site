@@ -12,6 +12,7 @@
     flex-wrap:wrap;
     transform: translateX(0px);
     transition: all 1s;
+    height:200px;
     width:95%;
     margin:auto;
 }
