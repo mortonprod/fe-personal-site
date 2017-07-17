@@ -10,7 +10,7 @@ import {
 import './App.css';
 import "./start.css";
 import Home from "./home";
-import workerService from "./workerService";
+import worker,{serviceWorker} from "./workerService";
 const AsyncHome = asyncComponent(() => import('./home'));
 
 let isJSDOM = navigator.userAgent.includes("Node.js") || navigator.userAgent.includes("jsdom")
@@ -41,21 +41,27 @@ if(isJSDOM){
 export default class App extends Component {
     constructor(){
         super();
-        this.state = {isLoaded:false}
+        this.state = {isLoaded:false,serviceWorker:null}
+        serviceWorker.subscribe(this.setState.bind(this));
     }
+    /**
+        App mount called after child components mounted. But other installation scripts might be running so check if fully loaded as well.
+        Ask about notification on startup. Also show at the beginning notification authorised.
+    */
     componentDidMount(){
 	    window.addEventListener('load',  ()=> {
             this.setState({isLoaded:true});
-            workerService.setPermissions();
+            worker.setPermissions();
 	    });
     }
     render(){
+        console.log("Service worker: " + JSON.stringify(this.state.serviceWorker));
 	    return (
             <div>
                 <Router>
                   <div>
                       <Switch>
-                        <Route path="/" render={()=>{ return <Start isLoaded={this.state.isLoaded}/>}}/>
+                        <Route path="/" render={()=>{ return <Start isLoaded={this.state.isLoaded} serviceWorker={this.state.serviceWorker}/>}}/>
                         <Route path="/about" component={Home}/>
                       </Switch>
                       <Nav/>
@@ -82,16 +88,31 @@ class  Start extends Component{
 	    if(this.props.isLoaded){
 	        installInfo = (
 	            <h2>
-	                Installed
+	                Loaded
 	            </h2>
 	        )
 	    }else{
 	        installInfo = (
 	            <h2>
-	                Installing
+	                Loading
 	            </h2>
 	        )
 	    }
+        let serviceComp = null;
+        if(this.props.serviceWorker && this.props.serviceWorker.message){
+            serviceComp = (
+                <div>
+                    <span>{this.props.serviceWorker.message}</span>
+                </div>
+            )
+            
+        }else{
+            serviceComp = (
+                <div>
+                    <span>No reply from service worker</span>
+                </div>
+            )
+        }
 	    return (
 	        <div className={"start"}>
 	            <div>
@@ -99,6 +120,7 @@ class  Start extends Component{
 			            Welcome 
 			        </h1>
 	                {installInfo}
+                    {serviceComp}
 	            </div>
 	        </div>
 	    )

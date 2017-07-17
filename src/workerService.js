@@ -1,5 +1,20 @@
 /**
-    The function returns function to access the service worker. 
+    Links to notification: Add the ability to add notification from the client. 
+
+    Links to service worker: Subscribe setState as callback to add serviceWorker info.
+    Call fire in serviceWorker to update serviceWorker state and then update any compoponent subscribed.
+
+
+    Additional:
+    Connects to notification API and communicates to service worker using postMessage.
+    Remember you can't call app code from service worker. Therefore you need to communicate through post message.
+    Sw-precache-webpack-plugin will create the service worker so you can't add post message easily to this.
+    Therefore just access lifecycle in registerServiceWorker to get when it started. 
+    Lifecycle event handlers will pass message to workerService. WorkerService function will then call setState with message if added.
+
+    Require and import will run the global scope once and return exports to all subsequent require/import calls. Import binds data an  require passes by value. 
+    Import binds means you can't change the value of import variable directly. It must be done by calling a function inside the imported file.
+
     If you need to update the app then return a change in state from function and call setState
     @function   
 */
@@ -61,3 +76,24 @@ export default (function(){
         notifyDetailed
     }
 })();
+
+let cb = []
+/**
+    Only a single copy of cb is create for each import/require, store for subscription setState.
+*/
+let serviceWorker = (function(){
+    function subscribe(fn){
+        cb.push(fn);
+    }
+    function fire(state){
+        cb.forEach((el)=>{
+            el({serviceWorker:state});
+        })
+    }
+    return {
+        subscribe,
+        fire
+    }
+})()
+
+export {serviceWorker};
