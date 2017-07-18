@@ -16,7 +16,24 @@
 
 
 .share__title {
-    display:flex;
-    justify-content:center;
-    flex-direction:column;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.share__title > span {
+    font-size:5vw;
+}
+
+
+@media (min-width:500px) {
+    .share__title > span {
+        font-size: 4vw;
+    }
+}
+
+@media (min-width:700px) {
+    .share__title > span {
+        font-size: 2vw;
+    }
 }

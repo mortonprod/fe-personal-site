@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import Share from "./share";
 import Account from "./account";
+import menu from "./assets/menu.svg";
 import "./nav.css";
 
 /** 
@@ -14,23 +15,29 @@ export default function Nav(props) {
         return (
             <Link key={i} to={el.location}> {el.name} </Link>
         )
-    }) 
-    return (
-        <nav className={"nav"}>
-            <header className={"nav__header"}>
-                <h1>{props.title}</h1>
-            </header>
-            <div className={"nav__links"}>
-                {links}
-            </div>
-            <div className={"nav__share"}>
-                <Share/>
-            </div>
-            <div className={"nav__account"}>
-                <Account/>
-            </div>
-        </nav>
-    )
+    })
+    if(props.isShow){ 
+	    return (
+	        <nav onClick={props.click}  className={"nav"}>
+	            <header className={"nav__header"}>
+	                <h1>{props.title}</h1>
+	            </header>
+	            <div className={"nav__links"}>
+	                {links}
+	            </div>
+	            <div className={"nav__share"}>
+	                <Share/>
+	            </div>
+	            <div className={"nav__account"}>
+	                <Account/>
+	            </div>
+	        </nav>
+	    )
+    }else{
+        return (
+            <img onClick={props.click} src={menu} className={"nav__button"} alt="Menu Button"/>
+        )
+    }
 }
 
 Nav.defaultProps ={

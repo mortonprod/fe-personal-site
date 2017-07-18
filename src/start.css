@@ -1,13 +1,13 @@
 .start {
     width: 100vw;
     height: 100vh;
-    background-image: linear-gradient(-180deg, #C2B7FF 0%, #000000 100%);
+    background-image: linear-gradient(-180deg, #B1B6FE 0%, #7A80FB 100%);
     border: 1px solid #979797;
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
     justify-content: center;
     align-content: center;
-    color:white;
+    color: white;
 }
 
 .start > div {
@@ -15,6 +15,11 @@
     text-align:center;
     margin:auto;
 
+}
+
+.start h1, h2, h3, h4, a, span, button {
+    color: white;
+    font-family: 'Lobster', cursive;
 }
 
 

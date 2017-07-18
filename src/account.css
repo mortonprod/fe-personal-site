@@ -8,18 +8,56 @@
     align-content:center;
 }
 
-.account  h3 {
-    font-size:3vw;
+.account h1, h2, h3, h4, a, span,button {
+    color: white;
+    font-family: 'Lobster', cursive;
 }
 
-.account  h4 {
-    font-size: 3vw;
+.account  img{
+    width:50px;
+    height:50px;
+}
+
+.account > div{
+    margin-right:5px;
+}
+
+/*Account h3 and h4 the same but can't comma separate?*/
+.account h3 {
+    font-size: 4.5vw;
+    margin-bottom:5px;
+}
+
+.account h4 {
+    font-size: 4.5vw;
+    margin-top: 5px;
+}
+
+.account  > a{
+    margin:auto;
+    margin-left:5px;
+    margin-right:5px;
+    
+}
+
+.account > button {
+    font-size:4vw;
+    background-color:transparent;
+    border:none;
+    height:100%;
+}
+
+.account > span {
+    margin: auto;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .account__button{
     position:relative;
-    width:50px;
-    height:50px;
+    width:30px;
+    height:30px;
+    margin:auto;
 }
 
 
@@ -29,4 +67,31 @@
     left:0;
     width:100%;
     height:100%;
+}
+
+@media (min-width:500px) {
+    .account h3 {
+        font-size: 3vw;
+    }
+
+    .account h4 {
+        font-size: 2.5vw;
+    }
+    .account > button {
+        font-size: 3vw;
+    }
+    
+}
+
+@media (min-width:800px) {
+    .account h3 {
+        font-size: 2vw;
+    }
+
+    .account h4 {
+        font-size: 1.5vw;
+    }
+    .account > button {
+        font-size: 2vw;
+    }
 }
