@@ -1,0 +1,112 @@
+.square {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin:20px;
+}
+
+.square > img:nth-child(0){
+    position:absolute;
+    left:10%;
+    width:20%;
+    top:80%;
+    height:auto;
+}
+
+
+.square > img:nth-child(1) {
+    position: absolute;
+    left: 70%;
+    width: 20%;
+    top: 80%;
+    height: auto;
+}
+
+
+
+.square__layer {
+    position: absolute;
+    opacity: 1;
+    transform: translateY(0px);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("./assets/square__background.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+    text-align: center;
+    transition: all 0.5s;
+    z-index: 0;
+}
+
+
+.square__layer--moveUp {
+    transform:translateY(-300px);
+}
+
+
+.square__layer--zIndex1 {
+    z-index: 1;
+}
+
+
+.square__layer--zIndex2 {
+    z-index: 2;
+}
+
+
+/*
+    This is the main section tags
+*/
+.square__layer > img {
+    margin: auto;
+    margin-top:10px;
+    width: 20%;
+    height: 20%;
+}
+
+.square__layer > h1 {
+    font-family: AmericanTypewriter-Bold;
+    font-size: 30px;
+    color: #FFFFFF;
+    text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
+}
+
+
+/*
+    This is the section underneath main.
+*/
+
+.square__layer > h3 {
+    font-family: AmericanTypewriter-Bold;
+    font-size: 20px;
+    color: #FFFFFF;
+    width:90%;
+    margin:auto;
+    margin-top:10px;
+    margin-bottom:20px;
+}
+
+.square__layer > h4 {
+    /* Every Web Applicatio: */
+    font-family: Monaco;
+    font-size: 15px;
+    color: #FFFFFF;
+    width: 90%;
+    margin: auto;
+    margin-bottom:20px;
+}
+
+
+.square__layer > ul {
+    width: 90%;
+    padding: 0;
+    margin: auto;
+    list-style-type: none;
+    font-family: Monaco;
+    font-size: 15px;
+    color: #FFFFFF;
+    display: block;
+}

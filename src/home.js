@@ -72,10 +72,6 @@ export default class Home extends Component {
                         <div className={"home__gap"}/>
                         <Squares isShow={this.state.isShow[0]} ref={(ref)=>{this.squares[0] = ReactDOM.findDOMNode(ref)}}>
                         </Squares>
-                        <Squares isShow={this.state.isShow[1]} ref={(ref)=>{this.squares[1] = ReactDOM.findDOMNode(ref)}}>
-                        </Squares>
-                        <Squares isShow={this.state.isShow[1]} ref={(ref)=>{this.squares[2] = ReactDOM.findDOMNode(ref)}}>
-                        </Squares>
                     </Clouds>
                 </FadeBackground>
             </div>

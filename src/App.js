@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import * as _ from "lodash";
+import Skills from "./skills";
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import AnimatedWrapper from "./transition";
 import Auth from "./auth";
 import Nav from "./nav";
 import asyncComponent from "./asyncComponent";
@@ -16,7 +19,8 @@ import worker,{serviceWorker} from "./workerService";
 const AsyncHome = asyncComponent(() => import('./home'));
 
 let isJSDOM = navigator.userAgent.includes("Node.js") || navigator.userAgent.includes("jsdom")
-
+const HomeAnimate = AnimatedWrapper(Home);
+const StartAnimate = AnimatedWrapper(Start);
 console.log("Is js dom: " + isJSDOM );
 let routes = null;
 if(isJSDOM){
@@ -49,18 +53,18 @@ const handleAuthentication = (nextState, replace) => {
     So check if running in jsdom and serve sync. Don't want to use webpack ignore so import removed 
     DONT INCLUDE ASYNC ROUTE JUST NOW WITH SERVER SIDE RENDERING
     DO NOT SET OVERFLOW:HIDDEN HERE SINCE THIS WILL STOP SCROLL EVENT FIRING.
+    MUST PASS LOCATION AND KEY TO ROUTE OBJECT SO WE FADE IN AND OUT CORRECTLY.
     @class
 */
 export default class App extends Component {
     constructor(props){
         super(props);
         if(window.innerWidth > this.props.thresholdX){
-            this.state = {isLoaded:false,serviceWorker:null,isShow:true,profile:null}
+            this.state = {isShow:true,profile:null}
         }else{
-            this.state = {isLoaded:false,serviceWorker:null,isShow:false,profile:null}
+            this.state = {isShow:false,profile:null}
         }
         this.resize = _.debounce(this.resize,200,{leading:false,trailing:true});
-        serviceWorker.subscribe(this.setState.bind(this));
     }
     resize(event){
         if(window.innerWidth > this.props.thresholdX){
@@ -77,10 +81,6 @@ export default class App extends Component {
         Ask about notification on startup. Also show at the beginning notification authorised.
     */
     componentDidMount(){
-	    window.addEventListener('load',  ()=> {
-            this.setState({isLoaded:true});
-            worker.setPermissions();
-	    });
         window.addEventListener('resize',this.resize.bind(this));
         Auth.getProfile((err, profile) => {
             if(!err){
@@ -95,16 +95,20 @@ export default class App extends Component {
                 <Router>
                   <div>
                       <Switch>
-                        <Route path="/" render={(props)=>{ 
-                            handleAuthentication(props);
-                            return <Start profile={this.state.profile} isLoaded={this.state.isLoaded} serviceWorker={this.state.serviceWorker}/>}
-                        }/>
-                        <Route path="/about" component={Home}/>
+                      <Route exact path={"/"} component={Start}/>
+                      <Route exact path={"/about"} component={Home}/>
+                      <Route exact path={"/skills"} render={()=>{
+                        return (
+                         <Skills data={[5,10,1,3]} size={[500,500]} />
+                        )
+                      }}/>
+
                       </Switch>
                       <Nav
                         isShow={this.state.isShow}
                         click={this.clickNav.bind(this)}
                         links={[
+                            {name:"Home",location:"/"},
 	                        {name:"About Me",location:"/about"},
 	                        {name:"My Work",location:"/work"},
 	                        {name:"My Designs",location:"/design"},
@@ -120,6 +124,57 @@ export default class App extends Component {
 App.defaultProps = {
     thresholdX:800
 }
+//
+// <Route render={({ location }) => {
+//    return <Routes location={location}/>
+//  }}/>
+
+
+               //         <Route exact path="/" children={({ match, ...rest }) => (
+              //              <TransitionGroup component={firstChild}>
+              //              {match && <HomeAnimate {...rest} />}
+              //              </TransitionGroup>
+              //          )}/>
+              //          <Route exact path="/about" children={({ match, ...rest }) => (
+               //             <TransitionGroup component={firstChild}>
+              //              {match && <StartAnimate {...rest} />}
+              //              </TransitionGroup>
+              //          )}/>
+
+
+const firstChild = props => {
+  const childrenArray = React.Children.toArray(props.children);
+  return childrenArray[0] || null;
+};
+
+
+
+
+
+
+/**
+
+    Home key undefined???
+
+*/
+function Routes(props){
+    let key = props.location.key
+    return (
+		<CSSTransition
+        key={props.location.key}
+		classNames="fade"
+        timeout={{ enter: 5000, exit: 5000 }}
+		>
+			<Route exact path="/" location={props.location} key={key} render={(props)=>{ 
+			    handleAuthentication(props);
+			    return <Start/>}
+			}/>
+			<Route path="/about" location={props.location} key={key} component={Home}/>
+		</CSSTransition>
+    )
+}
+
+
 
 /**
     Each route will be pre-rendered with react-snapshot and served to client.
@@ -129,13 +184,24 @@ App.defaultProps = {
     This can be a simple welcome message with telling the user when the app is full loaded.
 
 */
-class  Start extends Component{
+class Start extends Component{
     constructor(){
         super();
+        this.state = {isLoaded:false,profile:null,serviceWorker:null}
+        window.addEventListener('load',  ()=> {
+            this.setState({isLoaded:true});
+            worker.setPermissions();
+        });
+        Auth.getProfile((err, profile) => {
+            if(!err){
+                this.setState({profile:profile});
+            }
+        });
+        serviceWorker.subscribe(this.setState.bind(this));
     }
     render(){
 	    let installInfo = null;
-	    if(this.props.isLoaded){
+	    if(this.state.isLoaded){
 	        installInfo = (
 	            <h2>
 	                App Full Loaded
@@ -149,10 +215,10 @@ class  Start extends Component{
 	        )
 	    }
         let serviceComp = null;
-        if(this.props.serviceWorker && this.props.serviceWorker.message){
+        if(this.state.serviceWorker && this.state.serviceWorker.message){
             serviceComp = (
                 <div>
-                    <span>{this.props.serviceWorker.message}</span>
+                    <span>{serviceWorker.message}</span>
                 </div>
             )
             
@@ -164,10 +230,10 @@ class  Start extends Component{
             )
         }
         let wel = null
-        if(this.props.profile){
+        if(this.state.profile){
             wel = (
 	            <h1>
-	                Welcome {this.props.profile.name}
+	                Welcome {this.state.profile.name}
 	            </h1>
             )
         }else{
