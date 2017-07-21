@@ -1,3 +1,50 @@
+@keyframes blink0 {
+    0% {
+        opacity: 1;
+    }
+
+    20% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes blink1 {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 1;
+    }
+
+    60% {
+        opacity: 0;
+    }
+}
+
+@keyframes blink2 {
+    60% {
+        opacity: 0;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
 .account {
     width:100%;
     height:100%;
@@ -58,6 +105,34 @@
     width:30px;
     height:30px;
     margin:auto;
+}
+
+
+.account__button > img:nth-child(1) {
+    opacity: 1;
+}
+
+
+.account__button > img:nth-child(2) {
+    opacity: 0;
+}
+
+
+.account__button > img:nth-child(3) {
+    opacity: 0;
+}
+
+
+.account__button:hover > img:nth-child(1) {
+    animation: blink0 1.5s infinite;
+}
+
+.account__button:hover > img:nth-child(2) {
+    animation: blink1 1.5s infinite;
+}
+
+.account__button:hover > img:nth-child(3) {
+    animation: blink2 1.5s infinite;
 }
 
 

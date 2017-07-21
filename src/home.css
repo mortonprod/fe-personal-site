@@ -1,5 +1,5 @@
 .home {
-    background-color: black;
+    background-color: transparent;
     position: relative;
     min-height: 100vh;
     text-align: center;
@@ -41,6 +41,28 @@
 }
 
 
+.home__info > p {
+    font-size: 3vw;
+    color: white;
+    font-family: 'Lobster', cursive;
+}
+
+
 .home__gap{
     height:150vh;
+}
+
+@media (max-width:600px){
+
+    .home__info > p {
+        font-size: 4vw;
+    }
+
+}
+
+@media (max-width:400px) {
+
+    .home__info > p {
+        font-size: 5.5vw;
+    }
 }

@@ -68,10 +68,17 @@
 }
 
 .square__layer > h1 {
-    font-family: AmericanTypewriter-Bold;
+    font-family: 'Lobster', cursive;
     font-size: 30px;
     color: #FFFFFF;
     text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
+    text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
+    transform: scale(1);
+    transition: all 0.5s;
+}
+
+.square__layer > h1:hover {
+    transform: scale(1.5);
 }
 
 
@@ -80,33 +87,104 @@
 */
 
 .square__layer > h3 {
-    font-family: AmericanTypewriter-Bold;
-    font-size: 20px;
+    font-family: 'Lobster', cursive;
+    font-size: 25px;
     color: #FFFFFF;
-    width:90%;
-    margin:auto;
-    margin-top:10px;
-    margin-bottom:20px;
+    text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
+    width: 90%;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 .square__layer > h4 {
-    /* Every Web Applicatio: */
-    font-family: Monaco;
-    font-size: 15px;
+    font-family: Dosis-ExtraBold;
+    font-size: 18px;
     color: #FFFFFF;
+    text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
     width: 90%;
     margin: auto;
-    margin-bottom:20px;
+    margin-bottom: 20px;
 }
 
 
-.square__layer > ul {
+
+.square__list > h1 {
+    font-family: 'Lobster', cursive;
+    font-size: 30px;
+    color: #FFFFFF;
+    text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
+    transform: scale(1);
+    transition: all 0.5s;
+}
+
+
+
+.square__list > ul {
     width: 90%;
     padding: 0;
     margin: auto;
     list-style-type: none;
-    font-family: Monaco;
+    font-family: Dosis-ExtraBold;
     font-size: 15px;
     color: #FFFFFF;
     display: block;
+}
+
+.square__list > ul > li {
+    margin-top: 10px;
+    margin-bottom:10px;
+    text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
+}
+
+
+.square__list {
+    position: absolute;
+    padding: 10px;
+    top: 0;
+    right: -100px;
+    left: -100px;
+    background-image: linear-gradient(-180deg, #D9DCFF 0%, #B1B6FE 63%);
+    border: 1px solid #979797;
+    box-shadow: inset 2px -2px 2px 2px rgba(0,0,0,0.50), inset -2px 2px 2px 2px rgba(0,0,0,0.50);
+    z-index: 10;
+    max-width: 600px;
+    transform: scale(0);
+    transition: all 0.5s ease-in-out;
+}
+
+
+.square__list--show {
+    transform: scale(1);
+}
+
+.square__layer > button {
+    background-color: transparent;
+    transform: scale(1);
+    transition: all 0.5s;
+}
+
+
+.square__layer > button:hover {
+    transform: scale(1.5);
+}
+
+
+.square__list > button {
+    background-color: transparent;
+    transform: scale(1);
+    transition: all 0.5s;
+}
+
+
+.square__list > button:hover {
+    transform: scale(1.5);
+}
+
+@media (max-width:500px){
+    .square__list {
+        right: -20px;
+        left: -20px;
+        
+    }
 }

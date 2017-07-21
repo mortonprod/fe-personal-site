@@ -22,7 +22,7 @@ export default class Squares extends Component {
     */
     constructor(props){
         super(props);
-        this.state = {modifier:defaultModifier(props.parts)};
+        this.state = {modifier:defaultModifier(props.parts),elements:null,listModifier:""};
     };
 
     /**
@@ -44,36 +44,70 @@ export default class Squares extends Component {
         },500);
     };
     /**
+        When we click we want to move in a list.
+        Create list offscreen then move in. Must check another element does not have control. If so then remove.
+        Since we use transform css on parent which create local coordinate system. This means that fixed will act as absolute positioned element. 
+        Therefore we can't used fixed.
+        @function
+    */
+    clickShow(el,e){
+	    let elements = el.list.map((item,j)=>{
+	        return (
+	            <li key={j}>
+	                {item}
+	            </li>
+	        )
+	    });
+
+        this.setState({elements:elements});
+        setTimeout(()=>{
+            this.setState({listModifier:"square__list--show"});
+        },500);
+    }
+    /**
+        Move list offscreen and then remove.
+        @function
+    */
+    clickHide(){
+        this.setState({listModifier:""});
+        setTimeout(()=>{
+            this.setState({elements:null});
+        },500);
+    }
+    /**
         Render everything here so we can update the class state for each click.
+        Each article will pass a list to clickShow Which will render on click. 
+        @function.
     */
     render(){
+        let list = (
+            <div className={"square__list " + this.state.listModifier}>
+                <h1>How to achieve this</h1>
+                <ul>
+                    {this.state.elements}
+                </ul>
+                <button onClick={this.clickHide.bind(this)}>Show less</button>
+            </div>
+        )
         let articles = this.props.parts.map((el,i)=>{
-            let list = el.list.map((item,j)=>{
-                return (
-                    <li key={j}>
-                        {item}
-                    </li>
-                )
-            });
             return (
                <article key={i} className={"square__layer " + this.state.modifier[i+1]} onClick={this.clickForwards.bind(this,i+1)}>
                     <h3>{el.title}</h3>
                     <h4>{el.subTitle}</h4>
-                    <ul>
-                        {list}
-                    </ul>
+                    <button onClick={(event)=>{event.stopPropagation();this.clickShow.bind(this,el)()}}> Show More </button>
                 </article> 
             )
         });
         let section = ()=>{ 
             return (
-                <section className={"square"}>
-                    {articles}
-                    <article className={"square__layer " + this.state.modifier[0]} onClick={this.clickForwards.bind(this,0)}>
-                        <img src={this.props.pic} alt={this.props.title}/>
-                        <h1>{this.props.title}</h1>
-                    </article>
-                </section>
+	            <section className={"square"}>
+	                {articles}
+	                <article className={"square__layer " + this.state.modifier[0]} onClick={this.clickForwards.bind(this,0)}>
+	                    <img src={this.props.pic} alt={this.props.title}/>
+	                    <h1>{this.props.title}</h1>
+	                </article>
+	                {list}
+	            </section>
             )
         }
         return (

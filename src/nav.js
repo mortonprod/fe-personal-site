@@ -29,7 +29,7 @@ export default function Nav(props) {
 	                <Share/>
 	            </div>
 	            <div className={"nav__account"}>
-	                <Account/>
+	                <Account profile={props.profile}/>
 	            </div>
 	        </nav>
 	    )

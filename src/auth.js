@@ -9,7 +9,7 @@ let history = createHistory({
 let auth = new auth0.WebAuth({
 	domain: 'mortonprod.eu.auth0.com',
 	clientID: 'eV7o6BUD3KDcNVFemzb3IUyyQRHyOu6H',
-	redirectUri: 'http://localhost:3000/about',
+	redirectUri: 'http://localhost:3000/services',
 	audience: 'https://mortonprod.eu.auth0.com/userinfo',
 	responseType: 'token id_token',
 	scope: 'openid profile'
@@ -18,9 +18,12 @@ let auth = new auth0.WebAuth({
 /**
     Static utility class.
     Links to single instance of auth0 API through closure.
+    Login procedure:
+    1) Click login and then click google/facebook ...
+    2) Will be redirected to services page where handleAuthentication is called to parse url to get all information.
+    3) Call getProfile in home(MUST DO IT HERE FOR SOME REASON). This will call setState on all components which need this information.
 */
 export default class Auth {
-
   static login() {
     auth.authorize();
   };
@@ -33,9 +36,9 @@ export default class Auth {
     auth.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         Auth.setSession(authResult);
-        history.replace('/about');
+        history.replace('/services');
       } else if (err) {
-        history.replace('/about');
+        history.replace('/services');
         console.log(err);
       }
     });
@@ -54,7 +57,7 @@ export default class Auth {
 
         
     }
-    history.replace('/');
+    history.replace('/services');
   };
   /**
     Delete tokens to logout.
@@ -66,8 +69,7 @@ export default class Auth {
 	    localStorage.removeItem('id_token');
 	    localStorage.removeItem('expires_at');
     }
-    // navigate to the home route
-    history.replace('/');
+    history.replace('/services');
   };
   /**
     Use token after sign in to query auth0 for user information. 
@@ -88,15 +90,32 @@ export default class Auth {
                     axios.post('/account',profile).then((res) => {
                         Auth.userProfile = Object.assign(profile,res.data); 
                         console.log("User profile: " + JSON.stringify(Auth.userProfile));
+                        Auth.setStatesWithNewProfile(profile);
                         cb(err, profile);
                     }).catch((error)=>{
                         Auth.userProfile = profile;
+                        Auth.setStatesWithNewProfile(profile);
                         cb(err,profile);
                     }); 
                 }
 	        });
 	    }
     }
+  };
+  /**
+    Get the set state functions for each component which needs a profile update.
+    @function
+  */
+  static addSetState(fn){
+    Auth.setStateList.push(fn); 
+  };
+  /**
+    This function will take the new profile when we have it and then call the setState functions of each component whcih needs it
+  */
+  static setStatesWithNewProfile(profile){
+    Auth.setStateList.forEach((fn)=>{
+        fn({profile:profile});
+    });
   };
     
   static isAuthenticated() {
@@ -109,3 +128,5 @@ export default class Auth {
   }
 
 }
+
+Auth.setStateList = [];

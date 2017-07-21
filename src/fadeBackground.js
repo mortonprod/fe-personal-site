@@ -28,7 +28,10 @@ export default class FadeBackground extends Component {
     @function
   */
   resize(event){
-    this.setState({height:ReactDOM.findDOMNode(this.background).getBoundingClientRect().height});
+    let node = ReactDOM.findDOMNode(this.background)
+    if(node){
+        this.setState({height:node.getBoundingClientRect().height});
+    }
   }
   /**
     The height of the background is used to determine the opacity of the fade out.

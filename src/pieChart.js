@@ -67,12 +67,22 @@ export default class PieChart extends Component {
 		  .attr("fill", function(d, i) { return color(i); })
 		  .attr("d", this.arc)
 		  .each(function(d) { this._current = d; });
+
+        let legend = (index)=>{
+	        let legend = svg.append('g').attr('class', 'legend').selectAll('text').data(this.props.sections).enter().append('text')
+	        .text(function(d) { return '• ' + d[0].name; })
+	        .attr('fill', function(d) { return color(d.name); })
+	        .attr('y', function(d, i) { return 20 * (i + 1); })
+        }
+        legend(0);
           
         function change(e) {
 		    var value = e.target.value;
             console.log("value " + value);
 		    pie.value(function(d) { return d[value].count; }); // change the value function
 		    path = path.data(pie); // compute the new angles
+            svg.selectAll(".legend").remove();
+            legend(value);
 		    path.transition().duration(750).attrTween("d", this.arcTween.bind(this)); // redraw the arcs
         }
         return change
@@ -89,7 +99,7 @@ export default class PieChart extends Component {
     }
     render(){
         return(
-            <div>
+            <div className={"pieChart"}>
 	            <form>
 	                <label>
                         <input type="radio" name="dataset" value="0" onClick={(e)=>{this.change(e)}}/> 
@@ -126,7 +136,7 @@ PieChart.defaultProps ={
 	    [
 	        {name:"docker",count:30 },
 	        {name:"certbot",count:2000 },
-            {name:"certbot",count:2000 }
+            {name:"nginx",count:200 }
 	    ]
     ]
 };
