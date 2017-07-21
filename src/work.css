@@ -1,0 +1,95 @@
+@keyframes moveIn {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 5%;
+    }
+}
+
+.work {
+    text-align: center;
+}
+
+.work__header {
+    position: fixed;
+    top: 10%;
+    width: 90%;
+    left: 5%;
+    height: 20vh;
+    z-index: 100;
+    margin: auto;
+    opacity: 1;
+    transition: opacity 2s;
+    animation: moveIn 1s forwards;
+}
+
+.work h1 {
+    font-size: 10vw;
+    color: white;
+    font-family: 'Lobster', cursive;
+    text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
+}
+
+.work h2 {
+    font-size: 8vw;
+    color: white;
+    font-family: 'Lobster', cursive;
+    text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
+}
+
+.work h3 {
+    text-align: start;
+    margin: 30px;
+    font-size: 5vw;
+    text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
+}
+
+
+
+.work__gap {
+    height: 150vh;
+}
+
+.work p {
+    font-size: 3vw;
+    color: white;
+    font-family: 'Lobster', cursive;
+    text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
+}
+
+.work__site {
+    width:95%;
+    margin:auto;
+    padding:5px;
+    background-image: url("./assets/blueBox.svg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size:cover;
+    display:block;
+}
+
+.work__problem {
+    border:double;
+    margin-bottom:10px;
+}
+
+
+.work__solution {
+    border: double;
+    margin-bottom: 10px;
+}
+
+
+.work__problem > h3 {
+    color: red;
+    text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
+}
+
+
+.work__solution > h3 {
+    color: blue;
+    text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
+}
+

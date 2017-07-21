@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="81px" height="36px" viewBox="0 0 81 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="131.799736%" gradientTransform="translate(0.500000,0.500000),scale(0.447744,1.000000),rotate(90.000000),translate(-0.500000,-0.500000)" id="radialGradient-1">
+            <stop stop-color="#FD4545" offset="0%"></stop>
+            <stop stop-color="#FA2121" stop-opacity="0.257557745" offset="100%"></stop>
+        </radialGradient>
+        <rect id="path-2" x="0.596985845" y="0" width="80.4030142" height="36"></rect>
+    </defs>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Mobile-Copy-3" transform="translate(-181.000000, -351.000000)">
+            <g id="Group" transform="translate(181.000000, 351.000000)">
+                <g id="Rectangle">
+                    <use fill="url(#radialGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                    <rect stroke="#979797" stroke-width="1" x="1.09698585" y="0.5" width="79.4030142" height="35"></rect>
+                </g>
+                <text id="Visit-Website" font-family="AmericanTypewriter-Bold, American Typewriter" font-size="10" font-weight="bold" fill="#FFFFFF">
+                    <tspan x="6.41355153" y="21">Visit Website</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
