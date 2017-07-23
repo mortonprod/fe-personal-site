@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import * as _ from "lodash";
 import ReactDOM from 'react-dom';
 import Helmet from 'react-helmet';
 import Auth from "./auth";
@@ -47,8 +46,7 @@ export default class Home extends Component {
         @function
     */
     componentWillUpdate(){
-        let scrollTop = this.props.scrollTop;
-        this.squares.map((ref,i)=>{
+        this.squares.forEach((ref,i)=>{
             if(ref){
 	            let pos = ref.getBoundingClientRect();
 		        if(pos.top < window.innerHeight*(1/2)){
@@ -156,18 +154,18 @@ let design = {
             title:"Custom Design",
             subTitle:"Your website is your customers first impression of you. It's important to design you site to memorable and professional",
             list:[
-                "Only build websites which reflect your business and not just another template",
-                "All website are dynamic and interactive",
-                "Use the latest technologies to get the best the web can offer"
+                "Only build websites which reflect your business and not just another template.",
+                "All website are dynamic and interactive.",
+                "Use the latest technologies to get the best the web can offer."
             ]
         },
         {
             title:"Mobile Optimised",
-            subTitle:"Make sure every user gets the best experience possible.",
+            subTitle:"Make sure every user gets the best experience possible",
             list:[
-                "Consider bandwidth when serving content",
+                "Consider bandwidth when serving network intensive content.",
                 "Responsive design allowing your users to clearly see your content on all devices.",
-                "Serve content only when it's needed.'"
+                "Serve content only when it's needed."
             ]
         }
     ]
@@ -182,9 +180,9 @@ let seo = {
             title:"Social Media",
             subTitle:"Allow the world to share your website",
             list:[
-                "Allow your users to login easily",
-                "Allow your users to share on the leading social networks",
-                "Setup paid adverts on any platform you desire"
+                "Allow your users to login easily.",
+                "Allow your users to share on the leading social networks.",
+                "Setup paid adverts on any platform you desire."
             ]
         },
         {
@@ -208,8 +206,8 @@ let serviceWorker = {
             title:"Load Once View Anywhere",
             subTitle:"Allow your users to work with your site offline",
             list:[
-                "Cache your website on most browsers",
-                "For repeat visits prompt the user to install your site",
+                "Cache your website on most browsers.",
+                "For repeat visits prompt the user to install your site.",
             ]
         },
         {
@@ -232,8 +230,8 @@ let api = {
             title:"Existing Services",
             subTitle:"Save yourself time and money and don't reinvent the wheel",
             list:[
-                "Integrate existing tools into your web application",
-                "Link multiple tools through a single user interface"
+                "Integrate existing tools into your web application.",
+                "Link multiple tools through a single user interface."
             ]
         },
         {
@@ -241,8 +239,8 @@ let api = {
             subTitle:"Create, Read, Update and delete any information.",
             list:[
                 "Store and manage information in a fast and predictable way.",
-                "Link your service to existing services",
-                "Build microservices to reduce your hosting costs"
+                "Link your service to existing services.",
+                "Build microservices to reduce your hosting costs."
             ]
         }
     ]
@@ -257,8 +255,8 @@ let spa = {
             title:"No More Loading",
             subTitle:"Once your app has downloaded your ready to go",
             list:[
-                "Build seamless page transitions",
-                "Download assets without blocking the user",
+                "Build seamless page transitions.",
+                "Download assets without blocking the user.",
             ]
         },
         {
@@ -282,8 +280,8 @@ let process = {
             title:"Documentation",
             subTitle:"Make future development easy",
             list:[
-                "Every site comes with an additional website to describe how your website works",
-                "Explain your site line by line",
+                "Every site comes with an additional website to describe how your website works.",
+                "Explain your site line by line.",
                 "The most complex parts come with detailed explanations."
             ]
         },
@@ -291,17 +289,17 @@ let process = {
             title:"Testing",
             subTitle:"Develop quickly and effectively",
             list:[
-                "Always know what works and what doesn't",
-                "Keep an eye on development process",
-                "Build with test driven development"
+                "Always know what works and what doesn't.",
+                "Keep an eye on development process.",
+                "Build with test driven development."
             ]
         },
         {
             title:"Version Control",
             subTitle:"Keep up to date version of your website which works with anyone",
             list:[
-                "Use github or svn to log every change",
-                "Keep simple and informed commits so any future developer can start work instantly",
+                "Use github or svn to log every change.",
+                "Keep simple and informed commits so any future developer can start work instantly.",
             ]
         }
 
@@ -314,44 +312,18 @@ let security = {
     parts:[
         {
             title:"Encryption",
-            subTitle:"Keep all your users information safe",
+            subTitle:"Keep all your users information safe to build a professional and high ranking site.",
             list:[
-                "Every Web Application comes with encryption as standard.", 
-                "Use HTTPs to communicate between server and browser.",
-                "Users first impression is of trust and professionalism.",
-                "Higher google rankings."
+                "Every web application comes with HTTPS encryption as standard.", 
             ]
         },
         {
             title:"Accounts",
             subTitle:"Interact with your app securely anyway you want.",
             list:[
-                "Use google facebook or any other service to login",
-                "Store passwords safely with hashes."
-            ]
-        }
-    ]
-};
-
-let analysis = {
-    title:"Data Analysis",
-    pic:star,
-    parts:[
-        {
-            title:"Display Data",
-            subTitle:"",
-            list:[
-                "Keeps your users data safe.",
-                "Users first impression is of trust and professionalism.",
-                "Higher google rankings." 
-            ]
-        },
-        {
-            title:"Accounts",
-            subTitle:"Interact with your app securely anyway you want.",
-            list:[
-                "Use google facebook or any other service to login",
-                "Create any administration accounts so you can easily and safely edit your application."
+                "Use google facebook or any other service to login.",
+                "Only store user information if needed and defer to external providers.",
+                "Send and store passwords safely on your server."
             ]
         }
     ]

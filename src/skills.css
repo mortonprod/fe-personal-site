@@ -110,12 +110,17 @@
     margin:auto;
 }
 
+.skills__account > img{
+    width:100px;
+    height:auto;
+    
+}
 
 
-#map{
-    width:350px;
-    height:350px;
-    margin:auto;
+#map {
+    width: 350px;
+    height: 350px;
+    margin: auto;
 }
 
 #player {

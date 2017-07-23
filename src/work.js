@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import vistSite from "./assets/vistSite.svg";
 import Helmet from 'react-helmet';
 import "./work.css";

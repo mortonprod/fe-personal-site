@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Rx from "rx";
 import './cloud.css';
 import cloud from './assets/cloud.svg';
 import cloudPartial from './assets/cloud_partial.svg';

@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import arrowLeft from "./assets/arrowLeft.svg";
-import arrowRight from "./assets/arrowRight.svg";
 import star from "./assets/star.svg";
 import "./square.css";
 

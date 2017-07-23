@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import "./share.css";
 import {
   ShareButtons,
@@ -9,23 +9,13 @@ const {
   FacebookShareButton,
   GooglePlusShareButton,
   LinkedinShareButton,
-  TwitterShareButton,
-  TelegramShareButton,
-  WhatsappShareButton,
-  PinterestShareButton,
-  VKShareButton,
-  OKShareButton,
-  RedditShareButton,
+  TwitterShareButton
 } = ShareButtons;
 
 const {
   FacebookShareCount,
   GooglePlusShareCount,
-  LinkedinShareCount,
-  PinterestShareCount,
-  VKShareCount,
-  OKShareCount,
-  RedditShareCount,
+  LinkedinShareCount
 } = ShareCounts;
 
 const FacebookIcon = generateShareIcon('facebook');

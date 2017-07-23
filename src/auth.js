@@ -6,10 +6,19 @@ let history = createHistory({
   forceRefresh: true
 });
 
+let redirect = null;
+if (process.env.NODE_ENV === 'production') { 
+    redirect = "https://alexandermorton.co.uk";
+
+}else{
+    redirect = "http://localhost:3000";
+}
+
+
 let auth = new auth0.WebAuth({
 	domain: 'mortonprod.eu.auth0.com',
 	clientID: 'eV7o6BUD3KDcNVFemzb3IUyyQRHyOu6H',
-	redirectUri: 'http://localhost:3000/services',
+	redirectUri:  redirect + '/services',
 	audience: 'https://mortonprod.eu.auth0.com/userinfo',
 	responseType: 'token id_token',
 	scope: 'openid profile'

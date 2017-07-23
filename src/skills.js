@@ -24,21 +24,24 @@ export default class Skills extends Component {
 	    event.target.pauseVideo();
 	  }
     render() {
-        const opts = {
-	      height: '300',
-	      width: '300',
-	      playerVars: {
-	        autoplay: 1
-	      }
-        }
 		let wel = null
 		if(this.props.profile){
+            let nickname = "";
+            if(this.props.profile.nickname){
+                nickname= " AKA " + this.props.profile.nickname
+            }
 			wel = (
                 <div className={"skills__account"}>
-				    <h1>
-				        Welcome back {this.props.profile.name}
-				    </h1>
-	                <img src={this.props.profile.picture} alt="profile link" />
+				    <h3>
+				        Welcome back
+				    </h3>
+                    <h3>
+                        {this.props.profile.name}
+                    </h3>
+                    <h4>
+                        {nickname}
+                    </h4>
+	                <img src={this.props.profile.picture} alt="profile" />
                 </div>
 			)
 			}else{
@@ -56,10 +59,10 @@ export default class Skills extends Component {
       let tran = -1*this.props.scrollTop*0.5;
       return (
         <div className={"skills"}>
-                 <Helmet>
-                     <title>Freelance Web Designer | Alexander Morton</title>
-                    <meta name="description" content="Highlights of my skills and expertise." />
-                </Helmet>
+             <Helmet>
+                 <title>Freelance Web Designer | Alexander Morton</title>
+                <meta name="description" content="Highlights of my skills and expertise." />
+            </Helmet>
 	        <div style={{transform:'translateY(' + tran + 'px)'}} className={"skills__header"} >
 	            <h1>My Skill</h1>
                 <h2>
@@ -88,10 +91,10 @@ export default class Skills extends Component {
                         Media
                     </h2>
                     <p>
-                        Integrate any media into your website. Using the latest HTML5 canvas for individual pixel manipulation.
+                        Integrate any media into your website.
                     </p>
                     <p>
-                        Using the latest HTML5 canvas for individual pixel manipulation.
+                       From videos to using the latest HTML5 canvas for individual pixel manipulation.
                     </p>
                 </div>
                 <div className={"skills__centreMedia"}>
@@ -144,7 +147,7 @@ var YouTube = React.createClass({
         this.props.modest;
     return (
       <div className="container">
-        <iframe id="player" type="text/html" width="100%" height="100%"
+        <iframe title="Youtube video" id="player" type="text/html" width="100%" height="100%"
   src={videoSrc}
   frameBorder="0"/>
       </div>

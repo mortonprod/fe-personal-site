@@ -33,7 +33,7 @@ export default class Clouds extends Component {
             this.randomInfo.push({moveInt,width,left,period,delay,top});
 	    }
         if(this.props.clouds){
-            this.state.clouds = this.props.clouds.map((el,i)=>{
+           let clouds = this.props.clouds.map((el,i)=>{
                 let classString = "";
                 if(el.isRight){
                     if(el.isSlow){
@@ -54,8 +54,9 @@ export default class Clouds extends Component {
                     </div>  
                 )
             });
+            this.setState({clouds:clouds});
         }else{
-            this.state.clouds = [];
+            let clouds = [];
             let moves = ["clouds__cloud--rightSlow","clouds__cloud--right","clouds__cloud--leftSlow","clouds__cloud--left"];
             for(let i=0; i < this.props.random.number ; i++ ){
                 let cloud = (
@@ -63,8 +64,9 @@ export default class Clouds extends Component {
                         <Cloud period={this.randomInfo[i].period} delay={this.randomInfo[i].delay}/>
                     </div>  
                 )
-                this.state.clouds.push(cloud);
+                clouds.push(cloud);
             }
+            this.setState({clouds:clouds});
         }
     }
     /** 

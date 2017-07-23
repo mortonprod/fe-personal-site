@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Helmet from 'react-helmet';
-import Auth from "./auth";
 import worker from "./workerService";
 import me from "./assets/me.png"
 import {Link} from 'react-router-dom';
@@ -24,7 +23,7 @@ export default function Start(props){
                 <h2>
                     App Full Loaded
                 </h2>
-                <button click={this.clickNotification.bind(this)}> Notify Me </button>
+                <button onClick={clickNotification.bind(this)}> Notify Me </button>
             </div>
         )
     }else{

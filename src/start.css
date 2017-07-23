@@ -1,6 +1,6 @@
 .start {
     width: 100vw;
-    height:130vh;/**Need to set this for some reason*/
+    height:150vh;/**Need to set this for some reason*/
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -15,6 +15,7 @@
     background-image: radial-gradient(50% 100%, rgba(177,182,254,0.00) 50%, #E3E5FF 100%);
     border: 1px solid #000000;
     border-radius: 8px;
+    display:block;
 }
 
 
@@ -33,7 +34,7 @@
     height: 200px; /**Why does height not resize with text?*/
     text-align: center;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 100px;
 }
 
 .start h1, h2, h3, h4, a, span, button {
@@ -58,15 +59,25 @@
 
 
 .start button {
-    font-size: 15px;
-    color: white;
+    font-size: 25px;
+    color:  orangered;
     font-family: 'Lobster', cursive;
     margin:auto;
+    transform:scale(1);
+    transition:all 1s;
     display:block;
+    background-color:transparent;
+}
+
+
+.start button:hover {
+    transform: scale(1.2);
 }
 
 
 
-@media screen and (min-width: 500px) {
-
+@media screen and (max-width: 400px) {
+    .start{
+        height:170vh;
+    }
 }
