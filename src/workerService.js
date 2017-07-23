@@ -23,10 +23,12 @@ export default (function(){
         Ask the user to allow notifications.
     */
     function setPermissions(){
-		Notification.requestPermission(function(status) {
-		    console.log('Notification permission status:', status);
-	    });
-        notify("Welcome Back. Notifications Enabled.");
+        if(!navigator.userAgent.includes("Node.js") && !navigator.userAgent.includes("jsdom")){
+			Notification.requestPermission(function(status) {
+			    console.log('Notification permission status:', status);
+		    });
+	        notify("Welcome Back. Notifications Enabled.");
+        }
     }
     /**
         If notification granted then show a message

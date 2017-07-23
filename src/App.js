@@ -66,7 +66,6 @@ export default class App extends Component {
         }
         window.addEventListener('load',  ()=> {
             this.setState({isLoaded:true});
-            worker.setPermissions();
         });
         this.resize = _.debounce(this.resize,200,{leading:false,trailing:true});
         this.scroll = _.throttle(this.scroll,100,{leading:false,trailing:true});

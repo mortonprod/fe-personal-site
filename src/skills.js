@@ -1,4 +1,5 @@
 import React, { Component } from 'react'; 
+import Helmet from 'react-helmet';
 import PieChart from "./pieChart";
 import google from "./assets/google.svg";
 import youtube from "./assets/youtube.svg";
@@ -55,6 +56,10 @@ export default class Skills extends Component {
       let tran = -1*this.props.scrollTop*0.5;
       return (
         <div className={"skills"}>
+                 <Helmet>
+                     <title>Freelance Web Designer | Alexander Morton</title>
+                    <meta name="description" content="Highlights of my skills and expertise." />
+                </Helmet>
 	        <div style={{transform:'translateY(' + tran + 'px)'}} className={"skills__header"} >
 	            <h1>My Skill</h1>
                 <h2>

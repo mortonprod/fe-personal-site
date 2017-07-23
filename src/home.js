@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as _ from "lodash";
 import ReactDOM from 'react-dom';
+import Helmet from 'react-helmet';
 import Auth from "./auth";
 import Square from "./square";
 import star from "./assets/star.svg"; 
@@ -77,6 +78,10 @@ export default class Home extends Component {
         console.log("show: " + this.state.isShow[0]);
         return (
             <div className="home">
+	             <Helmet>
+	                 <title>Freelance Web Designer | Alexander Morton</title>
+	                <meta name="description" content="An introduction to the web development and design services I provide." />
+	            </Helmet>
 	            <div style={{transform:'translateY(' + tran + 'px)'}} className={"home__header"} >
 	                <h1>My Services</h1>
                     <h2>Developing At the Zenith</h2>

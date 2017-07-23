@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import Auth from "./auth";
+import worker from "./workerService";
 import me from "./assets/me.png"
 import {Link} from 'react-router-dom';
 import "./start.css";
@@ -23,6 +24,7 @@ export default function Start(props){
                 <h2>
                     App Full Loaded
                 </h2>
+                <button click={this.clickNotification.bind(this)}> Notify Me </button>
             </div>
         )
     }else{
@@ -61,6 +63,9 @@ export default function Start(props){
             </h1>
         )
     }
+    function clickNotification(){
+        worker.setPermissions();
+    }
     let about = (
     <div className={"start__me"}>
         <img src={me} alt={"Me"}/>
@@ -73,7 +78,7 @@ export default function Start(props){
          <Link to={"/services"}>
             Find out more about my services.
         </Link>
-         <Link to={"/skill"}>
+         <Link to={"/skills"}>
             Learn about the tools I use.
         </Link>
          <Link to={"/work"}>

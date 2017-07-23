@@ -1,12 +1,18 @@
 {
-  "short_name": "Alexander Morton",
+  "short_name": "AM Web Dev",
   "name": "Alexander Morton a Freelancer Web Developer",
   "icons": [
     {
-      "src": "portFolioLogo.png",
+      "src": "portFolioLogo_190.png",
       "sizes": "192x192",
       "type": "image/png"
+    },
+    {
+      "src": "portFolioLogo_510.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
+ 
   ],
   "start_url": "./index.html",
   "display": "standalone",
