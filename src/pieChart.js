@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import * as d3 from "d3";
 import "./pieChart.css";
+
+/**
+    D3 Works in a vary simple way. Use data to create html or svg. This means you can iteratively change styles.
+*/
 export default class PieChart extends Component {
     node = null;
     change =null;
@@ -39,6 +43,9 @@ export default class PieChart extends Component {
         .attr('y', function(d, i) { return 20 * (i + 1); })
 
     }
+    /**
+        Must selectAll paths to append path to data.
+    */
     createChart(){
 	    let width = 960,
 	    height = 500,
@@ -59,14 +66,18 @@ export default class PieChart extends Component {
 		    .attr("height", height)
 		  .append("g")
 		    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+        //Logout
+        //d3.selectAll("p").data(this.props.sections).enter().each((d)=>{console.log(d)});
+        //let path = svg.selectAll("path").data(this.props.sections).enter().append("path").each((d,i)=>{
+        //        console.log(d, " this " + this);
+        //    });
 
 
-		let path = svg.datum(this.props.sections).selectAll("path")
-		  .data(pie)
-		.enter().append("path")
-		  .attr("fill", function(d, i) { return color(i); })
-		  .attr("d", this.arc)
-		  .each(function(d) { this._current = d; });
+
+        let path = svg.selectAll("path").data(this.props.sections).enter().append("path")
+            .attr("fill", function(d, i) { return color(i); })
+	        .attr("d", this.arc)
+		    .each(function(d) { this._current = d; });
 
         let legend = (index)=>{
 	        let legend = svg.append('g').attr('class', 'legend').selectAll('text').data(this.props.sections).enter().append('text')
@@ -123,20 +134,38 @@ export default class PieChart extends Component {
 
 PieChart.defaultProps ={
     sections:[
-	    [
-	        {name:"React",count:30 },
-	        {name:"Axios",count:10 },
-	        {name:"SASS",count:10 }
-	    ],
-	    [
-	        {name:"Express",count:30 },
-	        {name:"Auth0",count:100 },
-	        {name:"bcrypt",count:10 }
-	    ],
-	    [
-	        {name:"docker",count:30 },
-	        {name:"certbot",count:2000 },
-            {name:"nginx",count:200 }
-	    ]
+        {
+	        name:"frontend",
+            list:[
+                {name:"Auth0",level:10 },
+                {name:"Axios",level:10 },
+                {name:"Babel",level:10 },
+                {name:"D3",level:10 },
+                {name:"React",level:30 },
+                {name:"Redux",level:10 },
+                {name:"SASS",level:10 },
+                {name:"Typescript",level:10 },
+                {name:"Vivus",level:10 },
+                {name:"webpack",level:10 },
+                {name:"ES6",level:10 },
+                {name:"Gulp",level:10 }
+		    ]
+        },
+        {
+            name:"Backend",
+            list:[
+                {name:"Node",level:10 },
+                {name:"Express",level:10 },
+                {name:"Pug",level:10 },
+                {name:"Passport",level:10 },
+                {name:"Express-sessions",level:10 },
+                {name:"Mongo",level:10 },
+                {name:"Paypal",level:10 },
+                {name:"Stripe",level:10 },
+                {name:"Docker",level:10 },
+                {name:"Certbot",level:10 },
+                {name:"Google Analytics",level:10 }
+            ]
+        }
     ]
 };

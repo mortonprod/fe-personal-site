@@ -4,6 +4,13 @@ import ReactDOM from 'react-dom';
 import Auth from "./auth";
 import Square from "./square";
 import star from "./assets/star.svg"; 
+import layers from "./assets/layers.svg";
+import googlePlus from "./assets/google-plus.svg";
+import worker from "./assets/worker.svg";
+import mindmap from "./assets/mindmap.svg";
+import spaIcon from "./assets/spaIcon.svg";
+import clock from "./assets/anti-clockwise.svg";
+import locked from "./assets/locked.svg";
 import Squares from "./squares";
 import './home.css';
 
@@ -16,7 +23,7 @@ export default class Home extends Component {
     squares = [];
 	constructor(props){
 	  super(props)
-	  this.state = {isShow:[]};
+	  this.state = {isShow:[],scrollPos:[]};
 	}
     /** 
 		Update isShow array so we have the right length. Must be called here so we get the refs.
@@ -29,6 +36,9 @@ export default class Home extends Component {
 		}
         Auth.getProfile(()=>{});
 		this.setState({isShow:isShow});
+        this.squares.forEach((ref)=>{
+            this.state.scrollPos.push(ref.getBoundingClientRect().top);
+        });
 	}
     /**
         Take the scroll position and check each time the location of the squares.
@@ -56,6 +66,9 @@ export default class Home extends Component {
             }
         });
     }
+    goScroll(index){
+        this.squares[index].scrollTop = 0;
+    }
     /**
         If you ref a React component you need to use findDomNode to get the correct methods of DOM on ref.
     */
@@ -66,14 +79,39 @@ export default class Home extends Component {
             <div className="home">
 	            <div style={{transform:'translateY(' + tran + 'px)'}} className={"home__header"} >
 	                <h1>My Services</h1>
+                    <h2>Developing At the Zenith</h2>
 	            </div>
 	            <div className={"home__gap"}/>
 	            <section className={"home__info"}>
 	                <p>
-	                    I have a experience with a range of different languages, frameworks and libraries.
+	                    Lets face it. Building a website is hard, even with many site builders out there.
 	                </p>
 	                <p>
-	                    Below is a list of my service related to web development
+	                    Some considerations....
+	                </p>
+	                <ul>
+	                    <li>
+	                        Design
+	                    </li>
+	                    <li>
+	                        SEO 
+	                    </li>
+	                    <li>
+	                        SSL certificates 
+	                    </li> 
+	                    <li>
+	                        Planning an online advertising strategy
+	                    </li>
+                        <li>
+                            You probably need some CMS
+                        </li>
+                        <li>
+                            ...
+                        </li>
+	                </ul>
+	                <p>
+                        If you don't have the time to consider all of this, and need a website that which stands out from your competitors and keeps customers coming 
+                        back, then look below at my services.   
 	                </p>
 	            </section>
 	            <Squares title={"Web Development"} isShow={this.state.isShow[0]} isLeft={true} ref={(ref)=>{this.squares.push(ReactDOM.findDOMNode(ref))}}>
@@ -83,22 +121,8 @@ export default class Home extends Component {
 			        <Square title={api.title} pic={api.pic} parts={api.parts}/>
 			        <Square title={spa.title} pic={spa.pic} parts={spa.parts}/>
 			        <Square title={process.title} pic={process.pic} parts={process.parts}/>
-			        <Square title={analysis.title} pic={process.pic} parts={analysis.parts}/>
+			        <Square title={security.title} pic={security.pic} parts={security.parts}/>
 	            </Squares>
-                <section className={"home__info"}>
-                    <p>
-                        Below is a list of my services related to more general software development, mathematics and physics. 
-                    </p>
-                </section>
-                <Squares title={"General Services"} isShow={this.state.isShow[1]} isLeft={false} ref={(ref)=>{this.squares.push(ReactDOM.findDOMNode(ref))}}>
-                    <Square title={design.title} pic={design.pic} parts={design.parts}/>
-                    <Square title={seo.title} pic={seo.pic} parts={seo.parts}/>
-                    <Square title={serviceWorker.title} pic={serviceWorker.pic} parts={serviceWorker.parts}/>
-                    <Square title={api.title} pic={api.pic} parts={api.parts}/>
-                    <Square title={spa.title} pic={spa.pic} parts={spa.parts}/>
-                    <Square title={process.title} pic={process.pic} parts={process.parts}/>
-                    <Square title={analysis.title} pic={process.pic} parts={analysis.parts}/>
-                </Squares>
             </div>
       )
     }
@@ -121,24 +145,24 @@ Home.defaultProps = {
 */
 let design = {
     title:"Design",
-    pic:star,
+    pic:layers,
     parts:[
         {
             title:"Custom Design",
-            subTitle:"Stun your users with something brand new.",
+            subTitle:"Your website is your customers first impression of you. It's important to design you site to memorable and professional",
             list:[
-                "Only build website which are unique and memorable",
+                "Only build websites which reflect your business and not just another template",
                 "All website are dynamic and interactive",
-                "Use the latest technologies"
+                "Use the latest technologies to get the best the web can offer"
             ]
         },
         {
             title:"Mobile Optimised",
             subTitle:"Make sure every user gets the best experience possible.",
             list:[
-                "Serve different assets for different devices",
+                "Consider bandwidth when serving content",
                 "Responsive design allowing your users to clearly see your content on all devices.",
-                "Download content when needed and not all at once"
+                "Serve content only when it's needed.'"
             ]
         }
     ]
@@ -147,7 +171,7 @@ let design = {
 
 let seo = {
     title:"Search Engine Optimisation",
-    pic:star,
+    pic:googlePlus,
     parts:[
         {
             title:"Social Media",
@@ -164,7 +188,7 @@ let seo = {
             list:[
                 "Develop a marketing strategy for the people you want to sell to.",
                 "Make your website fast and cacheable.",
-                "Make adding content easy. So we have fresh content on a regular bases."
+                "Make adding content easy."
             ]
         }
     ]
@@ -173,7 +197,7 @@ let seo = {
 
 let serviceWorker = {
     title:"Service Workers",
-    pic:star,
+    pic:worker,
     parts:[
         {
             title:"Load Once View Anywhere",
@@ -197,23 +221,23 @@ let serviceWorker = {
 
 let api = {
     title:"APIs",
-    pic:star,
+    pic:mindmap,
     parts:[
         {
             title:"Existing Services",
             subTitle:"Save yourself time and money and don't reinvent the wheel",
             list:[
                 "Integrate existing tools into your web application",
-                "Link multiple tools through a single user interface",
+                "Link multiple tools through a single user interface"
             ]
         },
         {
-            title:"Create a service",
+            title:"Create a Service",
             subTitle:"Create, Read, Update and delete any information.",
             list:[
                 "Store and manage information in a fast and predictable way.",
                 "Link your service to existing services",
-                "Build microservices to reduce the hosting costs"
+                "Build microservices to reduce your hosting costs"
             ]
         }
     ]
@@ -222,10 +246,10 @@ let api = {
 
 let spa = {
     title:"Single Page Applications",
-    pic:star,
+    pic:spaIcon,
     parts:[
         {
-            title:"No more loading",
+            title:"No More Loading",
             subTitle:"Once your app has downloaded your ready to go",
             list:[
                 "Build seamless page transitions",
@@ -233,11 +257,12 @@ let spa = {
             ]
         },
         {
-            title:"Stateful",
+            title:"Manage Complex State",
             subTitle:"No limit on how complex your site can be",
             list:[
                 "Only update what needs to change.",
                 "Break your site into individual components.",
+                "Build a fully functioning application."
             ]
         }
     ]
@@ -246,14 +271,15 @@ let spa = {
 
 let process = {
     title:"Development Process",
-    pic:star,
+    pic:clock,
     parts:[
         {
             title:"Documentation",
             subTitle:"Make future development easy",
             list:[
                 "Every site comes with an additional website to describe how your website works",
-                "The most complex parts come with detailed explanations.",
+                "Explain your site line by line",
+                "The most complex parts come with detailed explanations."
             ]
         },
         {
@@ -279,7 +305,7 @@ let process = {
 
 let security = {
     title:"Security",
-    pic:star,
+    pic:locked,
     parts:[
         {
             title:"Encryption",

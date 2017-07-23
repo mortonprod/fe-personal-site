@@ -1,8 +1,9 @@
 .square {
     position: relative;
-    width: 300px;
-    height: 300px;
+    width: 280px;
+    height: 280px;
     margin:20px;
+    display:block;
 }
 
 .square > img:nth-child(0){
@@ -30,8 +31,8 @@
     transform: translateY(0px);
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 280px;
+    height: 280px;
     background-image: url("./assets/square__background.svg");
     background-repeat: no-repeat;
     background-position: center center;
@@ -126,7 +127,7 @@
     margin: auto;
     list-style-type: none;
     font-family: Dosis-ExtraBold;
-    font-size: 15px;
+    font-size: 20px;
     color: #FFFFFF;
     display: block;
 }
@@ -186,5 +187,12 @@
         right: -20px;
         left: -20px;
         
+    }
+    .square__layer > h3 {
+        font-size: 25px;
+    }
+
+    .square__layer > h4 {
+        font-size: 20px;
     }
 }

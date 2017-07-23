@@ -1,8 +1,6 @@
 .start {
     width: 100vw;
-    height: 100vh;
-    //background-image: linear-gradient(-180deg, #B1B6FE 0%, #7A80FB 100%);
-    border: 1px solid #979797;
+    height:130vh;/**Need to set this for some reason*/
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -10,11 +8,32 @@
     color: white;
 }
 
-.start > div {
-    height:200px; /**Why does height not resize with text?*/
-    text-align:center;
-    margin:auto;
 
+.start__status {
+    position: relative;
+    margin-bottom: 50px;
+    background-image: radial-gradient(50% 100%, rgba(177,182,254,0.00) 50%, #E3E5FF 100%);
+    border: 1px solid #000000;
+    border-radius: 8px;
+}
+
+
+.start__status span {
+    margin: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom:10px;
+}
+.start__me{
+    margin-bottom:10px;
+}
+
+
+.start > div {
+    height: 200px; /**Why does height not resize with text?*/
+    text-align: center;
+    margin: auto;
+    margin-top: 50px;
 }
 
 .start h1, h2, h3, h4, a, span, button {
@@ -23,13 +42,13 @@
 }
 
 .start a {
-    color:darkred;
-    font-size:15px;
-    width:100px;
-    height:50px;
+    color:white;
+    font-size:20px;
     background-color:transparent;
     transform:scale(1);
     transition:all 1s;
+    margin:10px;
+    display:block;
 }
 
 

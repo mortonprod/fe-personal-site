@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="191px" height="207px" viewBox="0 0 191 207" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="50%" x2="50%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#B1B6FE" offset="0%"></stop>
+            <stop stop-color="#FFF9F9" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="42.5375418%" id="linearGradient-2">
+            <stop stop-color="#B1B6FE" offset="0%"></stop>
+            <stop stop-color="#000000" offset="100%"></stop>
+        </linearGradient>
+        <circle id="path-3" cx="96" cy="96" r="96"></circle>
+        <filter x="-3.6%" y="-3.6%" width="112.0%" height="112.0%" filterUnits="objectBoundingBox" id="filter-4">
+            <feMorphology radius="2.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="5" dy="5" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feMorphology radius="2.5" operator="erode" in="SourceAlpha" result="shadowInner"></feMorphology>
+            <feOffset dx="5" dy="5" in="shadowInner" result="shadowInner"></feOffset>
+            <feComposite in="shadowOffsetOuter1" in2="shadowInner" operator="out" result="shadowOffsetOuter1"></feComposite>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <linearGradient x1="50%" y1="35.931521%" x2="50%" y2="96.5481505%" id="linearGradient-5">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#C1C1C1" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="65.7924107%" id="linearGradient-6">
+            <stop stop-color="#A4A3A3" offset="7.41988202%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+        <text id="text-7" font-family="Lobster-Regular, Lobster" font-size="48" font-weight="normal" fill="#0E25FF">
+            <tspan x="60.4442384" y="125.772152">AM</tspan>
+        </text>
+        <filter x="-4.1%" y="-7.5%" width="116.5%" height="130.0%" filterUnits="objectBoundingBox" id="filter-8">
+            <feOffset dx="5" dy="5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-9">
+            <stop stop-color="#EEEEEE" offset="100%"></stop>
+            <stop stop-color="#D8D8D8" offset="63.5742188%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Mobile-Copy-2" transform="translate(-129.000000, -430.000000)">
+            <g id="Group" transform="translate(132.000000, 433.000000)">
+                <circle id="Oval" fill="url(#linearGradient-1)" cx="96" cy="96" r="96"></circle>
+                <g id="Oval">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                    <use stroke="url(#linearGradient-2)" stroke-width="5" xlink:href="#path-3"></use>
+                </g>
+                <polyline id="Path-4" stroke="#FFFFFF" points="63.8734547 69.2997756 93.2337482 16.1344135 119.446371 65.984474"></polyline>
+                <polyline id="Path-5" stroke="#FFFDFD" points="83.600295 35.1081602 77.3534365 24.7149967 50.7879917 66.1682489"></polyline>
+                <polyline id="Path-5" stroke="#FFFDFD" transform="translate(119.399529, 45.030424) scale(-1, 1) translate(-119.399529, -45.030424) " points="135.805681 34.696961 129.558822 24.3037975 102.993377 65.7570497"></polyline>
+                <polygon id="Path-6" fill="url(#linearGradient-5)" points="98.6090692 28.6511193 94.1634661 33.296966 92.3709473 29.8315065 89.6366961 33.6922976 86.4340234 30.3492693 93.2940994 18.5566132"></polygon>
+                <polygon id="Path-8" fill="url(#linearGradient-6)" points="104.187145 32.7740814 105.906646 34.2062488 106.914758 32.3665666 108.725517 34.3602781 109.522827 31.7106666 111.841111 34.1802372 112.937813 30.928789 109.279471 24.8839005"></polygon>
+                <g id="AM" fill-opacity="1" fill="#0E25FF">
+                    <use filter="url(#filter-8)" xlink:href="#text-7"></use>
+                    <use xlink:href="#text-7"></use>
+                </g>
+                <polygon id="Path-7" fill="url(#linearGradient-9)" points="77.5579287 24.7633687 71.8568459 33.6056537 74.6530849 35.3188824 75.7123171 32.8214383 77.6846343 34.7108592 78.8906841 32.4126724 81.8089359 32.8835861"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

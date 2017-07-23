@@ -5,6 +5,7 @@ import {
   Switch,
   Link
 } from 'react-router-dom'
+import { RouteTransition } from 'react-router-transition';
 import * as _ from "lodash";
 import Skills from "./skills";
 import Profile from "./profile-react/src/App";
@@ -85,9 +86,13 @@ export default class App extends Component {
         Reduces the impact on performance. No point in checking if state changed before updating state.
         Works out if squares should be exposed yet and passes scrollTop to other components for rerendering.
         ACCESS DOM HERE!
+        ALWAYS SET SCROLLLEFT TO ZERO SO WE DO NOT SEE SCREEN WHERE TRANSFORM ELEMENT ENTER. OVERFLOW-X ONLY HIDES IT DOES NOT PREVENT SCROLL.
         @function
     */
     scroll(event){
+        //if(document.body.scrollLeft !== 0 ){
+            document.body.scrollLeft = 0;
+        //}
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
         this.setState({scrollTop:scrollTop});
     }
@@ -112,17 +117,32 @@ export default class App extends Component {
             <div className={"app"}>
                 <Router>
                   <div>
-                      <Switch>
+                    <Route render={({location, history, match}) => {
+                    return (
+                          <RouteTransition 
+					        pathname={location.pathname}
+					        atEnter={{ opacity: 0 }}
+					        atLeave={{ opacity: 0 }}
+					        atActive={{ opacity: 1 }}
+					      >
+                      <Switch key={location.key} location={location}>
                       <Route exact path={"/"} render={()=>{
                         return <Start isLoaded={this.state.isLoaded}  serviceWorker={this.state.serviceWorker} profile={this.state.profile}/>
                         }
                       }/>
 
                       <Route path={"/"} 
-                        render={()=>{
+                        render={({location, history, match})=>{
                             return (
+                              <RouteTransition 
+	                            pathname={location.pathname}
+	                            atEnter={{ opacity: 0}}
+	                            atLeave={{ opacity: 0}}
+	                            atActive={{ opacity: 1}}
+	                          >
 								<FadeBackground scrollTop={this.state.scrollTop}>
 			                        <Clouds>
+                                    <Switch key={location.key} location={location}>
 			                            <Route exact path={"/services"} 
 			                                render={(props)=>{
 			                                    handleAuthentication(props);
@@ -139,15 +159,20 @@ export default class App extends Component {
 		                                <Route exact path={"/skills"} 
 		                                    render={()=>{
 		                                        return (
-		                                            <Skills data={[5,10,1,3]} size={[500,500]} />
+		                                            <Skills profile={this.state.profile} scrollTop={this.state.scrollTop} data={[5,10,1,3]} size={[500,500]} />
 		                                        )
 		                                    }}
 		                                />
+                                     </Switch>
 			                        </Clouds>
 		                        </FadeBackground>
+                            </RouteTransition>
                             )
                       }}/>
                       </Switch>
+                    </RouteTransition>
+                        )}
+                    }/>
                       <Nav
                         profile={this.state.profile}
                         isShow={this.state.isShow}
@@ -160,6 +185,11 @@ export default class App extends Component {
                             {name:"My Skills",location:"/skills"}
                         ]}
                         />
+                        <footer className={"footer"}>
+                            <h4> 2017 © Alexander Morton </h4> 
+                            <strong> Freelance Web Designer and Developer</strong>
+                            <a href={"hello@alexandermorton.co.uk"}> hello@alexandermorton.com </a>
+                        </footer>
                   </div>
 				</Router>
             </div>

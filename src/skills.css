@@ -1,0 +1,178 @@
+.skills {
+    background-color: transparent;
+    position: relative;
+    min-height: 100vh;
+    text-align: center;
+    overflow: auto;
+}
+
+
+@keyframes moveIn {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 5%;
+    }
+}
+
+.skills__header {
+    position: fixed;
+    top: 30%;
+    width: 90%;
+    left: 5%;
+    z-index: 100;
+    margin: auto;
+    opacity: 1;
+    transition: opacity 2s;
+    animation: moveIn 1s forwards;
+    display: block;
+}
+
+.skills__header > button:nth-child(0) {
+}
+
+
+.skills__header > button:nth-child(1) {
+}
+
+
+
+.skills  h1 {
+    font-size: 8vw;
+    color: white;
+    font-family: 'Lobster', cursive;
+    width: 100%;
+    margin:5px;
+}
+
+.skills h2 {
+    font-size: 4vw;
+    color: white;
+    font-family: 'Lobster', cursive;
+    width: 100%;
+    margin: 5px;
+}
+
+.skills  p {
+    font-size: 2.5vw;
+    color: white;
+    font-family: 'Lobster', cursive;
+}
+
+.skills__gap {
+    height: 200vh;
+}
+
+.skills__skill {
+    flex-direction:row;
+    flex-wrap:wrap;
+    width: 95%;
+    margin: auto;
+    background-image: radial-gradient(50% 100%, rgba(177,182,254,0.00) 50%, #E3E5FF 100%);
+    border: 1px solid #000000;
+    border-radius: 8px;
+    z-index:2000;
+    display: flex;
+}
+
+
+.skills__info > img {
+    width:20%;
+    height:auto;
+}
+
+
+
+.skills__info {
+    position: relative;
+    width: 30%;
+    margin: auto;
+    z-index: 2000;
+    display:inline-block;
+}
+
+
+.skills__centreMedia {
+    width: 400px;
+    height: 400px;
+    margin: auto;
+    z-index: 2000; /*Needs to be above everything else to trigger mousedown event*/
+    display:inline-flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+
+.skills__button{
+    width:50px;
+    margin:auto;
+}
+
+
+
+#map{
+    width:350px;
+    height:350px;
+    margin:auto;
+}
+
+#player {
+    width: 350px;
+    height: 350px;
+    margin: auto;
+}
+#my-auth {
+    width: 300px;
+    height: 300px;
+    margin: auto;
+}
+ 
+
+
+@media (max-width:600px) {
+    .skills__gap {
+        height: 100vh;
+    }
+
+    .skills h1 {
+        font-size: 18vw;
+    }
+
+    .skills h2 {
+        font-size: 15vw;
+    }
+    .skills p {
+        font-size: 6vw;
+        color: white;
+        font-family: 'Lobster', cursive;
+    }
+    .skills__info {
+        width: 100%;
+    }
+
+
+    .skills__centreMedia {
+        width: 280px;
+        height: 280px;
+    }
+
+
+    #map {
+        width: 280px;
+        height: 280px;
+        margin: auto;
+    }
+
+    #player {
+        width: 280px;
+        height: 280px;
+    }
+
+    #my-auth {
+        width: 200px;
+        height: 200px;
+        margin: auto;
+    }
+}

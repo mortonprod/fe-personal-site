@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import Helmet from 'react-helmet';
 import Auth from "./auth";
+import me from "./assets/me.png"
 import {Link} from 'react-router-dom';
 import "./start.css";
 
@@ -21,7 +23,6 @@ export default function Start(props){
                 <h2>
                     App Full Loaded
                 </h2>
-                <Link to={"/about"}>See About Me</Link>
             </div>
         )
     }else{
@@ -60,12 +61,42 @@ export default function Start(props){
             </h1>
         )
     }
+    let about = (
+    <div className={"start__me"}>
+        <img src={me} alt={"Me"}/>
+	     <h2>
+	        I'm a software developer based in Glasgow. 
+	     </h2>
+	     <Link to={"/about"}>
+            Learn more about me.
+        </Link>
+         <Link to={"/services"}>
+            Find out more about my services.
+        </Link>
+         <Link to={"/skill"}>
+            Learn about the tools I use.
+        </Link>
+         <Link to={"/work"}>
+            See what I've been working on recently. 
+        </Link>
+     </div>
+    ) 
     return (
         <div className={"start"}>
+             <Helmet>
+                 <title>Freelance Web Designer | Alexander Morton</title>
+                <meta name="description" content="I'm a business focused freelance web designer and developer. I help businesses of all sizes to build a effective online solution." />
+            </Helmet>
             <div>
                 {wel}
+                {about}
+                <div className={"start__status"}>
+                    <h1>
+                        App Status
+                    </h1>
                 {installInfo}
                 {serviceComp}
+                </div>
             </div>
         </div>
     )

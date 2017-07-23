@@ -82,7 +82,7 @@ export default class Squares extends Component {
     render(){
         let list = (
             <div className={"square__list " + this.state.listModifier}>
-                <h1>How to achieve this</h1>
+                <h1>How I Achieve This</h1>
                 <ul>
                     {this.state.elements}
                 </ul>
