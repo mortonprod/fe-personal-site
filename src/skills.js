@@ -1,4 +1,6 @@
 import React, { Component } from 'react'; 
+import ReactDOM from 'react-dom';
+import Vivus from "vivus";
 import Helmet from 'react-helmet';
 import PieChart from "./pieChart";
 import google from "./assets/google.svg";
@@ -6,12 +8,30 @@ import youtube from "./assets/youtube.svg";
 import boy from "./assets/boy.svg";
 import portfolioLogo from "./assets/portfolioLogo.svg";
 import branding from "./assets/branding.svg";
+import reactIcon from "./assets/reactIcon.svg";
+import nodeIcon from "./assets/nodejs-icon.svg";
+import storeSvg from "./assets/store.svg";
+import format from "./assets/formats.svg";
 import Account from "./account";
 import "./skills.css";
 export default class Skills extends Component {
+   isRun=true;
+   writeElement = null;
    constructor(props){
     super();
 
+   }
+   componentWillReceiveProps(nextProps){
+    if(this.writeElement){
+	    let pos = this.writeElement.getBoundingClientRect();
+	    if(pos.top < window.innerHeight*(1/2)){
+		    if(this.isRun){
+		        new Vivus("store",{duration:"2000",start:"autostart",file:storeSvg}); 
+		    }
+		    this.isRun = false;
+	        
+	    }
+    }
    }
    componentDidMount(){
         const script = document.createElement("script");
@@ -24,6 +44,12 @@ export default class Skills extends Component {
 	    event.target.pauseVideo();
 	  }
     render() {
+        let writeMe =(
+	        <object
+	            src={storeSvg} 
+	            className="store__title" id="store">
+	        </object>
+        )
 		let wel = null
 		if(this.props.profile){
             let nickname = "";
@@ -70,68 +96,115 @@ export default class Skills extends Component {
                 </h2>
             </div>
             <div className={"skills__gap"}/>
-            <article className={"skills__skill"}>
-                <div className={"skills__info"}>
-                    <img src={google} alt={"google maps"}/>
-	                <h2>
-                        Tools
-	                </h2>
-                    <p>
-                        Integrate google maps, analytics and adwords to your web application. 
-                    </p>
-                </div>
-                <div className={"skills__centreMedia"}>
-                    <div id="map"></div>
-                </div>
-            </article>
-            <article className={"skills__skill"}>
-                <div className={"skills__info"}>
-                    <img src={youtube} alt={"media"}/>
-                    <h2>
-                        Media
-                    </h2>
-                    <p>
-                        Integrate any media into your website.
-                    </p>
-                    <p>
-                       From videos to using the latest HTML5 canvas for individual pixel manipulation.
-                    </p>
-                </div>
-                <div className={"skills__centreMedia"}>
-                    <YouTube video="i0aBEmzRE_U" autoplay="0" rel="0" modest="1" />,
-                </div>
-            </article>
-            <article className={"skills__skill"}>
-                <div className={"skills__info"}>
-                    <img src={boy} alt={"individual"}/>
-                    <h2>
-                        User Centric.
-                    </h2>
-                    <p>
-                        Make your website a personal experience and safely store your users information.
-                    </p>
-                </div>
-                <div className={"skills__centreMedia"}>
-                    {wel}
-                </div>
-            </article>
-            <article className={"skills__skill"}>
-                <div className={"skills__info"}>
-                    <img src={branding} alt={"individual"}/>
-                    <h2>
-                        Creating a brand
-                    </h2>
-                    <p>
-                        Create a Logos, posters and stationary.
-                    </p>
-                    <p>
-                        Everything you need to start a business
-                    </p>
-                </div>
-                <div className={"skills__centreMedia"}>
-                    <img src={portfolioLogo} alt={"portfolio logo"}/>
-                </div>
-            </article>
+            <section>
+                <PieChart/>
+            </section>
+            <section>
+                <article className={"skills__skill"}>
+                    <div className={"skills__info"}>
+                        <img src={reactIcon} alt={"react"}/>
+                        <h2>
+                            React
+                        </h2>
+                        <p>
+                            React gives me the ability to create fast, modular components.
+                        </p>
+                        <p>
+                            Implementing server side rendering gives you the benefits of a single page application and a static website.
+                        </p>
+                        <p>
+                            React also allows you to easily port your code to develop native mobile apps or even desktop apps.
+                        </p>
+                    </div>
+                    <div className={"skills__info"}>
+                        <img src={nodeIcon} alt={"react"}/>
+                        <h2>
+                            Node
+                        </h2>
+                        <p>
+                            Node lets you use javascript in creating your server, breaking down the boundary between browser and server.
+                        </p>
+                        <p>
+                            A fast, versatile server which can easily scale up as you expand your business.
+                        </p>
+                    </div>
+                </article>
+
+
+
+	            <article className={"skills__skill"}>
+	                <div className={"skills__info"}>
+	                    <img src={google} alt={"google maps"}/>
+		                <h2>
+	                        Tools
+		                </h2>
+	                    <p>
+	                        Integrate google maps, analytics and adwords into your web application. 
+	                    </p>
+                        <p>
+                            I also use a series of other SEO and webmaster tools to make sure all my websites are functioning correctly. 
+                        </p>
+	                </div>
+	                <div className={"skills__centreMedia"}>
+	                    <div id="map"></div>
+	                </div>
+	            </article>
+	            <article className={"skills__skill"}>
+	                <div className={"skills__info"}>
+	                    <img src={youtube} alt={"media"}/>
+	                    <h2>
+	                        Media
+	                    </h2>
+	                    <p>
+	                        Integrate any media into your website or use your website to upload content.
+	                    </p>
+	                </div>
+	                <div className={"skills__centreMedia"}>
+	                    <YouTube video="i0aBEmzRE_U" autoplay="0" rel="0" modest="1" />,
+	                </div>
+	            </article>
+
+
+                <article className={"skills__skill"} ref={(ref)=>{this.writeElement = ReactDOM.findDOMNode(ref)}}>
+                    <div className={"skills__info"}>
+                        <img src={format} alt={"media"}/>
+                        <h2>
+                            Styles
+                        </h2>
+                        <p>
+                            Use different digital format for different situations, so your store front is eye catching.
+                        </p>
+                        <p>
+                            Manipulate svg paths to produce engrossing animations.
+                        </p>
+                        <p>
+                            Level up, manipulate pixel by pixel with HTML5 canvas.
+                        </p>
+                    </div>
+                    <div className={"skills__centreMedia"}>
+                        {writeMe}
+                    </div>
+                </article>
+
+
+	            <article className={"skills__skill"}>
+	                <div className={"skills__info"}>
+	                    <img src={branding} alt={"individual"}/>
+	                    <h2>
+	                        Creating a brand
+	                    </h2>
+	                    <p>
+	                        Create a Logos, posters and stationary.
+	                    </p>
+	                    <p>
+	                        Everything you need to start a business
+	                    </p>
+	                </div>
+	                <div className={"skills__centreMedia"}>
+	                    <img src={portfolioLogo} alt={"portfolio logo"}/>
+	                </div>
+	            </article>
+            </section>
         </div>
       )
    }

@@ -3,129 +3,163 @@ import * as d3 from "d3";
 import "./pieChart.css";
 
 /**
-    D3 Works in a vary simple way. Use data to create html or svg. This means you can iteratively change styles.
+    This component will produce an animated piechart for my skills.
 */
 export default class PieChart extends Component {
     node = null;
-    change =null;
-    arc= null;
-    current = null;
-    constructor(){
-        super();
+    pie = null;
+    path = null;
+    current= null;
+    arc = null;
+    legend = null;
+    canvas=null;
+    svg=null;
+    constructor(props){
+        super(props);
     }
+      
     /**
-        What is done here:
-        1. Work out the splice angles for this chart
-        2. Set radius or pie chart and colours
-        3. Select the svg dom element, then create a line element moved to somewhere near the centre.
-        4. Create the pie chart. Note "path.splice" is just like div.class see how it's created with append and attr class.
-        5. Create the legend.
-    */
-    createChartOld(){
-        //1
-        let pie = d3.pie().value(function(d) { return d.count });
-        let slices = pie(this.props.sections);
-        //2
-        let arc = d3.arc().innerRadius(0).outerRadius(50);
-        let color = d3.scaleOrdinal(d3.schemeCategory10);
-        //3
-        let svg = d3.select(this.node);
-		let g = svg.append('g').attr('transform', 'translate(200, 50)');
-        //4
-		g.selectAll('path.slice').data(slices).enter().append('path').attr('class', 'slice').attr('d', arc)
-        .attr('fill', function(d) {
-            return color(d.data.name);
-        });
-        //5
-		svg.append('g').attr('class', 'legend').selectAll('text').data(slices).enter().append('text')
-		.text(function(d) { return '• ' + d.data.name; })
-		.attr('fill', function(d) { return color(d.data.name); })
-        .attr('y', function(d, i) { return 20 * (i + 1); })
-
-    }
-    /**
-        Must selectAll paths to append path to data.
+        Datum is a single array. When it is passed through the pie chart it will access the front and then the level.
+        @function
     */
     createChart(){
-	    let width = 960,
-	    height = 500,
-	    radius = Math.min(width, height) / 2;
 
+	    let radius = Math.min(this.props.width, this.props.height) / 2;
+        d3.select(this.svg).attr("height", this.props.height).attr("width", this.props.width);
 		let color = d3.scaleOrdinal(d3.schemeCategory10);
-
-		let pie = d3.pie()
-		    .value(function(d) { return d[0].count; })
+        d3.select(this.canvas).attr("transform", "translate(" + (this.props.width / 2) + "," + (this.props.width / 2) + ")");
+		this.pie = d3.pie()
+		    .value(function(d) { return d.front.level; })
 		    .sort(null);
 
 		this.arc = d3.arc()
-		    .innerRadius(radius - 100)
-		    .outerRadius(radius - 20);
+		    .innerRadius(this.props.innerRadius)
+		    .outerRadius(this.props.outerRadius);
 
 		let svg = d3.select(this.node)
-		    .attr("width", width)
-		    .attr("height", height)
+		    .attr("width", this.props.width)
+		    .attr("height", this.props.height)
 		  .append("g")
-		    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-        //Logout
-        //d3.selectAll("p").data(this.props.sections).enter().each((d)=>{console.log(d)});
-        //let path = svg.selectAll("path").data(this.props.sections).enter().append("path").each((d,i)=>{
-        //        console.log(d, " this " + this);
-        //    });
+		   // .attr("transform", "translate(" + this.props.width / 2 + "," + this.props.height / 2 + ")");
 
+            
+        this.path = svg.datum(this.props.section).selectAll("path")
+		      .data(this.pie)
+		    .enter().append("path")
+		      .attr("fill", function(d, i) { return color(i); })
+		      .attr("d", this.arc)
+		      .each(function(d) { this._current = d.level; }); 
 
+        this.createLegend("front");
 
-        let path = svg.selectAll("path").data(this.props.sections).enter().append("path")
-            .attr("fill", function(d, i) { return color(i); })
-	        .attr("d", this.arc)
-		    .each(function(d) { this._current = d; });
-
-        let legend = (index)=>{
-	        let legend = svg.append('g').attr('class', 'legend').selectAll('text').data(this.props.sections).enter().append('text')
-	        .text(function(d) { return '• ' + d[0].name; })
-	        .attr('fill', function(d) { return color(d.name); })
-	        .attr('y', function(d, i) { return 20 * (i + 1); })
-        }
-        legend(0);
-          
-        function change(e) {
-		    var value = e.target.value;
-            console.log("value " + value);
-		    pie.value(function(d) { return d[value].count; }); // change the value function
-		    path = path.data(pie); // compute the new angles
-            svg.selectAll(".legend").remove();
-            legend(value);
-		    path.transition().duration(750).attrTween("d", this.arcTween.bind(this)); // redraw the arcs
-        }
-        return change
     }
-	arcTween(a) {
-		var i = d3.interpolate(this._current, a);
-		this._current = i(0);
-		return function(t) {
-		    return this.arc(i(t));
-		}.bind(this);
+    setTextX(d, i) {
+	    let centroid = this.arc.centroid(d);
+	    let midAngle = Math.atan2(centroid[1], centroid[0]);
+	    let x = Math.cos(midAngle) * this.props.labelRadius;
+	    let sign = (x > 0) ? 1 : -1
+	    let labelX = x + (5 * sign)
+	    return labelX;
+    }
+    setTextY(d, i) {
+	    let centroid = this.arc.centroid(d);
+	    let midAngle = Math.atan2(centroid[1], centroid[0]);
+	    let y = Math.sin(midAngle) * this.props.labelRadius;
+	    return y;
+    }
+    setAnchor (d, i) {
+	    let centroid = this.arc.centroid(d);
+	    let midAngle = Math.atan2(centroid[1], centroid[0]);
+	    let x = Math.cos(midAngle) * this.props.labelRadius;
+	    return (x > 0) ? "start" : "end";
+    }
+    createLegend(name){
+        console.log("run");
+        d3.selectAll(".label").remove();
+        let labels = d3.select(this.legend);
+        let enteringLabels = labels.selectAll(".label").data(this.pie(this.props.section)).enter();
+        //let enteringLabels = labels.datum(this.props.section).selectAll(".label").data(this.pie).enter();
+        let labelGroups = enteringLabels.append("g").attr("class", "label");
+        labelGroups.append("circle").attr("x", 0).attr("y", 0).attr("r", 2).attr("fill", "#000")
+            .attr("transform", (d, i) =>{
+                console.log("d" + JSON.stringify(d) +  this.arc.centroid(d));
+                //let centroid = this.arc.centroid(d);
+                return "translate(" + this.arc.centroid(d) + ")";
+            }).attr('class', "label-circle");
+        
+        let textLines = labelGroups.append("line").attr("x1",  (d, i) => {
+                return this.arc.centroid(d)[0];
+            }).attr("y1",  (d, i) =>{
+                return this.arc.centroid(d)[1];
+            }).attr("x2",  (d, i)=> {
+                let centroid = this.arc.centroid(d);
+                let midAngle = Math.atan2(centroid[1], centroid[0]);
+                let x = Math.cos(midAngle) * this.props.labelRadius;
+                return x;
+            }).attr("y2",  (d, i)=> {
+                let centroid = this.arc.centroid(d);
+                let midAngle = Math.atan2(centroid[1], centroid[0]);
+                let y = Math.sin(midAngle) * this.props.labelRadius;
+                return y;
+            }).attr('class', "label-line");
+        let textLabels = labelGroups.append("text")
+            .attr("x", (d,i)=>{ return  this.setTextX(d,i)})
+            .attr("y", (d,i)=>{ return  this.setTextY(d,i)})
+            .attr('text-anchor', (d,i)=>{ return this.setAnchor(d,i)})
+            .attr('class', 'label-text')
+            .text(function (d) {
+                console.log(d.data[name].name);
+                return d.data[name].name
+            });
+
+    }
+    /**
+        When called change what elements the pie chart accesses. Then you attach this to path to begin the transition.
+    */
+    change(index){
+        let name = "front"
+        if(index === 1){
+            name ="end"
+        }
+	    this.pie.value(function(d) { return d[name].level; }); 
+	    this.path = this.path.data(this.pie); // compute the new angles
+	    this.path.transition().duration(750).attrTween("d", this.arcTween.bind(this)); 
+        this.createLegend(name);
+    }
+    /**
+        This function will be called ONCE but the function inside is called for each tick. "d" is the data.
+        Interpolate will return range specified within domain [0,1]. This is then iterated through by the parameter "t" given passed through the internal function.
+        @function
+    */
+    arcTween(d) {
+	  var i = d3.interpolate(this._current, d);
+	  this._current = i(0);
+	  return (t) =>  {
+	    return this.arc(i(t));
+	  };
 	}
     componentDidMount(){
-        this.change = this.createChart();
+        this.createChart();
     }
     render(){
         return(
             <div className={"pieChart"}>
 	            <form>
 	                <label>
-                        <input type="radio" name="dataset" value="0" onClick={(e)=>{this.change(e)}}/> 
+                        <input type="radio" name="dataset" value="0" onClick={(e)=>{this.change(0)}}/> 
                         Frontend
                     </label>
 	                <label>
-                        <input type="radio" name="dataset" value="1" onClick={(e)=>{this.change(e)}}  /> 
+                        <input type="radio" name="dataset" value="1" onClick={(e)=>{this.change(1)}}  /> 
                         Backend
                     </label>
-                    <label>
-                        <input type="radio" name="dataset" value="2" onClick={(e)=>{this.change(e)}}  /> 
-                        Deployment
-                    </label>
 	            </form>
-	            <svg ref={node => this.node = node} width={500} height={500}> </svg>
+                <svg ref={svg => this.svg = svg}>
+                    <g ref={canvas => this.canvas = canvas}>
+	                    <g ref={node => this.node = node}/>
+	                    <g ref={legend => this.legend = legend} />
+                    </g>
+                </svg>
             </div>
         )
     }
@@ -133,39 +167,23 @@ export default class PieChart extends Component {
 
 
 PieChart.defaultProps ={
-    sections:[
-        {
-	        name:"frontend",
-            list:[
-                {name:"Auth0",level:10 },
-                {name:"Axios",level:10 },
-                {name:"Babel",level:10 },
-                {name:"D3",level:10 },
-                {name:"React",level:30 },
-                {name:"Redux",level:10 },
-                {name:"SASS",level:10 },
-                {name:"Typescript",level:10 },
-                {name:"Vivus",level:10 },
-                {name:"webpack",level:10 },
-                {name:"ES6",level:10 },
-                {name:"Gulp",level:10 }
-		    ]
-        },
-        {
-            name:"Backend",
-            list:[
-                {name:"Node",level:10 },
-                {name:"Express",level:10 },
-                {name:"Pug",level:10 },
-                {name:"Passport",level:10 },
-                {name:"Express-sessions",level:10 },
-                {name:"Mongo",level:10 },
-                {name:"Paypal",level:10 },
-                {name:"Stripe",level:10 },
-                {name:"Docker",level:10 },
-                {name:"Certbot",level:10 },
-                {name:"Google Analytics",level:10 }
-            ]
-        }
-    ]
+    section:[
+            {front:{name:"Auth0",level:10 },end:{name:"Node",level:10 }},
+            {front:{name:"Axios",level:10 },end:{name:"Express",level:10 }},
+            {front:{name:"Babel",level:10 },end:{name:"Pug",level:10 }},
+            {front:{name:"D3",level:10 },end:{name:"Passport",level:10 }},
+            {front:{name:"React",level:70 },end:{name:"Express-sessions",level:10 }},
+            {front:{name:"Redux",level:10 },end:{name:"Mongo",level:10 }},
+            {front:{name:"SASS",level:10 },end:{name:"Paypal",level:10 }},
+            {front:{name:"Typescript",level:10 },end:{name:"Stripe",level:10 }},
+            {front:{name:"Vivus",level:10 },end:{name:"Docker",level:10 }},
+            {front:{name:"webpack",level:10 },end:{name:"Certbot",level:10 }},
+            {front:{name:"ES6",level:10 },end:{name:"Google Analytics",level:10 }},
+            {front:{name:"Gulp",level:10 },end:{name:"bash",level:10 }}
+    ],
+    width:500,
+    height:500,
+    innerRadius: 50,
+    outerRadius: 150,
+    labelRadius: 175
 };

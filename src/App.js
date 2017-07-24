@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
-  Link
+  Switch
 } from 'react-router-dom'
 import { RouteTransition } from 'react-router-transition';
 import * as _ from "lodash";
@@ -16,7 +15,7 @@ import Home from "./home";
 import Clouds from "./clouds";
 import Work from "./work";  
 import FadeBackground from "./fadeBackground"; 
-import worker,{serviceWorker} from "./workerService";
+import {serviceWorker} from "./workerService";
 
 import './App.css';
 
@@ -158,7 +157,7 @@ export default class App extends Component {
 		                                <Route exact path={"/skills"} 
 		                                    render={()=>{
 		                                        return (
-		                                            <Skills profile={this.state.profile} scrollTop={this.state.scrollTop} data={[5,10,1,3]} size={[500,500]} />
+		                                            <Skills profile={this.state.profile} scrollTop={this.state.scrollTop}/>
 		                                        )
 		                                    }}
 		                                />

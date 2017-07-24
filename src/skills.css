@@ -55,10 +55,10 @@
     margin: 5px;
 }
 
-.skills  p {
-    font-size: 2.5vw;
+.skills p {
+    font-size: 1.5vw;
     color: white;
-    font-family: 'Lobster', cursive;
+    font-family: Montserrat-Bold;
 }
 
 .skills__gap {
@@ -70,6 +70,7 @@
     flex-wrap:wrap;
     width: 95%;
     margin: auto;
+    margin-bottom:10px;
     background-image: radial-gradient(50% 100%, rgba(177,182,254,0.00) 50%, #E3E5FF 100%);
     border: 1px solid #000000;
     border-radius: 8px;
@@ -78,9 +79,25 @@
 }
 
 
+.skills__js {
+
+}
+
+
+
+
+.skills__imajs {
+    width: 50%;
+    margin: auto;
+    margin-top:10px;
+}
+
+
+
+
 .skills__info > img {
-    width:20%;
-    height:auto;
+    width: 20%;
+    height: auto;
 }
 
 

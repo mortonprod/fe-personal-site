@@ -7,7 +7,19 @@
 }
 
 .home__info {
-    margin:5px;
+   // background-image: radial-gradient(50% 100%, rgba(177,182,254,0.00) 50%, #E3E5FF 100%);
+   // border: 1px solid #000000;
+   // box-shadow: 2px 2px 4px 2px rgba(0,0,0,0.50);
+  //  border-radius: 8px;
+}
+
+
+
+.home__info > img{
+    width:280px;
+    height:auto;
+    margin:auto;
+
 }
 
 

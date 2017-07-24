@@ -11,7 +11,9 @@ import mindmap from "./assets/mindmap.svg";
 import spaIcon from "./assets/spaIcon.svg";
 import clock from "./assets/anti-clockwise.svg";
 import locked from "./assets/locked.svg";
+import problem from "./assets/problem.svg";
 import Squares from "./squares";
+import Process from "./process";
 import './home.css';
 
 
@@ -86,38 +88,19 @@ export default class Home extends Component {
 	            </div>
 	            <div className={"home__gap"}/>
 	            <section className={"home__info"}>
+                    <img src={problem} alt={"problem"}/>
 	                <p>
-	                    Lets face it. Building a website is hard, even with many site builders out there.
+	                    So you have a problem. You need a website.
 	                </p>
+                    <p>
+                        Well you need more than a website. You need a fully functioning ecommerce site, marketing strategy, logos, emails, content management, the list is endless...
+                    </p>
 	                <p>
-	                    Some considerations....
-	                </p>
-	                <ul>
-	                    <li>
-	                        Design
-	                    </li>
-	                    <li>
-	                        SEO 
-	                    </li>
-	                    <li>
-	                        SSL certificates 
-	                    </li> 
-	                    <li>
-	                        Planning an online advertising strategy
-	                    </li>
-                        <li>
-                            You probably need some CMS
-                        </li>
-                        <li>
-                            ...
-                        </li>
-	                </ul>
-	                <p>
-                        If you don't have the time to consider all of this, and need a website that which stands out from your competitors and keeps customers coming 
-                        back, then look below at my services.   
+                        I do all of this and more using the latest technologies the web has to offer, giving you the most for your money.
 	                </p>
 	            </section>
-	            <Squares title={"Web Development"} isShow={this.state.isShow[0]} isLeft={true} ref={(ref)=>{this.squares.push(ReactDOM.findDOMNode(ref))}}>
+                <Process/>
+	            <Squares title={"Solution"} isShow={this.state.isShow[0]} isLeft={true} ref={(ref)=>{this.squares.push(ReactDOM.findDOMNode(ref))}}>
 	                <Square title={design.title} pic={design.pic} parts={design.parts}/>
 			        <Square title={seo.title} pic={seo.pic} parts={seo.parts}/>
 			        <Square title={serviceWorker.title} pic={serviceWorker.pic} parts={serviceWorker.parts}/>
