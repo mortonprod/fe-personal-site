@@ -1,0 +1,13 @@
+#graph {
+    width: 960px;
+    height: 480px;
+}
+
+.line {
+    fill: none;
+    stroke: black;
+}
+
+text {
+    font-size: 0.5rem;
+}

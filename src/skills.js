@@ -13,6 +13,7 @@ import nodeIcon from "./assets/nodejs-icon.svg";
 import storeSvg from "./assets/store.svg";
 import format from "./assets/formats.svg";
 import Account from "./account";
+import Stocks from "./stocks";
 import "./skills.css";
 export default class Skills extends Component {
    isRun=true;
@@ -96,8 +97,13 @@ export default class Skills extends Component {
                 </h2>
             </div>
             <div className={"skills__gap"}/>
-            <section>
-                <PieChart/>
+            <section className={"skills__overview"}>
+                <h1>
+                    Overview 
+                </h1>
+                <div>
+                    <PieChart/>
+                </div>
             </section>
             <section>
                 <article className={"skills__skill"}>
@@ -163,6 +169,20 @@ export default class Skills extends Component {
 	                    <YouTube video="i0aBEmzRE_U" autoplay="0" rel="0" modest="1" />,
 	                </div>
 	            </article>
+                <article className={"skills__skill"}>
+                    <div className={"skills__info"}>
+                        <img src={youtube} alt={"media"}/>
+                        <h2>
+                            Services
+                        </h2>
+                        <p>
+                            Connect to existing services
+                        </p>
+                    </div>
+                    <div className={"skills__centreMedia"}>
+                        <Stocks/>
+                    </div>
+                </article>
 
 
                 <article className={"skills__skill"} ref={(ref)=>{this.writeElement = ReactDOM.findDOMNode(ref)}}>

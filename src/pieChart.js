@@ -165,6 +165,7 @@ export default class PieChart extends Component {
     }
 }
 
+let factor = 0.7
 
 PieChart.defaultProps ={
     section:[
@@ -181,9 +182,12 @@ PieChart.defaultProps ={
             {front:{name:"ES6",level:10 },end:{name:"Google Analytics",level:10 }},
             {front:{name:"Gulp",level:10 },end:{name:"bash",level:10 }}
     ],
-    width:500,
-    height:500,
-    innerRadius: 50,
-    outerRadius: 150,
-    labelRadius: 175
+    width:500*factor,
+    height:500*factor,
+    innerRadius: 50*factor,
+    outerRadius: 150*factor,
+    labelRadius: 175*factor
 };
+
+
+

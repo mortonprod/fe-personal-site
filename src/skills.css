@@ -1,8 +1,9 @@
 .skills {
-    background-color: transparent;
     position: relative;
+    background-color: transparent;
     min-height: 100vh;
     text-align: center;
+    z-index:1000;
     overflow: auto;
 }
 
@@ -59,6 +60,7 @@
     font-size: 1.5vw;
     color: white;
     font-family: Montserrat-Bold;
+    z-index: 1000;
 }
 
 .skills__gap {
@@ -78,9 +80,23 @@
     display: flex;
 }
 
+.skills__overview {
+    width: 95%;
+    margin: auto;
+    margin-bottom:10px;
+    background-image: radial-gradient(50% 240%, rgba(0,19,231,0.00) 47%, rgba(255,27,4,0.30) 100%);
+    border: 3px solid #000000;
+    box-shadow: 5px 5px 4px 0 rgba(0,0,0,0.50);
+}
+
+
+.skills__overview > div{
+    margin:auto;
+}
+
+
 
 .skills__js {
-
 }
 
 
