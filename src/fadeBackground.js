@@ -20,8 +20,9 @@ export default class FadeBackground extends Component {
   background = null;
   constructor(props){
     super()
-    this.state = {height:null};
+    this.state = {height:null,scrollTop:null};
     this.resize = _.debounce(this.resize.bind(this),300,{trailing:true,leading:false});
+    this.scroll = _.throttle(this.scroll,100,{leading:false,trailing:true});
   }
   /**
     When resize called make sure update opacity value through height.
@@ -33,6 +34,19 @@ export default class FadeBackground extends Component {
         this.setState({height:node.getBoundingClientRect().height});
     }
   }
+    /** 
+	    THIS CAN'T BE IN APP MAIN SINCE THIS WILL UPDATE STATE AN CAUSE THE FULL ROUTER TO RELOAD.
+	    CAN PUT IN UTILITY FUNCTION???
+	    ALWAYS SET SCROLLLEFT TO ZERO SO WE DO NOT SEE SCREEN WHERE TRANSFORM ELEMENT ENTER. OVERFLOW-X ONLY HIDES IT DOES NOT PREVENT SCROLL.
+	    @function
+	*/
+	scroll(event){
+	    //if(document.body.scrollLeft !== 0 ){
+	        document.body.scrollLeft = 0;
+	    //}
+	    let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+	    this.setState({scrollTop:scrollTop});
+	}
   /**
     The height of the background is used to determine the opacity of the fade out.
     Attach resize to change opacity with change in background image height.
@@ -41,13 +55,17 @@ export default class FadeBackground extends Component {
   */
   componentDidMount(){
     window.addEventListener('resize', this.resize.bind(this));
+    window.addEventListener('scroll', this.scroll.bind(this));
     this.resize.bind(this)();
 
   }
+  componentWillUnmount(){
+    window.removeEventListener('scroll', this.scroll.bind(this));
+  }
   render(){
     let opacity = null;
-    if(this.props.scrollTop/this.state.height <= 1){
-        opacity = this.props.scrollTop/(this.state.height-window.innerHeight);
+    if(this.state.scrollTop/this.state.height <= 1){
+        opacity = this.state.scrollTop/(this.state.height-window.innerHeight);
     }else{
         opacity = 1;
     }

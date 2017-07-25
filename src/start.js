@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Helmet from 'react-helmet';
+import {serviceWorker} from "./workerService";
 import worker from "./workerService";
 import me from "./assets/me.png"
 import {Link} from 'react-router-dom';
+import Auth from "./auth";
 import "./start.css";
 
 
@@ -14,94 +16,102 @@ import "./start.css";
     @function
 
 */
-export default function Start(props){
-    console.log("profile start: " + props.profile);
-    let installInfo = null;
-    if(props.isLoaded){
-        installInfo = (
-            <div>
-                <h2>
-                    App Full Loaded
-                </h2>
-                <button onClick={clickNotification.bind(this)}> Notify Me </button>
-            </div>
-        )
-    }else{
-        installInfo = (
-            <h2>
-                Loading...
-            </h2>
-        )
+export default class Start extends Component{
+    constructor(){
+        super()
+        this.state = {isLoaded:false,serviceWorker:null,profile:null}
+        window.addEventListener('load',  ()=> {
+            this.setState({isLoaded:true});
+            serviceWorker.subscribe(this.setState.bind(this));
+            Auth.addSetState(this.setState.bind(this));
+        });
     }
-    let serviceComp = null;
-    if(props.serviceWorker && props.serviceWorker.message){
-        serviceComp = (
-            <div>
-                <span>{props.serviceWorker.message}</span>
-            </div>
-        )
-        
-    }else{
-        serviceComp = (
-            <div>
-                <span>No reply from service worker</span>
-            </div>
-        )
+    render(){
+	    console.log("profile start: " + this.state.profile);
+	    let installInfo = null;
+	    if(this.state.isLoaded){
+	        installInfo = (
+	            <div>
+	                <h2>
+	                    App Full Loaded
+	                </h2>
+	                <button onClick={worker.setPermissions.bind(this)}> Notify Me </button>
+	            </div>
+	        )
+	    }else{
+	        installInfo = (
+	            <h2>
+	                Loading...
+	            </h2>
+	        )
+	    }
+	    let serviceComp = null;
+	    if(this.state.serviceWorker && this.state.serviceWorker.message){
+	        serviceComp = (
+	            <div>
+	                <span>{this.state.serviceWorker.message}</span>
+	            </div>
+	        )
+	        
+	    }else{
+	        serviceComp = (
+	            <div>
+	                <span>No reply from service worker</span>
+	            </div>
+	        )
+	    }
+	    let wel = null
+	    if(this.state.profile){
+	        wel = (
+	            <h1>
+	                Welcome {this.state.profile.name}
+	            </h1>
+	        )
+	    }else{
+	        wel = (
+	            <h1>
+	                Welcome Stranger
+	            </h1>
+	        )
+	    }
+	    let about = (
+	    <div className={"start__me"}>
+	        <img src={me} alt={"Me"}/>
+		     <h2>
+		        I'm a software developer based in Glasgow. 
+		     </h2>
+		     <Link to={"/about"}>
+	            Learn more about me.
+	        </Link>
+	         <Link to={"/services"}>
+	            Find out more about my services.
+	        </Link>
+	         <Link to={"/skills"}>
+	            Learn about the tools I use.
+	        </Link>
+	         <Link to={"/work"}>
+	            See what I've been working on recently. 
+	        </Link>
+	     </div>
+	    ) 
+	    return (
+	        <div className={"start"}>
+	             <Helmet>
+	                 <title>Freelance Web Designer | Alexander Morton</title>
+	                <meta name="description" content="I'm a business focused freelance web designer and developer. I help businesses of all sizes to build a effective online solution." />
+	            </Helmet>
+	            <div>
+	                {wel}
+	                {about}
+	                <div className={"start__status"}>
+	                    <h1>
+	                        App Status
+	                    </h1>
+	                {installInfo}
+	                {serviceComp}
+	                </div>
+	            </div>
+	        </div>
+	    )
     }
-    let wel = null
-    if(props.profile){
-        wel = (
-            <h1>
-                Welcome {props.profile.name}
-            </h1>
-        )
-    }else{
-        wel = (
-            <h1>
-                Welcome Stranger
-            </h1>
-        )
-    }
-    function clickNotification(){
-        worker.setPermissions();
-    }
-    let about = (
-    <div className={"start__me"}>
-        <img src={me} alt={"Me"}/>
-	     <h2>
-	        I'm a software developer based in Glasgow. 
-	     </h2>
-	     <Link to={"/about"}>
-            Learn more about me.
-        </Link>
-         <Link to={"/services"}>
-            Find out more about my services.
-        </Link>
-         <Link to={"/skills"}>
-            Learn about the tools I use.
-        </Link>
-         <Link to={"/work"}>
-            See what I've been working on recently. 
-        </Link>
-     </div>
-    ) 
-    return (
-        <div className={"start"}>
-             <Helmet>
-                 <title>Freelance Web Designer | Alexander Morton</title>
-                <meta name="description" content="I'm a business focused freelance web designer and developer. I help businesses of all sizes to build a effective online solution." />
-            </Helmet>
-            <div>
-                {wel}
-                {about}
-                <div className={"start__status"}>
-                    <h1>
-                        App Status
-                    </h1>
-                {installInfo}
-                {serviceComp}
-                </div>
-            </div>
-        </div>
-    )
 }

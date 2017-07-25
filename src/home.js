@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Helmet from 'react-helmet';
 import Auth from "./auth";
+import * as _ from "lodash";
 import Square from "./square";
 import star from "./assets/star.svg"; 
 import layers from "./assets/layers.svg";
@@ -25,13 +26,15 @@ export default class Home extends Component {
     squares = [];
 	constructor(props){
 	  super(props)
-	  this.state = {isShow:[],scrollPos:[]};
+	  this.state = {isShow:[],scrollPos:[],scrollTop:0};
+      this.scroll = _.throttle(this.scroll,100,{leading:false,trailing:true});
 	}
     /** 
 		Update isShow array so we have the right length. Must be called here so we get the refs.
 		@function
 	*/
 	componentDidMount(){
+        window.addEventListener('scroll', this.scroll.bind(this));
 		let isShow= [];
 		for(let i=0; i < this.squares.length ; i++){
 		    isShow.push(false);
@@ -42,6 +45,22 @@ export default class Home extends Component {
             this.state.scrollPos.push(ref.getBoundingClientRect().top);
         });
 	}
+    componentWillUnmount(){
+        window.removeEventListener('scroll', this.scroll.bind(this));
+    }
+    /** 
+        THIS CAN'T BE IN APP MAIN SINCE THIS WILL UPDATE STATE AN CAUSE THE FULL ROUTER TO RELOAD.
+        CAN PUT IN UTILITY FUNCTION???
+        ALWAYS SET SCROLLLEFT TO ZERO SO WE DO NOT SEE SCREEN WHERE TRANSFORM ELEMENT ENTER. OVERFLOW-X ONLY HIDES IT DOES NOT PREVENT SCROLL.
+        @function
+    */
+    scroll(event){
+        //if(document.body.scrollLeft !== 0 ){
+            document.body.scrollLeft = 0;
+        //}
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        this.setState({scrollTop:scrollTop});
+    }
     /**
         Take the scroll position and check each time the location of the squares.
         Only update state if there has been a change.
@@ -74,7 +93,7 @@ export default class Home extends Component {
         If you ref a React component you need to use findDomNode to get the correct methods of DOM on ref.
     */
     render(){
-        let tran = -1*this.props.scrollTop*0.5;
+        let tran = -1*this.state.scrollTop*0.5;
         console.log("show: " + this.state.isShow[0]);
         return (
             <div className="home">

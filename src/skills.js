@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Vivus from "vivus";
 import Helmet from 'react-helmet';
+import Auth from "./auth";
+import * as _ from "lodash";
 import PieChart from "./pieChart";
 import google from "./assets/google.svg";
 import youtube from "./assets/youtube.svg";
@@ -20,27 +22,39 @@ export default class Skills extends Component {
    writeElement = null;
    constructor(props){
     super();
+    this.state = {scrollTop:0,profile:null};
+    this.scroll = _.throttle(this.scroll,100,{leading:false,trailing:true});
+    Auth.addSetState(this.setState.bind(this));
 
    }
-   componentWillReceiveProps(nextProps){
-    if(this.writeElement){
-	    let pos = this.writeElement.getBoundingClientRect();
-	    if(pos.top < window.innerHeight*(1/2)){
-		    if(this.isRun){
-		        new Vivus("store",{duration:"2000",start:"autostart",file:storeSvg}); 
-		    }
-		    this.isRun = false;
-	        
-	    }
+   scroll(event){
+        //if(document.body.scrollLeft !== 0 ){
+            document.body.scrollLeft = 0;
+        //}
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        this.setState({scrollTop:scrollTop});
+        if(this.writeElement){
+	        let pos = this.writeElement.getBoundingClientRect();
+	        if(pos.top < window.innerHeight*(1/2)){
+	            if(this.isRun){
+	                new Vivus("store",{duration:"2000",start:"autostart",file:storeSvg}); 
+	            }
+	            this.isRun = false;
+	            
+	        }
+        }
     }
-   }
    componentDidMount(){
+        window.addEventListener('scroll', this.scroll.bind(this));
         const script = document.createElement("script");
         script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyB47UL58deXimo5mq7v3xNO0GdWlexqnAc&callback=initMap";
         script.async = true;
         document.body.appendChild(script);
    }
-	     _onReady(event) {
+   componentWillUnmount(){
+        window.removeEventListener('scroll', this.scroll.bind(this));
+   }
+	 _onReady(event) {
 	    // access to player in all event handlers via event.target 
 	    event.target.pauseVideo();
 	  }
@@ -52,10 +66,10 @@ export default class Skills extends Component {
 	        </object>
         )
 		let wel = null
-		if(this.props.profile){
+		if(this.state.profile){
             let nickname = "";
-            if(this.props.profile.nickname){
-                nickname= " AKA " + this.props.profile.nickname
+            if(this.state.profile.nickname){
+                nickname= " AKA " + this.state.profile.nickname
             }
 			wel = (
                 <div className={"skills__account"}>
@@ -63,12 +77,12 @@ export default class Skills extends Component {
 				        Welcome back
 				    </h3>
                     <h3>
-                        {this.props.profile.name}
+                        {this.state.profile.name}
                     </h3>
                     <h4>
                         {nickname}
                     </h4>
-	                <img src={this.props.profile.picture} alt="profile" />
+	                <img src={this.state.profile.picture} alt="profile" />
                 </div>
 			)
 			}else{
@@ -78,12 +92,12 @@ export default class Skills extends Component {
                         Sign to Learn More
                     </h3>
                     <div className={"skills__button"}>
-                        <Account profile={this.props.profile}/>
+                        <Account profile={this.state.profile}/>
                     </div>
                 </div>
 			)
 		}
-      let tran = -1*this.props.scrollTop*0.5;
+      let tran = -1*this.state.scrollTop*0.5;
       return (
         <div className={"skills"}>
              <Helmet>
