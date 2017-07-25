@@ -119,7 +119,7 @@ export default class Home extends Component {
 	                </p>
 	            </section>
                 <Process/>
-	            <Squares title={"Solution"} isShow={this.state.isShow[0]} isLeft={true} ref={(ref)=>{this.squares.push(ReactDOM.findDOMNode(ref))}}>
+	            <Squares title={"More Details"} isShow={this.state.isShow[0]} isLeft={true} ref={(ref)=>{this.squares.push(ReactDOM.findDOMNode(ref))}}>
 	                <Square title={design.title} pic={design.pic} parts={design.parts}/>
 			        <Square title={seo.title} pic={seo.pic} parts={seo.parts}/>
 			        <Square title={serviceWorker.title} pic={serviceWorker.pic} parts={serviceWorker.parts}/>
@@ -154,11 +154,12 @@ let design = {
     parts:[
         {
             title:"Custom Design",
-            subTitle:"Your website is your customers first impression of you. It's important to design you site to memorable and professional",
+            subTitle:"Your website is your customers first impression of you. It's important to design your site to be memorable and professional",
             list:[
                 "Only build websites which reflect your business and not just another template.",
                 "All website are dynamic and interactive.",
-                "Use the latest technologies to get the best the web can offer."
+                "Use dynamics svg or HTML5 canvas to produce animations.",
+                "Use the latest frontend frameworks to produce the smoothest journey for your users."
             ]
         },
         {

@@ -28,7 +28,7 @@
 
 .process > p {
     border: 0 solid #000000;
-    font-family: Montserrat-Bold;
+    font-family: 'Lobster', cursive;
     font-size: 25px;
     color: #00E9FF;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.50);
@@ -51,11 +51,13 @@
 .process__star > span {
     position:absolute;
     top:40%;
-    left:40%;
+    left:35%;
 }
 
-.process__left{
-    margin:auto;
+.process__left {
+    margin: auto;
+    margin-right: 50px;
+    margin-left: 50px;
 }
 
 .process__left > img{
@@ -67,7 +69,7 @@
 
 
 .process__right{
-    width:300px;
+    width:500px;
     margin:5px;
     
 }
@@ -96,4 +98,11 @@
     width:90%;
     margin:auto;
     margin-bottom:10px;
+}
+
+@media (max-width:600px){
+    .process__right {
+        width: 300px;
+    }
+
 }

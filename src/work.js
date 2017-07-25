@@ -36,7 +36,7 @@ export default class Work extends Component{
 	            </Helmet>
 			    <div style={{transform:'translateY(' + tran + 'px)'}} className={"work__header"} >
 			        <h1>My Work</h1>
-			        <h2>The Highlights</h2>
+			        <h2>My Most Recent Projects...</h2>
 			    </div>
 		        <div className={"work__gap"}/>
 	            <section className={"work__websites"}>
@@ -52,7 +52,9 @@ export default class Work extends Component{
 		                        Problem
 		                    </h3>
 			                <p>
-			                    A small business needed a online store which they could sell their boutique products.
+			                    A small business needed a online store which they could sell their boutique products. 
+                                They wanted a small web application to not only sell there products, but also simplify product procurement, stock checks and billing.
+                                The website should make it as easy as possible for someone to go from visiting the site to buying a product.
 			                </p>
 	                    </article>
 	                    <article className={"work__solution"}>
@@ -60,7 +62,7 @@ export default class Work extends Component{
 		                        Solution
 		                    </h3>
 		                    <p>
-		                        A small business needed a online store which they could sell their boutique products.
+		                        The website was designed....
 		                    </p>
 	                    </article>
 	                    <a href={"https://github.com"}><img src={vistSite} alt="Visit site button"/></a>

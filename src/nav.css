@@ -28,6 +28,15 @@
     font-family: 'Lobster', cursive;
 }
 
+
+.nav a, span {
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
+
+
+
 .nav--hide{
     transform:translateY(-200px);
 }

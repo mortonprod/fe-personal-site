@@ -12,13 +12,11 @@
 }
 
 
-
-
 .label-text {
     alignment-baseline: middle;
-    font-size: 12px;
-    font-family: arial,helvetica,"sans-serif";
-    fill: #393939;
+    font-size: 15px;
+    font-family: 'Lobster', cursive;
+    fill: white;
 }
 
 .label-line {
@@ -28,4 +26,13 @@
 
 .label-circle {
     fill: #393939;
+}
+
+
+@media (min-width:500px){
+
+    .label-text {
+        font-size: 20px;
+    }
+    
 }

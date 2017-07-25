@@ -18,11 +18,15 @@ import "./fadeBackground.css";
 */
 export default class FadeBackground extends Component {
   background = null;
+  /**
+    Must sure to call resize to stop blue flash of opacity = null.
+  */
   constructor(props){
     super()
     this.state = {height:null,scrollTop:null};
     this.resize = _.debounce(this.resize.bind(this),300,{trailing:true,leading:false});
     this.scroll = _.throttle(this.scroll,100,{leading:false,trailing:true});
+    this.resize.bind(this)();
   }
   /**
     When resize called make sure update opacity value through height.
@@ -62,9 +66,16 @@ export default class FadeBackground extends Component {
   componentWillUnmount(){
     window.removeEventListener('scroll', this.scroll.bind(this));
   }
+  /**
+    If height or scroll null assume reroutes and set opacity=0.
+    Calling resize in constructor does not work?? Call on demount maybe?
+  */
   render(){
     let opacity = null;
-    if(this.state.scrollTop/this.state.height <= 1){
+    if(this.state.scrollTop === null || this.state.height === null){
+    opacity = 0;
+    }
+    else if(this.state.scrollTop/this.state.height <= 1){
         opacity = this.state.scrollTop/(this.state.height-window.innerHeight);
     }else{
         opacity = 1;

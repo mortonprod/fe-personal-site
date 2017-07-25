@@ -52,27 +52,31 @@ export default class Stocks extends Component {
     createGraph(data) {
 
       let x = d3.scaleLinear()
-        .range([0, this.props.width])
+        //.range([0, this.props.width])
+        .range([0, 100])
 
       let y = d3.scaleLinear()
-        .range([this.props.height,0])
+        //.range([this.props.height,0])
+        .range([100,0])
 
       let xAxis = d3.axisBottom()
         .scale(x)
         .tickFormat('')
-        .tickSize(0, 0)
+        .tickSize(10, 0).ticks(2);
 
       let yAxis = d3.axisLeft()
         .scale(y)
-        .tickSize(0, 0).ticks(3);
+        .tickSize(10, 10).ticks(3);
       let arrays = this.createArrays(data);
 	  let max = Math.max.apply(null,arrays.high);
       let min = Math.min.apply(null,arrays.low);
       //Silly since this should always be 20 minutes. 
       let maxTimes = Math.max.apply(null,arrays.times);
       let minTimes = Math.min.apply(null,arrays.times);
-      x.domain([minTimes,maxTimes])
-      y.domain([min, max])
+      //x.domain([minTimes,maxTimes])
+      //y.domain([min, max])
+      x.domain([0,100])
+      y.domain([70, 80])
 
 	  let lineClose = d3.line()
 	    .x(function(d) { return d.time })
@@ -126,19 +130,7 @@ export default class Stocks extends Component {
 	  graph.append('path')
 	    .datum(arrays.all)
 	    .attr('class', 'line')
-	    .attr('d', lineClose)
-      graph.append('path')
-        .datum(arrays.all)
-        .attr('class', 'line')
-        .attr('d', lineOpen)
-      graph.append('path')
-        .datum(arrays.all)
-        .attr('class', 'line')
-        .attr('d', lineHigh)
-      graph.append('path')
-        .datum(arrays.all)
-        .attr('class', 'line')
-        .attr('d', lineLow)
+	    .attr('d', lineClose);
 	}
     callStock(name){
         return new Promise((resolve,reject)=>{
@@ -158,14 +150,14 @@ export default class Stocks extends Component {
     componentDidMount(){
         console.log("Mount");
         let name = "MSFT";
-        let intervalId =  setIntervalAndExecute(()=>{
+     //   let intervalId =  setIntervalAndExecute(()=>{
 	        this.callStock(name).then((data)=>{
                 console.log("Call");
                 this.createGraph.bind(this)(data);
                 this.setState({isData:true});
             });
-        },1000*60);
-        this.setState({intervalId: intervalId});
+       // },1000*60);
+    ///    this.setState({intervalId: intervalId});
     }
     /**
         Must clear interval.

@@ -40,16 +40,16 @@
 
 
 
-.skills  h1 {
-    font-size: 8vw;
+.skills h1 {
+    font-size: 100px;
     color: white;
     font-family: 'Lobster', cursive;
     width: 100%;
-    margin:5px;
+    margin: 5px;
 }
 
 .skills h2 {
-    font-size: 4vw;
+    font-size: 70px;
     color: white;
     font-family: 'Lobster', cursive;
     width: 100%;
@@ -57,7 +57,7 @@
 }
 
 .skills p {
-    font-size: 1.5vw;
+    font-size: 20px;
     color: white;
     font-family: Montserrat-Bold;
     z-index: 1000;
@@ -120,8 +120,9 @@
 
 .skills__info {
     position: relative;
-    width: 30%;
+    width: 500px;
     margin: auto;
+    margin-top:20px;
     z-index: 2000;
     display:inline-block;
 }
@@ -169,22 +170,17 @@
  
 
 
-@media (max-width:600px) {
+@media (max-width:700px) {
     .skills__gap {
         height: 100vh;
     }
 
     .skills h1 {
-        font-size: 18vw;
+        font-size: 70px;
     }
 
     .skills h2 {
-        font-size: 15vw;
-    }
-    .skills p {
-        font-size: 6vw;
-        color: white;
-        font-family: 'Lobster', cursive;
+        font-size: 50px;
     }
     .skills__info {
         width: 100%;
@@ -212,5 +208,17 @@
         width: 200px;
         height: 200px;
         margin: auto;
+    }
+}
+
+
+@media (max-width:400px) {
+    
+    .skills__info {
+        width: 300px;
+
+    }
+    .skills p {
+        font-size: 15px;
     }
 }

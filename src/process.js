@@ -79,17 +79,20 @@ Process.defaultProps ={
         {
             title:developTitle,
             info:[
-                "All my websites are single page applications so I can create complex user interfaces easily",
-                "I link all my websites to custom made backend powered by node js. Giving me the flexability in adding functionality to your site.",
-                "I only build fully tested and documented software."
+                "Most of my websites are single page applications so I can create complex user interfaces easily, currently I use react.",
+                "I link most of my websites to custom made backend powered by node js. Which gives me the flexability in adding functionality to your site.",
+                "However, I can move to other frontend and backend frameworks if you already have a site up and running.",
+                "With my background in mathematics I can manage any complex data you have, I'm able to build applications which analyses your data and then displays it in an approachable way.",
+                "I only build fully tested and documented software. This allows you to easily upgrade your site in the future."
             ]
         },
         {
             title:deployTitle,
             info:[
-                "A take security seriously, this is why I include SSL certificates as standard on all my websites.",
-                "All my websites are hosted with docker. This reduces your hosting cost by only paying for what you use.",
-                "All websites I deploy come with a range tools setup for you, such as google analytics, adwords, or any other tool you desire."
+                "I take security seriously, this is why I include SSL certificates as standard on all my websites.",
+                "Most of my websites are hosted on digital ocean on a docker droplet. This reduces your hosting cost by only paying for what you use.",
+                "Every website I build is fast, content rich and designed to maximise your google rankings. I use a range of tools to achieve this and every website goes through checks to make sure your achieving your advertising goals.",
+                "For your long term goals, I setup and teach you, or your employees, how to use a range of tools, such as google analytics, adwords, or any other tool you desire."
             ]
         }
     ]

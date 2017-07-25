@@ -17,15 +17,42 @@ import format from "./assets/formats.svg";
 import Account from "./account";
 import Stocks from "./stocks";
 import "./skills.css";
+
+
+let pieChartBig = {
+    width:500,
+    height:500,
+    innerRadius: 50,
+    outerRadius: 150,
+    labelRadius: 175
+}
+
+let factor = 0.5;
+let pieChartSmall = {
+    width:500*factor +50,
+    height:500*factor + 50,
+    innerRadius: 50*factor,
+    outerRadius: 150*factor,
+    labelRadius: 175*factor
+}
+
+
 export default class Skills extends Component {
    isRun=true;
    writeElement = null;
+   /**
+    Calling set state through resize in constructor not working. REMOVED!
+   */
    constructor(props){
     super();
-    this.state = {scrollTop:0,profile:null};
+    if(window.innerWidth < 500){
+        this.state = {scrollTop:0,profile:null,pieChartInfo:pieChartSmall};
+    }else{
+        this.state = {scrollTop:0,profile:null,pieChartInfo:pieChartBig};
+    }
     this.scroll = _.throttle(this.scroll,100,{leading:false,trailing:true});
     Auth.addSetState(this.setState.bind(this));
-
+    this.resize = _.debounce(this.resize,200,{leading:false,trailing:true});
    }
    scroll(event){
         //if(document.body.scrollLeft !== 0 ){
@@ -46,13 +73,22 @@ export default class Skills extends Component {
     }
    componentDidMount(){
         window.addEventListener('scroll', this.scroll.bind(this));
+        window.addEventListener('resize',this.resize.bind(this));
         const script = document.createElement("script");
         script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyB47UL58deXimo5mq7v3xNO0GdWlexqnAc&callback=initMap";
         script.async = true;
         document.body.appendChild(script);
    }
+   resize(event){
+        if(window.innerWidth < 500){
+            this.setState({pieChartInfo:pieChartSmall});
+        }else{
+            this.setState({pieChartInfo:pieChartBig});
+        }
+    }
    componentWillUnmount(){
         window.removeEventListener('scroll', this.scroll.bind(this));
+        window.removeEventListener('resize', this.resize.bind(this));
    }
 	 _onReady(event) {
 	    // access to player in all event handlers via event.target 
@@ -116,7 +152,12 @@ export default class Skills extends Component {
                     Overview 
                 </h1>
                 <div>
-                    <PieChart/>
+                    <PieChart width={this.state.pieChartInfo.width}
+                        height={this.state.pieChartInfo.height}
+                        innerRadius={this.state.pieChartInfo.innerRadius}
+                        outerRadius={this.state.pieChartInfo.outerRadius}
+                        labelRadius={this.state.pieChartInfo.labelRadius}
+                    />
                 </div>
             </section>
             <section>
@@ -206,13 +247,13 @@ export default class Skills extends Component {
                             Styles
                         </h2>
                         <p>
-                            Use different digital format for different situations, so your store front is eye catching.
+                            Use different digital formats for different situations, so your store front is always eye catching.
                         </p>
                         <p>
                             Manipulate svg paths to produce engrossing animations.
                         </p>
                         <p>
-                            Level up, manipulate pixel by pixel with HTML5 canvas.
+                            You can even manipulate pixel by pixel for CPU intensive rendering.
                         </p>
                     </div>
                     <div className={"skills__centreMedia"}>
@@ -228,10 +269,12 @@ export default class Skills extends Component {
 	                        Creating a brand
 	                    </h2>
 	                    <p>
-	                        Create a Logos, posters and stationary.
+	                        Create Logos, posters and stationary, 
+                            giving you the freedom to design your own store front. 
+                            So you can convey to your customers that your business is special and not just another template.
 	                    </p>
 	                    <p>
-	                        Everything you need to start a business
+                            Basically, the skys the limit, if you can draw it then I should be able to render it on a website for you. This is not always true, but it usually is. 
 	                    </p>
 	                </div>
 	                <div className={"skills__centreMedia"}>

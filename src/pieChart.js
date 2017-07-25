@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as d3 from "d3";
+import * as _ from "lodash";
 import "./pieChart.css";
 
 /**
@@ -16,6 +17,23 @@ export default class PieChart extends Component {
     svg=null;
     constructor(props){
         super(props);
+    }
+    /**
+        Make sure we only update the graph if we have a resize eventh which takes us over the threshold.
+    */
+    shouldComponentUpdate(nextProps,nextState){
+        if(_.isEqual(nextProps,this.props) && _.isEqual(nextState,this.state)){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    /**
+        Render once to update the this.props then call createChart to get d3 to update the dom with new prop values.
+    */
+    componentDidUpdate(nextProps){
+        d3.select(this.node).selectAll("g").remove();
+        this.createChart();
     }
       
     /**
@@ -165,7 +183,7 @@ export default class PieChart extends Component {
     }
 }
 
-let factor = 0.7
+let factor = 1;
 
 PieChart.defaultProps ={
     section:[

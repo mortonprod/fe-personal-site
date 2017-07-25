@@ -135,7 +135,7 @@ export default function App(props) {
                     <footer className={"footer"}>
                         <h4> 2017 © Alexander Morton </h4> 
                         <strong> Freelance Web Designer and Developer</strong>
-                        <a href={"hello@alexandermorton.co.uk"}> hello@alexandermorton.com </a>
+                        <a href={"hello@alexandermorton.co.uk"}> hello@alexandermorton.co.uk </a>
                     </footer>
               </div>
 			</Router>
