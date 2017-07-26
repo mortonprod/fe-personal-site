@@ -8,6 +8,25 @@
     stroke: black;
 }
 
+
+.line__close {
+    stroke: yellow;
+}
+
+.line__open {
+    stroke: green;
+}
+
+.line__high {
+    stroke: red;
+}
+
+
+.line__low {
+    stroke: blue;
+}
+
+
 text {
     font-size: 0.5rem;
 }

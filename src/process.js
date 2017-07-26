@@ -71,7 +71,7 @@ Process.defaultProps ={
         {
 	        title:processDesign,
 	        info:[
-                "I start with designing you a logo for your business which can be used for business cards, stationary and other paraphernalia.",
+                "I start with producing a static wireframe of your site for you to approve. This includes designing you a logo for your business which can be used for business cards, stationary and other paraphernalia.",
                 "I design every application to say something special about your business and since I never use templates the sky is the limit on what we can build together.",
                 "I focus on making your brand memorable and professional looking on all devices. "
             ]

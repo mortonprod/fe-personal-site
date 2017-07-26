@@ -44,7 +44,7 @@ export default class PieChart extends Component {
 
 	    let radius = Math.min(this.props.width, this.props.height) / 2;
         d3.select(this.svg).attr("height", this.props.height).attr("width", this.props.width);
-		let color = d3.scaleOrdinal(d3.schemeCategory10);
+		let color = d3.scaleOrdinal(d3.schemeCategory20);
         d3.select(this.canvas).attr("transform", "translate(" + (this.props.width / 2) + "," + (this.props.width / 2) + ")");
 		this.pie = d3.pie()
 		    .value(function(d) { return d.front.level; })
@@ -137,7 +137,9 @@ export default class PieChart extends Component {
     change(index){
         let name = "front"
         if(index === 1){
-            name ="end"
+            name ="end";
+        }else if(index === 2){
+            name ="other";
         }
 	    this.pie.value(function(d) { return d[name].level; }); 
 	    this.path = this.path.data(this.pie); // compute the new angles
@@ -171,6 +173,10 @@ export default class PieChart extends Component {
                         <input type="radio" name="dataset" value="1" onClick={(e)=>{this.change(1)}}  /> 
                         Backend
                     </label>
+                    <label>
+                        <input type="radio" name="dataset" value="1" onClick={(e)=>{this.change(2)}}  /> 
+                        Other
+                    </label>
 	            </form>
                 <svg ref={svg => this.svg = svg}>
                     <g ref={canvas => this.canvas = canvas}>
@@ -187,18 +193,17 @@ let factor = 1;
 
 PieChart.defaultProps ={
     section:[
-            {front:{name:"Auth0",level:10 },end:{name:"Node",level:10 }},
-            {front:{name:"Axios",level:10 },end:{name:"Express",level:10 }},
-            {front:{name:"Babel",level:10 },end:{name:"Pug",level:10 }},
-            {front:{name:"D3",level:10 },end:{name:"Passport",level:10 }},
-            {front:{name:"React",level:70 },end:{name:"Express-sessions",level:10 }},
-            {front:{name:"Redux",level:10 },end:{name:"Mongo",level:10 }},
-            {front:{name:"SASS",level:10 },end:{name:"Paypal",level:10 }},
-            {front:{name:"Typescript",level:10 },end:{name:"Stripe",level:10 }},
-            {front:{name:"Vivus",level:10 },end:{name:"Docker",level:10 }},
-            {front:{name:"webpack",level:10 },end:{name:"Certbot",level:10 }},
-            {front:{name:"ES6",level:10 },end:{name:"Google Analytics",level:10 }},
-            {front:{name:"Gulp",level:10 },end:{name:"bash",level:10 }}
+            {front:{name:"Auth0",level:20 },end:{name:"Node",level:50},other:{name:"C++",level:40}},
+            {front:{name:"Axios",level:30 },end:{name:"Express",level:30 },other:{name:"Python",level:20}},
+            {front:{name:"Babel",level:20 },end:{name:"Pug",level:10 },other:{name:"Numerical",level:30}},
+            {front:{name:"D3",level:10 },end:{name:"Passport",level:10 },other:{name:"Statistics",level:30}},
+            {front:{name:"React",level:70 },end:{name:"Express-sessions",level:10 },other:{name:"Calculus",level:30}},
+            {front:{name:"Redux",level:10 },end:{name:"Mongo",level:30 },other:{name:"Algebra",level:30}},
+            {front:{name:"SASS",level:20 },end:{name:"Paypal",level:20 },other:{name:"Thermo",level:20}},
+            {front:{name:"Typescript",level:20 },end:{name:"Stripe",level:20 },other:{name:"Mechanics",level:20}},
+            {front:{name:"Vivus",level:10 },end:{name:"Docker",level:40 },other:{name:"C#",level:5}},
+            {front:{name:"webpack",level:10 },end:{name:"Certbot",level:30 },other:{name:"QM",level:30}},
+            {front:{name:"gulp",level:10 },end:{name:"Google Analytics",level:20 },other:{name:"bash",level:40 }},
     ],
     width:500*factor,
     height:500*factor,

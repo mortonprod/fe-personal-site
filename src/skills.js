@@ -14,6 +14,7 @@ import reactIcon from "./assets/reactIcon.svg";
 import nodeIcon from "./assets/nodejs-icon.svg";
 import storeSvg from "./assets/store.svg";
 import format from "./assets/formats.svg";
+import cms from "./assets/cms.svg";
 import Account from "./account";
 import Stocks from "./stocks";
 import "./skills.css";
@@ -168,10 +169,11 @@ export default class Skills extends Component {
                             React
                         </h2>
                         <p>
+                            I use react to produce the majority of my sites.
                             React gives me the ability to create fast, modular components.
                         </p>
                         <p>
-                            Implementing server side rendering gives you the benefits of a single page application and a static website.
+                            By implementing server side rendering with each build, I gain the benefits of a single page application and a static website.
                         </p>
                         <p>
                             React also allows you to easily port your code to develop native mobile apps or even desktop apps.
@@ -183,7 +185,7 @@ export default class Skills extends Component {
                             Node
                         </h2>
                         <p>
-                            Node lets you use javascript in creating your server, breaking down the boundary between browser and server.
+                            Node lets me use javascript in creating your server, breaking down the boundary between browser and server.
                         </p>
                         <p>
                             A fast, versatile server which can easily scale up as you expand your business.
@@ -200,7 +202,7 @@ export default class Skills extends Component {
 	                        Tools
 		                </h2>
 	                    <p>
-	                        Integrate google maps, analytics and adwords into your web application. 
+	                        I can integrate google maps, analytics and adwords into your web application. 
 	                    </p>
                         <p>
                             I also use a series of other SEO and webmaster tools to make sure all my websites are functioning correctly. 
@@ -212,33 +214,24 @@ export default class Skills extends Component {
 	            </article>
 	            <article className={"skills__skill"}>
 	                <div className={"skills__info"}>
-	                    <img src={youtube} alt={"media"}/>
+	                    <img src={cms} alt={"media"}/>
 	                    <h2>
-	                        Media
+	                        Content Management
 	                    </h2>
+                        <p>
+                            Videos, photos, blog posts... the list is endless... I'm comfortable working with any form your content takes. 
+                            The demand for content from your server is constant. 
+                            I can manage concurrent demands on your server, to deliver content quickly and efficiently.
+                        </p>
 	                    <p>
-	                        Integrate any media into your website or use your website to upload content.
+	                        You need to upload content before people can see it. I make uploading anything a breeze, 
+                            designing you a single user interface, to your specification, which links to every aspect of maintaining your website.
 	                    </p>
 	                </div>
 	                <div className={"skills__centreMedia"}>
 	                    <YouTube video="i0aBEmzRE_U" autoplay="0" rel="0" modest="1" />,
 	                </div>
 	            </article>
-                <article className={"skills__skill"}>
-                    <div className={"skills__info"}>
-                        <img src={youtube} alt={"media"}/>
-                        <h2>
-                            Services
-                        </h2>
-                        <p>
-                            Connect to existing services
-                        </p>
-                    </div>
-                    <div className={"skills__centreMedia"}>
-                        <Stocks/>
-                    </div>
-                </article>
-
 
                 <article className={"skills__skill"} ref={(ref)=>{this.writeElement = ReactDOM.findDOMNode(ref)}}>
                     <div className={"skills__info"}>
@@ -247,13 +240,19 @@ export default class Skills extends Component {
                             Styles
                         </h2>
                         <p>
-                            Use different digital formats for different situations, so your store front is always eye catching.
+                            I go beyond basic template styling in making your store front stand out.
                         </p>
                         <p>
-                            Manipulate svg paths to produce engrossing animations.
+                            I wireframe all my websites before production so my clients can see what we're building.
+                            I then export the appropriate resources for each component of the user interface. 
                         </p>
                         <p>
-                            You can even manipulate pixel by pixel for CPU intensive rendering.
+                            I employ javascript frameworks and libraries to interact with each component. 
+                            This includes svg components using libraries like d3 and vivus. Useful for creating charts or even simulated drawing on the screen.
+                        </p>
+                        <p>
+                            I can also use the browsers canvas to render pixel by pixel images. 
+                            This is particularly useful for CPU intensive applications like javascript games.  
                         </p>
                     </div>
                     <div className={"skills__centreMedia"}>

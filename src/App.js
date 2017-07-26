@@ -34,9 +34,11 @@ const handleAuthentication = (nextState, replace) => {
     We need to reset the scroll position manually on each route enter.
 */
 function handlePageChange(history){
-    window.scrollTo(0, 0);
-    if ('scrollRestoration' in history) {
-        history.scrollRestoration = 'manual';
+    if(!navigator.userAgent.includes("Node.js") && !navigator.userAgent.includes("jsdom")){
+	    window.scrollTo(0, 0);
+	    if ('scrollRestoration' in history) {
+	        history.scrollRestoration = 'manual';
+	    }
     }
 }
 
