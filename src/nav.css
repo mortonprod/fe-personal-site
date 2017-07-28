@@ -73,14 +73,15 @@
     transform: scale(1);
 }
 
-.nav__account{
-    display:flex;
-    align-content:center;
-    margin:auto;
-    margin-left:5px;
-    margin-right:5px; 
-    margin-top:0;
-    margin-bottom:3px;
+
+.nav__account {
+    display: flex;
+    align-content: center;
+    margin: auto;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 0;
+    margin-bottom: 3px;
 }
 
 .nav__share{

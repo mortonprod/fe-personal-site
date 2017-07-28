@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="312px" height="162px" viewBox="0 0 312 162" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 3</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="100%" gradientTransform="translate(0.500000,0.500000),scale(0.500000,1.000000),rotate(90.000000),translate(-0.500000,-0.500000)" id="radialGradient-1">
+            <stop stop-color="#0700F7" stop-opacity="0.165223053" offset="0%"></stop>
+            <stop stop-color="#FF0000" offset="100%"></stop>
+        </radialGradient>
+        <rect id="path-2" x="0" y="0" width="300" height="150" rx="8"></rect>
+        <filter x="-2.2%" y="-4.3%" width="107.7%" height="115.3%" filterUnits="objectBoundingBox" id="filter-3">
+            <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="5" dy="5" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0.94828869   0 0 0 0 0.0145363856   0 0 0 0 0.0145363856  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <text id="text-4" font-family="PlayfairDisplay-Bold, Playfair Display" font-size="40" font-weight="bold" fill="#000000">
+            <tspan x="73.5593243" y="86">Services</tspan>
+        </text>
+        <filter x="-0.9%" y="-4.7%" width="103.1%" height="117.0%" filterUnits="objectBoundingBox" id="filter-5">
+            <feOffset dx="2" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Mobile-Copy" transform="translate(-238.000000, -2052.000000)">
+            <g id="Group-3" transform="translate(239.000000, 2053.000000)">
+                <g id="Group-2">
+                    <g id="Rectangle-17">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                        <use fill="url(#radialGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                        <rect stroke="#000000" stroke-width="3" x="1.5" y="1.5" width="297" height="147" rx="8"></rect>
+                    </g>
+                    <g id="Services" stroke="#FF0000">
+                        <use fill="#000000" fill-opacity="1" stroke-opacity="1" filter="url(#filter-5)" xlink:href="#text-4"></use>
+                        <use fill="#000000" fill-opacity="1" stroke-opacity="1" xlink:href="#text-4"></use>
+                        <use xlink:href="#text-4"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

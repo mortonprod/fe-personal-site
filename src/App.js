@@ -58,6 +58,7 @@ function handlePageChange(history){
 
     MUST STOP STATE CHANGE FROM RENDERING ROUTER AGAIN AND AGAIN SO CANCEL ALL CALLS TO RENDER. COMPONENTS UNDERNEATH SHOULD UPDATE THOUGH. 
     THEREFORE NO APP STATE!!!!
+    CAN'T NAME ROOT DIRECTORY "/" SINCE WELCOME PAGE IS ALWAYS AN ACTIVE LINK?
     @function
 */
 export default function App(props) {
@@ -74,7 +75,7 @@ export default function App(props) {
 				        atActive={{ opacity: 1 }}
 				      >
                   <Switch key={location.key} location={location}>
-                  <Route exact path={"/"} render={()=>{
+                  <Route exact path={"/welcome"} render={()=>{
                     handlePageChange(history);
                     return <Start/>
                     }
@@ -127,7 +128,7 @@ export default function App(props) {
                 }/>
                   <Nav
                     links={[
-                        {name:"Welcome",location:"/"},
+                        {name:"Welcome",location:"/welcome"},
                         {name:"About Me",location:"/about"},
                         {name:"My Services",location:"/services"},
                         {name:"My Work",location:"/work"},

@@ -4,8 +4,12 @@ import Auth from "./auth";
 import googleC from './assets/Google_Color.svg';
 import facebookC from './assets/Facebook_Color.svg';
 import twitterC from './assets/Twitter_Color.svg';
-import accountBox from './assets/accountBox.svg';
+import accountBox from './assets/accountBox.png';
 import "./account.css";
+
+
+
+
 
 /**
     Will simply render account login or welcome and link to account page depending if auth has been authenticated..
@@ -21,7 +25,7 @@ export default function Account(props){
 	    Acc =  () => {
 	        return (
 	            <div className={"account"}>
-	              <div onClick={(event)=>{event.stopPropagation();Auth.login()}} className="account__button">
+	              <div onClick={(event)=>{event.stopPropagation();props.auth.login()}} className="account__button">
 	                <img src={accountBox} className="" alt="Account login button" />
 	                <img src={facebookC} className="" alt="Facebook login button" />
 	                <img src={googleC} className="" alt="google login button" />
@@ -40,7 +44,7 @@ export default function Account(props){
 	                  <Link to={"/account"}>
 	                    <img src={props.profile.picture} alt="profile link" />
 	                  </Link>
-	                  <button onClick={(event)=>{event.stopPropagation();Auth.logout()}}> logout </button>
+	                  <button onClick={(event)=>{event.stopPropagation();props.auth.logout()}}> logout </button>
 	                </article>
 	            )
 	    }

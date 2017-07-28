@@ -7,11 +7,16 @@
 }
 
 
-.home__info > img{
-    width:280px;
-    height:auto;
-    margin:auto;
+.home__info {
+    position:relative;
+    z-index:200
+}
 
+
+.home__info > img {
+    width: 280px;
+    height: auto;
+    margin: auto;
 }
 
 

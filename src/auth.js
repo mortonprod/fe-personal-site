@@ -24,6 +24,9 @@ let auth = new auth0.WebAuth({
 	scope: 'openid profile'
 });
 
+
+let cb = [];
+
 /**
     Static utility class.
     Links to single instance of auth0 API through closure.
@@ -86,45 +89,28 @@ export default class Auth {
     @function
   */
   static getProfile(cb) {
-    if(typeof localStorage !=="undefined"){ //So we can render on the server
-	    if(localStorage.getItem('access_token') !==null){
-	        auth.client.userInfo(localStorage.getItem('access_token'), (err, profile) => {
-                if(err){
-                    console.log("Error: " + err);
-                }
-	            if (profile) {
-                    Auth.userProfile = profile;
-                    //Once we have the profile then add the name and email if it does not exist.
-                    //if it does exist then return the products bought and looked at and add to profile information.
-                    axios.post('/account',profile).then((res) => {
-                        Auth.userProfile = Object.assign(profile,res.data); 
-                        console.log("User profile: " + JSON.stringify(Auth.userProfile));
-                        Auth.setStatesWithNewProfile(profile);
-                        cb(err, profile);
-                    }).catch((error)=>{
-                        Auth.userProfile = profile;
-                        Auth.setStatesWithNewProfile(profile);
-                        cb(err,profile);
-                    }); 
-                }
-	        });
-	    }
+    if(!Auth.userProfile){
+	    if(typeof localStorage !=="undefined"){ //So we can render on the server
+		    if(localStorage.getItem('access_token') !==null){
+		        auth.client.userInfo(localStorage.getItem('access_token'), (err, profile) => {
+	                if(err){
+	                    console.log("Error: " + err);
+	                }
+		            if (profile) {
+	                    Auth.userProfile = profile;
+	                    cb(err,profile);
+	                }
+		        });
+		    }else{
+                cb("error");
+            }
+	    }else{
+            cb("error");
+        }
+    }else{
+        cb(null,Auth.userProfile);
+
     }
-  };
-  /**
-    Get the set state functions for each component which needs a profile update.
-    @function
-  */
-  static addSetState(fn){
-    Auth.setStateList.push(fn); 
-  };
-  /**
-    This function will take the new profile when we have it and then call the setState functions of each component whcih needs it
-  */
-  static setStatesWithNewProfile(profile){
-    Auth.setStateList.forEach((fn)=>{
-        fn({profile:profile});
-    });
   };
     
   static isAuthenticated() {
@@ -137,5 +123,3 @@ export default class Auth {
   }
 
 }
-
-Auth.setStateList = [];

@@ -12,6 +12,14 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    transform:scale(1);
+    transition:all 0.5s;
+}
+
+
+
+.share > div:hover {
+    transform: scale(1.5);
 }
 
 

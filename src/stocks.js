@@ -16,8 +16,8 @@ export default class Stocks extends Component {
         this.state = {isData:false,intervalId:null};
     }
     /**
-        Create all arrays for the last 20 minutes.
         Ignore time domain if isGetAll flag called.
+        Will return an array in chronological order. Therefore need to flip
     */
     createArrays(data, isGetAll){
 	    let high = [];
@@ -29,6 +29,7 @@ export default class Stocks extends Component {
         let all = []
         for(let key in data["Time Series (1min)"]){
             if(index < this.props.timeDomain || isGetAll ){
+                console.log("key " + key);
 	            open.push(Number(data["Time Series (1min)"][key]["1. open"]));
 	            high.push(Number(data["Time Series (1min)"][key]["2. high"]));
 	            low.push(Number(data["Time Series (1min)"][key]["3. low"]));
@@ -39,12 +40,17 @@ export default class Stocks extends Component {
                     high:Number(data["Time Series (1min)"][key]["2. high"]),
                     low:Number(data["Time Series (1min)"][key]["3. low"]),
                     close:Number(data["Time Series (1min)"][key]["4. close"]),
-                    //time:index*-1
-                    time:index
+                    time:index*-1
                 });
                 index++;
             }
         };
+        high.reverse();
+        low.reverse();
+        close.reverse();
+        open.reverse();
+        times.reverse();
+        all.reverse();
         return {open,high,low,close,times,all}
     }
     /**
@@ -76,11 +82,8 @@ export default class Stocks extends Component {
       let minTimes = Math.min.apply(null,arrays.times);
       //x.domain([minTimes,maxTimes])
       y.domain([min, max ])
+      x.domain(d3.extent(arrays.all, function(d) { return d.time; }));
 
-        x.domain(d3.extent(arrays.all, function(d) { return d.time; }));
-
-      //x.domain([0,100])
-      //y.domain([70, 80])
 
 	  let lineClose = d3.line()
 	    .x(function(d) { return x(d.time) })
@@ -96,49 +99,54 @@ export default class Stocks extends Component {
         .y(function(d) { return y(d.low) })   
 	  // make the graph
 	  var svg = d3.select(this.graph);
+      svg.attr('width', this.props.width + this.props.margin.left*2 )
+        .attr('height', this.props.height + + this.props.margin.top*2 )
 	  var graph = undefined
-
-	  if (d3.select('.graph-g').empty()) {
+      if(!d3.select('.graph-g').empty()){
+        d3.select('.graph-g').remove();
+      }
 	    graph = svg.append('g')
 	        .attr('class', 'graph-g')
 	        .attr('width', this.props.width)
 	        .attr('height', this.props.height)
-	       // .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
-	    //add axes
-	 //   graph.append('g')
-	 //       .attr('class', 'x axis')
-	 //     //  .attr('transform', 'translate(0,' + plot.height + ')')
-	 //       .call(xAxis)
-
-        //      .append('text')
-       //     .attr('dx', (this.props.width / 2))
-       //     .attr('dy', '3em')
-       //     .style('text-anchor', 'middle')
-        //    .text('Time')
+            .attr("transform", "translate(" + this.props.margin.top + "," + this.props.margin.left + ")");
 
 
-      // Add the X Axis
+
 	  graph.append("g")
-	      .attr("transform", "translate(0," + this.props.height + ")")
 	      .call(d3.axisBottom(x));
-
           
 
-	    graph.append('g')
-	        .attr('class', 'y axis')
-	        .call(yAxis)
-	      .append('text')
-	        .attr('transform', 'rotate(-90)')
-	        .attr('dx', (0 - this.props.height / 2))
-	        .attr('dy', '-2.8em')
-	        .style('text-anchor', 'middle')
-	        .text('ms');
-	  } else {
-	    graph = d3.select('.graph-g')
-	  }
 
-	  // remove old line
-	  graph.select('.line').remove()
+      graph.append("g")
+        .call(d3.axisLeft(y));
+    if(d3.select('.stock__YLabel').empty()){
+      svg.append("text")             
+          .attr("transform",
+                "translate(" + (this.props.width/2 + this.props.margin.left) + " ," + 
+                               (this.props.margin.top*(5/6)) + ")")
+          .style("text-anchor", "middle")
+         .style("font-size", "20px")
+         .style("fill","red")
+         .style("font-family","Lobster")
+          .text("Minutes Ago");
+      svg.append("text") 
+          .attr('class', 'stock__YLabel')            
+          .attr("transform",
+                "translate(" + (20) + " ," + 
+                               (this.props.height/2 + this.props.margin.top) + ")")
+           .style("font-size", "20px")
+        .style("fill","red")
+        .style("font-family","Lobster")
+          .style("text-anchor", "middle")
+          .text("Points");
+    }
+
+
+	  graph.select('.line__close').remove();
+      graph.select('.line__open').remove();
+      graph.select('.line__high').remove();
+      graph.select('.line__low').remove();
 	  //add data line
 	  graph.append('path')
 	    .datum(arrays.all)
@@ -160,8 +168,7 @@ export default class Stocks extends Component {
     callStock(name){
         return new Promise((resolve,reject)=>{
 	        let stock="https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + name +"&interval=1min&apikey=X4SQ9LSA7BDGI5NB"
-		    axios.get(stock,{ headers: {'Access-Control-Allow-Origin': '*',"Access-Control-Allow-Credentials": "true","Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT"}}).then((res) => {
-		        console.log("Stock "  + JSON.stringify(res.data));
+		    axios.get(stock).then((res) => {
                 resolve(res.data);
 		    });
         })
@@ -175,17 +182,15 @@ export default class Stocks extends Component {
 
     */
     componentDidMount(){
-        console.log("Mount");
         let name = "MSFT";
         let intervalId =  setIntervalAndExecute(()=>{
             this.callStock(name).then((data)=>{
                 this.setState({isData:true});
                 let arrays = this.createArrays(data, this.props.isGetAll);
                 let tempArrays = JSON.parse(JSON.stringify(arrays));
-                let timeSeries = this.createTimeSeries(tempArrays,20);
+                let timeSeries = this.createTimeSeries(tempArrays,arrays.all.length);
                     
-                console.log("Call");
-                this.createChase(timeSeries,1000,1000*19).then(()=>{
+                this.createChase(timeSeries,1000*19).then(()=>{
                    // this.createGraph.bind(this)(arrays);
                 });
             });
@@ -194,9 +199,11 @@ export default class Stocks extends Component {
     }
     /**
         Will only return when there is no chase running.
+        The frequency must be the total duration/number of elements in time series.
         @function
     */
-    createChase(timeSeries,frequency,duration){
+    createChase(timeSeries,duration){
+        let frequency = duration/timeSeries.length;
         return new Promise((resolve,reject)=>{
             if(this.props.isChase){
                 let index = 0;
@@ -215,8 +222,9 @@ export default class Stocks extends Component {
         })
     }
     /**
-        Get a chronological list of what you would get from server if queried in the past.
-        Pop of 20 elements push to list, then 19 push to list...  So create array in opposite direction and then flip.
+        Get a chronological list of what you would get from server if queried in the past. TempArray is in chronological order. 
+        Therefore if we were going back in time(20 minutes) we would need to pop of 20 elements push to list, then 19 push to list...  
+        So create array in opposite direction and then flip.
         Make sure to copy object since pass by value (Which in the case of none primitives is a reference.)
         @function
     */
@@ -227,11 +235,9 @@ export default class Stocks extends Component {
 	            tempArrays[key].pop();
 	        }
             let tempTempArrays = JSON.parse(JSON.stringify(tempArrays));
-            console.log("Check: " + JSON.stringify(tempTempArrays));
             list.push(tempTempArrays);
 	    }
         list.reverse();
-        console.log("List: " + JSON.stringify(list));
         return list;
     }
     /**
@@ -244,35 +250,22 @@ export default class Stocks extends Component {
         MUST PLACE GRAPH IN INITIAL RENDER SO WE MOUNT WHEN COMPONENTDIDMOUNT.
     */
     render(){
-        let comp = null;
-        if(this.state.isData){
-            comp = (
-                <svg ref={(ref)=>{this.graph = ref}}></svg>
-            )
-
-        }else{
-            comp = (
-                <div>
-                    <h4>
-                        Loading
-                    </h4>
-                </div>
-            )
-        }
         return(
-            <div>
-                <svg ref={(ref)=>{this.graph = ref}}></svg>
-            </div>
+            <svg className={"stock"} ref={(ref)=>{this.graph = ref}}></svg>
         )
     }
 }
 
 Stocks.defaultProps = {
-    width:280,
-    height:280,
+    width:200,
+    height:200,
     timeDomain:20, // Only take 20 minutes of data.
     isChase:true,
-    isGetAll:true
+    isGetAll:true,
+    margin: {
+        top:50,
+        left:50
+    }
 }
 
 

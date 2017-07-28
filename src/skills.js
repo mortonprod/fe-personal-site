@@ -15,6 +15,8 @@ import nodeIcon from "./assets/nodejs-icon.svg";
 import storeSvg from "./assets/store.svg";
 import format from "./assets/formats.svg";
 import cms from "./assets/cms.svg";
+import services from "./assets/services.svg";
+import docs from "./assets/docs.svg";
 import Account from "./account";
 import Stocks from "./stocks";
 import "./skills.css";
@@ -38,6 +40,33 @@ let pieChartSmall = {
 }
 
 
+let stocksSmall = {
+    width:200,
+    height:200,
+    timeDomain:20, // Only take 20 minutes of data.
+    isChase:true,
+    isGetAll:true,
+    margin: {
+        top:50,
+        left:50
+    }
+}
+
+
+
+let stocksBig = {
+    width:400,
+    height:400,
+    timeDomain:20, // Only take 20 minutes of data.
+    isChase:true,
+    isGetAll:true,
+    margin: {
+        top:50,
+        left:50
+    }
+}
+
+
 export default class Skills extends Component {
    isRun=true;
    writeElement = null;
@@ -47,12 +76,12 @@ export default class Skills extends Component {
    constructor(props){
     super();
     if(window.innerWidth < 500){
-        this.state = {scrollTop:0,profile:null,pieChartInfo:pieChartSmall};
+        this.state = {scrollTop:0,profile:null,pieChartInfo:pieChartSmall,stocksChartInfo:stocksSmall};
     }else{
-        this.state = {scrollTop:0,profile:null,pieChartInfo:pieChartBig};
+        this.state = {scrollTop:0,profile:null,pieChartInfo:pieChartBig,stocksChartInfo:stocksBig};
     }
     this.scroll = _.throttle(this.scroll,100,{leading:false,trailing:true});
-    Auth.addSetState(this.setState.bind(this));
+    //Auth.addSetState(this.setState.bind(this));
     this.resize = _.debounce(this.resize,200,{leading:false,trailing:true});
    }
    scroll(event){
@@ -82,9 +111,9 @@ export default class Skills extends Component {
    }
    resize(event){
         if(window.innerWidth < 500){
-            this.setState({pieChartInfo:pieChartSmall});
+            this.setState({pieChartInfo:pieChartSmall,stocksChartInfo:stocksSmall});
         }else{
-            this.setState({pieChartInfo:pieChartBig});
+            this.setState({pieChartInfo:pieChartBig,stocksChartInfo:stocksBig});
         }
     }
    componentWillUnmount(){
@@ -232,6 +261,46 @@ export default class Skills extends Component {
 	                    <YouTube video="i0aBEmzRE_U" autoplay="0" rel="0" modest="1" />,
 	                </div>
 	            </article>
+                <article className={"skills__skill"}>
+                    <div className={"skills__info"}>
+                        <img src={services} alt={"media"}/>
+                        <h2>
+                            Services
+                        </h2>
+                        <p> 
+                            You can integrate external services into your websites user interface. 
+                            With almost unlimited tools to make your life easier this freedom is essential.   
+                        </p>
+                        <p>
+                            Furthermore, you can specify exact how you want to visualise your data. Invaluable for complex data analysis.
+                        </p>
+                    </div>
+                    <div className={"skills__centreMedia"}>
+                        <Stocks width={this.state.stocksChartInfo.width}
+                            height={this.state.stocksChartInfo.height}
+                            margin={this.state.stocksChartInfo.margin}
+                        />
+                    </div>
+                </article> 
+
+
+                <article className={"skills__skill"}>
+                    <div className={"skills__info"}>
+                        <img src={docs} alt={"media"}/>
+                        <h2>
+                            Documentation
+                        </h2>
+                        <p>
+                            I produce all my documentation using jsdocs. 
+                            This allows me to keep a guide of my progress and explain my reasoning to future developers working on my project.
+                        </p>
+                        <p>
+                            Check out the documentation for this site as an example.
+                        </p>
+                        <a href={"/__documentation/frontend/"}> See Documentation </a>
+                    </div>
+                </article> 
+
 
                 <article className={"skills__skill"} ref={(ref)=>{this.writeElement = ReactDOM.findDOMNode(ref)}}>
                     <div className={"skills__info"}>

@@ -8,6 +8,8 @@ import Auth from "./auth";
 import "./start.css";
 
 
+let auth = new Auth();
+
 /**
     Each route will be pre-rendered with react-snapshot and served to client.
     Lazy loading not implemented with SSR since we need sync code in server but async in client producing mismatch when js tries to attach event handlers.
@@ -23,11 +25,21 @@ export default class Start extends Component{
         window.addEventListener('load',  ()=> {
             this.setState({isLoaded:true});
             serviceWorker.subscribe(this.setState.bind(this));
-            Auth.addSetState(this.setState.bind(this));
         });
     }
+    /**
+        Call Auth.getProfile for each mount. If we are not authenticated return error before querying server.
+    */
+    componentDidMount(){
+        Auth.getProfile((err,profile)=>{
+            if(!err){
+                this.setState({profile:profile});
+            }
+            
+        });
+    }
+
     render(){
-	    console.log("profile start: " + this.state.profile);
 	    let installInfo = null;
 	    if(this.state.isLoaded){
 	        installInfo = (

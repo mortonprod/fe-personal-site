@@ -31,6 +31,7 @@ export default class Home extends Component {
 	}
     /** 
 		Update isShow array so we have the right length. Must be called here so we get the refs.
+        
 		@function
 	*/
 	componentDidMount(){
@@ -39,7 +40,7 @@ export default class Home extends Component {
 		for(let i=0; i < this.squares.length ; i++){
 		    isShow.push(false);
 		}
-        Auth.getProfile(()=>{});
+
 		this.setState({isShow:isShow});
         this.squares.forEach((ref)=>{
             this.state.scrollPos.push(ref.getBoundingClientRect().top);
