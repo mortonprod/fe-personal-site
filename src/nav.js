@@ -65,11 +65,12 @@ export default class Nav extends Component {
     }
     /**
         Activeclass name on navlinks does not seem to work with the router v4. Need to check, but use inline styles at the moment.
+        Must use exact in navlink otherwise "/" (welcome) is active link for all routes.
     */
     render(){
 	    let links = this.props.links.map((el,i)=>{
 	        return (
-	            <NavLink activeStyle={{color: 'lightblue'}}  key={i} to={el.location}> {el.name} </NavLink>
+	            <NavLink exact activeStyle={{color: 'lightblue'}}  key={i} to={el.location}> {el.name} </NavLink>
 	        )
 	    })
 	    if(this.state.isShow){ 

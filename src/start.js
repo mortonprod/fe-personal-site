@@ -9,8 +9,22 @@ import "./start.css";
 
 
 let auth = new Auth();
+/**
+    isloaded is for the first time loaded. hasloaded is stored even if we leave welcome page and come back.
+*/
+let hasLoaded = false;
+/**
+    Also store last service worker message to reset if we route away and then back to this route.
+*/
+let oldServiceWorker = null;
+
 
 /**
+
+    This component is a small info page for users to read while the app is loading.
+    The app is connected to the serviceWorker and onLoad event. Note that we will always not be loaded when we mount this component FOR THE FIRST TIME.
+    However, if we change route and come pack we will not call load again. Therefore we need to store a load variable which says we have loaded on rerouting.
+    -----
     Each route will be pre-rendered with react-snapshot and served to client.
     Lazy loading not implemented with SSR since we need sync code in server but async in client producing mismatch when js tries to attach event handlers.
     SSR rendering will mean information is available to users and SEO instantly. Lazy loading will only remove js download and scripting time.
@@ -21,12 +35,31 @@ let auth = new Auth();
 export default class Start extends Component{
     constructor(){
         super()
-        this.state = {isLoaded:false,serviceWorker:null,profile:null}
-        window.addEventListener('load',  ()=> {
-            this.setState({isLoaded:true});
-            serviceWorker.subscribe(this.setState.bind(this));
-        });
+        if(hasLoaded){
+            if(oldServiceWorker){
+                this.state = {isLoaded:true,serviceWorker:oldServiceWorker,profile:null}
+            }else{
+                this.state = {isLoaded:true,serviceWorker:null,profile:null}
+            }
+
+        }else{
+	        this.state = {isLoaded:false,serviceWorker:null,profile:null}
+	        window.addEventListener('load',  ()=> {
+	            this.setState({isLoaded:true});
+	            serviceWorker.subscribe(this.setState.bind(this));
+	            hasLoaded = true;
+	        });
+        }
     }
+    /**
+        Store the old message for when we route back. Don't want to start with state null again for service worker.
+    */
+    componentWillUpdate(nextProps, nextState){
+        if(nextState.serviceWorker){
+            oldServiceWorker = nextState.serviceWorker;
+        }
+    }
+
     /**
         Call Auth.getProfile for each mount. If we are not authenticated return error before querying server.
     */
