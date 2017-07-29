@@ -297,7 +297,7 @@ export default class Skills extends Component {
                         <p>
                             Check out the documentation for this site as an example.
                         </p>
-                        <a href={"/__documentation/frontend/"}> See Documentation </a>
+                        <a style={{color: 'lightblue'}} className={"skills__info__doc"} href={"/__documentation/frontend/"}> See How This Site Works </a>
                     </div>
                 </article> 
 

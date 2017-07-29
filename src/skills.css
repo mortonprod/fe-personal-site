@@ -151,14 +151,23 @@
 }
 
 
+
+.skills__info__doc{
+    margin-bottom:50px;
+    display:block;
+}
+
+
+
+
 .skills__centreMedia {
     width: 500px;
     height: 500px;
     margin: auto;
     z-index: 2000; /*Needs to be above everything else to trigger mousedown event*/
-    display:inline-flex;
-    flex-direction:column;
-    justify-content:center;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 

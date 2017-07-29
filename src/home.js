@@ -13,6 +13,8 @@ import spaIcon from "./assets/spaIcon.svg";
 import clock from "./assets/anti-clockwise.svg";
 import locked from "./assets/locked.svg";
 import problem from "./assets/problem.svg";
+import solution from "./assets/solution.svg";
+import mail from "./assets/mail.png";
 import Squares from "./squares";
 import Process from "./process";
 import './home.css';
@@ -129,6 +131,13 @@ export default class Home extends Component {
 			        <Square title={process.title} pic={process.pic} parts={process.parts}/>
 			        <Square title={security.title} pic={security.pic} parts={security.parts}/>
 	            </Squares>
+                <section className={"home__info"}>
+                    <img src={solution} alt={"solution"}/>
+                    <p>
+                        If you would like to learn more or think you would benefit from my services then send me an email
+                    </p>
+                    <img id={"home__mail"} src={mail} alt={"mail"}/>
+                </section>
             </div>
       )
     }

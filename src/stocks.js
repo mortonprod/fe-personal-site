@@ -190,11 +190,11 @@ export default class Stocks extends Component {
                 let tempArrays = JSON.parse(JSON.stringify(arrays));
                 let timeSeries = this.createTimeSeries(tempArrays,arrays.all.length);
                     
-                this.createChase(timeSeries,1000*19).then(()=>{
+                this.createChase(timeSeries,1000*10).then(()=>{
                    // this.createGraph.bind(this)(arrays);
                 });
             });
-        },1000*60);
+        },1000*30);
         this.setState({intervalId: intervalId});
     }
     /**
