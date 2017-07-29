@@ -13,6 +13,7 @@ import Nav from "./nav";
 import Home from "./home";
 import Clouds from "./clouds";
 import Work from "./work";  
+import Contact from "./contact";
 import FadeBackground from "./fadeBackground"; 
 
 
@@ -103,7 +104,8 @@ let Content = ({ match, location, history })=>{
 	                {name:"About Me",location:"/about"},
 	                {name:"My Services",location:"/services"},
 	                {name:"My Work",location:"/work"},
-	                {name:"My Skills",location:"/skills"}
+	                {name:"My Skills",location:"/skills"},
+                    {name:"Contact Me",location:"/contact"}
 	            ]}
 	        />
 
@@ -138,6 +140,7 @@ let Main = ({ match, location, history }) => {
 			            <Route exact path={"/about"} component={Profile}/>
 			            <Route exact path={"/work"} component={Work} />
 			            <Route exact path={"/skills"} component={Skills} />
+                        <Route exact path={"/contact"} component={Contact} />
 			         </Switch>
 		        </RouteTransition>
             </Clouds>

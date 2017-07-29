@@ -3,6 +3,7 @@
 
     Links to service worker: Subscribe setState as callback to add serviceWorker info.
     Call fire in serviceWorker to update serviceWorker state and then update any compoponent subscribed.
+    Note the service worker will only be registered after the load event has fired. Therefore we can safely connect the setState of start here.
 
 
     Additional:
