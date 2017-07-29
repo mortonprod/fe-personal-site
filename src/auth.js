@@ -69,7 +69,7 @@ export default class Auth {
 
         
     }
-    history.replace('/services');
+    //history.replace('/services');
   };
   /**
     Delete tokens to logout.

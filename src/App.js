@@ -33,10 +33,14 @@ const handleAuthentication = (location) => {
 /**
     We need to reset the scroll position manually on each route enter.
     This should be called when each main route mounts.
+    History scroll restoration tells browser to set scroll position when using back and forward button.
+    ------------
+    Restore scroll will not work on some browsers. There is a polyfill if needed.
 */
 function handlePageChange(history){
     if(!navigator.userAgent.includes("Node.js") && !navigator.userAgent.includes("jsdom")){
-	    window.scrollTo(0, 0);
+     window.scrollTo(0, 0);
+     history.scrollRestoration = "auto";
     }
 }
 
