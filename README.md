@@ -1,6 +1,6 @@
 # Introduction
 
-A portfolio site based on a few pages. Expanded from the single page :-). This frontend can be served my repository portfolioNodeBackend  
+A portfolio site for freelance web developer. Expanded from the single page :-). This frontend can be served from my repository portfolioNodeBackend  
 
 # Build
 ```
