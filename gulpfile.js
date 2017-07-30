@@ -29,10 +29,21 @@ gulp.task('documentation', function(){
 
 
 let config = {
-    output: {
-        libraryTarget: 'umd',
-        filename: "partialServiceWorker.js"
-    }
+  module: {
+    loaders: [
+      {   
+        test: /\.(js|jsx)$/,
+        loader: 'babel',
+        resolve: {
+            extensions: ['.js']
+        }
+      }  
+    ]
+  },
+  output: {
+    libraryTarget: 'umd',
+    filename: "partialServiceWorker.js"
+  }
 }
 
 

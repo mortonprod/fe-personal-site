@@ -1,6 +1,7 @@
 import React,{Component} from "react";
 import axios from "axios";
 import Auth from "./auth";
+import {store} from "./store";
 import "./contact.css"
 
 /**
@@ -44,12 +45,9 @@ export default class Contact extends Component{
     */
     _submit(event){
         if(!navigator.userAgent.includes("Node.js") && !navigator.userAgent.includes("jsdom")){
-		    idb.open('messages', 1, function(upgradeDb) {
-		      upgradeDb.createObjectStore('outbox', { autoIncrement : true, keyPath: 'id' });
-		    }).then(function(db) {
-		      let transaction = db.transaction('outbox', 'readwrite');
-		      return transaction.objectStore('outbox').put(this.message);
-		    }).then(() => {
+            store.outbox('readwrite').then(function(outbox) {
+                return outbox.put(this.state.message)
+            }).then(() => {
 	            //this.setState({name:null,message:null});    
 	            //return reg.sync.register('outbox');
 		    }).catch(function(err) {
@@ -61,6 +59,9 @@ export default class Contact extends Component{
 	            console.log("Message from post: " + JSON.stringify(res.data));
 	          });
 	        });
+
+
+
         }
     }
     render(){
