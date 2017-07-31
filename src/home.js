@@ -17,6 +17,7 @@ import solution from "./assets/solution.svg";
 import mail from "./assets/mail.png";
 import Squares from "./squares";
 import Process from "./process";
+import TitlePicInfo from "./titlePicInfo/titlePicInfo";
 import './home.css';
 
 
@@ -96,7 +97,7 @@ export default class Home extends Component {
         If you ref a React component you need to use findDomNode to get the correct methods of DOM on ref.
     */
     render(){
-        let tran = -1*this.state.scrollTop*0.5;
+        let tran = -1*this.state.scrollTop*0.2;
         console.log("show: " + this.state.isShow[0]);
         return (
             <div className="home">
@@ -109,19 +110,9 @@ export default class Home extends Component {
                     <h2>Developing At the Zenith</h2>
 	            </div>
 	            <div className={"home__gap"}/>
-	            <section className={"home__info"}>
-                    <img src={problem} alt={"problem"}/>
-	                <p>
-	                    So you have a problem. You need a website.
-	                </p>
-                    <p>
-                        Well you need more than a website. You need a fully functioning ecommerce site, marketing strategy, logos, emails, content management, the list is endless...
-                    </p>
-	                <p>
-                        I do all of this and more using the latest technologies the web has to offer, giving you the most for your money.
-	                </p>
-	            </section>
-                <Process/>
+                <TitlePicInfo info={startInfo}/>
+                <div className={"home__gap home__gap--small"}/>
+                <Process/> 
 	            <Squares title={"More Details"} isShow={this.state.isShow[0]} isLeft={true} ref={(ref)=>{this.squares.push(ReactDOM.findDOMNode(ref))}}>
 	                <Square title={design.title} pic={design.pic} parts={design.parts}/>
 			        <Square title={seo.title} pic={seo.pic} parts={seo.parts}/>
@@ -131,13 +122,7 @@ export default class Home extends Component {
 			        <Square title={process.title} pic={process.pic} parts={process.parts}/>
 			        <Square title={security.title} pic={security.pic} parts={security.parts}/>
 	            </Squares>
-                <section className={"home__info"}>
-                    <img src={solution} alt={"solution"}/>
-                    <p>
-                        If you would like to learn more or think you would benefit from my services then send me an email
-                    </p>
-                    <img id={"home__mail"} src={mail} alt={"mail"}/>
-                </section>
+                <TitlePicInfo info={solutionInfo}/>
             </div>
       )
     }
@@ -164,7 +149,7 @@ let design = {
     parts:[
         {
             title:"Custom Design",
-            subTitle:"Your website is your customers first impression of you. It's important to design your site to be memorable and professional",
+            subTitle:"It's important to design your site to be memorable and professional",
             list:[
                 "Only build websites which reflect your business and not just another template.",
                 "All website are dynamic and interactive.",
@@ -341,3 +326,22 @@ let security = {
         }
     ]
 };
+
+let startInfo = {
+    title:"So you have a problem...",
+    pic:null,
+    paragraphs:[
+        "You need a website.",
+        "Well you need more than a website. You need a fully functioning ecommerce site, marketing strategy, logos, emails, content management, the list is endless...",
+        "I do all of this and more using the latest technologies the web has to offer, giving you the most for your money."
+    ]
+}
+
+
+let solutionInfo = {
+    title:"The Solution.",
+    pic:null,
+    paragraphs:[
+        "If you would like to learn more or think you would benefit from my services then send me an email"
+    ]
+}

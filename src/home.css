@@ -73,7 +73,8 @@
     font-size: 100px;
     color: white;
     font-family: 'Lobster', cursive;
-    width:100%;
+    width: 100%;
+    text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
 }
 
 .home__header > h2 {
@@ -81,6 +82,7 @@
     color: white;
     font-family: 'Lobster', cursive;
     width: 100%;
+    text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
 }
 
 .home__header > p {
@@ -91,9 +93,21 @@
 
 
 
-.home__gap{
-    height:200vh;
+.home__gap {
+    margin: 0;
+    height: 200vh;
 }
+
+
+
+.home__gap.home__gap--small {
+    height: 30vh;
+    background-color:#7A80FB;
+    opacity:0.5
+}
+
+
+
 
 @media (max-width:700px){
 
