@@ -1,20 +1,11 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
-import Share from "./share";
+import Share from "./share/share";
 import Auth from "./auth";
-import Account from "./account";
+import Account from "./account/account";
 import menu from "./assets/menu.svg";
 import * as _ from "lodash";
 import "./nav.css";
-
-
-/**
-    Initialise static member to call authentication. 
-    Once authentication complete redirect called with all components remounted. 
-    Auth object will be updated with static member userProfile.
-*/
-//let auth = new Auth();
-
 
 /** 
     Navigation component
