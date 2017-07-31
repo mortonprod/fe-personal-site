@@ -1,92 +1,43 @@
 .start {
     width: 100vw;
-    height:150vh;/**Need to set this for some reason*/
-    display: flex;
+    //display: flex;
     flex-direction: row;
     justify-content: center;
     align-content: center;
     color: white;
-}
-
-
-.start__status {
-    position: relative;
-    margin-bottom: 50px;
-    background-image: radial-gradient(50% 100%, rgba(177,182,254,0.00) 50%, #E3E5FF 100%);
-    border: 1px solid #000000;
-    border-radius: 8px;
     display:block;
 }
 
-
-.start__status span {
+.start__me {
+    text-align: center;
     margin: auto;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom:10px;
-}
-.start__me{
-    margin-bottom:10px;
+    display: block;
+    margin-bottom: 10px;
 }
 
 
-.start > div {
-    height: 200px; /**Why does height not resize with text?*/
+
+.start__me  > img{
+    width: 200px;
+    height:auto;
+}
+
+
+.start__welcome {
     text-align: center;
     margin: auto;
     margin-top: 100px;
+    display: block;
+    margin-bottom: 10px;
 }
 
-.start h1, h2, h3, h4, a, span, button {
+.start__welcome > h1, .start__welcome > h2 {
     color: white;
-    font-family: 'Lobster', cursive;
-}
-
-
-.start a, span, button {
     font-family: 'Poppins', sans-serif;
-    font-weight: bold;
 }
 
 
-
-
-.start a {
-    color:white;
-    font-size:20px;
-    background-color:transparent;
-    transform:scale(1);
-    transition:all 1s;
-    margin:10px;
-    display:block;
-}
-
-
-.start a:hover {
-    transform: scale(1.2);
-}
-
-
-.start button {
-    font-size: 25px;
-    color:  orangered;
-    font-family: 'Lobster', cursive;
-    margin:auto;
-    transform:scale(1);
-    transition:all 1s;
-    display:block;
-    background-color:transparent;
-}
-
-
-.start button:hover {
-    transform: scale(1.2);
-}
-
-
-
-@media screen and (max-width: 400px) {
-    .start{
-        height:170vh;
-    }
+.start__me > p {
+    color: white;
+    font-family: 'Poppins', sans-serif;
 }

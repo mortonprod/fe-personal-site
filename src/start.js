@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import {serviceWorker} from "./workerService";
 import worker from "./workerService";
-import me from "./assets/me.png"
+import me from "./assets/myAvatar.svg"
 import {Link} from 'react-router-dom';
 import Auth from "./auth";
 import "./start.css";
@@ -73,88 +73,51 @@ export default class Start extends Component{
     }
 
     render(){
-	    let installInfo = null;
-	    if(this.state.isLoaded){
-	        installInfo = (
-	            <div>
-	                <h2>
-	                    App Full Loaded
-	                </h2>
-	                <button onClick={worker.setPermissions.bind(this)}> Notify Me </button>
-	            </div>
-	        )
-	    }else{
-	        installInfo = (
-	            <h2>
-	                Loading...
-	            </h2>
-	        )
-	    }
-	    let serviceComp = null;
-	    if(this.state.serviceWorker && this.state.serviceWorker.message){
-	        serviceComp = (
-	            <div>
-	                <span>{this.state.serviceWorker.message}</span>
-	            </div>
-	        )
-	        
-	    }else{
-	        serviceComp = (
-	            <div>
-	                <span>No reply from service worker</span>
-	            </div>
-	        )
-	    }
 	    let wel = null
 	    if(this.state.profile){
 	        wel = (
-	            <h1>
-	                Welcome {this.state.profile.name}
-	            </h1>
+                <div className={"start__welcome"}>
+		            <h1>
+		                Welcome {this.state.profile.name}
+		            </h1>
+		             <h2>
+		                I'm Alexander Morton, a software developer based in Glasgow. 
+		             </h2>
+                 </div>
 	        )
 	    }else{
 	        wel = (
-	            <h1>
-	                Welcome Stranger
-	            </h1>
+                <div className={"start__welcome"}>
+		            <h1>
+		                Welcome Stranger
+		            </h1>
+		             <h2>
+		                I'm Alexander Morton, a software developer based in Glasgow. 
+		             </h2>
+                 </div>
 	        )
 	    }
-	    let about = (
-	    <div className={"start__me"}>
-	        <img src={me} alt={"Me"}/>
-		     <h2>
-		        I'm a software developer based in Glasgow. 
-		     </h2>
-		     <Link to={"/about"}>
-	            Learn more about me.
-	        </Link>
-	         <Link to={"/services"}>
-	            Find out more about my services.
-	        </Link>
-	         <Link to={"/skills"}>
-	            Learn about the tools I use.
-	        </Link>
-	         <Link to={"/work"}>
-	            See what I've been working on recently. 
-	        </Link>
-	     </div>
-	    ) 
 	    return (
 	        <div className={"start"}>
 	             <Helmet>
 	                 <title>Freelance Web Designer | Alexander Morton</title>
 	                <meta name="description" content="I'm a business focused freelance web designer and developer. I help businesses of all sizes to build a effective online solution." />
 	            </Helmet>
-	            <div>
-	                {wel}
-	                {about}
-	                <div className={"start__status"}>
-	                    <h1>
-	                        App Status
-	                    </h1>
-	                {installInfo}
-	                {serviceComp}
-	                </div>
+                {wel}
+		        <div className={"start__me"}>
+		            <img src={me} alt={"Me"}/>
+		            <p>
+		                I’m Alexander Morton and my passion is designing all types of software, see my services for some of the highlights.
+		            </p>
+		            <p>
+		                With a background in theoretical and experimental particle physics. I have deep understanding of mathematics, physics and computer science. This allows me to easily move between many different stacks and frameworks.
+		            </p>
+		            <p>
+		                I went freelance in 2016 and haven't looked back. I love creating beautiful and fully functional web applications. I only produce the best the web can provide. Giving your business the best chance to succeed
+		            </p>
+		            <p>
+		                I would describe myself as straight forward, professional and easy going.  However, I leave that up to you when you meet me.  If you would like to disagree contact me.
+		            </p>
 	            </div>
 	        </div>
 	    )
