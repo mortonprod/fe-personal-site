@@ -31,20 +31,54 @@
 
 
 .footer {
-    position:relative;
-    bottom:0;
+    position: relative;
+    color:white;
+    font-family: 'Poppins', sans-serif;
     text-align: center;
     background-image: linear-gradient(-180deg, #B1B6FE 0%, #7A80FB 100%);
     border: 1px solid #979797;
+    z-index:100;
+}
+
+.footer > strong {
+    font-family: 'Poppins', sans-serif;
+    display: block;
 }
 
 
+.footer > a {
+    color:white;
+    font-family: 'Poppins', sans-serif;
+    display: block;
+}
+
 .footer > h4{
-    margin:5px;
+    margin:1px;
 } 
 
-.footer > strong {
-    color: white;
-    font-family: 'Lobster', cursive;
-    display: block;
+.main .main__peak{
+    position:fixed;
+    top:0;
+    width:100vw;
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+
+@media (max-width:400px){
+	.main .main__peak {
+	    height:100vh;
+	    width:auto;
+	}
+}
+
+@media (min-width:764px) {
+    .main .main__peak {
+        top: -300px;
+    }
+}
+
+@media (min-width:900px) {
+    .main .main__peak {
+        top: -500px;
+    }
 }

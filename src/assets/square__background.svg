@@ -1,32 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="320px" height="329px" viewBox="0 0 320 329" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="280px" height="280px" viewBox="0 0 280 280" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
-    <title>background</title>
+    <title>Group</title>
     <desc>Created with Sketch.</desc>
     <defs>
-        <linearGradient x1="50%" y1="50%" x2="50%" y2="100%" id="linearGradient-1">
-            <stop stop-color="#9A6BFF" offset="0%"></stop>
-            <stop stop-color="#6139FF" offset="100%"></stop>
-        </linearGradient>
-        <rect id="path-2" x="0" y="0" width="320" height="320"></rect>
-        <filter x="-1.4%" y="-1.4%" width="105.6%" height="105.6%" filterUnits="objectBoundingBox" id="filter-3">
-            <feOffset dx="5" dy="5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
-            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
+        <rect id="path-1" x="0" y="0" width="280" height="280" rx="8"></rect>
     </defs>
     <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Mobile-Copy-2" transform="translate(0.000000, -437.000000)">
-            <g id="Group" transform="translate(0.000000, 437.000000)">
-                <g id="background">
-                    <g id="Rectangle-12">
-                        <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
-                        <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
-                        <rect stroke="#979797" stroke-width="1" x="0.5" y="0.5" width="319" height="319"></rect>
-                    </g>
-                    <rect id="Rectangle-13" stroke="#5A55DC" stroke-width="5" x="6.34" y="6.34" width="308.6" height="308.6"></rect>
+        <g id="Mobile-Copy-5" transform="translate(-31.000000, -280.000000)">
+            <g id="Group" transform="translate(31.000000, 280.000000)">
+                <g id="Rectangle">
+                    <use fill="#E3E5FF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <rect stroke="#000000" stroke-width="1" x="0.5" y="0.5" width="279" height="279" rx="8"></rect>
                 </g>
+                <rect id="Rectangle" stroke="#CAFE66" stroke-width="2" x="6" y="6" width="268" height="268" rx="8"></rect>
             </g>
         </g>
     </g>

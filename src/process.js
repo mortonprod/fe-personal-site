@@ -25,22 +25,16 @@ export default class Process extends Component {
             }else{
                 num = num + "th"; 
             }
-            let para = el.info.map((el2)=>{
+            let para = el.info.map((el2,i)=>{
                 return (
-                    <p>
+                    <p key={i}>
                         {el2}
                     </p>
                 )
             });
             return (
-                <article className={"process__item"}>
+                <article key={i} className={"process__item"}>
                     <div className={"process__left"}>
-                        <div className={"process__star"}>
-                            <img src={processStar} alt={"star"}/>
-                            <span>
-                                {num}  
-                            </span>
-                        </div>
                         <img src={el.title} alt={"design"}/>
                     </div>
                     <div className={"process__right"}>
@@ -51,12 +45,9 @@ export default class Process extends Component {
         });
         return (
             <section className={"process"}>
-                <div className={"process__title"}>
-                    <img src={this.props.title} alt={"title"}/>
-                </div>
-                <p>
+                <h1>
                     {this.props.titleInfo}
-                </p>
+                </h1>
                 {list}
             </section>
             

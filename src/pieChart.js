@@ -19,7 +19,7 @@ export default class PieChart extends Component {
         super(props);
     }
     /**
-        Make sure we only update the graph if we have a resize eventh which takes us over the threshold.
+        Make sure we only update the graph if we have a resize event which takes us over the threshold.
     */
     shouldComponentUpdate(nextProps,nextState){
         if(_.isEqual(nextProps,this.props) && _.isEqual(nextState,this.state)){
@@ -193,17 +193,17 @@ let factor = 1;
 
 PieChart.defaultProps ={
     section:[
-            {front:{name:"Auth0",level:20 },end:{name:"Node",level:50},other:{name:"C++",level:40}},
+            {front:{name:"Auth0",level:20 },end:{name:"Node",level:50},other:{name:"Calculus",level:40}},
             {front:{name:"Axios",level:30 },end:{name:"Express",level:30 },other:{name:"Python",level:20}},
-            {front:{name:"Babel",level:20 },end:{name:"Pug",level:10 },other:{name:"Numerical",level:30}},
+            {front:{name:"Babel",level:20 },end:{name:"Pug",level:10 },other:{name:"C++",level:30}},
             {front:{name:"D3",level:10 },end:{name:"Passport",level:10 },other:{name:"Statistics",level:30}},
-            {front:{name:"React",level:70 },end:{name:"Express-sessions",level:10 },other:{name:"Calculus",level:30}},
+            {front:{name:"React",level:70 },end:{name:"session",level:10 },other:{name:"Numerical Methods",level:30}},
             {front:{name:"Redux",level:10 },end:{name:"Mongo",level:30 },other:{name:"Algebra",level:30}},
             {front:{name:"SASS",level:20 },end:{name:"Paypal",level:20 },other:{name:"Thermo",level:20}},
-            {front:{name:"Typescript",level:20 },end:{name:"Stripe",level:20 },other:{name:"Mechanics",level:20}},
+            {front:{name:"TS",level:20 },end:{name:"Stripe",level:20 },other:{name:"Bash",level:20}},
             {front:{name:"Vivus",level:10 },end:{name:"Docker",level:40 },other:{name:"C#",level:5}},
             {front:{name:"webpack",level:10 },end:{name:"Certbot",level:30 },other:{name:"QM",level:30}},
-            {front:{name:"gulp",level:10 },end:{name:"Google Analytics",level:20 },other:{name:"bash",level:40 }},
+            {front:{name:"gulp",level:10 },end:{name:"Google Analytics",level:20 },other:{name:"Mechanics",level:40 }},
     ],
     width:500*factor,
     height:500*factor,

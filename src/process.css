@@ -1,8 +1,10 @@
 .process {
-    /* Rectangle 2: */
-  //  background-image: linear-gradient(-180deg, #9A00FF 0%, rgba(97,0,255,0.29) 11%);
-    //border: 1px solid #979797;
-    width:100%;
+    position:relative;
+    width: 100vw;
+    background-color: white;
+    padding-bottom: 10px;
+    padding-top: 15px;
+    z-index:100;
 }
 
 .process__title {
@@ -26,12 +28,14 @@
 }
 
 
-.process > p {
-    border: 0 solid #000000;
-    font-family: 'Lobster', cursive;
-    font-size: 25px;
-    color: #00E9FF;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.50);
+.process > h1 {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: #7a7a7a;
+    text-decoration: underline;
+    text-decoration-color: #7A80FB;
+    font-size: 30px;
+    padding-bottom: 20px;
 }
 
 
@@ -78,10 +82,9 @@
 
 .process__right > p {
     border: 0 solid #000000;
-    font-family: Montserrat-Bold;
+    font-family: 'Poppins', sans-serif;
     font-size: 15px;
-    color: #FFFFFF;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.50);
+    color: #7c7c7c;
 }
 
 

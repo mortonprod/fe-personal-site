@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Helmet from 'react-helmet';
+import Scrollchor from 'react-scrollchor';
 import Auth from "./auth";
 import * as _ from "lodash";
 import Square from "./square";
@@ -27,6 +28,7 @@ import './home.css';
 */
 export default class Home extends Component {
     squares = [];
+    squ = null;
 	constructor(props){
 	  super(props)
 	  this.state = {isShow:[],scrollPos:[],scrollTop:0};
@@ -90,9 +92,6 @@ export default class Home extends Component {
             }
         });
     }
-    goScroll(index){
-        this.squares[index].scrollTop = 0;
-    }
     /**
         If you ref a React component you need to use findDomNode to get the correct methods of DOM on ref.
     */
@@ -109,19 +108,25 @@ export default class Home extends Component {
 	                <h1>My Services</h1>
                     <h2>Developing At the Zenith</h2>
 	            </div>
-	            <div className={"home__gap"}/>
-                <TitlePicInfo info={startInfo}/>
+                <div className={"home__gap"}/>
+                <TitlePicInfo info={startInfo}>
+		            <div className="titlePicInfo__scroll">
+		                <Scrollchor to={"squares"} duration={500}>See Details</Scrollchor>
+		            </div>
+                </TitlePicInfo>
                 <div className={"home__gap home__gap--small"}/>
                 <Process/> 
-	            <Squares title={"More Details"} isShow={this.state.isShow[0]} isLeft={true} ref={(ref)=>{this.squares.push(ReactDOM.findDOMNode(ref))}}>
-	                <Square title={design.title} pic={design.pic} parts={design.parts}/>
-			        <Square title={seo.title} pic={seo.pic} parts={seo.parts}/>
-			        <Square title={serviceWorker.title} pic={serviceWorker.pic} parts={serviceWorker.parts}/>
-			        <Square title={api.title} pic={api.pic} parts={api.parts}/>
-			        <Square title={spa.title} pic={spa.pic} parts={spa.parts}/>
-			        <Square title={process.title} pic={process.pic} parts={process.parts}/>
-			        <Square title={security.title} pic={security.pic} parts={security.parts}/>
-	            </Squares>
+                <div id={"squares"}>
+		            <Squares  title={"More Details"} isShow={this.state.isShow[0]} isLeft={true} ref={(ref)=>{this.squares.push(ReactDOM.findDOMNode(ref))}}>
+		                <Square title={design.title} pic={design.pic} parts={design.parts}/>
+				        <Square title={seo.title} pic={seo.pic} parts={seo.parts}/>
+				        <Square title={serviceWorker.title} pic={serviceWorker.pic} parts={serviceWorker.parts}/>
+				        <Square title={api.title} pic={api.pic} parts={api.parts}/>
+				        <Square title={spa.title} pic={spa.pic} parts={spa.parts}/>
+				        <Square title={process.title} pic={process.pic} parts={process.parts}/>
+				        <Square title={security.title} pic={security.pic} parts={security.parts}/>
+		            </Squares>
+                </div>
                 <TitlePicInfo info={solutionInfo}/>
             </div>
       )

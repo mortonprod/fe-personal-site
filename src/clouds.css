@@ -49,23 +49,23 @@
 
 
 .clouds__cloud {
-    position: relative;
+    position: fixed;
     z-index: 10;
 }
 
 
 .clouds__cloud--right {
-    animation: right 100s;
+    animation: right 100s infinite;
 }
 
 .clouds__cloud--left {
-    animation: left 100s;
+    animation: left 100s infinite;
 }
 
 .clouds__cloud--rightSlow {
-    animation: right 200s;
+    animation: right 200s infinite;
 }
 
 .clouds__cloud--leftSlow {
-    animation: left 200s;
+    animation: left 200s infinite;
 }

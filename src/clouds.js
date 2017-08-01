@@ -60,7 +60,7 @@ export default class Clouds extends Component {
             let moves = ["clouds__cloud--rightSlow","clouds__cloud--right","clouds__cloud--leftSlow","clouds__cloud--left"];
             for(let i=0; i < this.props.random.number ; i++ ){
                 let cloud = (
-                    <div key={i} className={"clouds__cloud "+moves[this.randomInfo[i].moveInt]} style={{position:'absolute',width:this.randomInfo[i].width+"%",left:this.randomInfo[i].left+"%",top:this.randomInfo[i].top+"%"}}>
+                    <div key={i} className={"clouds__cloud "+moves[this.randomInfo[i].moveInt]} style={{position:'fixed',width:this.randomInfo[i].width+"%",left:this.randomInfo[i].left+"%",top:this.randomInfo[i].top+"%"}}>
                         <Cloud period={this.randomInfo[i].period} delay={this.randomInfo[i].delay}/>
                     </div>  
                 )
@@ -91,7 +91,7 @@ export default class Clouds extends Component {
 
 Clouds.defaultProps = {
     random:{
-        number:10,
+        number:5,
 	    widthRange:[10,40]
     }
 }

@@ -24,16 +24,13 @@ let auth = new auth0.WebAuth({
 	scope: 'openid profile'
 });
 
-
-let cb = [];
-
 /**
     Static utility class.
-    Links to single instance of auth0 API through closure.
+    Links to single instance of auth0 API through closure. Change redirect from production to development and back to make life easier.
     Login procedure:
     1) Click login and then click google/facebook ...
     2) Will be redirected to services page where handleAuthentication is called to parse url to get all information.
-    3) Call getProfile in home(MUST DO IT HERE FOR SOME REASON). This will call setState on all components which need this information.
+    3) Call getProfile whereever you need this information.
 */
 export default class Auth {
   static login() {

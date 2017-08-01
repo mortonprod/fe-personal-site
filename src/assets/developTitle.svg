@@ -4,7 +4,7 @@
     <title>Develop</title>
     <desc>Created with Sketch.</desc>
     <defs>
-        <text id="text-1" font-family="PlayfairDisplay-Bold, Playfair Display" font-size="100" font-weight="bold" fill="#C8212B">
+        <text id="text-1" font-family="PlayfairDisplay-Bold, Playfair Display" font-size="100" font-weight="bold" fill="#A1A6FD">
             <tspan x="69.4973034" y="1782">Develop</tspan>
         </text>
         <filter x="-1.3%" y="-3.8%" width="104.9%" height="114.3%" filterUnits="objectBoundingBox" id="filter-2">
@@ -16,8 +16,8 @@
     <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Desktop" transform="translate(-71.000000, -1702.000000)" stroke="#000000">
             <g id="Develop">
-                <use fill="#C8212B" fill-opacity="1" stroke-opacity="1" filter="url(#filter-2)" xlink:href="#text-1"></use>
-                <use fill="#C8212B" fill-opacity="1" stroke-opacity="1" xlink:href="#text-1"></use>
+                <use fill="#A1A6FD" fill-opacity="1" stroke-opacity="1" filter="url(#filter-2)" xlink:href="#text-1"></use>
+                <use fill="#A1A6FD" fill-opacity="1" stroke-opacity="1" xlink:href="#text-1"></use>
                 <use xlink:href="#text-1"></use>
             </g>
         </g>

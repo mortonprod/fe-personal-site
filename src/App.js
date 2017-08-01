@@ -6,15 +6,15 @@ import {
 } from 'react-router-dom'
 import { RouteTransition } from 'react-router-transition';
 import Skills from "./skills";
-import Profile from "./profile-react/src/App";
 import Start from "./start";
 import Auth from "./auth";
 import Nav from "./nav";
 import Home from "./home";
 import Clouds from "./clouds";
-import Work from "./work";  
 import Contact from "./contact";
-import FadeBackground from "./fadeBackground"; 
+import Work from "./work";  
+import peak from "./assets/peak.jpg";
+//import Contact from "./contact"; 
 
 
 import './App.css';
@@ -101,11 +101,9 @@ let Content = ({ match, location, history })=>{
 	        <Nav
 	            links={[
 	                {name:"Welcome",location:"/"},
-	                {name:"About Me",location:"/about"},
 	                {name:"My Services",location:"/services"},
-	                {name:"My Work",location:"/work"},
-	                {name:"My Skills",location:"/skills"},
-                    {name:"Contact Me",location:"/contact"}
+                    {name:"My Skills",location:"/skills"},
+                    {name:"Contact Me",location:"/contact"},
 	            ]}
 	        />
 
@@ -127,7 +125,8 @@ let Content = ({ match, location, history })=>{
 
 let Main = ({ match, location, history }) => {
     return (
-        <FadeBackground >
+        <div className={"main"}>
+            <img className={"main__peak"} src={peak} alt={"mountain peak"}/>
             <Clouds>
 				<RouteTransition 
 					pathname={location.pathname}
@@ -137,14 +136,13 @@ let Main = ({ match, location, history }) => {
 			    >
 			        <Switch key={location.key} location={location}>
 			            <Route exact path={"/services"} component={Home}/>
-			            <Route exact path={"/about"} component={Profile}/>
 			            <Route exact path={"/work"} component={Work} />
 			            <Route exact path={"/skills"} component={Skills} />
                         <Route exact path={"/contact"} component={Contact} />
 			         </Switch>
 		        </RouteTransition>
             </Clouds>
-        </FadeBackground>
+        </div>
     )
 }
 

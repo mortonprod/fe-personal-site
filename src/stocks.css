@@ -21,4 +21,36 @@
     stroke: blue;
 }
 
+.text {
+    font-size: 12px;
+}
 
+.text__open {
+    fill: green;
+}
+
+.text__high {
+    fill: red;
+}
+
+.text__low {
+    fill: blue;
+}
+
+.text__close {
+    fill: yellow;
+}
+
+
+
+.axisWhite line {
+    stroke: #7c7c7c;
+}
+
+.axisWhite path {
+    stroke: #7c7c7c;
+}
+
+.axisWhite text {
+    fill: #7c7c7c;
+} 

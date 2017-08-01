@@ -23,6 +23,19 @@
     }
 }
 
+.skills__gap {
+    margin: 0;
+    height: 200vh;
+}
+
+
+
+.skills__gap.skills__gap--small {
+    height: 30vh;
+    background-color: #7A80FB;
+    opacity: 0.5;
+}
+
 .skills__header {
     position: fixed;
     top: 30%;
@@ -36,6 +49,27 @@
     display: block;
 }
 
+
+.skills__header > h1 {
+    font-size: 100px;
+    color: white;
+    font-family: 'Lobster', cursive;
+    width: 100%;
+    margin: 5px;
+    text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
+}
+
+.skills__header > h2 {
+    font-size: 70px;
+    color: white;
+    font-family: 'Lobster', cursive;
+    width: 100%;
+    margin: 5px;
+    text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
+}
+
+
+
 .skills__header > button:nth-child(0) {
 }
 
@@ -45,23 +79,25 @@
 
 
 
-.skills h1 {
+.skills > h1 {
     font-size: 100px;
     color: white;
     font-family: 'Lobster', cursive;
     width: 100%;
     margin: 5px;
+    text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
 }
 
-.skills h2 {
+.skills > h2 {
     font-size: 70px;
     color: white;
     font-family: 'Lobster', cursive;
     width: 100%;
     margin: 5px;
+    text-shadow: 5px 5px 4px rgba(0,0,0,0.50);  
 }
 
-.skills p {
+.skills > p {
     font-size: 20px;
     color: white;
     font-family: Montserrat-Bold;
@@ -69,7 +105,8 @@
 }
 
 
-.skills a {
+
+.skills > a {
     font-size: 20px;
     color: white;
     font-family: Montserrat-Bold;
@@ -80,36 +117,49 @@
 }
 
 
-.skills a:hover {
+.skills > a:hover {
     transform: scale(1.2);
 }
 
 
 
-.skills__gap {
-    height: 200vh;
-}
 
 .skills__skill {
     flex-direction:row;
     flex-wrap:wrap;
-    width: 95%;
+    width: 100vw;
     margin: auto;
-    margin-bottom:10px;
-    background-image: radial-gradient(50% 100%, rgba(177,182,254,0.00) 50%, #E3E5FF 100%);
+    background-color:white;
     border: 1px solid #000000;
-    border-radius: 8px;
     z-index:200;
     display: flex;
 }
 
 .skills__overview {
-    width: 95%;
+    width:100vw;
     margin: auto;
-    margin-bottom:10px;
-    background-image: radial-gradient(50% 240%, rgba(0,19,231,0.00) 47%, rgba(255,27,4,0.30) 100%);
-    border: 3px solid #000000;
+    background-color: white;
+    border: 1px solid #000000;
     box-shadow: 5px 5px 4px 0 rgba(0,0,0,0.50);
+}
+
+
+.skills__overview > h1 {
+    font-size: 70px;
+    width: 100%;
+    margin: 5px;
+    font-family: 'Poppins', sans-serif;
+    color: #7a7a7a;
+    text-decoration: underline;
+    text-decoration-color: #7A80FB;
+}
+
+
+.skills__overview > p {
+    border: 0 solid #000000;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    color: #7c7c7c;
 }
 
 
@@ -132,6 +182,43 @@
 }
 
 
+.skills__info {
+    position: relative;
+    width: 500px;
+    margin: auto;
+    margin-top: 20px;
+    z-index: 2000;
+    display: inline-block;
+}
+
+
+
+.skills__info > h1 {
+    font-size: 100px;
+    color: white;
+    font-family: 'Lobster', cursive;
+    width: 100%;
+    margin: 5px;
+    text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
+}
+
+.skills__info > h2 {
+    font-size: 70px;
+    width: 100%;
+    margin: 5px;
+    font-family: 'Poppins', sans-serif;
+    color: #7a7a7a;
+    text-decoration: underline;
+    text-decoration-color: #7A80FB;
+}
+
+.skills__info > p {
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    color: #7c7c7c;
+    z-index: 1000;
+}
+
 
 
 .skills__info > img {
@@ -141,20 +228,18 @@
 
 
 
-.skills__info {
-    position: relative;
-    width: 500px;
-    margin: auto;
-    margin-top:20px;
-    z-index: 2000;
-    display:inline-block;
+
+a.skills__info__doc {
+    font-size: 25px;
+    margin-bottom: 50px;
+    display: block;
+    transform:scale(1);
+    transition:all 1s forwards;
 }
 
 
-
-.skills__info__doc{
-    margin-bottom:50px;
-    display:block;
+a.skills__info__doc:hover {
+    transform: scale(1.2);
 }
 
 
@@ -200,8 +285,11 @@
     margin: auto;
 }
 
-
-
+#portfolioLogo{
+    width:250px;
+    height:250px;
+    margin:auto;
+}
 
 
 
@@ -210,14 +298,30 @@
         height: 100vh;
     }
 
-    .skills h1 {
+    .skills > h1 {
         font-size: 70px;
     }
 
-    .skills h2 {
+    .skills > h2 {
         font-size: 50px;
     }
+    .skills__header > h1 {
+        font-size: 70px;
+    }
 
+    .skills__header > h2 {
+        font-size: 50px;
+    }
+    .skills__info > h1 {
+        font-size: 70px;
+    }
+
+    .skills__info > h2 {
+        font-size: 50px;
+    }
+    .skills__overview > h1 {
+        font-size: 70px;
+    }
     .skills__info {
         width: 100%;
     }
@@ -256,7 +360,10 @@
         width: 300px;
     }
 
-    .skills p {
+    .skills > p {
+        font-size: 15px;
+    }
+    .skills__info > p {
         font-size: 15px;
     }
 }

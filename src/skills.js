@@ -4,11 +4,10 @@ import Vivus from "vivus";
 import Helmet from 'react-helmet';
 import Auth from "./auth";
 import * as _ from "lodash";
-import PieChart from "./pieChart";
 import google from "./assets/google.svg";
 import youtube from "./assets/youtube.svg";
 import boy from "./assets/boy.svg";
-import portfolioLogo from "./assets/portfolioLogo.svg";
+import portfolioLogo from "./assets/portfolioLogo.png";
 import branding from "./assets/branding.svg";
 import reactIcon from "./assets/reactIcon.svg";
 import nodeIcon from "./assets/nodejs-icon.svg";
@@ -17,9 +16,15 @@ import format from "./assets/formats.svg";
 import cms from "./assets/cms.svg";
 import services from "./assets/services.svg";
 import docs from "./assets/docs.svg";
-import Account from "./account";
-import Stocks from "./stocks";
+import Account from "./account/account";
+import asyncComponent from "./asyncComponent";
 import "./skills.css";
+
+const AsyncStock = asyncComponent(() => import('./stocks'));
+const AsyncPieChart = asyncComponent(() => import('./pieChart'));
+
+
+
 
 
 let pieChartBig = {
@@ -27,7 +32,7 @@ let pieChartBig = {
     height:500,
     innerRadius: 50,
     outerRadius: 150,
-    labelRadius: 175
+    labelRadius: 160
 }
 
 let factor = 0.5;
@@ -62,7 +67,7 @@ let stocksBig = {
     isGetAll:true,
     margin: {
         top:50,
-        left:50
+        left:100
     }
 }
 
@@ -70,15 +75,17 @@ let stocksBig = {
 export default class Skills extends Component {
    isRun=true;
    writeElement = null;
+   stockElement = null;
+   pieElement = null;
    /**
     Calling set state through resize in constructor not working. REMOVED!
    */
    constructor(props){
     super();
     if(window.innerWidth < 500){
-        this.state = {scrollTop:0,profile:null,pieChartInfo:pieChartSmall,stocksChartInfo:stocksSmall};
+        this.state = {scrollTop:0,profile:null,pieChartInfo:pieChartSmall,stocksChartInfo:stocksSmall,isShowStock:false,isShowPieChart:false};
     }else{
-        this.state = {scrollTop:0,profile:null,pieChartInfo:pieChartBig,stocksChartInfo:stocksBig};
+        this.state = {scrollTop:0,profile:null,pieChartInfo:pieChartBig,stocksChartInfo:stocksBig,isShowStock:false,isShowPieChart:false};
     }
     this.scroll = _.throttle(this.scroll,100,{leading:false,trailing:true});
     //Auth.addSetState(this.setState.bind(this));
@@ -99,6 +106,18 @@ export default class Skills extends Component {
 	            this.isRun = false;
 	            
 	        }
+        }
+        if(this.stockElement){
+            let pos = this.stockElement.getBoundingClientRect();
+            if(pos.top < window.innerHeight*(1/2)){
+                this.setState({isShowStock:true});
+            }
+        }
+        if(this.pieElement){
+            let pos = this.pieElement.getBoundingClientRect();
+            if(pos.top < window.innerHeight*(1/2)){
+                this.setState({isShowPieChart:true});
+            }
         }
     }
    componentDidMount(){
@@ -131,39 +150,7 @@ export default class Skills extends Component {
 	            className="store__title" id="store">
 	        </object>
         )
-		let wel = null
-		if(this.state.profile){
-            let nickname = "";
-            if(this.state.profile.nickname){
-                nickname= " AKA " + this.state.profile.nickname
-            }
-			wel = (
-                <div className={"skills__account"}>
-				    <h3>
-				        Welcome back
-				    </h3>
-                    <h3>
-                        {this.state.profile.name}
-                    </h3>
-                    <h4>
-                        {nickname}
-                    </h4>
-	                <img src={this.state.profile.picture} alt="profile" />
-                </div>
-			)
-			}else{
-			wel = (
-                <div className={"skills__account"}>
-                    <h3>
-                        Sign to Learn More
-                    </h3>
-                    <div className={"skills__button"}>
-                        <Account profile={this.state.profile}/>
-                    </div>
-                </div>
-			)
-		}
-      let tran = -1*this.state.scrollTop*0.5;
+      let tran = -1*this.state.scrollTop*0.2;
       return (
         <div className={"skills"}>
              <Helmet>
@@ -181,8 +168,11 @@ export default class Skills extends Component {
                 <h1>
                     Overview 
                 </h1>
-                <div>
-                    <PieChart width={this.state.pieChartInfo.width}
+                <p>
+                    How my average day breaks down 
+                </p>
+                <div ref={(ref)=>{this.pieElement = ReactDOM.findDOMNode(ref)}}>
+                    <AsyncPieChart isShow={this.state.isShowPieChart} width={this.state.pieChartInfo.width}
                         height={this.state.pieChartInfo.height}
                         innerRadius={this.state.pieChartInfo.innerRadius}
                         outerRadius={this.state.pieChartInfo.outerRadius}
@@ -190,6 +180,7 @@ export default class Skills extends Component {
                     />
                 </div>
             </section>
+            <div className={"skills__gap skills__gap--small"}/>
             <section>
                 <article className={"skills__skill"}>
                     <div className={"skills__info"}>
@@ -221,9 +212,7 @@ export default class Skills extends Component {
                         </p>
                     </div>
                 </article>
-
-
-
+                <div className={"skills__gap skills__gap--small"}/>
 	            <article className={"skills__skill"}>
 	                <div className={"skills__info"}>
 	                    <img src={google} alt={"google maps"}/>
@@ -241,6 +230,7 @@ export default class Skills extends Component {
 	                    <div id="map"></div>
 	                </div>
 	            </article>
+                <div className={"skills__gap skills__gap--small"}/>
 	            <article className={"skills__skill"}>
 	                <div className={"skills__info"}>
 	                    <img src={cms} alt={"media"}/>
@@ -261,6 +251,7 @@ export default class Skills extends Component {
 	                    <YouTube video="i0aBEmzRE_U" autoplay="0" rel="0" modest="1" />,
 	                </div>
 	            </article>
+                <div className={"skills__gap skills__gap--small"}/>
                 <article className={"skills__skill"}>
                     <div className={"skills__info"}>
                         <img src={services} alt={"media"}/>
@@ -275,15 +266,14 @@ export default class Skills extends Component {
                             Furthermore, you can specify exact how you want to visualise your data. Invaluable for complex data analysis.
                         </p>
                     </div>
-                    <div className={"skills__centreMedia"}>
-                        <Stocks width={this.state.stocksChartInfo.width}
+                    <div ref={(ref)=>{this.stockElement = ReactDOM.findDOMNode(ref)}} className={"skills__centreMedia"}>
+                        <AsyncStock isShow={this.state.isShowStock} width={this.state.stocksChartInfo.width}
                             height={this.state.stocksChartInfo.height}
                             margin={this.state.stocksChartInfo.margin}
                         />
                     </div>
                 </article> 
-
-
+                <div className={"skills__gap skills__gap--small"}/>
                 <article className={"skills__skill"}>
                     <div className={"skills__info"}>
                         <img src={docs} alt={"media"}/>
@@ -300,9 +290,8 @@ export default class Skills extends Component {
                         <a style={{color: 'lightblue'}} className={"skills__info__doc"} href={"/__documentation/frontend/"}> See How This Site Works </a>
                     </div>
                 </article> 
-
-
-                <article className={"skills__skill"} ref={(ref)=>{this.writeElement = ReactDOM.findDOMNode(ref)}}>
+                <div className={"skills__gap skills__gap--small"}/>
+                <article className={"skills__skill"}>
                     <div className={"skills__info"}>
                         <img src={format} alt={"media"}/>
                         <h2>
@@ -324,12 +313,11 @@ export default class Skills extends Component {
                             This is particularly useful for CPU intensive applications like javascript games.  
                         </p>
                     </div>
-                    <div className={"skills__centreMedia"}>
+                    <div ref={(ref)=>{this.writeElement = ReactDOM.findDOMNode(ref)}} className={"skills__centreMedia"}>
                         {writeMe}
                     </div>
                 </article>
-
-
+                <div className={"skills__gap skills__gap--small"}/>
 	            <article className={"skills__skill"}>
 	                <div className={"skills__info"}>
 	                    <img src={branding} alt={"individual"}/>
@@ -346,7 +334,7 @@ export default class Skills extends Component {
 	                    </p>
 	                </div>
 	                <div className={"skills__centreMedia"}>
-	                    <img src={portfolioLogo} alt={"portfolio logo"}/>
+	                    <img id={"portfolioLogo"} src={portfolioLogo} alt={"portfolio logo"}/>
 	                </div>
 	            </article>
             </section>

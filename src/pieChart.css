@@ -6,17 +6,17 @@
 
 
 .pieChart > form > label {
-    font-family: 'Lobster', cursive;
-    color:white;
-    font-size:20px;
+    font-family: 'Poppins', sans-serif;
+    color: #7a7a7a;
+    font-size: 20px;
 }
 
 
 .label-text {
     alignment-baseline: middle;
     font-size: 15px;
-    font-family: 'Lobster', cursive;
-    fill: white;
+    font-family: 'Poppins', sans-serif;
+    fill: #7a7a7a;
 }
 
 .label-line {

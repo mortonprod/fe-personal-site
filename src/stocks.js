@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import * as d3 from "d3";
+import * as _ from "lodash";
 import "./stocks.css";
 /**
     This component call stocks API and the then renders to screen. 
@@ -13,7 +14,29 @@ export default class Stocks extends Component {
     graph = null;
     constructor(){
         super();
-        this.state = {isData:false,intervalId:null};
+        this.state = {isData:false,intervalId:null,timeId: null, interID:null};
+    }
+    /**
+        Make sure we only update the graph if we have a resize event which takes us over the threshold.
+        DO NOT UPDATE ON STATE CHANGE ONLY CHANGE OR PROPS.
+    */
+    shouldComponentUpdate(nextProps,nextState){
+        if(_.isEqual(nextProps,this.props)){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    /**
+        If we resize then call again instantly with the new sizes.
+        We want to cancel all timeouts and intervals. Reset the grapgh and start again....    
+    */
+    componentDidUpdate(nextProps){
+    clearInterval(this.state.intervalId);
+    clearInterval(this.state.interID);
+    clearTimeout(this.state.timeID);
+    d3.select(this.graph).selectAll("*").remove();
+        this._create.bind(this)();
     }
     /**
         Ignore time domain if isGetAll flag called.
@@ -109,17 +132,61 @@ export default class Stocks extends Component {
 	        .attr('class', 'graph-g')
 	        .attr('width', this.props.width)
 	        .attr('height', this.props.height)
-            .attr("transform", "translate(" + this.props.margin.top + "," + this.props.margin.left + ")");
+            .attr("transform", "translate(" + this.props.margin.left + "," + this.props.margin.top + ")");
 
 
 
 	  graph.append("g")
+          .attr("class", "axisWhite")
 	      .call(d3.axisBottom(x));
           
 
 
       graph.append("g")
+        .attr("class", "axisWhite")
         .call(d3.axisLeft(y));
+
+    let length = arrays.all.length -1;
+    if(!d3.select('.text__open').empty()){
+        d3.select('.text__open').remove();
+        d3.select('.text__close').remove();
+        d3.select('.text__high').remove();
+        d3.select('.text__low').remove()
+        
+    }
+    if(length > 0){
+        let xPos = x(arrays.all[length].time) +  this.props.margin.left;
+        let yPosOpen = y(arrays.all[length].open) +  this.props.margin.top;
+        let yPosClose = y(arrays.all[length].close) +  this.props.margin.top;
+        let yPosHigh = y(arrays.all[length].high) +  this.props.margin.top;
+        let yPosLow = y(arrays.all[length].low) +  this.props.margin.top;
+	    svg.append("text")
+	      .attr("transform", "translate("+(xPos-30)+","+yPosOpen+")")
+          .attr('class', 'text text__open')
+	      .attr("dy", ".35em")
+	      .attr("text-anchor", "start")
+	      .text("Open");
+        svg.append("text")
+          .attr("transform", "translate("+(xPos)+","+yPosClose+")")
+          .attr('class', 'text text__close')
+          .attr("dy", ".35em")
+          .attr("text-anchor", "start")
+          .text("Close");
+        svg.append("text")
+          .attr("transform", "translate("+(xPos-30)+","+yPosHigh+")")
+          .attr('class', 'text text__high')
+          .attr("dy", ".35em")
+          .attr("text-anchor", "start")
+          .text("High");
+        svg.append("text")
+          .attr("transform", "translate("+(xPos)+","+yPosLow+")")
+          .attr('class', 'text text__low')
+          .attr("dy", ".35em")
+          .attr("text-anchor", "start")
+          .text("Low");
+
+    }
+
     if(d3.select('.stock__YLabel').empty()){
       svg.append("text")             
           .attr("transform",
@@ -127,16 +194,16 @@ export default class Stocks extends Component {
                                (this.props.margin.top*(5/6)) + ")")
           .style("text-anchor", "middle")
          .style("font-size", "20px")
-         .style("fill","red")
+         .style("fill","#7c7c7c")
          .style("font-family","Lobster")
           .text("Minutes Ago");
       svg.append("text") 
           .attr('class', 'stock__YLabel')            
           .attr("transform",
-                "translate(" + (20) + " ," + 
+                "translate(" + (30) + " ," + 
                                (this.props.height/2 + this.props.margin.top) + ")")
            .style("font-size", "20px")
-        .style("fill","red")
+        .style("fill","#7c7c7c")
         .style("font-family","Lobster")
           .style("text-anchor", "middle")
           .text("Points");
@@ -181,7 +248,7 @@ export default class Stocks extends Component {
         Call after only for case when we do not want to chase. May need to change other state after chase complete.
 
     */
-    componentDidMount(){
+    _create(){
         let name = "MSFT";
         let intervalId =  setIntervalAndExecute(()=>{
             this.callStock(name).then((data)=>{
@@ -197,9 +264,14 @@ export default class Stocks extends Component {
         },1000*30);
         this.setState({intervalId: intervalId});
     }
+    componentDidMount(){
+        this._create.bind(this)();
+    }
     /**
         Will only return when there is no chase running.
         The frequency must be the total duration/number of elements in time series.
+        ----------------
+        Make sure to check we have not overrun index. Frequency sometimes off.
         @function
     */
     createChase(timeSeries,duration){
@@ -208,14 +280,16 @@ export default class Stocks extends Component {
             if(this.props.isChase){
                 let index = 0;
 	            let inter = setIntervalAndExecute(()=>{
-	                this.createGraph.bind(this)(timeSeries[index]); 
+                    if(timeSeries[index]){
+	                    this.createGraph.bind(this)(timeSeries[index]);
+                    } 
                     index++;
 	            },frequency);
-	            setTimeout(()=>{
+	            let timeID = setTimeout(()=>{
 	                clearInterval(inter);
                     resolve();
                 },duration);
-
+                this.setState({timeId: timeID, interID:inter});
 	        }else{
                 resolve();
             }
@@ -243,7 +317,7 @@ export default class Stocks extends Component {
     /**
         Must clear interval.
     */
-    componentWillMount(){
+    componentWillUnmount(){
         clearInterval(this.state.intervalId);
     }
     /**

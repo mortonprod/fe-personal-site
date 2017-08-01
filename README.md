@@ -8,7 +8,7 @@ npm run build
 npm run docs
 ```
 
-#Development
+# Development and Testing
 ```
 npm run start
 npm run tests

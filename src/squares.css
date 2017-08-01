@@ -1,12 +1,14 @@
 .squares {
     transform: translateX(0px);
     transition: all 1s;
+    background-color: rgba(122, 128, 251,0.5);
 }
 
 .squares > h1 {
+    margin-top: 0;
     font-size: 5vw;
     color: white;
-    font-family: 'Lobster', cursive;
+    font-family: 'Poppins', sans-serif;
     text-decoration: underline blue;
 }
 

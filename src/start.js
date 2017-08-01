@@ -37,19 +37,22 @@ export default class Start extends Component{
         super()
         if(hasLoaded){
             if(oldServiceWorker){
-                this.state = {isLoaded:true,serviceWorker:oldServiceWorker,profile:null}
+                this.state = {isLoaded:true,serviceWorker:oldServiceWorker,profile:null,isShowInfo:true}
             }else{
-                this.state = {isLoaded:true,serviceWorker:null,profile:null}
+                this.state = {isLoaded:true,serviceWorker:null,profile:null,isShowInfo:true}
             }
 
         }else{
-	        this.state = {isLoaded:false,serviceWorker:null,profile:null}
+	        this.state = {isLoaded:false,serviceWorker:null,profile:null,isShowInfo:true}
 	        window.addEventListener('load',  ()=> {
 	            this.setState({isLoaded:true});
 	            serviceWorker.subscribe(this.setState.bind(this));
 	            hasLoaded = true;
 	        });
         }
+    }
+    _removeInfo(){
+        this.setState({isShowInfo:false})
     }
     /**
         Store the old message for when we route back. Don't want to start with state null again for service worker.
@@ -73,6 +76,35 @@ export default class Start extends Component{
     }
 
     render(){
+        let installInfo = null;
+        if(this.state.isLoaded){
+            installInfo = (
+	            <h2>
+	                App Full Loaded
+	            </h2>
+            )
+        }else{
+            installInfo = (
+                <h2>
+                    Loading...
+                </h2>
+            )
+        }
+        let serviceComp = null;
+        if(this.state.serviceWorker && this.state.serviceWorker.message){
+            serviceComp = (
+                <div>
+                    <span>{this.state.serviceWorker.message}</span>
+                </div>
+            )
+            
+        }else{
+            serviceComp = (
+                <div>
+                    <span>No reply from service worker</span>
+                </div>
+            )
+        }
 	    let wel = null
 	    if(this.state.profile){
 	        wel = (
@@ -97,6 +129,13 @@ export default class Start extends Component{
                  </div>
 	        )
 	    }
+        let infoModifer
+        if(this.state.isShowInfo){
+            infoModifer= ""
+        }else{
+            infoModifer="start__info--remove"
+        }
+
 	    return (
 	        <div className={"start"}>
 	             <Helmet>
@@ -110,7 +149,7 @@ export default class Start extends Component{
 		                I’m Alexander Morton and my passion is designing all types of software, see my services for some of the highlights.
 		            </p>
 		            <p>
-		                With a background in theoretical and experimental particle physics. I have deep understanding of mathematics, physics and computer science. This allows me to easily move between many different stacks and frameworks.
+		                With a 1st class masters in theoretical physics. I have deep understanding of mathematics, physics and computer science. This allows me to easily move between many different stacks and frameworks.
 		            </p>
 		            <p>
 		                I went freelance in 2016 and haven't looked back. I love creating beautiful and fully functional web applications. I only produce the best the web can provide. Giving your business the best chance to succeed
@@ -119,6 +158,11 @@ export default class Start extends Component{
 		                I would describe myself as straight forward, professional and easy going.  However, I leave that up to you when you meet me.  If you would like to disagree contact me.
 		            </p>
 	            </div>
+                <div onClick={this._removeInfo.bind(this)} className={"start__info " + infoModifer}>
+                    {installInfo}
+                    {serviceComp}
+                    <button onClick={worker.setPermissions.bind(this)}> Click for Notifications </button>
+                </div>
 	        </div>
 	    )
     }
