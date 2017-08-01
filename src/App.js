@@ -98,7 +98,8 @@ let Content = ({ match, location, history })=>{
     handleAuthentication(location);
     return(
         <div>
-	        <Nav
+	        <Nav 
+                Auth={Auth}
 	            links={[
 	                {name:"Welcome",location:"/"},
 	                {name:"My Services",location:"/services"},
@@ -108,7 +109,7 @@ let Content = ({ match, location, history })=>{
 	        />
 
             <Switch key={location.key} location={location}>
-                <Route exact path={"/"} component={Start} />
+                <Route exact path={"/"} render={(props)=>{ return <Start {...props} Auth={Auth} />}} />
                 <Route path={"/"} component={Main} />
             </Switch>
 		    <footer className={"footer"}>
@@ -138,7 +139,7 @@ let Main = ({ match, location, history }) => {
 			            <Route exact path={"/services"} component={Home}/>
 			            <Route exact path={"/work"} component={Work} />
 			            <Route exact path={"/skills"} component={Skills} />
-                        <Route exact path={"/contact"} component={Contact} />
+                        <Route exact path={"/contact"} render={(props)=>{ return <Contact {...props} Auth={Auth} />}} />
 			         </Switch>
 		        </RouteTransition>
             </Clouds>

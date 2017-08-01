@@ -4,11 +4,9 @@ import {serviceWorker} from "./workerService";
 import worker from "./workerService";
 import me from "./assets/myAvatar.svg"
 import {Link} from 'react-router-dom';
-import Auth from "./auth";
 import "./start.css";
 
 
-let auth = new Auth();
 /**
     isloaded is for the first time loaded. hasloaded is stored even if we leave welcome page and come back.
 */
@@ -67,7 +65,7 @@ export default class Start extends Component{
         Call Auth.getProfile for each mount. If we are not authenticated return error before querying server.
     */
     componentDidMount(){
-        Auth.getProfile((err,profile)=>{
+        this.props.Auth.getProfile((err,profile)=>{
             if(!err){
                 this.setState({profile:profile});
             }

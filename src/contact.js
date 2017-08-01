@@ -1,6 +1,5 @@
 import React,{Component} from "react";
 import axios from "axios";
-import Auth from "./auth";
 import scrollIntoViewIfNeeded from 'scroll-into-view-if-needed'
 import "./contact.css"
 //require("./store.js");
@@ -32,7 +31,7 @@ export default class Contact extends Component{
         When the component mounts check for name and add to contact name if we have it.
     */
     componentDidMount(){
-        Auth.getProfile((err,profile)=>{
+        this.props.Auth.getProfile((err,profile)=>{
             if(!err){
                 this.hasProfile = true;
                 this.setState({name:profile.name,email:profile.email});

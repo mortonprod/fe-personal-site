@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
 import Share from "./share/share";
-import Auth from "./auth";
 import Account from "./account/account";
 import menu from "./assets/menu.svg";
 import * as _ from "lodash";
@@ -37,7 +36,7 @@ export default class Nav extends Component {
     */
     componentDidMount(){
         window.addEventListener('resize',this.resize.bind(this));
-        Auth.getProfile((err,profile)=>{
+        this.props.Auth.getProfile((err,profile)=>{
             if(!err){
                 this.setState({profile:profile});
             }
@@ -77,7 +76,7 @@ export default class Nav extends Component {
 		                <Share/>
 		            </div>
 		            <div className={"nav__account"}>
-		                <Account profile={this.state.profile} auth={Auth}/>
+		                <Account profile={this.state.profile} auth={this.props.Auth}/>
 		            </div>
 		        </nav>
 		    )
