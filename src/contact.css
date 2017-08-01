@@ -5,14 +5,15 @@
     align-items:center;
     background-color:transparent;
 }
-/**Footer must be larger than fixed element picture.*/
-.contact__gap{
-    height:110vh;
+
+.contact__name {
+    font-family: 'Poppins', sans-serif;
+    color: white;
 }
 
 
 .contact__container {
-    position: absolute;
+    margin-top:100px;
     text-align: center;
 }
 
@@ -22,7 +23,7 @@
     width: 100%;
     margin: 5px;
     font-family: 'Poppins', sans-serif;
-    color: #7a7a7a;
+    color: white;
     text-decoration: underline;
     text-decoration-color: #7A80FB;
 }
@@ -35,6 +36,7 @@
     justify-content: center;
     align-items: center;
     font-size:20px;
+    margin-bottom:100px;
 }
 
 .contact__form > button {

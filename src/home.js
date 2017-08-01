@@ -111,7 +111,7 @@ export default class Home extends Component {
                 <div className={"home__gap"}/>
                 <TitlePicInfo info={startInfo}>
 		            <div className="titlePicInfo__scroll">
-		                <Scrollchor to={"squares"} duration={500}>See Details</Scrollchor>
+		                <Scrollchor to={"squares"}>See Details</Scrollchor>
 		            </div>
                 </TitlePicInfo>
                 <div className={"home__gap home__gap--small"}/>

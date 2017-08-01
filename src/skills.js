@@ -7,7 +7,7 @@ import * as _ from "lodash";
 import google from "./assets/google.svg";
 import youtube from "./assets/youtube.svg";
 import boy from "./assets/boy.svg";
-import portfolioLogo from "./assets/portfolioLogo.png";
+import portfolioLogo from "./assets/portfolioLogo.svg";
 import branding from "./assets/branding.svg";
 import reactIcon from "./assets/reactIcon.svg";
 import nodeIcon from "./assets/nodejs-icon.svg";
@@ -158,7 +158,7 @@ export default class Skills extends Component {
                 <meta name="description" content="Highlights of my skills and expertise." />
             </Helmet>
 	        <div style={{transform:'translateY(' + tran + 'px)'}} className={"skills__header"} >
-	            <h1>My Skill</h1>
+	            <h1>My Skills</h1>
                 <h2>
                     The Highlights...
                 </h2>
@@ -185,9 +185,9 @@ export default class Skills extends Component {
                 <article className={"skills__skill"}>
                     <div className={"skills__info"}>
                         <img src={reactIcon} alt={"react"}/>
-                        <h2>
+                        <h1>
                             React
-                        </h2>
+                        </h1>
                         <p>
                             I use react to produce the majority of my sites.
                             React gives me the ability to create fast, modular components.
@@ -201,9 +201,9 @@ export default class Skills extends Component {
                     </div>
                     <div className={"skills__info"}>
                         <img src={nodeIcon} alt={"react"}/>
-                        <h2>
+                        <h1>
                             Node
-                        </h2>
+                        </h1>
                         <p>
                             Node lets me use javascript in creating your server, breaking down the boundary between browser and server.
                         </p>
@@ -216,9 +216,9 @@ export default class Skills extends Component {
 	            <article className={"skills__skill"}>
 	                <div className={"skills__info"}>
 	                    <img src={google} alt={"google maps"}/>
-		                <h2>
+		                <h1>
 	                        Tools
-		                </h2>
+		                </h1>
 	                    <p>
 	                        I can integrate google maps, analytics and adwords into your web application. 
 	                    </p>
@@ -234,9 +234,9 @@ export default class Skills extends Component {
 	            <article className={"skills__skill"}>
 	                <div className={"skills__info"}>
 	                    <img src={cms} alt={"media"}/>
-	                    <h2>
+	                    <h1>
 	                        Content Management
-	                    </h2>
+	                    </h1>
                         <p>
                             Videos, photos, blog posts... the list is endless... I'm comfortable working with any form your content takes. 
                             The demand for content from your server is constant. 
@@ -255,9 +255,9 @@ export default class Skills extends Component {
                 <article className={"skills__skill"}>
                     <div className={"skills__info"}>
                         <img src={services} alt={"media"}/>
-                        <h2>
+                        <h1>
                             Services
-                        </h2>
+                        </h1>
                         <p> 
                             You can integrate external services into your websites user interface. 
                             With almost unlimited tools to make your life easier this freedom is essential.   
@@ -277,9 +277,9 @@ export default class Skills extends Component {
                 <article className={"skills__skill"}>
                     <div className={"skills__info"}>
                         <img src={docs} alt={"media"}/>
-                        <h2>
+                        <h1>
                             Documentation
-                        </h2>
+                        </h1>
                         <p>
                             I produce all my documentation using jsdocs. 
                             This allows me to keep a guide of my progress and explain my reasoning to future developers working on my project.
@@ -294,9 +294,9 @@ export default class Skills extends Component {
                 <article className={"skills__skill"}>
                     <div className={"skills__info"}>
                         <img src={format} alt={"media"}/>
-                        <h2>
+                        <h1>
                             Styles
-                        </h2>
+                        </h1>
                         <p>
                             I go beyond basic template styling in making your store front stand out.
                         </p>
@@ -321,9 +321,9 @@ export default class Skills extends Component {
 	            <article className={"skills__skill"}>
 	                <div className={"skills__info"}>
 	                    <img src={branding} alt={"individual"}/>
-	                    <h2>
+	                    <h1>
 	                        Creating a brand
-	                    </h2>
+	                    </h1>
 	                    <p>
 	                        Create Logos, posters and stationary, 
                             giving you the freedom to design your own store front. 

@@ -2,6 +2,8 @@
     transform: translateX(0px);
     transition: all 1s;
     background-color: rgba(122, 128, 251,0.5);
+    margin:auto;
+    padding-bottom:100px;
 }
 
 .squares > h1 {
@@ -17,7 +19,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    width: 95%;
+    width: 100%;
     margin: auto;
 }
 

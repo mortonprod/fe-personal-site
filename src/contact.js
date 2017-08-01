@@ -12,13 +12,21 @@ let idb = null;
 if(!navigator.userAgent.includes("Node.js") && !navigator.userAgent.includes("jsdom")){
     idb = require("idb");
 }
+/**
+    We need a flag to indicate that our name has come from profile and should not be updated.
+*/
 export default class Contact extends Component{
+    hasProfile = false;
+    /**
+        Can't initialise state with null since this is used as value for input.
+    */
     constructor(){
         super();
         this._submit = this._submit.bind(this);
         this._onChangeName = this._onChangeName.bind(this);
+        this._onChangeEmail = this._onChangeEmail.bind(this);
         this._onChangemessage = this._onChangemessage.bind(this);
-        this.state = {name:null,message:null,email:null};
+        this.state = {name:"",message:"",email:""};
     }
     /**
         When the component mounts check for name and add to contact name if we have it.
@@ -26,7 +34,8 @@ export default class Contact extends Component{
     componentDidMount(){
         Auth.getProfile((err,profile)=>{
             if(!err){
-                this.setState({name:profile.name});
+                this.hasProfile = true;
+                this.setState({name:profile.name,email:profile.email});
             }
         });
     }
@@ -47,40 +56,42 @@ export default class Contact extends Component{
     */
     _submit(event){
         if(!navigator.userAgent.includes("Node.js") && !navigator.userAgent.includes("jsdom")){
-			let formData = new FormData();
-			formData.append('name', this.state.name);
-            formData.append('message', this.state.message);
-            formData.append('email', this.state.email);
-            axios.post("/contact",formData).then((res) => {
-                console.log("Contact recieved?: " + JSON.stringify(res.data));
-            });
+            let sendMe = {name:this.state.name,email:this.state.email,message:this.state.message};
+        //    axios.post("/contact",sendMe).then((res) => {
+        //        console.log("Contact recieved?: " + JSON.stringify(res.data));
+        //    });
         }
     }
+    /**
+        Email might not be included from auth so don't include
+    */
     render(){
         let nameComp = null;
-        if(this.state.name){
+        if(this.hasProfile){
             nameComp = (
-                <h4>this.state.name</h4>
+                <div>
+	                <h4 className={"contact__name"} >{this.state.name}</h4>
+                    <input required type="text" placeholder={"Your email..."} value={this.state.email} onChange={this._onChangeEmail}/>
+                </div>
             );
         }else{
             nameComp = (
                 <div>
-	                <input required type="text" placeholder={"Your name..."} value={this.state.name} onChange={this.onChangeName}/>
-	                 <input required type="text" placeholder={"Your email..."} value={this.state.email} onChange={this.onChangeEmail}/>
+	                <input required email type="text" placeholder={"Your name..."} value={this.state.name} onChange={this._onChangeName}/>
+	                 <input required type="text" placeholder={"Your email..."} value={this.state.email} onChange={this._onChangeEmail}/>
                  </div>
             );
             
         }
         return(
             <section className={"contact"}>
-                <div className={"contact__gap"}/>
                 <div className={"contact__container"}>
 	                <h1>
 	                    Send Me an Email
 	                </h1>
 	                <form className={"contact__form"} onSubmit={this._submit}>
 	                    {nameComp}
-	                    <textarea required rows="15" cols="100" type="text" value={this.state.message} placeholder={"Describe what you need..."} onChange={this._onChangemessage}/>
+	                    <textarea required rows="15" cols="30" type="text" value={this.state.message} placeholder={"Describe what you need..."} onChange={this._onChangemessage}/>
 	                    <button type="submit">Send</button>
 	                </form>
                 </div>

@@ -5,7 +5,7 @@
 
 
 .line__close {
-    stroke: yellow;
+    stroke: orange;
 }
 
 .line__open {
@@ -38,7 +38,7 @@
 }
 
 .text__close {
-    fill: yellow;
+    fill: orange;
 }
 
 

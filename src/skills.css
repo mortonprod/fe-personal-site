@@ -97,29 +97,6 @@
     text-shadow: 5px 5px 4px rgba(0,0,0,0.50);  
 }
 
-.skills > p {
-    font-size: 20px;
-    color: white;
-    font-family: Montserrat-Bold;
-    z-index: 1000;
-}
-
-
-
-.skills > a {
-    font-size: 20px;
-    color: white;
-    font-family: Montserrat-Bold;
-    z-index: 1000;
-    transition: 1s all;
-    transform:scale(1);
-
-}
-
-
-.skills > a:hover {
-    transform: scale(1.2);
-}
 
 
 
@@ -194,16 +171,7 @@
 
 
 .skills__info > h1 {
-    font-size: 100px;
-    color: white;
-    font-family: 'Lobster', cursive;
-    width: 100%;
-    margin: 5px;
-    text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
-}
-
-.skills__info > h2 {
-    font-size: 70px;
+    font-size: 40px;
     width: 100%;
     margin: 5px;
     font-family: 'Poppins', sans-serif;
@@ -211,6 +179,8 @@
     text-decoration: underline;
     text-decoration-color: #7A80FB;
 }
+
+
 
 .skills__info > p {
     font-size: 20px;
@@ -312,18 +282,15 @@ a.skills__info__doc:hover {
     .skills__header > h2 {
         font-size: 50px;
     }
-    .skills__info > h1 {
-        font-size: 70px;
-    }
 
-    .skills__info > h2 {
-        font-size: 50px;
-    }
     .skills__overview > h1 {
-        font-size: 70px;
+        font-size: 50px;
     }
     .skills__info {
         width: 100%;
+    }
+    .skills__info > h1{
+        font-size:35px;
     }
 
 
