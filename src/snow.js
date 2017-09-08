@@ -15,7 +15,7 @@ function flake(x,y,z,vx,vy,vz,r){
     this.vy=vy,
     this.vz=vz,
     this.r=r
-    console.log("Flake " + JSON.stringify(this));
+   // console.log("Flake " + JSON.stringify(this));
 }
 
 export default class Snow extends Component {
@@ -27,7 +27,11 @@ export default class Snow extends Component {
     this.moveFlakes = this.moveFlakes.bind(this);
     this.addFlake = this.addFlake.bind(this);
     this.drawSnowFlakes = this.drawSnowFlakes.bind(this);
+    this.worker = new Worker('./snow-work.js');
+    this.worker.postMessage({name:"test",counter:0});
+    this.worker.onmessage = (m) => {console.log("message back " + JSON.stringify(m.data))}
   }
+  worker = null;
   canvas = null;
   flakes=[];
   resize(){
@@ -120,7 +124,7 @@ export default class Snow extends Component {
   */
   moveFlakes(){
     this.flakes.forEach((el,index)=>{
-        console.log("move " + JSON.stringify(el));
+      //  console.log("move " + JSON.stringify(el));
         el.vz = el.vz + Math.random()*this.props.randV -this.props.randV/2;
         if(el.z + el.vz*this.props.timeDelta > 0){
             el.z = el.z + el.vz*this.props.timeDelta;

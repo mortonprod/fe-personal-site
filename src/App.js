@@ -14,6 +14,7 @@ import Clouds from "./clouds";
 import Contact from "./contact";
 import Work from "./work";  
 import peak from "./assets/peak.jpg";
+import Snow from "./snow";
 //import Contact from "./contact"; 
 
 
@@ -127,8 +128,8 @@ let Content = ({ match, location, history })=>{
 let Main = ({ match, location, history }) => {
     return (
         <div className={"main"}>
+            <Snow/>
             <img className={"main__peak"} src={peak} alt={"mountain peak"}/>
-            <Clouds>
 				<RouteTransition 
 					pathname={location.pathname}
 					atEnter={{ opacity: 0}}
@@ -142,7 +143,6 @@ let Main = ({ match, location, history }) => {
                         <Route exact path={"/contact"} render={(props)=>{ return <Contact {...props} Auth={Auth} />}} />
 			         </Switch>
 		        </RouteTransition>
-            </Clouds>
         </div>
     )
 }
