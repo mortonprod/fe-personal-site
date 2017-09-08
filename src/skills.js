@@ -16,7 +16,6 @@ import format from "./assets/formats.svg";
 import cms from "./assets/cms.svg";
 import services from "./assets/services.svg";
 import docs from "./assets/docs.svg";
-import Account from "./account/account";
 import asyncComponent from "./asyncComponent";
 import "./skills.css";
 

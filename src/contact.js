@@ -2,15 +2,12 @@ import React,{Component} from "react";
 import axios from "axios";
 import scrollIntoViewIfNeeded from 'scroll-into-view-if-needed'
 import "./contact.css"
-//require("./store.js");
+const store = window.store;
 
 /**
     We don't want to import indexDB for server side rendering in js dom. Therefore use require and a conditional.
 */
-let idb = null;
-if(!navigator.userAgent.includes("Node.js") && !navigator.userAgent.includes("jsdom")){
-    idb = require("idb");
-}
+const idb = window.idb;
 /**
     We need a flag to indicate that our name has come from profile and should not be updated.
 */
@@ -50,15 +47,31 @@ export default class Contact extends Component{
     /**
         Implement indexDB storage so we can send out message offline. Use idb to implement indexDB with promises.
         Messages is the name of the store. Outbox is an object inside the store. 
-        Transaction will store the message and return a promise when complete.
-        Note we include a fallback if we can't connect to the service worker.
+        Transaction will store the message and return a promise when complete. Then it will call(register) a sync event with the tag outbox.
+        The sync event in the service worker will then run. If something goes wrong then just send the message. 
+
     */
     _submit(event){
         if(!navigator.userAgent.includes("Node.js") && !navigator.userAgent.includes("jsdom")){
-            let sendMe = {name:this.state.name,email:this.state.email,message:this.state.message};
-        //    axios.post("/contact",sendMe).then((res) => {
-        //        console.log("Contact recieved?: " + JSON.stringify(res.data));
-        //    });
+            let message = {name:this.state.name,email:this.state.email,message:this.state.message};
+            navigator.serviceWorker.ready.then(function(reg) {
+                if ('sync' in reg) {
+		            store.outbox('readwrite').then(function(outbox) {
+		                return outbox.put(message);
+		            }).then(function() {
+			            return reg.sync.register('outbox');
+		            }).catch(function(messages){
+			            axios.post("/contact",message).then((res) => {
+			                console.log("Contact recieved?: " + JSON.stringify(res.data));
+			            });
+		            })
+                }else{
+                }
+            }).catch(()=>{
+                    axios.post("/contact",message).then((res) => {
+                        console.log("Contact recieved?: " + JSON.stringify(res.data));
+                    });
+            });
         }
     }
     /**

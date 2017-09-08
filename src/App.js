@@ -8,7 +8,7 @@ import { RouteTransition } from 'react-router-transition';
 import Skills from "./skills";
 import Start from "./start";
 import Auth from "./auth";
-import Nav from "./nav";
+import Nav from "./nav/nav";
 import Home from "./home";
 import Clouds from "./clouds";
 import Contact from "./contact";
