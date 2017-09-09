@@ -116,7 +116,7 @@ let Content = ({ match, location, history })=>{
 		    <footer className={"footer"}>
 		        <h4> 2017 © Alexander Morton </h4> 
 		        <strong> Freelance Web Designer and Developer</strong>
-		        <a href={"hello@alexandermorton.co.uk"}> hello@alexandermorton.co.uk </a>
+		        <a href={"alex@alexandermorton.co.uk"}> alex@alexandermorton.co.uk </a>
 		    </footer>
         </div>
 
