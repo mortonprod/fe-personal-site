@@ -6,6 +6,10 @@
     overflow:auto;
 }
 
+#squares{
+    position:relative;
+    z-index:1000;
+}
 
 .home__info {
     position:relative;
@@ -105,6 +109,30 @@
     background-color:#7A80FB;
     opacity:0.5
 }
+
+
+
+.home__problems {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100vw;
+    margin: auto;
+    background-color: white;
+    border: 1px solid #000000;
+    z-index: 200;
+    display: flex;
+}
+
+.home__problem {
+    position: relative;
+    width: 500px;
+    margin: auto;
+    margin-top: 20px;
+    z-index: 2000;
+    display: inline-block;
+}
+
+
 
 
 

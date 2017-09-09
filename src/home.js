@@ -110,10 +110,50 @@ export default class Home extends Component {
 	            </div>
                 <div className={"home__gap"}/>
                 <TitlePicInfo info={startInfo}>
-		            <div className="titlePicInfo__scroll">
-		                <Scrollchor to={"squares"}>See Details</Scrollchor>
-		            </div>
                 </TitlePicInfo>
+
+                <div className={"home__gap home__gap--small"}/>
+                <article className={"home__problems"}>
+                    <div className={"skills__info"}>
+                        
+                        <h1>
+                            Web Development
+                        </h1>
+                        <p>
+                            I develop react and node web applications. 
+                        </p>
+                        <p>
+                            Using react allows me to produce fast, highly interactive user interfaces for a variety of different purposes.
+                        </p>
+                        <p style={{paddingBottom:"30px"}}>
+                            I am not a designer by trade but my development skills allow me to get the most out of modern browsers to impress your users.
+                        </p>
+                        <div className="titlePicInfo__scroll">
+                            <Scrollchor to={"squares"}>Learn More</Scrollchor>
+                        </div>
+                    </div>
+                    <div className={"skills__info"}>
+                        
+                        <h1>
+                            Data Analysis
+                        </h1>
+                        <p>
+                            I can understand most advanced mathematics and physical systems quickly to solve any problem you currently have. 
+                        </p>
+                        <p>
+                            This may be implementing numerical methods to solve differential equations or perform CPU intensive data analysis.
+                        </p>
+                        <p>
+                            Additionally, if you need a piece of code debugging then I am always happy to help.
+                        </p>
+                        <div className="titlePicInfo__scroll">
+                            <Scrollchor to={"squares"}>Learn More</Scrollchor>
+                        </div>
+                    </div>
+                </article>
+
+
+
                 <div className={"home__gap home__gap--small"}/>
                 <Process/> 
                 <div id={"squares"}>
@@ -336,9 +376,9 @@ let startInfo = {
     title:"So you have a problem...",
     pic:null,
     paragraphs:[
-        "You need a website.",
-        "Well you need more than a website. You need a fully functioning ecommerce site, marketing strategy, logos, emails, content management, the list is endless...",
-        "I do all of this and more using the latest technologies the web has to offer, giving you the most for your money."
+        "You may need a website or have some data which needs analysed, or both",
+        "I have experience in a variety of different fields so I maybe able to save you hiring a team of people to do a job",
+        "If this sound like you then continue on..."
     ]
 }
 

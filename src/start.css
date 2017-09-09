@@ -14,6 +14,10 @@
     padding:5px;
 }
 
+.start__link > a {
+    text-decoration: none;
+}
+
 .start__me {
     text-align: center;
     margin: auto;
