@@ -1,18 +1,29 @@
+let snow = null; 
 onmessage = function(e) {
-  if(e.data.name === "addFlake"){
-    snowWorker.addFlake(e.data.z,e.data.width,e.data.randV,e.data.randR);  
-    this.postMessage(snowWorker.flakes);
+  if(e.data.name==="setParameters"){
+    //console.log("Set Parameters");
+    snow = snowWorker(
+        e.data.max,
+        e.data.createNum,
+        e.data.randZ,
+        e.data.randV,
+        e.data.randR,
+        e.data.zMin,
+        e.data.timeDelta,
+        e.data.airFricAcc,
+        e.data.width,
+        e.data.height
+    );
   }
-  if(e.data.name==="test"){
-    console.log("test reached");
-    //postMessage({name:"test",counter:e.data.counter});
-    postMessage(42);
-    
+  if(e.data.name==="updateFlakes"){
+    //console.log("Update Flakes");
+    snow.updateFlakes();
+    postMessage({name:"updatedFlakes",flakes:snow.flakes});  
   }
 };
 
 
-function snowWorker(){
+function snowWorker(max,createNum,randZ,randV,randR,zMin,timeDelta,airFricAcc,width,height){
     /**
         This stores all the information about the flake.
         The radius us the actual radius of the flake and not how it is observer from a distance.
@@ -29,13 +40,14 @@ function snowWorker(){
        // console.log("Flake " + JSON.stringify(this));
     }
     let flakes=[];
+
     /**
     Create snow flake. 
     This function will add a new flake to the array of flakes.
     The z position of the flake(The distance from the observer) must be specified by you on creation.
     @function
   */
-  function addFlake(z,width,randV,randR){
+  function addFlake(z){
     let x = Math.random()*width;
     let v = Math.random()*randV -randV/2;
     let r = Math.random()*randR;
@@ -47,8 +59,8 @@ function snowWorker(){
   */
   function removeFlakes(){
     flakes.forEach((el,index)=>{
-        if(el.y > this.state.height){
-            this.flakes.splice(index, 1);
+        if(el.y > height){
+          flakes.splice(index, 1);
         }
     });
   }
@@ -60,19 +72,37 @@ function snowWorker(){
   */
   function moveFlakes(){
     flakes.forEach((el,index)=>{
-        console.log("move " + JSON.stringify(el));
-        el.vz = el.vz + Math.random()*this.props.randV -this.props.randV/2;
-        if(el.z + el.vz*this.props.timeDelta > 0){
-            el.z = el.z + el.vz*this.props.timeDelta;
+        //console.log("move " + JSON.stringify(el));
+        el.vz = el.vz + Math.random()*randV -randV/2;
+        if(el.z + el.vz*timeDelta > 0){
+            el.z = el.z + el.vz*timeDelta;
         }else{
             el.z=0.001
         }
 
-        el.vx = el.vx + Math.random()*this.props.randV -this.props.randV/2;
-        el.x = el.x + el.vx*this.props.timeDelta;
+        el.vx = el.vx + Math.random()*randV -randV/2;
+        el.x = el.x + el.vx*timeDelta;
 
-        el.vy = el.vy + (10-this.props.airFricAcc)*this.props.timeDelta + Math.random()*this.props.randV -this.props.randV/2;
-        el.y = el.y + el.vy*this.props.timeDelta;
+        el.vy = el.vy + (10-airFricAcc)*timeDelta + Math.random()*randV -randV/2;
+        el.y = el.y + el.vy*timeDelta;
     });
+  }
+  /**
+    This function will add/remove flakes and then iteratively move them one step forward.
+    @function
+  */
+  function updateFlakes(){
+      removeFlakes();
+      if(this.flakes.length < max){
+        for(let i=0;i<createNum;i++){
+          let z = Math.random()*randZ+zMin;
+          addFlake(z);
+        }
+      }
+      moveFlakes();
+  }
+  return {
+    updateFlakes,
+    flakes
   }
 }
