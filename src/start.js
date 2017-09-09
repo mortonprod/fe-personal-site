@@ -155,6 +155,41 @@ export default class Start extends Component{
 		            <p>
 		                I would describe myself as straight forward, professional and easy going.  However, I leave that up to you when you meet me.  If you would like to disagree contact me.
 		            </p>
+                    <p>
+                        If you would like to quickly learn about me then check out my <a style={{color: '#42a5f5'}}  href={"/__cv"}>CV</a> or some of the papers I have contributed to.
+                    </p>
+                    <ul>
+                        <li className={"start__link"}>
+                            <a href={"http://eprints.gla.ac.uk/120050/"}>
+                                Test beam evaluation of newly developed n-in-p planar pixel sensors for use in a high radiation environment.
+                            </a>
+                        </li>
+                        <li className={"start__link"}>
+                            <a href={"https://cds.cern.ch/record/2115337?ln=en#"}>
+                                Combination of searches for WWWW, WZWZ, and ZZZZ resonances in pp collisions at √s=8 TeV with the ATLAS detector.
+                            </a>
+                        </li>
+                        <li className={"start__link"}>
+                            <a href={"https://cds.cern.ch/record/2048180?ln=en"}>
+                                Search for a high-mass Higgs boson decaying to a WW boson pair in pp collisions at √s=8 TeV with the ATLAS detector.
+                            </a>
+                        </li>
+                        <li className={"start__link"}>
+                            <a href={"https://cds.cern.ch/record/2004438?ln=en"}>
+                                Search for a new resonance decaying to a WW or ZZ boson and a Higgs boson in the ll/lν/νν+bb ll/lν/νν+bb final states with the ATLAS Detector.
+                            </a>
+                        </li>
+                        <li className={"start__link"}>
+                            <a href={"https://cds.cern.ch/record/2017378/files/ATLAS-TDR-024.pdf"}>
+                                ATLAS Forward Proton Phase-I Upgrade.
+                            </a>
+                        </li>
+                        <li className={"start__link"}>
+                            <a href={"https://cds.cern.ch/record/1543139?ln=en#"}>
+                                The Timepix Telescope for High Performance Particle Tracking.
+                            </a>
+                        </li>
+                    </ul>
 	            </div>
                 <div onClick={this._removeInfo.bind(this)} className={"start__info " + infoModifer}>
                     {installInfo}

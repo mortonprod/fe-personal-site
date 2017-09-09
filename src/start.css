@@ -8,6 +8,12 @@
     display: block;
 }
 
+.start__link {
+    color: '#42a5f5';
+    list-style-type: none;
+    padding:5px;
+}
+
 .start__me {
     text-align: center;
     margin: auto;

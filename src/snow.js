@@ -9,7 +9,9 @@ export default class Snow extends Component {
     this.resize = _.debounce(this.resize.bind(this),500,{trailing:true,leading:false});
     this.draw = this.draw.bind(this);
     this.drawSnowFlakes = this.drawSnowFlakes.bind(this);
-    this.worker = new Worker('./snow-work.js');
+    if(!navigator.userAgent.includes("Node.js") && !navigator.userAgent.includes("jsdom")){
+        this.worker = new Worker('./snow-work.js');
+    }
   }
   worker = null;
   canvas = null;
@@ -23,19 +25,21 @@ export default class Snow extends Component {
     @function
   */
   run(){
-    this.worker.postMessage({
-        name:"setParameters",
-        max:this.props.max,
-        createNum:this.props.createNum,
-        randZ:this.props.randZ,
-        randV:this.props.randV,
-        randR:this.props.randR,
-        zMin:this.props.zMin,
-        timeDelta:this.props.timeDelta,
-        airFricAcc:this.props.airFricAcc,
-        width:this.state.width,
-        height:this.state.height
-    });
+    if(!navigator.userAgent.includes("Node.js") && !navigator.userAgent.includes("jsdom")){
+        this.worker.postMessage({
+            name:"setParameters",
+            max:this.props.max,
+            createNum:this.props.createNum,
+            randZ:this.props.randZ,
+            randV:this.props.randV,
+            randR:this.props.randR,
+            zMin:this.props.zMin,
+            timeDelta:this.props.timeDelta,
+            airFricAcc:this.props.airFricAcc,
+            width:this.state.width,
+            height:this.state.height
+        });
+    }
     if(this.canvas !== null){
         let ctx = this.canvas.getContext("2d")
         requestAnimationFrame(()=>{this.draw(ctx)});
@@ -49,17 +53,19 @@ export default class Snow extends Component {
     @function
   */
   draw(ctx){
-    let prom = new Promise((resolve,reject)=>{
-        this.worker.postMessage({name:"updateFlakes"});
-        this.worker.onmessage = (m) => {
-            resolve(m.data.flakes);
-        }
-    });
-    prom.then((flakes)=>{
-      ctx.clearRect(0, 0, this.state.width, this.state.height);
-      this.drawSnowFlakes(ctx,flakes);
-      requestAnimationFrame(()=>{this.draw(ctx)});
-    })
+    if(!navigator.userAgent.includes("Node.js") && !navigator.userAgent.includes("jsdom")){
+      let prom = new Promise((resolve,reject)=>{
+          this.worker.postMessage({name:"updateFlakes"});
+          this.worker.onmessage = (m) => {
+              resolve(m.data.flakes);
+          }
+      });
+      prom.then((flakes)=>{
+        ctx.clearRect(0, 0, this.state.width, this.state.height);
+        this.drawSnowFlakes(ctx,flakes);
+        requestAnimationFrame(()=>{this.draw(ctx)});
+      })
+    }
   }
   /**
     When we resize we need to start the snow again. 
