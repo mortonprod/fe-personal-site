@@ -113,6 +113,7 @@
 
 
 .home__problems {
+    position:relative;
     flex-direction: row;
     flex-wrap: wrap;
     width: 100vw;
@@ -121,6 +122,7 @@
     border: 1px solid #000000;
     z-index: 200;
     display: flex;
+    z-index: 2000;
 }
 
 .home__problem {
