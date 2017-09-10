@@ -137,28 +137,26 @@ export default class Start extends Component{
 	    return (
 	        <div className={"start"}>
 	             <Helmet>
-	                 <title>Freelance Web Designer | Alexander Morton</title>
-	                <meta name="description" content="I'm a business focused freelance web designer and developer. I help businesses of all sizes to build a effective online solution." />
+	                 <title>Software Developer | Alexander Morton</title>
+	                <meta name="description" content="A software developer helping businesses and individuals solve problems by developing a range of software solutions." />
 	            </Helmet>
                 {wel}
 		        <div className={"start__me"}>
 		            <img src={me} alt={"Me"}/>
 		            <p>
-		                I’m Alexander Morton and my passion is designing all types of software, see my services for some of the highlights.
+                        I specialise in building <strong className={"start__strong"}>web applications</strong> and <strong className={"start__strong"}>data analysis</strong> tools.
+                        I am well-versed in <strong className={"start__strong"}>C++</strong> and <strong className={"start__strong"}>javascript</strong> but I know a variety of other languages and frameworks, see my <Link to={"/skills"}>skills</Link> for some of the highlights.
 		            </p>
 		            <p>
-		                With a 1st class masters in theoretical physics. I have deep understanding of mathematics, physics and computer science. This allows me to easily move between many different stacks and frameworks.
+		                With a 1st class masters in theoretical physics. I have deep understanding of <strong className={"start__strong"}>mathematics</strong>, <strong className={"start__strong"}>physics</strong> and <strong className={"start__strong"}>numerical methods</strong>.
 		            </p>
 		            <p>
-		                I went freelance in 2016 and haven't looked back. I love creating beautiful and fully functional web applications. I only produce the best the web can provide. Giving your business the best chance to succeed
-		            </p>
-		            <p>
-		                I would describe myself as straight forward, professional and easy going.  However, I leave that up to you when you meet me.  If you would like to disagree contact me.
+		                I would describe myself as <strong className={"start__strong"}>straight forward</strong>, <strong className={"start__strong"}>professional</strong> and <strong className={"start__strong"}>easy going</strong>.  However, I leave that up to you when you meet me.  If you would like to disagree <Link to={"/contact"}>contact me</Link>.
 		            </p>
                     <p>
                         If you would like to quickly learn about me then check out my <a style={{color: '#42a5f5'}}  href={"/__cv"}>CV</a> or some of the papers I have contributed to.
                     </p>
-                    <ul>
+                    <ul className={"start__links"}>
                         <li className={"start__link"}>
                             <a href={"http://eprints.gla.ac.uk/120050/"}>
                                 Test beam evaluation of newly developed n-in-p planar pixel sensors for use in a high radiation environment.

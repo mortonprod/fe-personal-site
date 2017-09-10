@@ -8,6 +8,14 @@
     display: block;
 }
 
+.start__strong {
+    color: #42a5f5;
+}
+
+.start__links{
+    padding:0;
+}
+
 .start__link {
     color: '#42a5f5';
     list-style-type: none;
