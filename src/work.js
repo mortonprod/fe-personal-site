@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import vistSite from "./assets/vistSite.svg";
 import Helmet from 'react-helmet';
 import "./work.css";
-export default class Work extends Component{
+class Work extends Component{
     constructor(){
         super();
         this.state = {scrollTop:0}
@@ -78,3 +78,5 @@ export default class Work extends Component{
 	    )
     }
 }
+
+export default Work;

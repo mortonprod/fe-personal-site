@@ -71,7 +71,7 @@ function handlePageChange(history){
     CAN'T NAME ROOT DIRECTORY "/" SINCE WELCOME PAGE IS ALWAYS AN ACTIVE LINK?  
     @function
 */
-export default function App(props) {
+function App(props) {
     return (
         <div className={"app"}>
             <Router>
@@ -146,4 +146,6 @@ let Main = ({ match, location, history }) => {
         </div>
     )
 }
+
+export default App;
 

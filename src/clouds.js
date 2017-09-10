@@ -10,7 +10,7 @@ import "./clouds.css";
     The clouds overflow should be hidden so we can't scroll off the page.
     @class
 */
-export default class Clouds extends Component {
+class Clouds extends Component {
     randomInfo = [];
 	constructor(){
         super();
@@ -115,3 +115,5 @@ function getRandomInt(min, max) {
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
 }
+
+export default Clouds;

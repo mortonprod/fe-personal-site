@@ -9,7 +9,7 @@ import "./process.css";
     This component is basically produces a list. 
     @class
 */
-export default class Process extends Component {
+class Process extends Component {
     constructor(){
         super();
     }
@@ -94,3 +94,5 @@ Process.defaultProps ={
         }
     ]
 }
+
+export default Process;

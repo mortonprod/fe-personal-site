@@ -14,7 +14,7 @@ import "./square.css";
 
     @class
 */
-export default class Squares extends Component {
+class Square extends Component {
     /**
         Create state to manage flip notebook class states.
     */
@@ -115,7 +115,7 @@ export default class Squares extends Component {
 };
 
 
-Squares.defaultProps = {
+Square.defaultProps = {
     title:"Security",
     pic:star,
     parts:[
@@ -199,3 +199,5 @@ export function forwardsThreeOrMore(index,modifier){
         return {initial,final};
     }
 }
+
+export default Square;

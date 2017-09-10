@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as _ from "lodash";
 import './snow.css';
 
-export default class Snow extends Component {
+class Snow extends Component {
   constructor(props){
     super(props);
     this.state = {width:window.innerWidth,height:window.innerHeight};
@@ -109,3 +109,5 @@ Snow.defaultProps = {
     max:500,
     createNum:1
 }
+
+export default Snow;

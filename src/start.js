@@ -30,7 +30,7 @@ let oldServiceWorker = null;
     @function
 
 */
-export default class Start extends Component{
+class Start extends Component{
     constructor(){
         super()
         if(hasLoaded){
@@ -198,3 +198,5 @@ export default class Start extends Component{
 	    )
     }
 }
+
+export default Start;

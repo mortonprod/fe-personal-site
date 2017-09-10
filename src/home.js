@@ -66,7 +66,7 @@ let processProps = {
     This components' main function is to expose the the squares component when at the right scroll position.
     @class
 */
-export default class Home extends Component {
+class Home extends Component {
     squares = [];
     squ = null;
 	constructor(props){
@@ -441,3 +441,5 @@ let solutionInfo = {
         "If you would like to learn more or think you would benefit from my services then send me an email"
     ]
 }
+
+export default Home;

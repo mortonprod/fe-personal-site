@@ -11,7 +11,7 @@ const idb = window.idb;
 /**
     We need a flag to indicate that our name has come from profile and should not be updated.
 */
-export default class Contact extends Component{
+class Contact extends Component{
     hasProfile = false;
     /**
         Can't initialise state with null since this is used as value for input.
@@ -111,3 +111,5 @@ export default class Contact extends Component{
         )
     }
 }
+
+export default Contact;

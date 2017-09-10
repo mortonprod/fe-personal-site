@@ -1,6 +1,7 @@
 # Introduction
 
-A portfolio site for freelance web developer. Expanded from the single page :-). This frontend can be served from my repository portfolioNodeBackend  
+A portfolio site for a software developer. Expanded from the single page hence the misnomer of a github name.
+This frontend can be served from my repository portfolioNodeBackend. 
 
 # Build
 ```

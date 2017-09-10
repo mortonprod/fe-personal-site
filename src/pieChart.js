@@ -6,7 +6,7 @@ import "./pieChart.css";
 /**
     This component will produce an animated piechart for my skills.
 */
-export default class PieChart extends Component {
+class PieChart extends Component {
     node = null;
     pie = null;
     path = null;
@@ -212,5 +212,5 @@ PieChart.defaultProps ={
     labelRadius: 175*factor
 };
 
-
+export default PieChart;
 

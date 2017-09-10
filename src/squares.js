@@ -5,7 +5,7 @@ import "./squares.css";
     This component will contain all the square components
     @class
 */
-export default class Squares extends Component {
+class Squares extends Component {
     constructor(){
         super();
     }
@@ -38,4 +38,6 @@ Squares.defaultProps = {
     isShow:false,
     isLeft:true
 }
+
+export default Squares;
 

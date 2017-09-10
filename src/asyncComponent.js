@@ -12,7 +12,7 @@ import "./asyncComponent.css";
     @param isShow  Get component from server when true.
     @function
 */
-export default function asyncComponent(importComponent) {
+function asyncComponent(importComponent) {
   /**
     This is the component wrapper for the component you want to lazy load.
     @class
@@ -84,3 +84,5 @@ export default function asyncComponent(importComponent) {
   }
   return AsyncComponent;
 }
+
+export default asyncComponent

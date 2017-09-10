@@ -28,6 +28,7 @@ import drmean from "./assets/dr-mean-all-pT-GA-Log-1.png";
 
 
 import asyncComponent from "./asyncComponent";
+
 import Slider from 'react-slick';
 
 import "slick-carousel/slick/slick.css";
@@ -96,16 +97,17 @@ let stocksBig = {
         left:100
     }
 }
+/**
+  This is the full component for the skills page.
+  @class
+*/
 
-
-export default class Skills extends Component {
+class Skills extends Component {
    isRun=true;
    writeElement = null;
    stockElement = null;
    pieElement = null;
-   /**
-    Calling set state through resize in constructor not working. REMOVED!
-   */
+
    constructor(props){
     super();
     if(window.innerWidth < 500){
@@ -441,3 +443,6 @@ var YouTube = React.createClass({
     );
   }
 });
+
+
+export default Skills;

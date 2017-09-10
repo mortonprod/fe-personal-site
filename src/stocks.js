@@ -10,7 +10,7 @@ import "./stocks.css";
     If chase set to true then get the component to move 20 minutes behind and chase in 20 seconds.
     @class
 */
-export default class Stocks extends Component {
+class Stocks extends Component {
     graph = null;
     constructor(){
         super();
@@ -347,3 +347,5 @@ function setIntervalAndExecute(fn, t) {
     fn();
     return(setInterval(fn, t));
 }
+
+export default Stocks;
