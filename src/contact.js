@@ -97,6 +97,10 @@ class Contact extends Component{
         }
         return(
             <section className={"contact"}>
+                 <Helmet>
+                     <title>Software Developer | Alexander Morton</title>
+                    <meta name="description" content="Contact page." />
+                </Helmet>
                 <div className={"contact__container"}>
 	                <h1>
 	                    Send Me an Email

@@ -76,9 +76,8 @@ Process.defaultProps ={
         {
             title:developTitle,
             info:[
-                "Most of my websites are single page applications so I can create complex user interfaces easily, currently I use react.",
-                "I link most of my websites to custom made backend powered by node js. Which gives me the flexability in adding functionality to your site.",
-                "However, I can move to other frontend and backend frameworks if you already have a site up and running.",
+                "Most of my websites are single page applications so I can create complex user interfaces easily.",
+                "I link most of my websites to custom made backends. Which gives me the flexability in adding functionality to your site.",
                 "With my background in mathematics I can manage any complex data you have, I'm able to build applications which analyses your data and then displays it in an approachable way.",
                 "I only build fully tested and documented software. This allows you to easily upgrade your site in the future."
             ]

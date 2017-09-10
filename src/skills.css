@@ -24,7 +24,7 @@
 }
 
 .skills__diagram{
-    height:500px;
+    height:400px;
     width:auto;
     margin:auto;
 }
@@ -33,6 +33,12 @@
 .skills__gap {
     margin: 0;
     height: 200vh;
+}
+
+.skills__picDescription {
+    color: #42a5f5;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 
@@ -143,8 +149,10 @@
 .skills__overview > p {
     border: 0 solid #000000;
     font-family: 'Poppins', sans-serif;
- //   font-size: 20px;
+    // font-size: 20px;
     color: #7c7c7c;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 
@@ -195,6 +203,8 @@
     font-family: 'Poppins', sans-serif;
     color: #7c7c7c;
     z-index: 1000;
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 
@@ -329,6 +339,14 @@ a.skills__info__doc:hover {
     .skills__diagram {
         width: 300px;
         height:auto;
+    }
+    .skills__overview > p {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .skills__picDescription {
+        margin-left: 5px;
+        margin-right: 5px;
     }
 }
 

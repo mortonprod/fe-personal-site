@@ -182,7 +182,7 @@ class Skills extends Component {
       return (
         <div className={"skills"}>
              <Helmet>
-                 <title>Freelance Web Designer | Alexander Morton</title>
+                 <title>Software Developer | Alexander Morton</title>
                 <meta name="description" content="Highlights of my skills and expertise." />
             </Helmet>
 	        <div style={{transform:'translateY(' + tran + 'px)'}} className={"skills__header"} >
@@ -214,12 +214,12 @@ class Skills extends Component {
                     Algebra and Geometry 
                 </h1>
                 <p>
-                    I understand linear algebra and geometry which allows me to derive equations which can describe a wide range of physical systems. 
+                    Using linear algebra and geometry I can derive equations which can describe a wide range of physical systems. 
                     I can then implement numerical methods to solve more complex equations which defy analytical methods.  
                 </p>
-                <p>
+                <i className={"skills__picDescription"}>
                   Below you can see some geometric representations of linear algebra used in charged particle tracking. If you would like to learn more contact me.  
-                </p>
+                </i>
                 <Slider {...settings}>
                   <div>
                     <img className={"skills__diagram"} src={alignRight} alt={"Alignment diagram."}/>
@@ -241,13 +241,13 @@ class Skills extends Component {
                     Statistics 
                 </h1>
                 <p>
-                  I experience applying statistics to a myriad of different datasets.
+                  I have experience applying different statistical models to a myriad of different datasets.
                   This can be used, among other things, to determine the statistical significance of a deviation between a prediction and an observed dataset
                   or it can be used to determine the most likely values of a set of parameters and their errors.       
                 </p>
-                <p>
-                    
-                </p>
+                <i className={"skills__picDescription"}>
+                   Below you can see the fitting of charge particles and modelling of exotic particles.   
+                </i>
                 <Slider {...settings}>
                   <div>
                     <img className={"skills__diagram"} src={beame3b1} alt={"Beam energy diagram."}/>
@@ -293,6 +293,9 @@ class Skills extends Component {
                         <p>
                             A fast, versatile server which can easily scale up as you expand your business.
                         </p>
+                        <p>
+                          I have experience in setting up safe and reliable server code which can serve a range of different assets. 
+                        </p>
                     </div>
                 </article>
                 <div className={"skills__gap skills__gap--small"}/>
@@ -308,6 +311,9 @@ class Skills extends Component {
                         <p>
                             I also use a series of other SEO and webmaster tools to make sure all my websites are functioning correctly. 
                         </p>
+                        <i className={"skills__picDescription"}>
+                            Check out Loch Lomond!   
+                        </i>
 	                </div>
 	                <div className={"skills__centreMedia"}>
 	                    <div id="map"></div>
@@ -329,6 +335,9 @@ class Skills extends Component {
 	                        You need to upload content before people can see it. I make uploading anything a breeze, 
                             designing you a single user interface, to your specification, which links to every aspect of maintaining your website.
 	                    </p>
+                        <i className={"skills__picDescription"}>
+                            Check out cool thing about VR!   
+                        </i>
 	                </div>
 	                <div className={"skills__centreMedia"}>
 	                    <YouTube video="i0aBEmzRE_U" autoplay="0" rel="0" modest="1" />,
@@ -348,6 +357,9 @@ class Skills extends Component {
                         <p>
                             Furthermore, you can specify exact how you want to visualise your data. Invaluable for complex data analysis.
                         </p>
+                        <i className={"skills__picDescription"}>
+                            Do you need to display the latest microsoft shares every 30s? Why not!   
+                        </i>
                     </div>
                     <div ref={(ref)=>{this.stockElement = ReactDOM.findDOMNode(ref)}} className={"skills__centreMedia"}>
                         <AsyncStock isShow={this.state.isShowStock} width={this.state.stocksChartInfo.width}

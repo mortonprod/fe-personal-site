@@ -35,8 +35,8 @@ let processProps = {
         {
             title:understand,
             info:[
-                "First I need to get a handle the problem you currently have. You need to give me a quick explanations of what you want done with a link to the current code base you are working with.",
-                "This might be single page of details and a link to your current github repository. It will also require me to synergize with member of your current team.",
+                "First I need to get a handle on the problem you currently have. You need to give me a quick explanation of what you want with a link to the current code base you are working with.",
+                "This might be single page of details and a link to your current github repository and require me to synergize with member of your current team.",
                 "Once I have a grasp of what you require we can decide on a set of goals to achieve in an allotted time scale."
             ]
         },
@@ -44,7 +44,7 @@ let processProps = {
             title:iterate,
             info:[
                 "I will begin to complete the task set. Current progress can be constantly tracked on github or any other platform you use for code management and issue tracking.",
-                "I allow for goals to me change changed as the project progresses but this must be in keeping with previous goals and can't be additional requests",
+                "I allow for goals to change as the project progresses but this must be in keeping with previous goals and can't be additional requests",
                 "Additionally, I document all my work as a standard and will even put this documentation online for you if requested. This makes your life and the life of your future developers easier."
             ]
         },
@@ -154,8 +154,6 @@ class Home extends Component {
                         <Scrollchor animate={{offset: -50, duration: 1000}} to={"details"}>Skip to the Details</Scrollchor>
                     </div>
                 </TitlePicInfo>
-
-                <div className={"home__gap home__gap--small"}/>
                 <article className={"home__problems"}>
                     <div className={"home__problem"}>
                         
@@ -181,7 +179,7 @@ class Home extends Component {
                             Data Analysis
                         </h1>
                         <p>
-                            I can understand most advanced mathematics and physical systems quickly to solve any problem you currently have. 
+                            I can understand most advanced mathematics and physical systems to quickly solve any problem you currently have. 
                         </p>
                         <p>
                             This may be implementing numerical methods to solve differential equations or perform CPU intensive data analysis.
@@ -427,9 +425,9 @@ let startInfo = {
     title:"So you have a problem...",
     pic:help,
     paragraphs:[
-        "You may need a simple website or a full-fledged web application. You many need software to produce, analyse or model data. You may even need both. In any case I would love to hear from you.",
+        "You may need a simple website or a full-fledged web application. You many need software to produce, analyse or model data. You may even need both. In any case, I would love to hear from you.",
         "I have experience in a variety of different fields, programming languages and frameworks. So I may be able to solve your current issues and save you hiring a team of people to do a job.",
-        "If this sound like you then continue reading or skip to the details of my services"
+        "If this sound like you then continue reading or skip to the details of my services."
     ]
 }
 
