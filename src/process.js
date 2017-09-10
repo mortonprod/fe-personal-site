@@ -33,14 +33,19 @@ export default class Process extends Component {
                 )
             });
             return (
-                <article key={i} className={"process__item"}>
-                    <div className={"process__left"}>
-                        <img src={el.title} alt={"design"}/>
-                    </div>
-                    <div className={"process__right"}>
-                        {para}
-                    </div>
-                </article>
+                <div>
+                    <article key={i} className={"process__item"}>
+                        <div className={"process__left"}>
+                            <img src={el.title} alt={"design"}/>
+                        </div>
+                        <div className={"process__right"}>
+                            {para}
+                        </div>
+
+                    </article>
+
+                    <hr className="process__line"/>
+                </div>
             )
         });
         return (
@@ -49,6 +54,7 @@ export default class Process extends Component {
                     {this.props.titleInfo}
                 </h1>
                 {list}
+
             </section>
             
         )

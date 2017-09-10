@@ -6,7 +6,7 @@
     overflow:auto;
 }
 
-#squares{
+#details{
     position:relative;
     z-index:1000;
 }

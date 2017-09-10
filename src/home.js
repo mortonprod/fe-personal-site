@@ -19,7 +19,45 @@ import mail from "./assets/mail.png";
 import Squares from "./squares";
 import Process from "./process";
 import TitlePicInfo from "./titlePicInfo/titlePicInfo";
+import understand from "./assets/Understand.svg";
+import iterate from "./assets/Iterate.svg";
+import guarantee from "./assets/Guarantee.svg";
 import './home.css';
+
+
+
+let processProps = {
+    title:null,
+    titleInfo:"Designing Software in Three steps",
+    list:[
+        {
+            title:understand,
+            info:[
+                "First I need to get a handle the problem you currently have. You need to give me a quick explanations of what you want done with a link to the current code base you are working with.",
+                "This might be single page of details and a link to your current github repository. It will also require me to synergize with member of your current team.",
+                "Once I have a grasp of what you require we can decide on a set of goals to achieve in an allotted time scale."
+            ]
+        },
+        {
+            title:iterate,
+            info:[
+                "I will begin to complete the task set. Current progress can be constantly tracked on github or any other platform you use for code management and issue tracking.",
+                "I allow for goals to me change changed as the project progresses but this must be in keeping with previous goals and can't be additional requests",
+                "Additionally, I document all my work as a standard and will even put this documentation online for you if requested. This makes your life and the life of your future developers easier."
+            ]
+        },
+        {
+            title:guarantee,
+            info:[
+                "It is mutually beneficial to me and my clients for my work to perform well over the time scale you require it",
+                "Therefore, I guarantee all my clients that I will not ignore any future concerns my code base my cause.",
+                "This includes follow up meeting if you need me to pass on my work to any future developers you may have."
+            ]
+        }
+    ]
+}
+
+
 
 
 /** 
@@ -110,6 +148,9 @@ export default class Home extends Component {
 	            </div>
                 <div className={"home__gap"}/>
                 <TitlePicInfo info={startInfo}>
+                    <div className="titlePicInfo__scroll">
+                        <Scrollchor animate={{offset: -50, duration: 1000}} to={"details"}>Skip to the Details</Scrollchor>
+                    </div>
                 </TitlePicInfo>
 
                 <div className={"home__gap home__gap--small"}/>
@@ -129,7 +170,7 @@ export default class Home extends Component {
                             I am not a designer by trade but my development skills allow me to get the most out of modern browsers to impress your users.
                         </p>
                         <div className="titlePicInfo__scroll">
-                            <Scrollchor to={"squares"}>Learn More</Scrollchor>
+                            <Scrollchor animate={{offset: -50, duration: 1000}} to={"web"}>Learn More</Scrollchor>
                         </div>
                     </div>
                     <div className={"skills__info"}>
@@ -147,7 +188,7 @@ export default class Home extends Component {
                             Additionally, if you need a piece of code debugging then I am always happy to help.
                         </p>
                         <div className="titlePicInfo__scroll">
-                            <Scrollchor to={"squares"}>Learn More</Scrollchor>
+                            <Scrollchor animate={{offset: -50, duration: 1000}} to={"analysis"}>Learn More</Scrollchor>
                         </div>
                     </div>
                 </article>
@@ -155,8 +196,14 @@ export default class Home extends Component {
 
 
                 <div className={"home__gap home__gap--small"}/>
-                <Process/> 
-                <div id={"squares"}>
+                <div id={"web"}>
+                    <Process/>
+                </div>
+                <div className={"home__gap home__gap--small"}/>
+                <div id={"analysis"}>
+                    <Process {...processProps}/>
+                </div> 
+                <div id={"details"}>
 		            <Squares  title={"More Details"} isShow={this.state.isShow[0]} isLeft={true} ref={(ref)=>{this.squares.push(ReactDOM.findDOMNode(ref))}}>
 		                <Square title={design.title} pic={design.pic} parts={design.parts}/>
 				        <Square title={seo.title} pic={seo.pic} parts={seo.parts}/>
@@ -178,6 +225,8 @@ Home.defaultProps = {
     subTitle:"Web Developer",
     titleFont:"Lobster"
 }
+
+
 
 
 /**
@@ -378,7 +427,7 @@ let startInfo = {
     paragraphs:[
         "You may need a website or have some data which needs analysed, or both",
         "I have experience in a variety of different fields so I maybe able to save you hiring a team of people to do a job",
-        "If this sound like you then continue on..."
+        "If this sound like you then continue on reading or skip to the details of my services"
     ]
 }
 
