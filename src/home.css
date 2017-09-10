@@ -135,8 +135,27 @@
 }
 
 
+.home__problem > h1 {
+    font-size: 2em;
+    width: 100%;
+    margin: 5px;
+    font-family: 'Poppins', sans-serif;
+    color: #7a7a7a;
+    text-decoration: underline;
+    text-decoration-color: #42a5f5;
+}
 
 
+
+.home__problem > p {
+    //font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    color: #7c7c7c;
+    z-index: 1000;
+    margin: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
 
 
 @media (max-width:700px){

@@ -7,7 +7,7 @@ import * as _ from "lodash";
 import google from "./assets/google.svg";
 import youtube from "./assets/youtube.svg";
 import boy from "./assets/boy.svg";
-import portfolioLogo from "./assets/portfolioLogo.svg";
+import portfolioLogo from "./assets/portfolioLogo.png";
 import branding from "./assets/branding.svg";
 import reactIcon from "./assets/reactIcon.svg";
 import nodeIcon from "./assets/nodejs-icon.svg";
@@ -16,12 +16,39 @@ import format from "./assets/formats.svg";
 import cms from "./assets/cms.svg";
 import services from "./assets/services.svg";
 import docs from "./assets/docs.svg";
+import alignRight from "./assets/alignment-rightSide.png";
+import alignBigger from "./assets/alignmentBigger.png";
+import scatterDown from "./assets/scatterDownZProjection.png";
+import scatterXYZ from "./assets/scatteringProjectionXYZ.png";
+
+import beame3b1 from "./assets/beamE3B1-1.png";
+import beame5b1 from "./assets/beamE5B1-1.png";
+import chie5b1 from "./assets/chi2E5B1-1.png";
+import drmean from "./assets/dr-mean-all-pT-GA-Log-1.png";
+
+
 import asyncComponent from "./asyncComponent";
+import Slider from 'react-slick';
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "./skills.css";
 
 const AsyncStock = asyncComponent(() => import('./stocks'));
 const AsyncPieChart = asyncComponent(() => import('./pieChart'));
 
+
+/**
+    Settings of Slider.
+*/
+var settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay:true
+};
 
 
 
@@ -168,7 +195,7 @@ export default class Skills extends Component {
                     Overview 
                 </h1>
                 <p>
-                    How my average day breaks down 
+                    How my average day breaks down if you integrated over my lifetime. 
                 </p>
                 <div ref={(ref)=>{this.pieElement = ReactDOM.findDOMNode(ref)}}>
                     <AsyncPieChart isShow={this.state.isShowPieChart} width={this.state.pieChartInfo.width}
@@ -178,6 +205,61 @@ export default class Skills extends Component {
                         labelRadius={this.state.pieChartInfo.labelRadius}
                     />
                 </div>
+            </section>
+            <div className={"skills__gap skills__gap--small"}/>
+            <section className={"skills__overview"}>
+                <h1>
+                    Algebra and Geometry 
+                </h1>
+                <p>
+                    I understand linear algebra and geometry which allows me to derive equations which can describe a wide range of physical systems. 
+                    I can then implement numerical methods to solve more complex equations which defy analytical methods.  
+                </p>
+                <p>
+                  Below you can see some geometric representations of linear algebra used in charged particle tracking. If you would like to learn more contact me.  
+                </p>
+                <Slider {...settings}>
+                  <div>
+                    <img className={"skills__diagram"} src={alignRight} alt={"Alignment diagram."}/>
+                  </div>
+                   <div>
+                    <img className={"skills__diagram"} src={alignBigger} alt={"Bigger alignment diagram."}/>
+                  </div>
+                  <div>
+                    <img className={"skills__diagram"} src={scatterXYZ} alt={"Scatter Diagram."}/>
+                  </div>
+                  <div>
+                    <img className={"skills__diagram"} src={scatterDown} alt={"Scatter Diagram looking down."}/>
+                  </div>
+                </Slider>
+            </section>
+            <div className={"skills__gap skills__gap--small"}/>
+            <section className={"skills__overview"}>
+                <h1>
+                    Statistics 
+                </h1>
+                <p>
+                  I experience applying statistics to a myriad of different datasets.
+                  This can be used, among other things, to determine the statistical significance of a deviation between a prediction and an observed dataset
+                  or it can be used to determine the most likely values of a set of parameters and their errors.       
+                </p>
+                <p>
+                    
+                </p>
+                <Slider {...settings}>
+                  <div>
+                    <img className={"skills__diagram"} src={beame3b1} alt={"Beam energy diagram."}/>
+                  </div>
+                   <div>
+                    <img className={"skills__diagram"} src={beame5b1} alt={"Beam energy diagram."}/>
+                  </div>
+                  <div>
+                    <img className={"skills__diagram"} src={chie5b1} alt={"Chi2 fit diagram."}/>
+                  </div>
+                  <div>
+                    <img className={"skills__diagram"} src={drmean} alt={"Radius diagram."}/>
+                  </div>
+                </Slider>
             </section>
             <div className={"skills__gap skills__gap--small"}/>
             <section>

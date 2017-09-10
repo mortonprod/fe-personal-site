@@ -2,16 +2,18 @@
     transform: translateX(0px);
     transition: all 1s;
     background-color: rgba(122, 128, 251,0.5);
-    margin:auto;
-    padding-bottom:100px;
+    margin: auto;
+    padding-bottom: 100px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .squares > h1 {
     margin-top: 0;
-    font-size: 5vw;
+    font-size: 2em;
     color: white;
     font-family: 'Poppins', sans-serif;
-    text-decoration: underline blue;
+    text-decoration: underline #42a5f5;
 }
 
 .squares__flex {
@@ -34,15 +36,18 @@
 @media (max-width:700px) {
 
     .squares > h1 {
-        font-size: 12vw;
+     //   font-size: 12vw;
+    }
+    .squares {
+        padding-left: 20px;
+        padding-right: 20px;
     }
 }
 
 
-@media (max-width:500px){
-
-    .squares > h1 {
-        font-size: 10vw;
+@media (max-width:400px){
+    .squares {
+        padding-left: 0px;
+        padding-right: 0px;
     }
-    
 }

@@ -27,10 +27,12 @@
     "react-router-transition": "^0.1.1",
     "react-scrollchor": "^4.0.0",
     "react-share": "^1.15.0",
+    "react-slick": "^0.15.4",
     "react-transition-group": "^2.1.0",
     "react-youtube": "^7.4.0",
     "rx": "^4.1.0",
     "scroll-into-view-if-needed": "^1.1.0",
+    "slick-carousel": "^1.7.1",
     "smoothscroll-polyfill": "^0.3.5",
     "vivus": "^0.4.1"
   },

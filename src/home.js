@@ -22,6 +22,8 @@ import TitlePicInfo from "./titlePicInfo/titlePicInfo";
 import understand from "./assets/Understand.svg";
 import iterate from "./assets/Iterate.svg";
 import guarantee from "./assets/Guarantee.svg";
+import help from "./assets/help.svg";
+import idea from "./assets/idea.svg";
 import './home.css';
 
 
@@ -139,8 +141,8 @@ export default class Home extends Component {
         return (
             <div className="home">
 	             <Helmet>
-	                 <title>Freelance Web Designer | Alexander Morton</title>
-	                <meta name="description" content="An introduction to the web development and design services I provide." />
+	                 <title>Software Developer | Alexander Morton</title>
+	                <meta name="description" content="An introduction to the services I provide." />
 	            </Helmet>
 	            <div style={{transform:'translateY(' + tran + 'px)'}} className={"home__header"} >
 	                <h1>My Services</h1>
@@ -155,7 +157,7 @@ export default class Home extends Component {
 
                 <div className={"home__gap home__gap--small"}/>
                 <article className={"home__problems"}>
-                    <div className={"skills__info"}>
+                    <div className={"home__problem"}>
                         
                         <h1>
                             Web Development
@@ -166,14 +168,14 @@ export default class Home extends Component {
                         <p>
                             Using react allows me to produce fast, highly interactive user interfaces for a variety of different purposes.
                         </p>
-                        <p style={{paddingBottom:"30px"}}>
+                        <p style={{paddingBottom:"0px"}}>
                             I am not a designer by trade but my development skills allow me to get the most out of modern browsers to impress your users.
                         </p>
                         <div className="titlePicInfo__scroll">
                             <Scrollchor animate={{offset: -50, duration: 1000}} to={"web"}>Learn More</Scrollchor>
                         </div>
                     </div>
-                    <div className={"skills__info"}>
+                    <div className={"home__problem"}>
                         
                         <h1>
                             Data Analysis
@@ -423,18 +425,18 @@ let security = {
 
 let startInfo = {
     title:"So you have a problem...",
-    pic:null,
+    pic:help,
     paragraphs:[
-        "You may need a website or have some data which needs analysed, or both",
-        "I have experience in a variety of different fields so I maybe able to save you hiring a team of people to do a job",
-        "If this sound like you then continue on reading or skip to the details of my services"
+        "You may need a simple website or a full-fledged web application. You many need software to produce, analyse or model data. You may even need both. In any case I would love to hear from you.",
+        "I have experience in a variety of different fields, programming languages and frameworks. So I may be able to solve your current issues and save you hiring a team of people to do a job.",
+        "If this sound like you then continue reading or skip to the details of my services"
     ]
 }
 
 
 let solutionInfo = {
     title:"The Solution.",
-    pic:null,
+    pic:idea,
     paragraphs:[
         "If you would like to learn more or think you would benefit from my services then send me an email"
     ]

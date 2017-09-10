@@ -175,7 +175,7 @@ export default class PieChart extends Component {
                     </label>
                     <label>
                         <input type="radio" name="dataset" value="1" onClick={(e)=>{this.change(2)}}  /> 
-                        Other
+                        Analysis
                     </label>
 	            </form>
                 <svg ref={svg => this.svg = svg}>

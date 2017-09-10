@@ -40,7 +40,8 @@
     left: 0;
     width: 280px;
     height: 280px;
-    background-image: url("./assets/square__background.svg");
+    //background-image: url("./assets/square__background.svg");
+    background-color: #42a5f5;
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 100% 100%;
@@ -78,8 +79,8 @@
 .square__layer > h1 {
     font-family: 'Lobster', cursive;
     text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
-    font-size: 30px;
-    color: #FFFFFF;
+    font-size: 2em;
+    color: white;
     transform: scale(1);
 }
 
@@ -90,8 +91,8 @@
 
 .square__layer > h3 {
     font-family: 'Poppins', sans-serif;
-    font-size: 25px;
-    color: #7a7a7a;
+  //  font-size: 25px;
+    color: white;
     width: 90%;
     margin: auto;
     margin-top: 10px;
@@ -100,8 +101,8 @@
 
 .square__layer > h4 {
     font-family: 'Poppins', sans-serif;
-    font-size: 17px;
-    color: #7c7c7c;
+  //  font-size: 17px;
+    color: white;
     width: 90%;
     margin: auto;
     margin-bottom: 20px;
@@ -111,7 +112,7 @@
 
 .square__list > h1 {
     font-family: 'Poppins', sans-serif;
-    font-size: 30px;
+   // font-size: 30px;
     color: white;
     transform: scale(1);
     transition: all 0.5s;
@@ -124,7 +125,7 @@
     padding: 0;
     margin: auto;
     list-style-type: none;
-    font-size: 20px;
+   // font-size: 20px;
     font-family: 'Poppins', sans-serif;
     color: white;
     display: block;
@@ -142,15 +143,23 @@
     top: 0;
     right: -100px;
     left: -100px;
-    background-image: linear-gradient(-180deg, #D9DCFF 0%, #B1B6FE 63%);
+    //background-image: linear-gradient(-180deg, #D9DCFF 0%, #B1B6FE 63%);
+    background-color:white;
     border: 1px solid #979797;
-    box-shadow: inset 2px -2px 2px 2px rgba(0,0,0,0.50), inset -2px 2px 2px 2px rgba(0,0,0,0.50);
+    box-shadow: inset 1px -1px 1px 1px rgba(0,0,0,0.50), inset -1px 1px 1px 1px rgba(0,0,0,0.50);
     z-index: 10000;
     max-width: 600px;
     transform: scale(0);
     transition: all 0.5s ease-in-out;
 }
 
+.square__list > h1, ul {
+    color: #7a7a7a;
+}
+
+.square__list >  ul {
+    color: #7a7a7a;
+}
 
 .square__list--show {
     transform: scale(1);
@@ -158,7 +167,7 @@
 
 .square__layer > button {
     transform: scale(1);
-    background: #EEFFCE;
+    background: white;
     border: 1px solid #7A80FB;
     box-shadow: 0 1px 2px rgba(0,0,0,0.15);
     transition: all 0.5s;
@@ -174,7 +183,7 @@
 
 .square__list > button {
     transform: scale(1);
-    background: #EEFFCE;
+    background: white;
     border: 1px solid #7A80FB;
     box-shadow: 0 1px 2px rgba(0,0,0,0.15);
     transition: all 0.5s;
@@ -192,10 +201,10 @@
         
     }
     .square__layer > h3 {
-        font-size: 25px;
+    //    font-size: 25px;
     }
 
     .square__layer > h4 {
-        font-size: 20px;
+    //    font-size: 20px;
     }
 }

@@ -38,8 +38,8 @@
     font-family: 'Poppins', sans-serif;
     color: #7a7a7a;
     text-decoration: underline;
-    text-decoration-color: #7A80FB;
-    font-size: 30px;
+    text-decoration-color: #42a5f5;
+    font-size: 2em;
     padding-bottom: 20px;
 }
 
@@ -109,9 +109,22 @@
     margin-bottom:10px;
 }
 
-@media (max-width:600px){
+
+
+
+@media (max-width:800px) {
+
+    .process__line {
+        width: 300px;
+    }
+}
+
+@media (max-width:600px) {
     .process__right {
         width: 300px;
     }
 
+    .process__line {
+        width: 300px;
+    }
 }

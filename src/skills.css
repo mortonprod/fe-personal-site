@@ -23,6 +23,13 @@
     }
 }
 
+.skills__diagram{
+    height:500px;
+    width:auto;
+    margin:auto;
+}
+
+
 .skills__gap {
     margin: 0;
     height: 200vh;
@@ -115,6 +122,7 @@
 .skills__overview {
     width:100vw;
     margin: auto;
+    padding-bottom:30px;
     background-color: white;
     border: 1px solid #000000;
     box-shadow: 5px 5px 4px 0 rgba(0,0,0,0.50);
@@ -122,20 +130,20 @@
 
 
 .skills__overview > h1 {
-    font-size: 70px;
+    font-size: 2em;
     width: 100%;
     margin: 5px;
     font-family: 'Poppins', sans-serif;
     color: #7a7a7a;
     text-decoration: underline;
-    text-decoration-color: #7A80FB;
+    text-decoration-color: #42a5f5;
 }
 
 
 .skills__overview > p {
     border: 0 solid #000000;
     font-family: 'Poppins', sans-serif;
-    font-size: 20px;
+ //   font-size: 20px;
     color: #7c7c7c;
 }
 
@@ -171,19 +179,19 @@
 
 
 .skills__info > h1 {
-    font-size: 40px;
+    font-size: 2em;
     width: 100%;
     margin: 5px;
     font-family: 'Poppins', sans-serif;
     color: #7a7a7a;
     text-decoration: underline;
-    text-decoration-color: #7A80FB;
+    text-decoration-color: #42a5f5;
 }
 
 
 
 .skills__info > p {
-    font-size: 20px;
+    //font-size: 20px;
     font-family: 'Poppins', sans-serif;
     color: #7c7c7c;
     z-index: 1000;
@@ -200,7 +208,7 @@
 
 
 a.skills__info__doc {
-    font-size: 25px;
+    //font-size: 25px;
     margin-bottom: 50px;
     display: block;
     transform:scale(1);
@@ -284,13 +292,13 @@ a.skills__info__doc:hover {
     }
 
     .skills__overview > h1 {
-        font-size: 50px;
+    //    font-size: 50px;
     }
     .skills__info {
         width: 100%;
     }
     .skills__info > h1{
-        font-size:35px;
+     //   font-size:35px;
     }
 
 
@@ -318,6 +326,10 @@ a.skills__info__doc:hover {
         width: 300px;
         height: 300px;
     }
+    .skills__diagram {
+        width: 300px;
+        height:auto;
+    }
 }
 
 
@@ -328,9 +340,12 @@ a.skills__info__doc:hover {
     }
 
     .skills > p {
-        font-size: 15px;
+     //   font-size: 15px;
     }
     .skills__info > p {
-        font-size: 15px;
+     //   font-size: 15px;
     }
 }
+
+
+
