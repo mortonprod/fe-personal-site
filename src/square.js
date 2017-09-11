@@ -79,12 +79,11 @@ class Square extends Component {
     */
     render(){
         let list = (
-            <div className={"square__list " + this.state.listModifier}>
+            <div onClick={this.clickHide.bind(this)} className={"square__list " + this.state.listModifier}>
                 <h1>How I Achieve This</h1>
                 <ul>
                     {this.state.elements}
                 </ul>
-                <button onClick={this.clickHide.bind(this)}>Show less</button>
             </div>
         )
         let articles = this.props.parts.map((el,i)=>{

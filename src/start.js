@@ -141,21 +141,17 @@ class Start extends Component{
 	                <meta name="description" content="A software developer helping businesses and individuals solve problems by developing a range of software solutions." />
 	            </Helmet>
                 {wel}
-		        <div className={"start__me"}>
-		            <img src={me} alt={"Me"}/>
-		            <p>
+                <img className={"start__pic"} src={me} alt={"Me"}/>
+                <div className={"start__me"}>
+                    <p>
                         I specialise in building <strong className={"start__strong"}>web applications</strong> and <strong className={"start__strong"}>data analysis</strong> tools.
                         I am well-versed in <strong className={"start__strong"}>C++</strong> and <strong className={"start__strong"}>javascript</strong> but I know a variety of other languages and frameworks, see my <Link to={"/skills"}>skills</Link> for some of the highlights.
-		            </p>
-		            <p>
-		                With a 1st class masters in theoretical physics. I have deep understanding of <strong className={"start__strong"}>mathematics</strong>, <strong className={"start__strong"}>physics</strong> and <strong className={"start__strong"}>numerical methods</strong>.
+                        With a 1st class masters in theoretical physics. I have deep understanding of <strong className={"start__strong"}>mathematics</strong>, <strong className={"start__strong"}>physics</strong> and <strong className={"start__strong"}>numerical methods</strong>.
 		            </p>
 		            <p>
 		                I would describe myself as <strong className={"start__strong"}>straight forward</strong>, <strong className={"start__strong"}>professional</strong> and <strong className={"start__strong"}>easy going</strong>.  However, I leave that up to you when you meet me.  If you would like to disagree <Link to={"/contact"}>contact me</Link>.
-		            </p>
-                    <p>
                         If you would like to quickly learn about me then check out my <a style={{color: '#42a5f5'}}  href={"/__cv"}>CV</a> or some of the papers I have contributed to.
-                    </p>
+		            </p>
                     <ul className={"start__links"}>
                         <li className={"start__link"}>
                             <a href={"http://eprints.gla.ac.uk/120050/"}>

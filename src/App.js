@@ -116,7 +116,7 @@ let Content = ({ match, location, history })=>{
 		    <footer className={"footer"}>
 		        <h4> 2017 © Alexander Morton </h4> 
 		        <strong> Freelance Web Designer and Developer</strong>
-		        <a href={"alex@alexandermorton.co.uk"}> alex@alexandermorton.co.uk </a>
+		        <a href={"mailto:alex@alexandermorton.co.uk"}> alex@alexandermorton.co.uk </a>
 		    </footer>
         </div>
 
@@ -128,7 +128,6 @@ let Content = ({ match, location, history })=>{
 let Main = ({ match, location, history }) => {
     return (
         <div className={"main"}>
-            <Snow/>
             <img className={"main__peak"} src={peak} alt={"mountain peak"}/>
 				<RouteTransition 
 					pathname={location.pathname}
@@ -140,7 +139,7 @@ let Main = ({ match, location, history }) => {
 			            <Route exact path={"/services"} component={Home}/>
 			            <Route exact path={"/work"} component={Work} />
 			            <Route exact path={"/skills"} component={Skills} />
-                        <Route exact path={"/contact"} render={(props)=>{ return <Contact {...props} Auth={Auth} />}} />
+                        <Route exact path={"/contact"} render={(props)=>{ return <div> <Snow/> <Contact {...props} Auth={Auth} /> </div>}} />
 			         </Switch>
 		        </RouteTransition>
         </div>

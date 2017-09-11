@@ -9,7 +9,7 @@
 }
 
 .start__strong {
-    color: #42a5f5;
+    color: #2C0EE8;
 }
 
 .start__links{
@@ -26,20 +26,20 @@
     text-decoration: none;
 }
 
-.start__me {
-    text-align: center;
-    margin: auto;
-    display: block;
-    margin-bottom: 10px;
-}
-
-
-
-.start__me  > img{
+.start__pic {
+    position:relative;
     width: 200px;
-    height:auto;
+    height: auto;
+    margin:auto;
+    display:block;
 }
-
+.start__me {
+    text-align: left;
+    margin: auto;
+    width:800px;
+    margin-bottom: 10px;
+    display: block;
+}
 
 .start__welcome {
     text-align: center;
@@ -112,7 +112,18 @@
     .start__info {
         left: 10px;
     }
+}
 
+@media (max-width:800px) {
 
+    .start__me {
+        width: 500px;
+    }
+}
 
+@media (max-width:500px) {
+
+    .start__me {
+        width: 300px;
+    }
 }

@@ -162,11 +162,11 @@ class Home extends Component {
                         </h1>
                         <p>
                             I develop react and node web applications. 
+                            React allows me to produce fast, highly interactive user interfaces for a variety of different purposes.
+                            Node allows me to build the backend of your application quickly with the versatility to create anything you need. 
+
                         </p>
-                        <p>
-                            Using react allows me to produce fast, highly interactive user interfaces for a variety of different purposes.
-                        </p>
-                        <p style={{paddingBottom:"0px"}}>
+                        <p style={{paddingBottom:"5px"}}>
                             I am not a designer by trade but my development skills allow me to get the most out of modern browsers to impress your users.
                         </p>
                         <div className="titlePicInfo__scroll">
@@ -179,13 +179,14 @@ class Home extends Component {
                             Data Analysis
                         </h1>
                         <p>
-                            I can understand most advanced mathematics and physical systems to quickly solve any problem you currently have. 
+                            I can understand most advanced mathematics and physical systems to quickly solve any problem you currently have.
+                            This may be implementing numerical methods to solve differential equations or perform CPU intensive data analysis. 
                         </p>
                         <p>
-                            This may be implementing numerical methods to solve differential equations or perform CPU intensive data analysis.
+                          Additionally, I can often produce equations which describe a range of systems before any analysis is performed. 
                         </p>
                         <p>
-                            Additionally, if you need a piece of code debugging then I am always happy to help.
+                            Finally, with years of development experience, if you need a piece of code debugging then I am always happy to help.
                         </p>
                         <div className="titlePicInfo__scroll">
                             <Scrollchor animate={{offset: -50, duration: 1000}} to={"analysis"}>Learn More</Scrollchor>
@@ -425,9 +426,7 @@ let startInfo = {
     title:"So you have a problem...",
     pic:help,
     paragraphs:[
-        "You may need a simple website or a full-fledged web application. You many need software to produce, analyse or model data. You may even need both. In any case, I would love to hear from you.",
-        "I have experience in a variety of different fields, programming languages and frameworks. So I may be able to solve your current issues and save you hiring a team of people to do a job.",
-        "If this sound like you then continue reading or skip to the details of my services."
+        "You may need a simple website or a full-fledged web application. You many need software to produce, analyse or model data. You may even need both. In any case, I would love to hear from you. I have experience in a variety of different fields, programming languages and frameworks. So I may be able to solve your current issues and save you hiring a team of people to do a job. If this sound like you then continue reading or skip to the details of my services."
     ]
 }
 
@@ -436,7 +435,7 @@ let solutionInfo = {
     title:"The Solution.",
     pic:idea,
     paragraphs:[
-        "If you would like to learn more or think you would benefit from my services then send me an email"
+        "If you would like to learn more about me or my previous work, or think you would benefit from any of my services then send me an email."
     ]
 }
 

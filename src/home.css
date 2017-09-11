@@ -38,8 +38,7 @@
 
 
 
-
-@keyframes moveIn {
+@keyframes moveInHome {
     0% {
         left: -100%;
     }
@@ -58,7 +57,7 @@
     margin: auto;
     opacity: 1;
     transition: opacity 2s;
-    animation: moveIn 1s forwards;
+    animation: moveInHome 1s forwards;
     overflow:auto;
     display:block;
 }
@@ -74,19 +73,19 @@
 
 
 .home__header > h1 {
-    font-size: 100px;
+    font-size: 50px;
     color: white;
     font-family: 'Raleway', sans-serif;
     width: 100%;
-    text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.50);
 }
 
 .home__header > h2 {
-    font-size: 70px;
+    font-size: 30px;
     color: white;
     font-family: 'Raleway', sans-serif;
     width: 100%;
-    text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.50);
 }
 
 .home__header > p {
@@ -99,7 +98,7 @@
 
 .home__gap {
     margin: 0;
-    height: 200vh;
+    height: 100vh;
 }
 
 
@@ -155,6 +154,7 @@
     margin: 5px;
     margin-left: 5px;
     margin-right: 5px;
+    text-align: left;
 }
 
 
@@ -167,10 +167,10 @@
        
     }
     .home__header > h1 {
-        font-size: 70px;
+        font-size: 40px;
     }
     .home__header > h2 {
-        font-size: 50px;
+        font-size: 20px;
     }
     .home__info > ul > li {
 

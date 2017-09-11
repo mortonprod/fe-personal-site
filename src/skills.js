@@ -188,7 +188,7 @@ class Skills extends Component {
 	        <div style={{transform:'translateY(' + tran + 'px)'}} className={"skills__header"} >
 	            <h1>My Skills</h1>
                 <h2>
-                    The Highlights...
+                    The Highlights
                 </h2>
             </div>
             <div className={"skills__gap"}/>
@@ -235,7 +235,6 @@ class Skills extends Component {
                   </div>
                 </Slider>
             </section>
-            <div className={"skills__gap skills__gap--small"}/>
             <section className={"skills__overview"}>
                 <h1>
                     Statistics 
@@ -298,10 +297,9 @@ class Skills extends Component {
                         </p>
                     </div>
                 </article>
-                <div className={"skills__gap skills__gap--small"}/>
 	            <article className={"skills__skill"}>
 	                <div className={"skills__info"}>
-	                    <img src={google} alt={"google maps"}/>
+	                    <img style={{marginTop:"40px",marginLeft:"20px"}} src={google} alt={"google maps"}/>
 		                <h1>
 	                        Tools
 		                </h1>
@@ -319,10 +317,9 @@ class Skills extends Component {
 	                    <div id="map"></div>
 	                </div>
 	            </article>
-                <div className={"skills__gap skills__gap--small"}/>
 	            <article className={"skills__skill"}>
 	                <div className={"skills__info"}>
-	                    <img src={cms} alt={"media"}/>
+	                    <img style={{marginTop:"20px"}} src={cms} alt={"media"}/>
 	                    <h1>
 	                        Content Management
 	                    </h1>
@@ -343,7 +340,6 @@ class Skills extends Component {
 	                    <YouTube video="i0aBEmzRE_U" autoplay="0" rel="0" modest="1" />,
 	                </div>
 	            </article>
-                <div className={"skills__gap skills__gap--small"}/>
                 <article className={"skills__skill"}>
                     <div className={"skills__info"}>
                         <img src={services} alt={"media"}/>
@@ -367,8 +363,8 @@ class Skills extends Component {
                             margin={this.state.stocksChartInfo.margin}
                         />
                     </div>
-                </article> 
-                <div className={"skills__gap skills__gap--small"}/>
+                </article>
+                <div className={"skills__gap skills__gap--small"}/> 
                 <article className={"skills__skill"}>
                     <div className={"skills__info"}>
                         <img src={docs} alt={"media"}/>
@@ -384,8 +380,8 @@ class Skills extends Component {
                         </p>
                         <a style={{color: 'lightblue'}} className={"skills__info__doc"} href={"/__documentation/frontend/"}> See How This Site Works </a>
                     </div>
-                </article> 
-                <div className={"skills__gap skills__gap--small"}/>
+                </article>
+                <div className={"skills__gap skills__gap--small"}/> 
                 <article className={"skills__skill"}>
                     <div className={"skills__info"}>
                         <img src={format} alt={"media"}/>
@@ -407,31 +403,14 @@ class Skills extends Component {
                             I can also use the browsers canvas to render pixel by pixel images. 
                             This is particularly useful for CPU intensive applications like javascript games.  
                         </p>
+                        <i className={"skills__picDescription"}>
+                            Check out drawing a svg image line by line.   
+                        </i>
                     </div>
                     <div ref={(ref)=>{this.writeElement = ReactDOM.findDOMNode(ref)}} className={"skills__centreMedia"}>
                         {writeMe}
                     </div>
                 </article>
-                <div className={"skills__gap skills__gap--small"}/>
-	            <article className={"skills__skill"}>
-	                <div className={"skills__info"}>
-	                    <img src={branding} alt={"individual"}/>
-	                    <h1>
-	                        Creating a brand
-	                    </h1>
-	                    <p>
-	                        Create Logos, posters and stationary, 
-                            giving you the freedom to design your own store front. 
-                            So you can convey to your customers that your business is special and not just another template.
-	                    </p>
-	                    <p>
-                            Basically, the skys the limit, if you can draw it then I should be able to render it on a website for you. This is not always true, but it usually is. 
-	                    </p>
-	                </div>
-	                <div className={"skills__centreMedia"}>
-	                    <img id={"portfolioLogo"} src={portfolioLogo} alt={"portfolio logo"}/>
-	                </div>
-	            </article>
             </section>
         </div>
       )

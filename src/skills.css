@@ -13,7 +13,7 @@
 }
 
 
-@keyframes moveIn {
+@keyframes moveInSkill {
     0% {
         left: -100%;
     }
@@ -32,16 +32,15 @@
 
 .skills__gap {
     margin: 0;
-    height: 200vh;
+    height: 100vh;
 }
-
 .skills__picDescription {
     color: #42a5f5;
     margin-left: 50px;
     margin-right: 50px;
+    margin-bottom:20px;
+    display:block;
 }
-
-
 
 .skills__gap.skills__gap--small {
     height: 30vh;
@@ -51,34 +50,33 @@
 
 .skills__header {
     position: fixed;
-    top: 30%;
+    top: 10%;
     width: 90%;
     left: 5%;
     z-index: 100;
     margin: auto;
     opacity: 1;
     transition: opacity 2s;
-    animation: moveIn 1s forwards;
+    animation: moveInSkill 1s forwards;
+    overflow: auto;
     display: block;
 }
 
 
 .skills__header > h1 {
-    font-size: 100px;
+    font-size: 50px;
     color: white;
     font-family: 'Raleway', sans-serif;
     width: 100%;
-    margin: 5px;
-    text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.50);
 }
 
 .skills__header > h2 {
-    font-size: 70px;
+    font-size: 30px;
     color: white;
     font-family: 'Raleway', sans-serif;
     width: 100%;
-    margin: 5px;
-    text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.50);
 }
 
 
@@ -120,7 +118,7 @@
     width: 100vw;
     margin: auto;
     background-color:white;
-    border: 1px solid #000000;
+    //border: 1px solid #000000;
     z-index:200;
     display: flex;
 }
@@ -130,15 +128,16 @@
     margin: auto;
     padding-bottom:30px;
     background-color: white;
-    border: 1px solid #000000;
-    box-shadow: 5px 5px 4px 0 rgba(0,0,0,0.50);
+    border:none;
+    //border: 1px solid #000000;
+    //box-shadow: 5px 5px 4px 0 rgba(0,0,0,0.50);
 }
-
 
 .skills__overview > h1 {
     font-size: 2em;
     width: 100%;
     margin: 5px;
+    margin-top:0;
     font-family: 'Poppins', sans-serif;
     color: #7a7a7a;
     text-decoration: underline;
@@ -203,8 +202,8 @@
     font-family: 'Poppins', sans-serif;
     color: #7c7c7c;
     z-index: 1000;
-    margin-bottom: 5px;
-    margin-top: 5px;
+    margin:5px;
+    text-align: left;
 }
 
 
@@ -294,11 +293,11 @@ a.skills__info__doc:hover {
         font-size: 50px;
     }
     .skills__header > h1 {
-        font-size: 70px;
+        font-size: 40px;
     }
 
     .skills__header > h2 {
-        font-size: 50px;
+        font-size: 20px;
     }
 
     .skills__overview > h1 {
@@ -349,7 +348,6 @@ a.skills__info__doc:hover {
         margin-right: 5px;
     }
 }
-
 
 @media (max-width:400px) {
 

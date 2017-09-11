@@ -1,5 +1,6 @@
 import React,{Component} from "react";
 import axios from "axios";
+import Helmet from 'react-helmet';
 import scrollIntoViewIfNeeded from 'scroll-into-view-if-needed'
 import "./contact.css"
 const store = window.store;
