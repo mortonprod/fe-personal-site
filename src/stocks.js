@@ -52,7 +52,6 @@ class Stocks extends Component {
         let all = []
         for(let key in data["Time Series (1min)"]){
             if(index < this.props.timeDomain || isGetAll ){
-                console.log("key " + key);
 	            open.push(Number(data["Time Series (1min)"][key]["1. open"]));
 	            high.push(Number(data["Time Series (1min)"][key]["2. high"]));
 	            low.push(Number(data["Time Series (1min)"][key]["3. low"]));

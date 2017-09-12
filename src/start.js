@@ -145,7 +145,7 @@ class Start extends Component{
                 <div className={"start__me"}>
                     <p>
                         I specialise in building <strong className={"start__strong"}>web applications</strong> and <strong className={"start__strong"}>data analysis</strong> tools.
-                        I am well-versed in <strong className={"start__strong"}>C++</strong> and <strong className={"start__strong"}>javascript</strong> but I know a variety of other languages and frameworks, see my <Link to={"/skills"}>skills</Link> for some of the highlights.
+                        I am well-versed in <strong className={"start__strong"}>C++</strong> and <strong className={"start__strong"}>Javascript</strong> but I know a variety of other languages and frameworks, see my <Link to={"/skills"}>skills</Link> for some of the highlights.
                         With a 1st class masters in theoretical physics. I have deep understanding of <strong className={"start__strong"}>mathematics</strong>, <strong className={"start__strong"}>physics</strong> and <strong className={"start__strong"}>numerical methods</strong>.
 		            </p>
 		            <p>

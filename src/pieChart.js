@@ -92,7 +92,7 @@ class PieChart extends Component {
 	    return (x > 0) ? "start" : "end";
     }
     createLegend(name){
-        console.log("run");
+
         d3.selectAll(".label").remove();
         let labels = d3.select(this.legend);
         let enteringLabels = labels.selectAll(".label").data(this.pie(this.props.section)).enter();
@@ -100,7 +100,7 @@ class PieChart extends Component {
         let labelGroups = enteringLabels.append("g").attr("class", "label");
         labelGroups.append("circle").attr("x", 0).attr("y", 0).attr("r", 2).attr("fill", "#000")
             .attr("transform", (d, i) =>{
-                console.log("d" + JSON.stringify(d) +  this.arc.centroid(d));
+
                 //let centroid = this.arc.centroid(d);
                 return "translate(" + this.arc.centroid(d) + ")";
             }).attr('class', "label-circle");
@@ -126,7 +126,7 @@ class PieChart extends Component {
             .attr('text-anchor', (d,i)=>{ return this.setAnchor(d,i)})
             .attr('class', 'label-text')
             .text(function (d) {
-                console.log(d.data[name].name);
+
                 return d.data[name].name
             });
 

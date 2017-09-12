@@ -44,7 +44,7 @@ class Snow extends Component {
         let ctx = this.canvas.getContext("2d")
         requestAnimationFrame(()=>{this.draw(ctx)});
     }else{
-        console.log("Canvas is null");
+
     }
   }
   /**

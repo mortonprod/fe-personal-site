@@ -26,7 +26,6 @@ export default (function(){
     function setPermissions(){
         if(!navigator.userAgent.includes("Node.js") && !navigator.userAgent.includes("jsdom")){
 			Notification.requestPermission(function(status) {
-			    console.log('Notification permission status:', status);
 		    });
 	        notify("Welcome Back. Notifications Enabled.");
         }

@@ -63,14 +63,14 @@ class Contact extends Component{
 			            return reg.sync.register('outbox');
 		            }).catch(function(messages){
 			            axios.post("/contact",message).then((res) => {
-			                console.log("Contact recieved?: " + JSON.stringify(res.data));
+
 			            });
 		            })
                 }else{
                 }
             }).catch(()=>{
                     axios.post("/contact",message).then((res) => {
-                        console.log("Contact recieved?: " + JSON.stringify(res.data));
+
                     });
             });
         }

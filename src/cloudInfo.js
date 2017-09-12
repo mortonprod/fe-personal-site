@@ -23,7 +23,7 @@ export default class CloudInfo extends Component {
   scroll(event){
     if(this.ref){
         let pos = this.ref.getBoundingClientRect(); 
-        console.log("top pos: " + pos.top);
+
         if(pos.top < window.innerHeight*(4/5)){//If below middle of screen
             if(!this.state.isShow){//If not shown yet then expose.
                 this.setState({isShow: true});
@@ -65,7 +65,7 @@ export default class CloudInfo extends Component {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;;
     let windowHeight = window.innerHeight;
     this.setState({opacity:scrollTop/windowHeight});
-    console.log("top/window cloudInfo: " + scrollTop + " " + windowHeight);
+
   }
   componentDidMount(){
     window.addEventListener('scroll', this.scroll.bind(this));

@@ -48,7 +48,6 @@ export default class Auth {
         history.replace('/services');
       } else if (err) {
         history.replace('/services');
-        console.log(err);
       }
     });
   };
@@ -90,9 +89,6 @@ export default class Auth {
 	    if(typeof localStorage !=="undefined"){ //So we can render on the server
 		    if(localStorage.getItem('access_token') !==null){
 		        auth.client.userInfo(localStorage.getItem('access_token'), (err, profile) => {
-	                if(err){
-	                    console.log("Error: " + err);
-	                }
 		            if (profile) {
 	                    Auth.userProfile = profile;
 	                    cb(err,profile);

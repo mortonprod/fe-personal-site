@@ -10,11 +10,11 @@
     }
 }
 .asyncComponent > h2 {
-    font-size: 50px;
-    color: blue;
-    font-family: 'Lobster', cursive;
+    font-size: 30px;
+    color: #42a5f5;
+    font-family: 'Raleway', sans-serif;
     width: 100%;
     margin: 5px;
-    text-shadow: 5px 5px 4px rgba(0,0,0,0.50);
-    animation:inOut 2s infinite;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.50);
+    animation: inOut 2s infinite;
 }

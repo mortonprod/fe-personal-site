@@ -16,6 +16,7 @@ import format from "./assets/formats.svg";
 import cms from "./assets/cms.svg";
 import services from "./assets/services.svg";
 import docs from "./assets/docs.svg";
+
 import alignRight from "./assets/alignment-rightSide.png";
 import alignBigger from "./assets/alignmentBigger.png";
 import scatterDown from "./assets/scatterDownZProjection.png";
@@ -29,14 +30,12 @@ import drmean from "./assets/dr-mean-all-pT-GA-Log-1.png";
 
 import asyncComponent from "./asyncComponent";
 
-import Slider from 'react-slick';
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import "./skills.css";
 
 const AsyncStock = asyncComponent(() => import('./stocks'));
 const AsyncPieChart = asyncComponent(() => import('./pieChart'));
+const AsyncDiagram = asyncComponent(() => import('./sliderDiagram'));
 
 
 /**
@@ -111,13 +110,13 @@ class Skills extends Component {
    constructor(props){
     super();
     if(window.innerWidth < 500){
-        this.state = {scrollTop:0,profile:null,pieChartInfo:pieChartSmall,stocksChartInfo:stocksSmall,isShowStock:false,isShowPieChart:false};
+        this.state = {scrollTop:0,profile:null,pieChartInfo:pieChartSmall,stocksChartInfo:stocksSmall,isShowStock:false,isShowPieChart:false,isShowDiagram1:false,isShowDiagram2:false};
     }else{
-        this.state = {scrollTop:0,profile:null,pieChartInfo:pieChartBig,stocksChartInfo:stocksBig,isShowStock:false,isShowPieChart:false};
+        this.state = {scrollTop:0,profile:null,pieChartInfo:pieChartBig,stocksChartInfo:stocksBig,isShowStock:false,isShowPieChart:false,isShowDiagram1:false,isShowDiagram2:false};
     }
     this.scroll = _.throttle(this.scroll,100,{leading:false,trailing:true});
     //Auth.addSetState(this.setState.bind(this));
-    this.resize = _.debounce(this.resize,200,{leading:false,trailing:true});
+    this.resize = _.debounce(this.resize,500,{leading:false,trailing:true});
    }
    scroll(event){
         //if(document.body.scrollLeft !== 0 ){
@@ -145,6 +144,18 @@ class Skills extends Component {
             let pos = this.pieElement.getBoundingClientRect();
             if(pos.top < window.innerHeight*(1/2)){
                 this.setState({isShowPieChart:true});
+            }
+        }
+        if(this.diagramElement1){
+            let pos = this.diagramElement1.getBoundingClientRect();
+            if(pos.top < window.innerHeight*(1/2)){
+                this.setState({isShowDiagram1:true});
+            }
+        }
+        if(this.diagramElement2){
+            let pos = this.diagramElement2.getBoundingClientRect();
+            if(pos.top < window.innerHeight*(1/2)){
+                this.setState({isShowDiagram2:true});
             }
         }
     }
@@ -220,20 +231,9 @@ class Skills extends Component {
                 <i className={"skills__picDescription"}>
                   Below you can see some geometric representations of linear algebra used in charged particle tracking. If you would like to learn more contact me.  
                 </i>
-                <Slider {...settings}>
-                  <div>
-                    <img className={"skills__diagram"} src={alignRight} alt={"Alignment diagram."}/>
-                  </div>
-                   <div>
-                    <img className={"skills__diagram"} src={alignBigger} alt={"Bigger alignment diagram."}/>
-                  </div>
-                  <div>
-                    <img className={"skills__diagram"} src={scatterXYZ} alt={"Scatter Diagram."}/>
-                  </div>
-                  <div>
-                    <img className={"skills__diagram"} src={scatterDown} alt={"Scatter Diagram looking down."}/>
-                  </div>
-                </Slider>
+                <div ref={(ref)=>{this.diagramElement1 = ReactDOM.findDOMNode(ref)}}>
+                  <AsyncDiagram isShow={this.state.isShowDiagram1} settings={settings} imgs={[alignRight,alignBigger,scatterXYZ,scatterDown]}/>
+                </div>
             </section>
             <section className={"skills__overview"}>
                 <h1>
@@ -245,22 +245,11 @@ class Skills extends Component {
                   or it can be used to determine the most likely values of a set of parameters and their errors.       
                 </p>
                 <i className={"skills__picDescription"}>
-                   Below you can see the fitting of charge particles and modelling of exotic particles.   
+                   Below you can see the fitting of charge particles and modeling of exotic particles.   
                 </i>
-                <Slider {...settings}>
-                  <div>
-                    <img className={"skills__diagram"} src={beame3b1} alt={"Beam energy diagram."}/>
-                  </div>
-                   <div>
-                    <img className={"skills__diagram"} src={beame5b1} alt={"Beam energy diagram."}/>
-                  </div>
-                  <div>
-                    <img className={"skills__diagram"} src={chie5b1} alt={"Chi2 fit diagram."}/>
-                  </div>
-                  <div>
-                    <img className={"skills__diagram"} src={drmean} alt={"Radius diagram."}/>
-                  </div>
-                </Slider>
+                <div ref={(ref)=>{this.diagramElement2 = ReactDOM.findDOMNode(ref)}}>
+                  <AsyncDiagram isShow={this.state.isShowDiagram2} settings={settings} imgs={[beame3b1,beame5b1,chie5b1,drmean]}/>
+                </div>
             </section>
             <div className={"skills__gap skills__gap--small"}/>
             <section>
@@ -287,7 +276,7 @@ class Skills extends Component {
                             Node
                         </h1>
                         <p>
-                            Node lets me use javascript in creating your server, breaking down the boundary between browser and server.
+                            Node lets me use Javascript in creating your server, breaking down the boundary between browser and server.
                         </p>
                         <p>
                             A fast, versatile server which can easily scale up as you expand your business.
@@ -304,7 +293,7 @@ class Skills extends Component {
 	                        Tools
 		                </h1>
 	                    <p>
-	                        I can integrate google maps, analytics and adwords into your web application. 
+	                        I can integrate Google maps, analytics and Adwords into your web application. 
 	                    </p>
                         <p>
                             I also use a series of other SEO and webmaster tools to make sure all my websites are functioning correctly. 
@@ -354,7 +343,7 @@ class Skills extends Component {
                             Furthermore, you can specify exact how you want to visualise your data. Invaluable for complex data analysis.
                         </p>
                         <i className={"skills__picDescription"}>
-                            Do you need to display the latest microsoft shares every 30s? Why not!   
+                            Do you need to display the latest Microsoft shares every 30s? Why not!   
                         </i>
                     </div>
                     <div ref={(ref)=>{this.stockElement = ReactDOM.findDOMNode(ref)}} className={"skills__centreMedia"}>
@@ -396,12 +385,12 @@ class Skills extends Component {
                             I then export the appropriate resources for each component of the user interface. 
                         </p>
                         <p>
-                            I employ javascript frameworks and libraries to interact with each component. 
+                            I employ Javascript frameworks and libraries to interact with each component. 
                             This includes svg components using libraries like d3 and vivus. Useful for creating charts or even simulated drawing on the screen.
                         </p>
                         <p>
                             I can also use the browsers canvas to render pixel by pixel images. 
-                            This is particularly useful for CPU intensive applications like javascript games.  
+                            This is particularly useful for CPU intensive applications like Javascript games.  
                         </p>
                         <i className={"skills__picDescription"}>
                             Check out drawing a svg image line by line.   

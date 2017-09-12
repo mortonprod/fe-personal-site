@@ -49,7 +49,7 @@ class App extends Component {
 App.defaultProps = {
     isloading:true,
     cbAnimation: function(){
-        console.log("Default cbAnimation call")
+
     }
 }
 

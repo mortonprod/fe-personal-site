@@ -21,7 +21,7 @@ class Squares extends Component {
                 modifier = "squares--right";
             }
         }
-        console.log("show props: " + this.props.isShow + " modifier " + modifier);
+
         return (
             <div className={"squares " + modifier}>
                 <h1>{this.props.title}</h1>

@@ -137,7 +137,7 @@ class Home extends Component {
     */
     render(){
         let tran = -1*this.state.scrollTop*0.2;
-        console.log("show: " + this.state.isShow[0]);
+
         return (
             <div className="home">
 	             <Helmet>
@@ -414,7 +414,7 @@ let security = {
             title:"Accounts",
             subTitle:"Interact with your app securely anyway you want.",
             list:[
-                "Use google facebook or any other service to login.",
+                "Use Google facebook or any other service to login.",
                 "Only store user information if needed and defer to external providers.",
                 "Send and store passwords safely on your server."
             ]

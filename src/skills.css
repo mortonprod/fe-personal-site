@@ -23,13 +23,6 @@
     }
 }
 
-.skills__diagram{
-    height:400px;
-    width:auto;
-    margin:auto;
-}
-
-
 .skills__gap {
     margin: 0;
     height: 100vh;
@@ -334,10 +327,6 @@ a.skills__info__doc:hover {
     .skills__centreMedia {
         width: 300px;
         height: 300px;
-    }
-    .skills__diagram {
-        width: 300px;
-        height:auto;
     }
     .skills__overview > p {
         margin-left: 5px;

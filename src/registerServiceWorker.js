@@ -5,7 +5,7 @@ import {serviceWorker} from "./workerService";
     Update App state when particular event handlers called. 
     @function
 */
-console.log("Service Worker Entry...");
+
 export default function register() {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     serviceWorker.fire({message:'Loading service worker.'});
@@ -30,7 +30,7 @@ export default function register() {
 				      // At this point, everything has been precached.
 				      // It's the perfect time to display a
 				      // "Content is cached for offline use." message.
-				      console.log('Content is cached for offline use.');
+
                       serviceWorker.fire({message:'New content is available; please refresh.'});
 				    }
 				  }
@@ -40,7 +40,7 @@ export default function register() {
 
         })
         .catch(error => {
-          console.error('Error during service worker registration:', error);
+
           serviceWorker.fire({message:'Error during service worker registration'});
         });
     });

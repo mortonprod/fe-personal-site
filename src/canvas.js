@@ -28,14 +28,14 @@ class Canvas extends Component {
 	    if(this.canvas !== null){
 	        ctx = this.canvas.getContext("2d")
 	    }else{
-	        console.log("Canvas is null");
+
 	    }
 	    let width = ReactDOM.findDOMNode(this.canvas).parentElement.clientWidth;
 	    if(ctx !== null){
 	        ctx.font = this.startFont + "px " + this.props.font;
 	        let textWidth = ctx.measureText(this.props.txt).width;
 	        var numberPattern = /\d+/g;
-	        //console.log("width/textWidth: " + width + "  " + textWidth);
+
 	        let fontSize = this.startFont;
             let tempFont = null;
 	        while (width - this.error > textWidth + this.props.txt.length*this.xBetweenLetters ) { //Must take into account the space between letters.
@@ -44,13 +44,13 @@ class Canvas extends Component {
 	            ctx.font = fontSize + ctx.font.slice(numberOfDigits);
                 tempFont = ctx.font;
 	            textWidth = ctx.measureText(this.props.txt).width;
-	            //console.log("FontSize/text width/canvas width/text: " + fontSize + "  " + ctx.font + " " + textWidth + " " + width + "  " + this.props.txt)
+
 	        }
             //MUST SET FONT SIZE AFTER CHANGING CANVAS FONT SO PASS TO RESOLVE.
             this.setState({width:width,height:1.5*parseInt(ctx.font)});
             resolve({ctx,tempFont});
 	    }else{
-	        console.log("Context is null");
+
 	    }
 
     })
@@ -62,9 +62,9 @@ class Canvas extends Component {
     let x = 1;
 
     this.setSizeFromText().then((obj)=>{
-        console.log("Pass " + obj.tempFont);
+
         if(isClear){
-            console.log("Is clear : " + this.state.width + "  " + this.state.height);
+
             //obj.ctx.clearRect(0, 0, this.state.width, this.state.height);
             obj.ctx.clearRect(0, 0, 10000, 10000);
         }
@@ -86,7 +86,7 @@ class Canvas extends Component {
 	      if (dashOffset > 0){
 	        requestAnimationFrame(()=>{draw.bind(this)(ctx)});
 	      }else{
-	        //console.log("FILL");
+
 	        ctx.fillText(this.props.txt[i], x, parseInt(ctx.font));
 	        dashOffset = dashLen;
 	        x += ctx.measureText(this.props.txt[i++]).width + this.xBetweenLetters;
@@ -95,7 +95,7 @@ class Canvas extends Component {
 	        }
 	      }
        }else{
-        console.log("Resizing");
+
        }
     }
    }
