@@ -1,4 +1,6 @@
 # Introduction
+[![Build Status](https://travis-ci.org/mortonprod/welcome-page-react.svg?branch=master)](https://travis-ci.org/mortonprod/welcome-page-react)
+[![Coverage Status](https://coveralls.io/repos/github/mortonprod/welcome-page-react/badge.svg?branch=master)](https://coveralls.io/github/mortonprod/welcome-page-react?branch=master)
 
 A portfolio site for a software developer. Expanded from the single page hence the misnomer of a github name.
 The repository can be ran by itself but if you are interested in it's backend then checkout portfolioNodeBackend. PortfolioNodeBackend will a pull this repository automatically.
