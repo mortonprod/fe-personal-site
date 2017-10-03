@@ -3,7 +3,10 @@
 [![Coverage Status](https://coveralls.io/repos/github/mortonprod/welcome-page-react/badge.svg?branch=master)](https://coveralls.io/github/mortonprod/welcome-page-react?branch=master)
 
 A portfolio site for a software developer. Expanded from the single page hence the misnomer of a github name.
-The repository can be ran by itself but if you are interested in it's backend then checkout portfolioNodeBackend. PortfolioNodeBackend will a pull this repository automatically.
+
+
+The repository can be ran by itself but if you are interested in its backend then checkout [PortfolioNodeBackend](https://github.com/mortonprod/portfolioNodeBackend) which will pull this repository automatically.
+
 
 It is based on [Create-React-App](https://github.com/facebookincubator/create-react-app). You will need to install this as a global dependency for this to work.
 
