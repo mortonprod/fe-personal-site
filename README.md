@@ -8,9 +8,9 @@ A portfolio site for a software developer. Expanded from the single page hence t
 The repository can be ran by itself but if you are interested in its backend then checkout [PortfolioNodeBackend](https://github.com/mortonprod/portfolioNodeBackend) which will pull this repository automatically.
 
 
-It is based on [Create-React-App](https://github.com/facebookincubator/create-react-app). You will need to install this as a global dependency for this to work.
+It is based using [Create-React-App](https://github.com/facebookincubator/create-react-app). You will need to install this as a global dependency for this to work.
 
-# Pull from github
+# Github
 
 ```
 git clone https://github.com/mortonprod/welcome-page-react welcome-page-react
@@ -43,13 +43,6 @@ The website comes with it's own documentation through js docs.
 ```
 npm run docs
 ```
-
-# Note to Self
-Never put opacity to 0 for initial state for transition. JS might not be defined to change it.
-This means google could crawl the portfolio even if js disabled crawl render was a bit weird.
-
-If service worker is working in background then index.html will be served by default.
-Therefore can't test with google chrome. Does it work with truly js dead browser? 
 
 
 
