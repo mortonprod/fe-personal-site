@@ -1,5 +1,6 @@
 .contact{
     display:flex;
+    min-height: 100vh;    
     position:relative;
     flex-direction:column;
     justify-content:center;

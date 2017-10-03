@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as _ from "lodash";
+import isIE from "./isIE";
 import './snow.css';
 
 class Snow extends Component {
@@ -9,12 +10,12 @@ class Snow extends Component {
     this.resize = _.debounce(this.resize.bind(this),500,{trailing:true,leading:false});
     this.draw = this.draw.bind(this);
     this.drawSnowFlakes = this.drawSnowFlakes.bind(this);
-    if(!navigator.userAgent.includes("Node.js") && !navigator.userAgent.includes("jsdom")){
+    if(isIE() || (!navigator.userAgent.includes("Node.js") && !navigator.userAgent.includes("jsdom"))){    
         this.worker = new Worker('./snow-work.js');
     }
   }
-  worker = null;
-  canvas = null;
+  //worker = null;
+  //canvas = null;
   resize(){
     this.setState({width:window.innerWidth,height:window.innerHeight});
     this.run();
@@ -25,7 +26,7 @@ class Snow extends Component {
     @function
   */
   run(){
-    if(!navigator.userAgent.includes("Node.js") && !navigator.userAgent.includes("jsdom")){
+    if(isIE() || (!navigator.userAgent.includes("Node.js") && !navigator.userAgent.includes("jsdom"))){
         this.worker.postMessage({
             name:"setParameters",
             max:this.props.max,
@@ -53,7 +54,7 @@ class Snow extends Component {
     @function
   */
   draw(ctx){
-    if(!navigator.userAgent.includes("Node.js") && !navigator.userAgent.includes("jsdom")){
+    if(isIE() || (!navigator.userAgent.includes("Node.js") && !navigator.userAgent.includes("jsdom"))){
       let prom = new Promise((resolve,reject)=>{
           this.worker.postMessage({name:"updateFlakes"});
           this.worker.onmessage = (m) => {

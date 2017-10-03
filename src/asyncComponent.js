@@ -80,7 +80,7 @@ function asyncComponent(importComponent) {
 
   }
   AsyncComponent.defaultProps = {
-    isShow:false
+    isShow:true
   }
   return AsyncComponent;
 }

@@ -1,6 +1,7 @@
 .start {
     width: 100vw;
-    //display: flex;
+    min-height: 100vh;
+    display: flex;
     flex-direction: row;
     justify-content: center;
     align-content: center;

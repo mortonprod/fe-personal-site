@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Helmet from 'react-helmet';
 import {serviceWorker} from "./workerService";
 import worker from "./workerService";
-import me from "./assets/myAvatar.svg"
+import me from "./assets/myAvatar.png"
 import {Link} from 'react-router-dom';
 import "./start.css";
 
@@ -150,40 +150,8 @@ class Start extends Component{
 		            </p>
 		            <p>
 		                I would describe myself as <strong className={"start__strong"}>straight forward</strong>, <strong className={"start__strong"}>professional</strong> and <strong className={"start__strong"}>easy going</strong>.  However, I leave that up to you when you meet me.  If you would like to disagree <Link to={"/contact"}>contact me</Link>.
-                        If you would like to quickly learn about me then check out my <a style={{color: '#42a5f5'}}  href={"/__cv"}>CV</a> or some of the papers I have contributed to.
+                        If you would like to quickly learn about me then check out my <a style={{color: '#42a5f5'}}  href={"/__cv"}>CV</a> or visit my <Link to={"/gallery"}>gallery</Link>.
 		            </p>
-                    <ul className={"start__links"}>
-                        <li className={"start__link"}>
-                            <a href={"http://eprints.gla.ac.uk/120050/"}>
-                                Test beam evaluation of newly developed n-in-p planar pixel sensors for use in a high radiation environment.
-                            </a>
-                        </li>
-                        <li className={"start__link"}>
-                            <a href={"https://cds.cern.ch/record/2115337?ln=en#"}>
-                                Combination of searches for WWWW, WZWZ, and ZZZZ resonances in pp collisions at √s=8 TeV with the ATLAS detector.
-                            </a>
-                        </li>
-                        <li className={"start__link"}>
-                            <a href={"https://cds.cern.ch/record/2048180?ln=en"}>
-                                Search for a high-mass Higgs boson decaying to a WW boson pair in pp collisions at √s=8 TeV with the ATLAS detector.
-                            </a>
-                        </li>
-                        <li className={"start__link"}>
-                            <a href={"https://cds.cern.ch/record/2004438?ln=en"}>
-                                Search for a new resonance decaying to a WW or ZZ boson and a Higgs boson in the ll/lν/νν+bb ll/lν/νν+bb final states with the ATLAS Detector.
-                            </a>
-                        </li>
-                        <li className={"start__link"}>
-                            <a href={"https://cds.cern.ch/record/2017378/files/ATLAS-TDR-024.pdf"}>
-                                ATLAS Forward Proton Phase-I Upgrade.
-                            </a>
-                        </li>
-                        <li className={"start__link"}>
-                            <a href={"https://cds.cern.ch/record/1543139?ln=en#"}>
-                                The Timepix Telescope for High Performance Particle Tracking.
-                            </a>
-                        </li>
-                    </ul>
 	            </div>
                 <div onClick={this._removeInfo.bind(this)} className={"start__info " + infoModifer}>
                     {installInfo}

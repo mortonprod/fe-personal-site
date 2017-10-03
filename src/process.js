@@ -33,8 +33,8 @@ class Process extends Component {
                 )
             });
             return (
-                <div>
-                    <article key={i} className={"process__item"}>
+                <div key={i}>
+                    <article className={"process__item"}>
                         <div className={"process__left"}>
                             <img src={el.title} alt={"design"}/>
                         </div>
