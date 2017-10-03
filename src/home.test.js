@@ -5,7 +5,7 @@ import { shallow,mount } from 'enzyme';
 import Squares from "./squares";
 import Clouds from "./clouds";
 import sinon from 'sinon';
-import Home from './Home';
+import Home from './home';
 
 
 describe("<Home/>", ()=>{
