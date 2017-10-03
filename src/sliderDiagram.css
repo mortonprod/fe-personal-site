@@ -1,0 +1,14 @@
+.diagram {
+    height: 400px;
+    width: auto;
+    margin: auto;
+}
+
+@media (max-width:500px) {
+
+    .diagram {
+        width: 300px;
+        height: auto;
+    }
+
+}
