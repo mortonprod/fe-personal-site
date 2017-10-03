@@ -30,7 +30,6 @@ describe("<Squares/>", ()=>{
         );
         expect(wrapper.find(".squares--left").length).toBe(0);
         expect(wrapper.find(".squares--right").length).toBe(1);
-        expect(wrapper.find(".square").length).toBe(4);
 
         const wrapper2 = shallow(
             <Squares isLeft={true} isShow={false}>
@@ -49,7 +48,6 @@ describe("<Squares/>", ()=>{
         );
         expect(wrapper2.find(".squares--left").length).toBe(1);
         expect(wrapper2.find(".squares--right").length).toBe(0);
-        expect(wrapper2.find(".square").length).toBe(4);
     });
 
     it('shows when isShow true ', () => {

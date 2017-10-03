@@ -1,7 +1,15 @@
 # Introduction
 
 A portfolio site for a software developer. Expanded from the single page hence the misnomer of a github name.
-This frontend can be served from my repository portfolioNodeBackend. 
+The repository can be ran by itself but if you are interested in it's backend then checkout portfolioNodeBackend. PortfolioNodeBackend will a pull this repository automatically.
+
+It is based on [Create-React-App](https://github.com/facebookincubator/create-react-app). You will need to install this as a global dependency for this to work.
+
+# Pull from github
+
+```
+git clone https://github.com/mortonprod/welcome-page-react welcome-page-react
+```
 
 # Build
 ```
@@ -9,10 +17,11 @@ npm run build
 npm run docs
 ```
 
-# Development and Testing
+# Testing
+Testing requires watchman installed globally. I have this installed using homebrew but you can probably use npm.
+However, be aware that for some operating systems you could have issues. 
 ```
-npm run start
-npm run tests
+npm run test
 ```
 
 # Note 
