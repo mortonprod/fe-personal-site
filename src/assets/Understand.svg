@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="547px" height="92px" viewBox="0 0 547 92" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46 (44423) - http://www.bohemiancoding.com/sketch -->
+    <title>Understand</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <text id="text-1" font-family="PlayfairDisplay-Bold, Playfair Display" font-size="100" font-weight="bold" fill="#7A80FB">
+            <tspan x="295.576777" y="1563">Understand</tspan>
+        </text>
+        <filter x="-0.8%" y="-3.8%" width="102.9%" height="114.3%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="5" dy="5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop" transform="translate(-296.000000, -1483.000000)" stroke="#000000">
+            <g id="Understand">
+                <use fill="#7A80FB" fill-opacity="1" stroke-opacity="1" filter="url(#filter-2)" xlink:href="#text-1"></use>
+                <use fill="#7A80FB" fill-opacity="1" stroke-opacity="1" xlink:href="#text-1"></use>
+                <use xlink:href="#text-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>
