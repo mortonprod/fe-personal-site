@@ -40,6 +40,29 @@ import network from "./assets/006-network.svg";
 import like from "./assets/004-like.svg";
 import star from "./assets/003-star.svg";
 
+import timepix from "./assets/timepix.jpg";
+import lhcb from "./assets/lhcb.jpg";
+
+import vhstuff from "./assets/VHstuff.png";
+import vhcutsstuff from "./assets/vhcutsstuff.png";
+
+import mcsimulation from "./assets/moreImages/MC-simulation-truthEvent-1.jpg";
+import xresidual from "./assets/moreImages/21XResidual-1.jpg";
+import plane from "./assets/moreImages/241-plane2ExcludeXRes2D-1.jpg";
+import doublet from "./assets/moreImages/DoubletCenDist-442-1.jpg"
+
+import router from "./assets/moreImages/router.jpg"
+import router2 from "./assets/moreImages/router2.jpg"
+
+import blog from "./assets/moreImages/blog.jpg"
+import blog2 from "./assets/moreImages/blog2.jpg"
+import nginx from "./assets/moreImages/nginx.jpg"
+
+
+
+
+
+
 
 
 
@@ -54,8 +77,8 @@ let items=[
       information:"Track fitting and semiconductor physics",
       problem:"Characterise irradiated semi-conductor strip sensors for the upgrade of the ATLAS detector",
       solution: "First the sensors capacitance, induction and other electrical properties is determined using a data analysis toolset. Next, GBL is integrated into EUTelescope.  It aims to allow the same procedure to fit tracks from a plethora of different DUTs, geometric setups and environmental changes. This includes complex pixel arrangements, magnetic fields and arbitrary DUT orientations. ",
-      skillSet:["C++","Bash","Linear Algebra","Github"],
-      pics:[alignRight,alignBigger,scatterXYZ,scatterDown],
+      skillSet:["C++","Linear Algebra","Solid State Physics"],
+      pics:[xresidual,plane,doublet],
       link:"http://eprints.gla.ac.uk/120050/",
       linkTitle:"Read Paper"
 
@@ -66,18 +89,29 @@ let items=[
       problem:"Determine the resolvability of hadronic jets, decaying to bottom quarks, produced from high energy Higgs.",
       solution:"The highly boosted decay products of the Higgs will often be unresolved. Therefore, the use of variable-R jets is ideal to resolve the deposited energy from the bb decay products. This is compared to the anti-kt algoritm.",
       skillSet:["C++","Python","Statistics"],
-      pics:[beame3b1,beame5b1,chie5b1,drmean],
+      pics:[vhstuff,vhcutsstuff,mcsimulation],
       link:"https://cds.cern.ch/record/2048180?ln=en",
       linkTitle:"Read Paper"
 
    },
+   {
+    title:"Upgrade of the LHCb Detector",
+    information:"Charge collection efficiency measurements.",
+    problem:"Determine the amount of signal an irradiated radial strip sensor produces when a high energy particle passes through it.",
+    solution:"Data was taken at testbeam and desktop studies. The timing between the device under test and the telescope must be insync. I developed software to amalgamation telescope and DUT hits. I also wrote C++ programs to analyses prototype sensors. ",
+    skillSet:["C++","Bash","Solid State Physics"],
+    pics:[timepix,lhcb],
+    link:"https://cds.cern.ch/record/1543139?ln=en#",
+    linkTitle:"Checkout the paper."
+
+ },
      {
       title:"Hosting Setup",
       information:"Setup nginx proxy server with certbot.",
       problem:"Link a bunch of sites to a single IP address. Secure with HTTPS with domain ownership certs.",
       solution:"Implement a docker droplet with nginx as a proxy server. Attach certbot as node on network.",
       skillSet:["Docker","Certbot","Bash","DNS","Digital Ocean"],
-      pics:[certbot,code],
+      pics:[certbot,nginx],
       link:"https://github.com/mortonprod/nginx-certbot",
       linkTitle:"Checkout my github."
 
@@ -94,12 +128,12 @@ let items=[
 
    },
     {
-      title:"Authentication",
-      information:"Setup Auth0 and a navigation component.",
-      problem:"Need a simple way for multiple websites to sign in users. This should also link to a possible database.",
-      solution:"Created a navigation component which links to Auth0.",
+      title:"Custom React Router",
+      information:"Setup Auth0 and a navigation component within a react router.",
+      problem:"Create a fully functioning npm package with react routing, authentication and navigation.",
+      solution:"A npm package was created and deployed.",
       skillSet:["React","Webpack","Babel","Auth0"],
-      pics:[alignRight,alignBigger,scatterXYZ,scatterDown],
+      pics:[router,router2],
       link:"https://github.com/mortonprod/react-nav-component",
       linkTitle:"Checkout my github."
 
@@ -110,20 +144,9 @@ let items=[
       problem:"Requested to create a website to hold a series of blog posts",
       solution:"I created a single page in which client could see and update there posts.",
       skillSet:["React","Webpack","Typescript", "Nodejs","Mongodb"],
-      pics:[alignRight,alignBigger,scatterXYZ,scatterDown],
+      pics:[blog,blog2],
       link:"https://github.com/mortonprod/blog",
       linkTitle:"Checkout my github."
-
-   },
-   {
-      title:"Cleaning Website",
-      information:"Create a website to sell cleaning services.",
-      problem:"Need to advertise cleaning service in the Glasgow area.",
-      solution:"Setup full functioning website.",
-      skillSet:["React","Webpack","Typescript","Auth0","Mongodb"],
-      pics:[alignRight,alignBigger,scatterXYZ,scatterDown],
-      link:"https://github.com/mortonprod/CleaningWebsite",
-      linkTitle:"Checkout Github."
 
    },
    {
@@ -132,7 +155,7 @@ let items=[
       problem:"Need to advertise boutique in the Glasgow area.",
       solution:"Setup a progressive web app to get the best results for the client.",
       skillSet:["React","Webpack","Babel","Auth0", "PWA"],
-      pics:[alignRight,alignBigger,scatterXYZ,scatterDown],
+      pics:[],
       link:"https://github.com/mortonprod/react-nav-component",
       linkTitle:"Checkout Github."
 
@@ -143,7 +166,7 @@ let items=[
       problem:"Need to advertise knitting in the Glasgow area.",
       solution:"Create a .net core MVC website.",
       skillSet:["c#",".net core"],
-      pics:[alignRight,alignBigger,scatterXYZ,scatterDown],
+      pics:[],
       link:"https://github.com/mortonprod/knitting-website",
       linkTitle:"Checkout Github."
 
