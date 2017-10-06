@@ -1,10 +1,8 @@
 .app {
-    //background-image: linear-gradient(-180deg, #B1B6FE 0%, #7A80FB 100%);
     margin:0;
     padding:0;
     min-height:100vh;
     display:block;
-    overflow:auto;
 }
 
 .fade-enter {
@@ -64,21 +62,16 @@
     background-size:cover;
 }
 
-@media (max-width:350px){
-	.main .main__peak {
-	    height:100vh;
-	    width:auto;
-	}
-}
-
 @media (min-width:764px) {
     .main .main__peak {
         top: -300px;
     }
 }
-
+    
 @media (min-width:900px) {
     .main .main__peak {
         top: -500px;
     }
 }
+
+

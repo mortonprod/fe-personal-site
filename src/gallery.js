@@ -5,6 +5,15 @@ import SliderDiagram from "./sliderDiagram";
 import "./gallery.css";
 
 const frequency = 5000;
+
+/**
+ *  Use this function to start the timer immediately.
+ */
+function setIntervalImmediate(fn, t) {
+  fn();
+  return(setInterval(fn, t));
+}
+
 /**
   This is will be a series of pictures with title and text explaining the project.
   The pictures should fade in and out behind the text, and when you hover the image disappears so people can read the text.  
@@ -106,7 +115,7 @@ function getDetails(items,frequency){
           {spans}
         </div>
         <div className={"gallery__detail__block2"}>
-          <Pics pics={el.pics} frequency={frequency} class={"gallery__item__pic gallery__item__pic--smaller"}/>
+          <Pics pics={el.pics} frequency={frequency} class={"gallery__item__pic gallery__item__pic--smaller gallery__item__pic--margin"} showOnHover={false} hideOnHover={false}/>
           <a href={el.link}>{el.linkTitle}</a>
         </div>
       </article>
@@ -139,7 +148,7 @@ function Item(props) {
     return(
        <article className={"gallery__item"} onClick={()=>{props.click(props.counter)}}>
         <div className={"gallery__item__pics"}>
-          <Pics pics={props.pics} frequency={props.frequency} class={"gallery__item__pic "}/>
+          <Pics pics={props.pics} frequency={props.frequency} class={"gallery__item__pic "} showOnHover={true} hideOnHover={false} />
         </div>
         <h1>{props.title}</h1>
         <p>{props.information}</p>
@@ -147,24 +156,52 @@ function Item(props) {
     )
 }
 /**
-  This class will return a new pics which will show and then hide. 
+  This class will return a new pics which will show and then hide.
+  If show on hover only show when over. 
+  If hide on hover then hide when hover. 
+  If neither then hover does nothing. 
 */
 class Pics extends Component{
    constructor(props){
-      super(props);
+    super(props);
+    if(props.showOnHover && props.hideOnHover){
+      throw(Error("Input to pics about hover is contradictory."));
+    }
+    this.onHover = this.onHover.bind(this);
+    this.startCycle = this.startCycle.bind(this);
+    if(props.showOnHover){
+      this.state= {class:"gallery__item__pic--hide",src:props.pics[0]};
+    }else if(props.hideOnHover){
       this.state= {class:"gallery__item__pic--show",src:props.pics[0]};
-      this.onHover = this.onHover.bind(this);
-      this.startCycle = this.startCycle.bind(this);
+    }else{
+      this.state= {class:"gallery__item__pic--show",src:props.pics[0]};      
+      this.startCycle();      
+    }
    }
    interval = null;
    timeout = null;
+   /**
+    * This function will fire when mouse is enters and leaves 
+    * It decides when to start the cycle. 
+    */
    onHover(isOver){
-    if(isOver){
-      clearInterval(this.interval);
-      clearTimeout(this.timeout);
-      this.setState({class:"gallery__item__pic--hide",src:this.props.pics[0]});
-    }else{
-      this.startCycle();
+    if(this.props.hideOnHover){
+      if(isOver){
+        clearInterval(this.interval);
+        clearTimeout(this.timeout);
+        this.setState({class:"gallery__item__pic--hide",src:this.props.pics[0]});
+      }else{
+        this.startCycle();
+      }
+    }
+    if(this.props.showOnHover){
+      if(isOver){
+        this.startCycle();
+      }else{
+        clearInterval(this.interval);
+        clearTimeout(this.timeout);
+        this.setState({class:"gallery__item__pic--hide",src:this.props.pics[0]});
+      }
     }
    }
    /**
@@ -175,7 +212,7 @@ class Pics extends Component{
    */
    startCycle(){
      let counter = 0;
-     this.interval = setInterval(()=>{
+     this.interval = setIntervalImmediate(()=>{
        this.setState({class:"gallery__item__pic--hide",src:this.props.pics[counter]});
        this.timeout = setTimeout(()=>{
          this.setState({class:"gallery__item__pic--show",src:this.props.pics[counter]});   
@@ -186,9 +223,6 @@ class Pics extends Component{
          counter++;
        }  
      },this.props.frequency);
-   }
-   componentWillMount(){
-      this.startCycle();
    }
    render(){
      return(

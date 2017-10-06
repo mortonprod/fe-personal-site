@@ -75,9 +75,9 @@ let items=[
   {
       title:"Upgrade of the ATLAS Detector",
       information:"Track fitting and semiconductor physics",
-      problem:"Characterise irradiated semi-conductor strip sensors for the upgrade of the ATLAS detector",
-      solution: "First the sensors capacitance, induction and other electrical properties is determined using a data analysis toolset. Next, GBL is integrated into EUTelescope.  It aims to allow the same procedure to fit tracks from a plethora of different DUTs, geometric setups and environmental changes. This includes complex pixel arrangements, magnetic fields and arbitrary DUT orientations. ",
-      skillSet:["C++","Linear Algebra","Solid State Physics"],
+      problem:"Characterise irradiated semi-conductor strip sensors for the upgrade of the ATLAS detector. These strip sensors must perform after being highly irradiated by the LHC beam. Therefore their performance over their lifetime must be determined.",
+      solution: "First the irradiated sensors capacitance, induction and other electrical properties was determined using data analysis tools. Next GBL was integrated into EUTelescope, it aims to allow the same procedure to fit tracks from a plethora of different devices, geometric setups and environmental changes. This includes complex pixel arrangements, magnetic fields and arbitrary device orientations. ",
+      skillSet:["C++","Linear Algebra","Bash","Solid State Physics"],
       pics:[xresidual,plane,doublet],
       link:"http://eprints.gla.ac.uk/120050/",
       linkTitle:"Read Paper"
@@ -259,8 +259,8 @@ let Content = ({ match, location, history })=>{
 	                {name:"Welcome",location:"/"},
 	                {name:"My Services",location:"/services"},
                     {name:"My Skills",location:"/skills"},
-                    {name:"Contact Me",location:"/contact"},
-                    {name:"Gallery",location:"/gallery"}
+                    {name:"Gallery",location:"/gallery"},
+                    {name:"Contact Me",location:"/contact"}
 	            ]}
 	        />
 

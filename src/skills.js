@@ -353,24 +353,6 @@ class Skills extends Component {
                         />
                     </div>
                 </article>
-                <div className={"skills__gap skills__gap--small"}/> 
-                <article className={"skills__skill"}>
-                    <div className={"skills__info"}>
-                        <img src={docs} alt={"media"}/>
-                        <h1>
-                            Documentation
-                        </h1>
-                        <p>
-                            I produce all my documentation using jsdocs. 
-                            This allows me to keep a guide of my progress and explain my reasoning to future developers working on my project.
-                        </p>
-                        <p>
-                            Check out the documentation for this site as an example.
-                        </p>
-                        <a style={{color: 'lightblue'}} className={"skills__info__doc"} href={"/__documentation/frontend/"}> See How This Site Works </a>
-                    </div>
-                </article>
-                <div className={"skills__gap skills__gap--small"}/> 
                 <article className={"skills__skill"}>
                     <div className={"skills__info"}>
                         <img src={format} alt={"media"}/>
@@ -398,6 +380,22 @@ class Skills extends Component {
                     </div>
                     <div ref={(ref)=>{this.writeElement = ReactDOM.findDOMNode(ref)}} className={"skills__centreMedia"}>
                         {writeMe}
+                    </div>
+                </article>
+                <article className={"skills__skill"}>
+                    <div className={"skills__info"}>
+                        <img src={docs} alt={"media"}/>
+                        <h1>
+                            Documentation
+                        </h1>
+                        <p>
+                            I produce all my documentation using jsdocs. 
+                            This allows me to keep a guide of my progress and explain my reasoning to future developers working on my project.
+                        </p>
+                        <p>
+                            Check out the documentation for this site as an example.
+                        </p>
+                        <a style={{color: 'lightblue'}} className={"skills__info__doc"} href={"/__documentation/frontend/"}> See How This Site Works </a>
                     </div>
                 </article>
             </section>

@@ -4,7 +4,6 @@
     min-height: 100vh;
     text-align: center;
     z-index:1000;
-    overflow: auto;
 }
 
 .skills > section {
@@ -111,7 +110,6 @@
     width: 100vw;
     margin: auto;
     background-color:white;
-    //border: 1px solid #000000;
     z-index:200;
     display: flex;
 }
@@ -122,8 +120,7 @@
     padding-bottom:30px;
     background-color: white;
     border:none;
-    //border: 1px solid #000000;
-    //box-shadow: 5px 5px 4px 0 rgba(0,0,0,0.50);
+    overflow-y: hidden;
 }
 
 .skills__overview > h1 {

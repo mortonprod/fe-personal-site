@@ -153,11 +153,6 @@ class Start extends Component{
                         If you would like to quickly learn about me then check out my <a style={{color: '#42a5f5'}}  href={"/__cv"}>CV</a> or visit my <Link to={"/gallery"}>gallery</Link>.
 		            </p>
 	            </div>
-                <div onClick={this._removeInfo.bind(this)} className={"start__info " + infoModifer}>
-                    {installInfo}
-                    {serviceComp}
-                    <button onClick={worker.setPermissions.bind(this)}> Click for Notifications </button>
-                </div>
 	        </div>
 	    )
     }
