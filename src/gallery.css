@@ -18,6 +18,7 @@
     color: #42a5f5;
     box-shadow: 1px 1px 1px 1px black;
     z-index: 3000;
+    overflow-y: auto;
 }
 
 .gallery__detail:hover{
