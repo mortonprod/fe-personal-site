@@ -1,0 +1,57 @@
+{
+  "light": {
+    "type": "point",
+    "color": "0x404040",
+    "intensity": 1,
+    "position": {
+      "x": 0,
+      "y": 0,
+      "z": 10
+    }
+  },
+  "camera": {
+    "initial": {
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 50
+      },
+      "fov": 75,
+      "near": 0.1,
+      "far": 1000
+    }
+  },
+  "spheres": {
+    "colors": ["red", "green", "white", "blue", "violet"],
+    "maxSpeed": 0.5,
+    "number": 100,
+    "initial": {
+      "radius": 1,
+      "widthSegments": 30,
+      "heightSegments": 30,
+      "phiStart": 0,
+      "phiLength": 360,
+      "thetaStart": 0,
+      "thetaLength": 360
+    },
+    "material": {
+      "type": "standard",
+      "metalness": 0.5,
+      "roughness": 0.5
+    }
+  },
+  "box": {
+    "widthFactor": 0.2,
+    "heightFactor": 0.2,
+    "depth": 10,
+    "widthSegments": 10,
+    "heightSegments": 10,
+    "depthSegments": 10,
+    "color": "green",
+    "position": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    }
+  }
+}
