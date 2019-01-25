@@ -11,4 +11,15 @@ var animate = async () => {
   particlesInBox.renderer.render(particlesInBox.scene, particlesInBox.camera);
 };
 
+window.addEventListener( 'resize', onWindowResize, false );
+
+function onWindowResize(){
+
+  particlesInBox.camera.aspect = window.innerWidth / window.innerHeight;
+  particlesInBox.camera.updateProjectionMatrix();
+
+  particlesInBox.renderer.setSize( window.innerWidth, window.innerHeight );
+
+}
+
 animate();
