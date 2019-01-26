@@ -65,31 +65,31 @@ function ParticlesInBox(variables, indexToElement) {
   // }
 
   //////////////////////// RENDERER CSS3D...........
-  const cssScene = new THREE.Scene();
   var cssCamera = new THREE.PerspectiveCamera(variables.camera.fov, WIDTH / HEIGHT, variables.camera.near, variables.camera.far);
-  cssCamera.position.z = depth;
+  cssCamera.position.z = 1000;
   var cssRenderer = new THREE.CSS3DRenderer();
   cssRenderer.setSize( window.innerWidth, window.innerHeight );
+  // cssRenderer.setSize( boxWidth, boxHeight );
   cssRenderer.domElement.style.position = 'absolute';
   // cssRenderer.domElement.style.top = 1;
   // renderer.domElement.style.top = 0;
-  var material = new THREE.MeshBasicMaterial({ wireframe: true });
-  var geometry = new THREE.PlaneGeometry();
-  var planeMesh= new THREE.Mesh( geometry, material );
-  // add it to the WebGL scene
-  cssScene.add(planeMesh);
-  var element = document.createElement( 'img' );
+  // var material = new THREE.MeshBasicMaterial({ wireframe: true });
+  // var geometry = new THREE.PlaneGeometry();
+  // var planeMesh= new THREE.Mesh( geometry, material );
+  // // add it to the WebGL scene
+  // cssScene.add(planeMesh);
+  var element = document.createElement('img');
   // document.body.appendChild(element);
   element.src = demonImage;
   var cssObject = new THREE.CSS3DSprite( element );
   // we reference the same position and rotation 
-  cssObject.position.set(0,0,-1000);
+  cssObject.position.set(0,0,0);
   // cssObject.rotation.set(new THREE.Vector3( planeMesh.rotation.x, planeMesh.rotation.y, planeMesh.rotation.z));
   // cssObject.rotation = planeMesh.rotation;
   // add it to the css scene
-  cssScene.add(cssObject);
+  scene.add(cssObject);
   document.body.appendChild( cssRenderer.domElement );
-  cssRenderer.render( cssScene, cssCamera );
+  cssRenderer.render( scene, cssCamera );
 
 
   //////////////////////////////////
