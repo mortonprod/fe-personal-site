@@ -65,8 +65,8 @@ function ParticlesInBox(variables, indexToElement) {
   // }
 
   //////////////////////// RENDERER CSS3D...........
-  var cssCamera = new THREE.PerspectiveCamera(variables.camera.fov, WIDTH / HEIGHT, variables.camera.near, variables.camera.far);
-  cssCamera.position.z = 1000;
+  // var cssCamera = new THREE.PerspectiveCamera(variables.camera.fov, WIDTH / HEIGHT, variables.camera.near, variables.camera.far);
+  // cssCamera.position.z = 1000;
   var cssRenderer = new THREE.CSS3DRenderer();
   cssRenderer.setSize( window.innerWidth, window.innerHeight );
   // cssRenderer.setSize( boxWidth, boxHeight );
@@ -83,13 +83,13 @@ function ParticlesInBox(variables, indexToElement) {
   element.src = demonImage;
   var cssObject = new THREE.CSS3DSprite( element );
   // we reference the same position and rotation 
-  cssObject.position.set(0,0,0);
+  cssObject.position.set(0,0,-1000);
   // cssObject.rotation.set(new THREE.Vector3( planeMesh.rotation.x, planeMesh.rotation.y, planeMesh.rotation.z));
   // cssObject.rotation = planeMesh.rotation;
   // add it to the css scene
   scene.add(cssObject);
   document.body.appendChild( cssRenderer.domElement );
-  cssRenderer.render( scene, cssCamera );
+  cssRenderer.render( scene, camera );
 
 
   //////////////////////////////////
