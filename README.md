@@ -11,3 +11,7 @@ Deployment at the moment is nothing more than uploading a html and js file to s3
 
 We could add a pipelines to generate the code or have the graphql endpoint be triggered at runtime not build time.
 
+# Reference
+
+https://github.com/mrdoob/three.js/blob/master/examples/css3d_molecules.html
+

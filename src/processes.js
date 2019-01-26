@@ -1,4 +1,6 @@
 const THREE = require('three');
+require('./CSS3DRenderer.js'); //INCLUDE THIS FROM THREE.JS EXAMPLES
+const demonImage = require('../sketch/demon.png');
 const OrbitControls = require('three-orbit-controls')(THREE)
 const get = require('lodash.get');
 const set = require('lodash.set');
@@ -26,7 +28,7 @@ const visibleWidthAtZDepth = (depth, camera) => {
   return height * camera.aspect;
 };
 
-function ParticlesInBox(variables, htmlObjects) {
+function ParticlesInBox(variables, indexToElement) {
   const worker = new Worker();
   // Create canvas element and attach to dom
   var renderer = new THREE.WebGLRenderer();
@@ -44,21 +46,54 @@ function ParticlesInBox(variables, htmlObjects) {
   variables.box.boxHeight = boxHeight;
   console.debug(`WIDTH/HEIGHT: ${WIDTH}/${HEIGHT}`);
   var scene = new THREE.Scene();
-  const material = new THREE.LineBasicMaterial({
-    color: 0x0000ff
-  });
-  // Create the lines
-  for(let key of htmlObjects.keys()) {
-    const obj = htmlObjects.get(key);
-    console.debug(`${key} ::: ${JSON.stringify(obj)}`);
-    const geometry = new THREE.Geometry();
-    geometry.vertices.push(
-      new THREE.Vector3( 0, 0, 0 ),
-      new THREE.Vector3( obj.x, obj.y, 0 )
-    );
-    var line = new THREE.Line( geometry, material );
-    scene.add( line );
-  }
+  // const material = new THREE.LineBasicMaterial({
+  //   color: 0x0000ff
+  // });
+  // // Create the lines
+  // for(let key of indexToElement.keys()) {
+  //   const el = indexToElement.get(key);
+  //   const elCss = new THREE.CSS3DObject( el );
+  //   // this.renderer = new THREE.CSS3DRenderer();
+  //   console.debug(`${key} ::: ${JSON.stringify(elCss.position)}`);
+  //   const geometry = new THREE.Geometry();
+  //   geometry.vertices.push(
+  //     new THREE.Vector3( 0, 0, 0 ),
+  //     new THREE.Vector3( elCss.x, elCss.y, elCss.z )
+  //   );
+  //   var line = new THREE.Line( geometry, material );
+  //   scene.add( line );
+  // }
+
+  //////////////////////// RENDERER CSS3D...........
+  const cssScene = new THREE.Scene();
+  var cssCamera = new THREE.PerspectiveCamera(variables.camera.fov, WIDTH / HEIGHT, variables.camera.near, variables.camera.far);
+  cssCamera.position.z = depth;
+  var cssRenderer = new THREE.CSS3DRenderer();
+  cssRenderer.setSize( window.innerWidth, window.innerHeight );
+  cssRenderer.domElement.style.position = 'absolute';
+  // cssRenderer.domElement.style.top = 1;
+  // renderer.domElement.style.top = 0;
+  var material = new THREE.MeshBasicMaterial({ wireframe: true });
+  var geometry = new THREE.PlaneGeometry();
+  var planeMesh= new THREE.Mesh( geometry, material );
+  // add it to the WebGL scene
+  cssScene.add(planeMesh);
+  var element = document.createElement( 'img' );
+  // document.body.appendChild(element);
+  element.src = demonImage;
+  var cssObject = new THREE.CSS3DSprite( element );
+  // we reference the same position and rotation 
+  cssObject.position.set(planeMesh.position.x,0,0);
+  cssObject.rotation.set(new THREE.Vector3( planeMesh.rotation.x, planeMesh.rotation.y, planeMesh.rotation.z));
+  // cssObject.rotation = planeMesh.rotation;
+  // add it to the css scene
+  cssScene.add(cssObject);
+  document.body.appendChild( cssRenderer.domElement );
+  cssRenderer.render( cssScene, cssCamera );
+
+
+  //////////////////////////////////
+
 
 
   let light
@@ -78,7 +113,7 @@ function ParticlesInBox(variables, htmlObjects) {
   scene.add(light);
   console.debug(`Width/Height: ${boxWidth}/${boxHeight} at visible at depth ${depth}`);
   renderer.setSize(WIDTH, HEIGHT);
-  camera.position.z = depth;
+  camera.position.z = depth; // Cant move this up without particles moving to fill screen. Why?
   const controls = new OrbitControls(camera);
   controls.target.set(0, 0, 0)
 
