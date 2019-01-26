@@ -3,6 +3,13 @@ body {
   height: 100vh;
   font: 100%;
   color: green;
+  background-color: black;
+}
+.header {
+  position: absolute;
+  top: 0;
+  left: 33.3%;
+  width: 33.3%;
 }
 #canvas {
   position: absolute;
