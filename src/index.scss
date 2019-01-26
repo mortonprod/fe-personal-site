@@ -5,39 +5,58 @@ body {
   color: green;
   background-color: black;
 }
+
 .header {
   position: relative;
-  top: 10%;
+  top: 0%;
   left: 33.3%;
-  width: 33.3%;
+  width: 33.3/2%;
 }
+
 #canvas {
   position: absolute;
   background-color: #000;
   width: 100vw;
   height: 100vh;
   top: 0;
-  left:0;
+  left: 0;
   border: 0px;
   margin: 0px;
   padding: 0px;
 }
 
-/* Rectangle: */
-.rectTranTop {
-  position: relative;
-  background-image: linear-gradient(-180deg, rgba(255,255,255,0.00) 0%, rgba(243,243,243,0.00) 60%, #000000 100%);
-  width:100%;
-}
-.about {
-  font-family: AlmendraDisplay-Regular;
-  font-size: 50px;
-  color: #FCF9F9;
+.rect {
+  position: absolute;
   text-align: center;
+  top: 0;
+  left: 0;
+  color: white;
+  padding: 10px;
+
+  .element {
+
+    h1,
+    p {
+      padding: 2px;
+      border: 0;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 20px;
+    }
+
+    p {
+      font-size: 10px;
+    }
+  }
+
+  .element:hover {
+    color: lightblue;
+  }
 }
 
-p {
-  font-size: 15px;
-  color: white;
-  font-family: AlmendraDisplay-Regular;
+.link {
+  color: lightcoral;
+  text-decoration: none;
 }
