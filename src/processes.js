@@ -46,23 +46,7 @@ function ParticlesInBox(variables, indexToElement) {
   variables.box.boxHeight = boxHeight;
   console.debug(`WIDTH/HEIGHT: ${WIDTH}/${HEIGHT}`);
   var scene = new THREE.Scene();
-  // const material = new THREE.LineBasicMaterial({
-  //   color: 0x0000ff
-  // });
-  // // Create the lines
-  // for(let key of indexToElement.keys()) {
-  //   const el = indexToElement.get(key);
-  //   const elCss = new THREE.CSS3DObject( el );
-  //   // this.renderer = new THREE.CSS3DRenderer();
-  //   console.debug(`${key} ::: ${JSON.stringify(elCss.position)}`);
-  //   const geometry = new THREE.Geometry();
-  //   geometry.vertices.push(
-  //     new THREE.Vector3( 0, 0, 0 ),
-  //     new THREE.Vector3( elCss.x, elCss.y, elCss.z )
-  //   );
-  //   var line = new THREE.Line( geometry, material );
-  //   scene.add( line );
-  // }
+
 
   //////////////////////// RENDERER CSS3D...........
   // var cssCamera = new THREE.PerspectiveCamera(variables.camera.fov, WIDTH / HEIGHT, variables.camera.near, variables.camera.far);
@@ -79,9 +63,10 @@ function ParticlesInBox(variables, indexToElement) {
   // // add it to the WebGL scene
   // cssScene.add(planeMesh);
   var element = document.createElement('img');
+  element.style.transform = "scaleX(0.1)"
   // document.body.appendChild(element);
   element.src = demonImage;
-  var cssObject = new THREE.CSS3DSprite( element );
+  var cssObject = new THREE.CSS3DObject( element );
   // we reference the same position and rotation 
   cssObject.position.set(0,0,-1000);
   // cssObject.rotation.set(new THREE.Vector3( planeMesh.rotation.x, planeMesh.rotation.y, planeMesh.rotation.z));
@@ -215,6 +200,29 @@ function ParticlesInBox(variables, indexToElement) {
       resolve();
     })
   }
+  /////////////////////////// This draws lines between dom and spheres.
+  const material = new THREE.LineBasicMaterial({
+    color: 0x0000ff
+  });
+  // Create the lines
+  for(let key of indexToElement.keys()) {
+    const el = indexToElement.get(key);
+    // const elCss = new THREE.CSS3DObject( el );
+    // this.renderer = new THREE.CSS3DRenderer();
+    // console.debug(`${key} ::: ${JSON.stringify(elCss.position)}`);
+    const geometry = new THREE.Geometry();
+    geometry.vertices.push(
+      new THREE.Vector3( 0, 0, 0 ),
+      new THREE.Vector3( 100, 0, 0 )
+    );
+    var line = new THREE.Line( geometry, material );
+    scene.add( line );
+  }
+
+
+/////TODO: MUST REFACTOR RESIZE
+
+
   // What ever we need to refresh do it here for these objects
   // window.addEventListener('resize', onWindowResize, false);
 
