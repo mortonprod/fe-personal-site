@@ -83,8 +83,8 @@ function ParticlesInBox(variables, indexToElement) {
   element.src = demonImage;
   var cssObject = new THREE.CSS3DSprite( element );
   // we reference the same position and rotation 
-  cssObject.position.set(planeMesh.position.x,0,0);
-  cssObject.rotation.set(new THREE.Vector3( planeMesh.rotation.x, planeMesh.rotation.y, planeMesh.rotation.z));
+  cssObject.position.set(0,0,-1000);
+  // cssObject.rotation.set(new THREE.Vector3( planeMesh.rotation.x, planeMesh.rotation.y, planeMesh.rotation.z));
   // cssObject.rotation = planeMesh.rotation;
   // add it to the css scene
   cssScene.add(cssObject);
