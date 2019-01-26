@@ -26,7 +26,7 @@ const visibleWidthAtZDepth = (depth, camera) => {
   return height * camera.aspect;
 };
 
-function ParticlesInBox(variables) {
+function ParticlesInBox(variables, htmlObjects) {
   const worker = new Worker();
   // Create canvas element and attach to dom
   var renderer = new THREE.WebGLRenderer();
@@ -38,35 +38,52 @@ function ParticlesInBox(variables) {
   const HEIGHT = container.clientHeight;
   var camera = new THREE.PerspectiveCamera(variables.camera.fov, WIDTH / HEIGHT, variables.camera.near, variables.camera.far);
   const depth = variables.camera.initial.position.z;
-  const boxWidth = visibleWidthAtZDepth(depth, camera);
-  const boxHeight = visibleHeightAtZDepth(depth, camera); 
+  let boxWidth = visibleWidthAtZDepth(depth, camera);
+  let boxHeight = visibleHeightAtZDepth(depth, camera);
   variables.box.boxWidth = boxWidth;
   variables.box.boxHeight = boxHeight;
   console.debug(`WIDTH/HEIGHT: ${WIDTH}/${HEIGHT}`);
   var scene = new THREE.Scene();
+  const material = new THREE.LineBasicMaterial({
+    color: 0x0000ff
+  });
+  // Create the lines
+  for(let key of htmlObjects.keys()) {
+    const obj = htmlObjects.get(key);
+    console.debug(`${key} ::: ${JSON.stringify(obj)}`);
+    const geometry = new THREE.Geometry();
+    geometry.vertices.push(
+      new THREE.Vector3( 0, 0, 0 ),
+      new THREE.Vector3( obj.x, obj.y, 0 )
+    );
+    var line = new THREE.Line( geometry, material );
+    scene.add( line );
+  }
+
+
   let light
-  switch(variables.light.type) {
+  switch (variables.light.type) {
     case 'point':
-      light = new THREE.PointLight( variables.light.color, variables.light.intensity);
+      light = new THREE.PointLight(variables.light.color, variables.light.intensity);
       light.position.set(variables.light.position.x, variables.light.position.y, variables.light.position.z);
       break;
     case 'directional':
       light = new THREE.DirectionalLight(variables.light.color, variables.light.intensity);
-      light.position.set( variables.light.position.x, variables.light.position.y, variables.light.position.z );
+      light.position.set(variables.light.position.x, variables.light.position.y, variables.light.position.z);
       break;
     case 'ambient':
-      light = new THREE.AmbientLight( 0x404040 ); 
+      light = new THREE.AmbientLight(0x404040);
       break;
   }
-  scene.add( light );
+  scene.add(light);
   console.debug(`Width/Height: ${boxWidth}/${boxHeight} at visible at depth ${depth}`);
   renderer.setSize(WIDTH, HEIGHT);
   camera.position.z = depth;
-  const controls = new OrbitControls(camera); 
+  const controls = new OrbitControls(camera);
   controls.target.set(0, 0, 0)
 
   // Set properties and object variables. 
-  variables.spheres.properties= new Map();
+  variables.spheres.properties = new Map();
   const indexToObject = new Map();
 
 
@@ -98,9 +115,13 @@ function ParticlesInBox(variables) {
       // const material = new THREE.MeshBasicMaterial({
       //   color: color
       // });
-      switch(variables.spheres.material.type) {
+      switch (variables.spheres.material.type) {
         case 'standard':
-          material = new THREE.MeshStandardMaterial({color: color, metalness: variables.spheres.material.metalness, roughness: variables.spheres.material.roughness});
+          material = new THREE.MeshStandardMaterial({
+            color: color,
+            metalness: variables.spheres.material.metalness,
+            roughness: variables.spheres.material.roughness
+          });
           break;
         case 'normal':
           material = new THREE.MeshNormalMaterial();
@@ -109,7 +130,9 @@ function ParticlesInBox(variables) {
           material = new THREE.MeshPhongMaterial();
           break;
         case 'basic':
-          material = new new THREE.MeshBasicMaterial({ color });
+          material = new new THREE.MeshBasicMaterial({
+            color
+          });
           break;
       }
       const sphereGeometry = new THREE.SphereGeometry(
@@ -133,20 +156,23 @@ function ParticlesInBox(variables) {
   }
   setInitialProperties();
   setObjects();
-  worker.postMessage({ type: 'initial', variables});
+  worker.postMessage({
+    type: 'initial',
+    variables
+  });
   const update = () => {
     return new Promise((resolve, reject) => {
       worker.postMessage({}); // Post a message with the current variables
       worker.onmessage = function (event) {
         variables = event.data.variables; // Must set new value for next loop
-        for(let key of variables.spheres.properties.keys()){ // Now set value in three js.
-          if(indexToObject.has(key)) {
+        for (let key of variables.spheres.properties.keys()) { // Now set value in three js.
+          if (indexToObject.has(key)) {
             const property = variables.spheres.properties.get(key);
             const mesh = indexToObject.get(key);
             // if(key === 0) {
-              // console.debug(`${key} ${property.position.x} ${property.position.y} ${property.position.z}`)
+            // console.debug(`${key} ${property.position.x} ${property.position.y} ${property.position.z}`)
             // }
-            mesh.position.set(property.position.x, property.position.y, property.position.z);        
+            mesh.position.set(property.position.x, property.position.y, property.position.z);
             // mesh.position.set(2,2,2);        
           }
         }
@@ -154,6 +180,17 @@ function ParticlesInBox(variables) {
       resolve();
     })
   }
+  // What ever we need to refresh do it here for these objects
+  // window.addEventListener('resize', onWindowResize, false);
+
+  // function onWindowResize() {
+  //   boxWidth = visibleWidthAtZDepth(depth, camera);
+  //   boxHeight = visibleHeightAtZDepth(depth, camera);
+  //   setInitialProperties();
+  //   camera.aspect = window.innerWidth / window.innerHeight;
+  //   camera.updateProjectionMatrix();
+  //   renderer.setSize(window.innerWidth, window.innerHeight);
+  // }
   return {
     update,
     scene,
@@ -162,4 +199,6 @@ function ParticlesInBox(variables) {
   }
 }
 
-export {ParticlesInBox}
+export {
+  ParticlesInBox
+}
