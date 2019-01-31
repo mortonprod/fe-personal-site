@@ -14,4 +14,5 @@ We could add a pipelines to generate the code or have the graphql endpoint be tr
 # Reference
 
 https://github.com/mrdoob/three.js/blob/master/examples/css3d_molecules.html
+https://subscription.packtpub.com/book/web_development/9781783981182/1/ch01lvl1sec12/getting-started-with-the-css-3d-renderer
 

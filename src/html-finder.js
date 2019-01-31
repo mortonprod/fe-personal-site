@@ -1,6 +1,6 @@
 function  HtmlFinder(opts) {
   opts = typeof opts === 'object' ? opts: {};
-  const className = opts.className ? opts.className : "element"
+  const className = opts.className ? opts.className : "rect"
   const elements = document.getElementsByClassName(className);
   const getIndexToElement = () => {
     const indexToElement = new Map();

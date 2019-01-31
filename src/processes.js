@@ -10,6 +10,21 @@ const Worker = require('./physics.worker.js');
 
 const ID = 'canvas';
 
+function createCSS3DObject(div) 
+    {
+      // set some values on the div to style it.
+      // normally you do this directly in HTML and 
+      // CSS files.
+      div.style.width = '300px';
+      div.style.height = '300px';
+      div.style.opacity = 1;
+      div.style.background = new THREE.Color(Math.random() * 0xffffff).getStyle();
+
+      // create a CSS3Dobject and return it.
+      var object = new THREE.CSS3DObject(div);
+      return object;
+    }
+
 const visibleHeightAtZDepth = (depth, camera) => {
   // compensate for cameras not positioned at z=0
   const cameraOffset = camera.position.z;
@@ -55,20 +70,22 @@ function ParticlesInBox(variables, indexToElement) {
   cssRenderer.setSize( window.innerWidth, window.innerHeight );
   // cssRenderer.setSize( boxWidth, boxHeight );
   cssRenderer.domElement.style.position = 'absolute';
-  // cssRenderer.domElement.style.top = 1;
-  // renderer.domElement.style.top = 0;
+  cssRenderer.domElement.style.top = 1;
+  renderer.domElement.style.top = 0;
   // var material = new THREE.MeshBasicMaterial({ wireframe: true });
   // var geometry = new THREE.PlaneGeometry();
   // var planeMesh= new THREE.Mesh( geometry, material );
   // // add it to the WebGL scene
   // cssScene.add(planeMesh);
-  var element = document.createElement('img');
-  element.style.transform = "scaleX(0.1)"
+  // var element = document.createElement('img');
+  // element.style.webkitTransform = "rotate(60deg)"
   // document.body.appendChild(element);
-  element.src = demonImage;
-  var cssObject = new THREE.CSS3DObject( element );
+  // element.src = demonImage;
+  // var cssObject = new THREE.CSS3DObject( element );
+  // var cssObject = new THREE.CSS3DObject(indexToElement.get(0));
+  var cssObject = createCSS3DObject(indexToElement.get(0));
   // we reference the same position and rotation 
-  cssObject.position.set(0,0,-1000);
+  cssObject.position.set(100,0,-1000);
   // cssObject.rotation.set(new THREE.Vector3( planeMesh.rotation.x, planeMesh.rotation.y, planeMesh.rotation.z));
   // cssObject.rotation = planeMesh.rotation;
   // add it to the css scene
@@ -204,20 +221,14 @@ function ParticlesInBox(variables, indexToElement) {
   const material = new THREE.LineBasicMaterial({
     color: 0x0000ff
   });
-  // Create the lines
-  for(let key of indexToElement.keys()) {
-    const el = indexToElement.get(key);
-    // const elCss = new THREE.CSS3DObject( el );
-    // this.renderer = new THREE.CSS3DRenderer();
-    // console.debug(`${key} ::: ${JSON.stringify(elCss.position)}`);
-    const geometry = new THREE.Geometry();
-    geometry.vertices.push(
-      new THREE.Vector3( 0, 0, 0 ),
-      new THREE.Vector3( 100, 0, 0 )
-    );
-    var line = new THREE.Line( geometry, material );
-    scene.add( line );
-  }
+  const position = cssObject.position;
+  const geometry = new THREE.Geometry();
+  geometry.vertices.push(
+    new THREE.Vector3( 0, 0, 0 ),
+    new THREE.Vector3( position.x, position.y, position.z )
+  );
+  var line = new THREE.Line( geometry, material );
+  scene.add( line );
 
 
 /////TODO: MUST REFACTOR RESIZE
