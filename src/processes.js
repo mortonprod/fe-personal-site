@@ -48,19 +48,6 @@ function ParticlesInBox(variables, htmlObjects) {
   const material = new THREE.LineBasicMaterial({
     color: 0x0000ff
   });
-  // Create the lines
-  for (let key of htmlObjects.keys()) {
-    const obj = htmlObjects.get(key);
-    console.debug(`${key} ::: ${JSON.stringify(obj)}`);
-    const geometry = new THREE.Geometry();
-    geometry.vertices.push(
-      new THREE.Vector3(0, 0, 0),
-      new THREE.Vector3(obj.x, obj.y, 0)
-    );
-    var line = new THREE.Line(geometry, material);
-    scene.add(line);
-  }
-
 
   let light
   switch (variables.light.type) {
@@ -168,7 +155,7 @@ function ParticlesInBox(variables, htmlObjects) {
     // hoveredObj = undefined;
 
     raycaster.setFromCamera(mouse, camera); {
-      var intersects = raycaster.intersectObjects(Array.from( indexToObject.values() ));
+      var intersects = raycaster.intersectObjects(Array.from(indexToObject.values()));
       for (var i = 0; i < intersects.length; i++) {
 
         intersects[i].object.material.color.set('pink');
@@ -176,7 +163,7 @@ function ParticlesInBox(variables, htmlObjects) {
         const point = intersects[i].point
         const canvasHalfWidth = renderer.domElement.offsetWidth / 2;
         const canvasHalfHeight = renderer.domElement.offsetHeight / 2;
-        var pointVector = new THREE.Vector3( point.x, point.y, point.z );
+        var pointVector = new THREE.Vector3(point.x, point.y, point.z);
         const tooltipPosition = pointVector.clone().project(camera);
         tooltipPosition.x = (tooltipPosition.x * canvasHalfWidth) + canvasHalfWidth + renderer.domElement.offsetLeft;
         tooltipPosition.y = -(tooltipPosition.y * canvasHalfHeight) + canvasHalfHeight + renderer.domElement.offsetTop;
@@ -187,6 +174,25 @@ function ParticlesInBox(variables, htmlObjects) {
           left: `${tooltipPosition.x - tootipWidth/2}px`,
           top: `${tooltipPosition.y - tootipHeight - 5}px`
         });
+        // Create the lines
+        const geometry = new THREE.Geometry();
+        geometry.vertices.push(
+          new THREE.Vector3(0, 0, 0),
+          new THREE.Vector3(point.x, point.y, point.z)
+        );
+        var line = new THREE.Line(geometry, material);
+        scene.add(line);
+        // for (let key of htmlObjects.keys()) {
+        //   const obj = htmlObjects.get(key);
+        //   console.debug(`${key} ::: ${JSON.stringify(obj)}`);
+        //   const geometry = new THREE.Geometry();
+        //   geometry.vertices.push(
+        //     new THREE.Vector3(0, 0, 0),
+        //     new THREE.Vector3(tooltipPosition.x, tooltipPosition.y, tooltipPosition.z)
+        //   );
+        //   var line = new THREE.Line(geometry, material);
+        //   scene.add(line);
+        // }
       }
     }
   }
