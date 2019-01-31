@@ -48,16 +48,16 @@ function ParticlesInBox(variables, htmlObjects) {
     color: 0x0000ff
   });
   // Create the lines
-  for(let key of htmlObjects.keys()) {
+  for (let key of htmlObjects.keys()) {
     const obj = htmlObjects.get(key);
     console.debug(`${key} ::: ${JSON.stringify(obj)}`);
     const geometry = new THREE.Geometry();
     geometry.vertices.push(
-      new THREE.Vector3( 0, 0, 0 ),
-      new THREE.Vector3( obj.x, obj.y, 0 )
+      new THREE.Vector3(0, 0, 0),
+      new THREE.Vector3(obj.x, obj.y, 0)
     );
-    var line = new THREE.Line( geometry, material );
-    scene.add( line );
+    var line = new THREE.Line(geometry, material);
+    scene.add(line);
   }
 
 
@@ -156,6 +156,47 @@ function ParticlesInBox(variables, htmlObjects) {
   }
   setInitialProperties();
   setObjects();
+  ///////////////////////////////////////////////////////////////////Raycasting
+
+  const raycaster = new THREE.Raycaster();
+  const mouse = new THREE.Vector2();
+
+  function handleManipulationUpdate() {
+    // cleanup previous results, mouse moved and they're obsolete now
+    // latestMouseIntersection = undefined;
+    // hoveredObj = undefined;
+
+    raycaster.setFromCamera(mouse, camera); {
+      var intersects = raycaster.intersectObjects(Array.from( indexToObject.values() ));
+      for (var i = 0; i < intersects.length; i++) {
+
+        intersects[i].object.material.color.set('pink');
+
+      }
+      // if (intersects.length > 0) {
+      //   // keep point in 3D for next steps
+      //   latestMouseIntersection = intersects[0].point;
+      //   // remember what object was hovered, as we will need to extract tooltip text from it
+      //   hoveredObj = intersects[0].object;
+      // }
+    }
+  }
+
+  // Following two functions will convert mouse coordinates
+  // from screen to three.js system (where [0,0] is in the middle of the screen)
+  function updateMouseCoords(event, coordsObj) {
+    coordsObj.x = ((event.clientX - renderer.domElement.offsetLeft + 0.5) / window.innerWidth) * 2 - 1;
+    coordsObj.y = -((event.clientY - renderer.domElement.offsetTop + 0.5) / window.innerHeight) * 2 + 1;
+  }
+
+  function onMouseMove(event) {
+    updateMouseCoords(event, mouse);
+    handleManipulationUpdate();
+  }
+
+  window.addEventListener('mousemove', onMouseMove, false);
+
+  ////////////////////////////////////////////////////////////////////
   worker.postMessage({
     type: 'initial',
     variables
