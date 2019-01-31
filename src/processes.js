@@ -1,4 +1,5 @@
 const THREE = require('three');
+const $ = require('jquery');
 const OrbitControls = require('three-orbit-controls')(THREE)
 const get = require('lodash.get');
 const set = require('lodash.set');
@@ -171,14 +172,22 @@ function ParticlesInBox(variables, htmlObjects) {
       for (var i = 0; i < intersects.length; i++) {
 
         intersects[i].object.material.color.set('pink');
-
+        console.log(`Point: ${JSON.stringify(intersects[i].point)}`);
+        const point = intersects[i].point
+        const canvasHalfWidth = renderer.domElement.offsetWidth / 2;
+        const canvasHalfHeight = renderer.domElement.offsetHeight / 2;
+        var pointVector = new THREE.Vector3( point.x, point.y, point.z );
+        const tooltipPosition = pointVector.clone().project(camera);
+        tooltipPosition.x = (tooltipPosition.x * canvasHalfWidth) + canvasHalfWidth + renderer.domElement.offsetLeft;
+        tooltipPosition.y = -(tooltipPosition.y * canvasHalfHeight) + canvasHalfHeight + renderer.domElement.offsetTop;
+        var divElement = $("#tooltip");
+        var tootipWidth = divElement[0].offsetWidth;
+        var tootipHeight = divElement[0].offsetHeight;
+        divElement.css({
+          left: `${tooltipPosition.x - tootipWidth/2}px`,
+          top: `${tooltipPosition.y - tootipHeight - 5}px`
+        });
       }
-      // if (intersects.length > 0) {
-      //   // keep point in 3D for next steps
-      //   latestMouseIntersection = intersects[0].point;
-      //   // remember what object was hovered, as we will need to extract tooltip text from it
-      //   hoveredObj = intersects[0].object;
-      // }
     }
   }
 
