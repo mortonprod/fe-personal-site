@@ -21,17 +21,24 @@ module.exports = {
   },
   module: {
     rules: [{
-      test: /\.scss$/,
-      use: [
-        "style-loader", // creates style nodes from JS strings
-        "css-loader", // translates CSS into CommonJS
-        "sass-loader" // compiles Sass to CSS, using Node Sass by default
-      ]
-    },
-    {
-      test: /\.worker\.js$/,
-      use: { loader: 'worker-loader' }
+        test: /\.scss$/,
+        use: [
+          "style-loader", // creates style nodes from JS strings
+          "css-loader", // translates CSS into CommonJS
+          "sass-loader" // compiles Sass to CSS, using Node Sass by default
+        ]
+      },
+      {
+        test: /\.worker\.js$/,
+        use: {
+          loader: 'worker-loader'
+        }
+      }
+    ]
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
     }
-  ]
   }
 };
