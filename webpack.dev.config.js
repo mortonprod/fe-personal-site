@@ -7,12 +7,16 @@ module.exports = {
   entry: {
     app: './src/index.js'
   },
+  externals: {
+    'three': 'THREE',
+    'jquery': 'jQuery'
+  },
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       title: 'Development',
       template: 'src/index.html'
-    }),
+    })
   ],
   output: {
     filename: '[name].bundle.js',

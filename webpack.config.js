@@ -1,18 +1,21 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-
 module.exports = {
   mode: 'production',
   entry: {
     app: './src/index.js'
+  },
+  externals: {
+    'three': 'THREE',
+    'jquery': 'jQuery'
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       title: 'Production',
       template: 'src/index.html'
-    }),
+    })
   ],
   output: {
     filename: '[name].bundle.js',
