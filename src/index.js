@@ -1,2 +1,2 @@
 require('./index.scss');
-require('./particles-in-box')
+// require('./particles-in-box')

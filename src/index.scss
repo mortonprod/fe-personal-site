@@ -1,80 +1,36 @@
-body {
-  width: 100vw;
-  height: 100vh;
-  font: 100%;
-  color: green;
-  background-color: black;
+h1,h2,h3,h4 {
+  font-family: 'Staatliches', cursive;
+}
+
+p {
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 .header {
-  position: relative;
-  top: 0%;
-  left: 33.3%;
-  width: 33.3/2%;
-  display: none;
-}
-
-#canvas {
-  position: absolute; 
-  background-color: #000;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  border: 0px;
-  margin: 0px;
-  padding: 0px;
-}
-
-#tooltip {
-  position: fixed;
-  left: 0;
-  top: 0;
-  min-width: 100px;
-  text-align: center;
-  padding: 5px 12px;
-  font-family: monospace;
-  background: #a0c020;
-  // display: none;
-  // opacity: 0;
-  border: 1px solid black;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
-  transition: opacity 0.25s linear;
-  border-radius: 3px;
-}
-
-.rect {
-  position: absolute;
-  text-align: center;
-  top: 0;
-  left: 0;
   color: white;
-  padding: 10px;
-
-  .element {
-
-    h1,
-    p {
-      padding: 2px;
-      border: 0;
-      margin: 0;
-    }
-
-    h1 {
-      font-size: 20px;
-    }
-
-    p {
-      font-size: 10px;
-    }
-  }
-
-  .element:hover {
-    color: lightblue;
-  }
+  display: block;
+  text-align: center;
+  width: 100%;
 }
 
-.link {
-  color: lightcoral;
-  text-decoration: none;
+.demo-layout-transparent {
+  background: url('../sketch/header.jpg') center / cover;
+}
+.demo-layout-transparent .mdl-layout__header,
+.demo-layout-transparent .mdl-layout__drawer-button {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: white;
+}
+
+.demo-card-wide.mdl-card {
+  width: 512px;
+}
+.demo-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 176px;
+  background: url('../sketch/aboutme.png') center / cover;
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #fff;
 }
