@@ -1,3 +1,6 @@
+main {
+  scroll-behavior: smooth;
+}
 h1,h2,h3,h4 {
   font-family: 'Staatliches', cursive;
 }
@@ -10,7 +13,9 @@ p {
   color: white;
   display: block;
   text-align: center;
-  width: 100%;
+  padding-top: 10%;
+  width: 100vw;
+  height:100vh;
 }
 
 .demo-layout-transparent {
