@@ -1,19 +1,32 @@
+#picture {
+  background-image: url("../sketch/meCircle.png");
+  background-repeat: no-repeat;
+  background-origin: center center;
+  width:330px;
+  height:330px;
+  margin: auto;
+  transform: scale(0.5);
+  display: block;
+}
 main {
   scroll-behavior: smooth;
 }
 h1,h2,h3,h4 {
-  font-family: 'Staatliches', cursive;
+  // font-family: 'Staatliches', cursive;
+  // padding: 5px;
+  color: white;
 }
 
-p {
+i, p, span {
   font-family: Helvetica, Arial, sans-serif;
+  color: white;
 }
 
 .header {
   color: white;
   display: block;
   text-align: center;
-  padding-top: 10%;
+  // padding-top: 10%;
   width: 100vw;
   height:100vh;
 }
@@ -43,4 +56,15 @@ p {
 .target-area .mdl-card__media img {
   width:100%;
   height:100%;
+}
+
+.mdl-list__item--three-line  .mdl-list__item-text-body {
+  color: white;
+}
+
+.mdl-cell {
+  background-color: white;
+  border-radius: 25px;
+  background-color:#2875C0;
+  // text-align: center;
 }
