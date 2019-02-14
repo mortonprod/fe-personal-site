@@ -1,6 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
 module.exports = {
   mode: 'production',
   entry: {
@@ -14,28 +16,34 @@ module.exports = {
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       title: 'Production',
-      template: 'src/index.html'
+      template: 'src/index.html',
+      inject: 'head'
     }),
     new HtmlWebpackPlugin({
       title: 'Development',
       filename: 'contact.html',
-      template: 'src/contact.html'
+      template: 'src/contact.html',
+      inject: 'head'
     }),
     new HtmlWebpackPlugin({
       title: 'Development',
       filename: 'about.html',
-      template: 'src/about.html'
+      template: 'src/about.html',
+      inject: 'head'
     }),
     new HtmlWebpackPlugin({
       title: 'Development',
       filename: 'service.html',
-      template: 'src/service.html'
+      template: 'src/service.html',
+      inject: 'head'
     }),
     new HtmlWebpackPlugin({
       title: 'Development',
       filename: 'education.html',
-      template: 'src/education.html'
-    })
+      template: 'src/education.html',
+      inject: 'head'
+    }),
+    new CopyWebpackPlugin([ { from: './src/images/*', to: path.resolve(__dirname, 'dist')} ])
   ],
   output: {
     filename: '[name].bundle.js',
