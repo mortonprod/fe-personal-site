@@ -43,7 +43,8 @@ module.exports = {
       template: 'src/education.html',
       inject: 'head'
     }),
-    new CopyWebpackPlugin([ { from: './src/images/*', to: path.resolve(__dirname, 'dist')} ])
+    // new CopyWebpackPlugin([ { from: "./src/images/*", to: "./dist"} ])
+    new CopyWebpackPlugin([ { from: "src/images/", to: "images" } ])
   ],
   output: {
     filename: '[name].bundle.js',

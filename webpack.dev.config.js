@@ -43,12 +43,15 @@ module.exports = {
       template: 'src/education.html',
       inject: 'head'
     }),
-    new CopyWebpackPlugin([ { from: './src/images/*', to: path.resolve(__dirname, 'dist')} ])
+    // new CopyWebpackPlugin([ { from: path.join(__dirname, "src" ,"images", 'demon.png'), to: path.join(__dirname, ".." ,'dist')} ])
+    new CopyWebpackPlugin([ { from: "src/images/", to: "images" } ])
+
   ],
   output: {
     filename: '[name].bundle.js',
     // path: path.resolve(__dirname)
     path: path.resolve(__dirname, 'dist')
+    // publicPath: "src/images" // The location this dist folder can appear for web dev server.
   },
   module: {
     rules: [{
