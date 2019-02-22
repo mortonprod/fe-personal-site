@@ -39,8 +39,8 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       title: 'Development',
-      filename: 'education.html',
-      template: 'src/education.html',
+      filename: 'timeline.html',
+      template: 'src/timeline.html',
       inject: 'head'
     }),
     // new CopyWebpackPlugin([ { from: path.join(__dirname, "src" ,"images", 'demon.png'), to: path.join(__dirname, ".." ,'dist')} ])
