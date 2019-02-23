@@ -17,34 +17,34 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Development',
       template: 'src/index.html',
-      inject: 'head'
+      inject: 'body'
     }),
     new HtmlWebpackPlugin({
       title: 'Development',
       filename: 'contact.html',
       template: 'src/contact.html',
-      inject: 'head'
+      inject: 'body'
     }),
     new HtmlWebpackPlugin({
       title: 'Development',
       filename: 'about.html',
       template: 'src/about.html',
-      inject: 'head'
+      inject: 'body'
     }),
     new HtmlWebpackPlugin({
       title: 'Development',
       filename: 'service.html',
       template: 'src/service.html',
-      inject: 'head'
+      inject: 'body'
     }),
     new HtmlWebpackPlugin({
       title: 'Development',
       filename: 'timeline.html',
       template: 'src/timeline.html',
-      inject: 'head'
+      inject: 'body'
     }),
     // new CopyWebpackPlugin([ { from: path.join(__dirname, "src" ,"images", 'demon.png'), to: path.join(__dirname, ".." ,'dist')} ])
-    new CopyWebpackPlugin([ { from: "src/images/", to: "images" } ])
+    // new CopyWebpackPlugin([ { from: "src/images/", to: "images" } ])
 
   ],
   output: {
@@ -67,7 +67,7 @@ module.exports = {
       use: { loader: 'worker-loader' }
     },
     {
-      test: /\.(png|jpg|gif)$/,
+      test: /\.(png|jpg|gif|jpeg)$/,
       use: [
         {
           loader: 'file-loader',
