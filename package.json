@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "start": "webpack-dev-server   --config webpack.dev.config.js",
-    "start:prod": "node ./serve-production-assets/index.js"
+    "start:prod": "npm run build && node ./serve-production-assets/index.js"
   },
   "author": "",
   "license": "ISC",
