@@ -73,33 +73,56 @@ if(temp && temp.length > 0) {
   }
 }
 
+//ses function
+var $ = require('jquery');
 
-// demonImg.src = require('./images/demon.png');
-// var monitorImg = document.getElementById('monitor');
-// monitorImg.src = require('./images/monitor.png');
-// var loginImg = document.getElementById('login');
-// loginImg.src = require('./images/login.png');
+function submitToAPI(e) {
+  e.preventDefault();
+  var url = "https://ses.alexandermorton.co.uk/ses";
 
+   var Namere = /[A-Za-z]{1}[A-Za-z]/;
+   if (!Namere.test($("#Name").val())) {
+                   alert ("Name can not less than 2 char");
+       return;
+   }
+   if ($("#Email").val()=="") {
+       alert ("Please enter your email id");
+       return;
+   }
+   var reeamil = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,6})?$/;
+   if (!reeamil.test($("#Email").val())) {
+       alert ("Please enter valid email address");
+       return;
+   }
 
-// var edgeImg = document.getElementById('edge');
-// edgeImg.src = require('./images/edge.png');
-// var temp = document.getElementById('lambda');
-// temp.src = require('./images/lambda.png');
-// temp = document.getElementById('cd');
-// temp.src = require('./images/cd.png');
-// temp = document.getElementById('ec2');
-// temp.src = require('./images/ec2.png');
-// temp = document.getElementById('aws');
-// temp.src = require('./images/aws.png');
-// temp = document.getElementById('alignment');
-// temp.src = require('./images/alignment.png');
-// temp = document.getElementById('glasgow');
-// temp.src = require('./images/glasgow.jpeg');
-// temp = document.getElementById('phone');
-// temp.src = require('./images/phone.jpg');
+  var name = $("#Name").val();
+  var email = $("#Email").val();
+  var note = $("#note").val();
+  var data = {
+     name : name,
+     email : email,
+     note : note
+   };
 
-// temp = document.getElementsByClassName('img-clock');
-// temp.forEach(function(el) {
-//   el.src = require('./images/clock.png');
-// });
-// require('./particles-in-box')
+  $.ajax({
+    type: "POST",
+    url: url,
+    dataType: "json",
+    crossDomain: "true",
+    contentType: "application/json; charset=utf-8",
+    data: JSON.stringify(data),
+
+    
+    success: function () {
+      // clear form and show a success message
+      alert("Successfull");
+      document.getElementById("contact-form").reset();
+  location.reload();
+    },
+    error: function () {
+      // show an error message
+      alert("UnSuccessfull");
+    }});
+}
+
+global.submitToAPI = submitToAPI;
