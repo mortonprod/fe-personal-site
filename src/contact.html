@@ -98,29 +98,29 @@
     </div>
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 </body>
-<script
-  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-  integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
 <script>
     function submitToAPI(e) {
        e.preventDefault();
-       var URL = "https://abc1234.execute-api.us-east-1.amazonaws.com/01/contact";
+       var url = "https://ses.alexandermorton.co.uk/ses";
 
-            var Namere = /[A-Za-z]{1}[A-Za-z]/;
-            if (!Namere.test($("#Name").val())) {
-                         alert ("Name can not less than 2 char");
-                return;
-            }
-            if ($("#Email").val()=="") {
-                alert ("Please enter your email id");
-                return;
-            }
-            var reeamil = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,6})?$/;
-            if (!reeamil.test($("#Email").val())) {
-                alert ("Please enter valid email address");
-                return;
-            }
+        var Namere = /[A-Za-z]{1}[A-Za-z]/;
+        if (!Namere.test($("#Name").val())) {
+                        alert ("Name can not less than 2 char");
+            return;
+        }
+        if ($("#Email").val()=="") {
+            alert ("Please enter your email id");
+            return;
+        }
+        var reeamil = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,6})?$/;
+        if (!reeamil.test($("#Email").val())) {
+            alert ("Please enter valid email address");
+            return;
+        }
 
        var name = $("#Name").val();
        var email = $("#Email").val();
@@ -133,7 +133,7 @@
 
        $.ajax({
          type: "POST",
-         url : "https://ses.alexandermorton.co.uk/prod/contact",
+         url: url,
          dataType: "json",
          crossDomain: "true",
          contentType: "application/json; charset=utf-8",
