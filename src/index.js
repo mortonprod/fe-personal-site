@@ -125,4 +125,9 @@ function submitToAPI(e) {
     }});
 }
 
-global.submitToAPI = submitToAPI;
+var button_my_button = "#contact-form-button";
+$(button_my_button).click(function(e){
+  submitToAPI(e);
+});
+
+// global.submitToAPI = submitToAPI;
