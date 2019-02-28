@@ -8,6 +8,12 @@ const Worker = require('./physics.worker.js');
 // worker.terminate();
 
 const ID = 'canvas';
+const container = document.getElementById(ID);
+setTimeout(() => {
+  const body = document.getElementsByTagName('body')[0];  
+  body.removeChild(container);
+}, 2000);
+// var container = document.createElement("div");
 
 const visibleHeightAtZDepth = (depth, camera) => {
   // compensate for cameras not positioned at z=0
@@ -33,7 +39,6 @@ function ParticlesInBox(variables, htmlObjects) {
   var renderer = new THREE.WebGLRenderer();
   renderer.gammaInput = true;
   renderer.gammaOutput = true;
-  const container = document.getElementById(ID);
   container.appendChild(renderer.domElement);
   const WIDTH = container.clientWidth;
   const HEIGHT = container.clientHeight;

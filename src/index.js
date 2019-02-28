@@ -1,6 +1,11 @@
 // require('./index.scss');
 // This will place css at this url so we can then add this to each template.
 import url from './index.scss'
+try {
+  require('./particles-in-box.js');
+} catch(err) {
+  console.log('Caught the error');
+}
 var temp = document.getElementById('demon');
 if(temp) {
   temp.src = require('./images/demon.png');
