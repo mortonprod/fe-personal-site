@@ -9,10 +9,10 @@ const Worker = require('./physics.worker.js');
 
 const ID = 'canvas';
 const container = document.getElementById(ID);
-setTimeout(() => {
-  const body = document.getElementsByTagName('body')[0];  
-  body.removeChild(container);
-}, 2000);
+// setTimeout(() => {
+//   const body = document.getElementsByTagName('body')[0];  
+//   body.removeChild(container);
+// }, 2000);
 // var container = document.createElement("div");
 
 const visibleHeightAtZDepth = (depth, camera) => {
@@ -65,7 +65,7 @@ function SplashPage(variables) {
       light.position.set(variables.light.position.x, variables.light.position.y, variables.light.position.z);
       break;
     case 'ambient':
-      light = new THREE.AmbientLight(0x404040);
+      light = new THREE.AmbientLight(variable.light.color);
       break;
   }
   scene.add(light);

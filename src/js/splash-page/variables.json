@@ -1,8 +1,8 @@
 {
   "light": {
     "type": "point",
-    "color": "0x404040",
-    "intensity": 1,
+    "color": "#194085",
+    "intensity": 10,
     "position": {
       "x": 0,
       "y": 0,

@@ -1,4 +1,4 @@
-// require("./splash-page/index");
+require("./splash-page/index");
 var $ = require('jquery');
 
 // Loading screen
