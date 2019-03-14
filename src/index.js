@@ -2,7 +2,7 @@
 // This will place css at this url so we can then add this to each template.
 import url from './index.scss'
 try {
-  require('./particles-in-box.js');
+  require('./animate.js');
 } catch(err) {
   console.log('Caught the error');
 }
