@@ -9,7 +9,9 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 module.exports = {
   mode: 'production',
   entry: {
-    app: './src/index.js'
+    app: './src/js/index.js',
+    images: './src/images/index.js',
+    sass: './src/sass/index.js'
   },
   externals: {
     'three': 'THREE',

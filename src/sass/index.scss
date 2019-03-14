@@ -1,6 +1,6 @@
 .portfolio-header {
   position: relative;
-  background-image: url(images/header.jpg);
+  background-image: url(../images/header.jpg);
 }
 
 .portfolio-header .mdl-layout__header-row {
@@ -29,7 +29,7 @@
 }
 
 .portfolio-logo {
-  background: url(images/meCircle.png) 50% no-repeat;
+  background: url(../images/meCircle.png) 50% no-repeat;
   background-size: cover;
   height: 150px;
   width: 150px;
@@ -87,15 +87,15 @@
 }
 
 .portfolio-blog-card-full-bg {
-  background: url(images/about-header.jpg) center / cover;
+  background: url(../images/about-header.jpg) center / cover;
 }
 
 .portfolio-blog-card-event-bg {
-  background: url(images/about-header.jpg) center / cover;
+  background: url(../images/about-header.jpg) center / cover;
 }
 
 .portfolio-blog-card-strip-bg {
-  background: url(images/about-header.jpg) center / cover;
+  background: url(../images/about-header.jpg) center / cover;
 }
 
 .portfolio-blog-card-compact .mdl-card__title {
@@ -164,7 +164,7 @@ img.article-image {
 }
 
 footer {
-  background-image: url(images/footer-background.png);
+  background-image: url(../images/footer-background.png);
   background-size: cover;
 }
 
