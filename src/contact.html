@@ -33,6 +33,10 @@
 </head>
 
 <body>
+        <div id="overlay">
+                <div id="progstat"></div>
+                <div id="progress"></div>
+            </div>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
             <div class="mdl-layout__header-row portfolio-logo-row">
@@ -69,7 +73,8 @@
                     </div>
                     <div class="mdl-card__media">
                         <!-- <img class="article-image" src="images/phone.jpg" border="0" alt=""> -->
-                        <img id="phone" class="article-image" border="0" alt="">
+                        <img class="article-image" src="<%= require('./images/phone.jpg') %>" border="0" alt="">
+                        <!-- <img id="phone" class="article-image" border="0" alt=""> -->
                     </div>
                     <div class="mdl-card__supporting-text">
                         <p>

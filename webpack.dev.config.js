@@ -2,13 +2,13 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlWebpackInjector = require('html-webpack-injector');
 
 module.exports = {
   mode: 'development',
   entry: {
-    app: './src/js/index.js',
-    images: './src/images/index.js',
-    sass: './src/sass/index.js'
+    index: './src/js/index.js',
+    index_head: './src/sass/index.js'
   },
   externals: {
     'three': 'THREE',
@@ -19,7 +19,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Development',
       template: 'src/index.html',
-      inject: 'head'
+      chunks: ["index", "index_head"]
+      // inject: 'body'
     }),
     new HtmlWebpackPlugin({
       title: 'Development',
@@ -45,6 +46,7 @@ module.exports = {
       template: 'src/timeline.html',
       inject: 'body'
     }),
+    new HtmlWebpackInjector()
     // new CopyWebpackPlugin([ { from: path.join(__dirname, "src" ,"images", 'demon.png'), to: path.join(__dirname, ".." ,'dist')} ])
     // new CopyWebpackPlugin([ { from: "src/images/", to: "images" } ])
 

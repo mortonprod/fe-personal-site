@@ -1,6 +1,8 @@
 // require("./splash-page/index");
 var $ = require('jquery');
 
+// Loading screen
+
 (function(){
   function id(v){return document.getElementById(v); }
   function loadbar() {

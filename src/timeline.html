@@ -26,14 +26,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif|Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.grey-pink.min.css" />
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
 <body>
+    <div id="overlay">
+        <div id="progstat"></div>
+        <div id="progress"></div>
+    </div>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
             <div class="mdl-layout__header-row portfolio-logo-row">
@@ -69,12 +71,13 @@
                         <div class="cd-timeline__block js-cd-block">
                             <div class="cd-timeline__img cd-timeline__img--picture js-cd-img">
                                 <!-- <img className="img-clock" src="images/clock.png" alt="Picture"> -->
-                                <img class="img-clock" alt="Picture">
+                                <img class="article-image" src="<%= require('./images/clock.png') %>" border="0" alt="">
+                                <!-- <img class="img-clock" alt="Picture"> -->
                             </div>
                             <div class="cd-timeline__content js-cd-content">
                                 <h2>Lenzie Academy</h2>
                                 <p>
-                                    Won Taylor Wimpy talent award to help fund my underg 
+                                    Won Taylor Wimpy talent award to help fund my underg
                                 </p>
                                 <span class="cd-timeline__date">Jan 14</span>
                             </div> <!-- cd-timeline__content -->
@@ -82,7 +85,9 @@
                         <div class="cd-timeline__block js-cd-block">
                             <div class="cd-timeline__img cd-timeline__img--picture js-cd-img">
                                 <!-- <img src="images/clock.png" alt="Picture"> -->
-                                <img class="img-clock" alt="Picture">
+                                <!-- <img class="img-clock" alt="Picture"> -->
+                                <img class="article-image" src="<%= require('./images/clock.png') %>" border="0" alt="">
+
                             </div> <!-- cd-timeline__img -->
 
                             <div class="cd-timeline__content js-cd-content">
@@ -97,7 +102,9 @@
                         <div class="cd-timeline__block js-cd-block">
                             <div class="cd-timeline__img cd-timeline__img--picture js-cd-img">
                                 <!-- <img src="images/clock.png" alt="Picture"> -->
-                                <img class="img-clock" alt="Picture">
+                                <!-- <img class="img-clock" alt="Picture"> -->
+                                <img class="article-image" src="<%= require('./images/clock.png') %>" border="0" alt="">
+
                             </div> <!-- cd-timeline__img -->
 
                             <div class="cd-timeline__content js-cd-content">
@@ -112,7 +119,9 @@
                         <div class="cd-timeline__block js-cd-block">
                             <div class="cd-timeline__img cd-timeline__img--picture js-cd-img">
                                 <!-- <img src="images/clock.png" alt="Picture"> -->
-                                <img class="img-clock" alt="Picture">
+                                <!-- <img class="img-clock" alt="Picture"> -->
+                                <img class="article-image" src="<%= require('./images/clock.png') %>" border="0" alt="">
+
                             </div> <!-- cd-timeline__img -->
 
                             <div class="cd-timeline__content js-cd-content">
@@ -181,7 +190,7 @@
             var verticalTimelines = document.getElementsByClassName("js-cd-timeline"),
                 verticalTimelinesArray = [],
                 scrolling = false;
-            console.log('Call' +  verticalTimelines.length);
+            console.log('Call' + verticalTimelines.length);
             if (verticalTimelines.length > 0) {
                 for (var i = 0; i < verticalTimelines.length; i++) {
                     (function (i) {
