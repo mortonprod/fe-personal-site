@@ -5,13 +5,13 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const HtmlWebpackInjector = require('html-webpack-injector');
 
 module.exports = {
   mode: 'production',
   entry: {
-    app: './src/js/index.js',
-    images: './src/images/index.js',
-    sass: './src/sass/index.js'
+    index: './src/js/index.js',
+    index_head: './src/sass/index.js'
   },
   externals: {
     'three': 'THREE',
@@ -26,7 +26,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Production',
       template: 'src/index.html',
-      inject: 'body'
+      chunks: ["index", "index_head"]
+
     }),
     new HtmlWebpackPlugin({
       title: 'Development',
