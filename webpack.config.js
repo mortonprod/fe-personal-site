@@ -53,7 +53,8 @@ module.exports = {
       template: 'src/timeline.html',
       inject: 'body'
     }),
-    new CopyWebpackPlugin([ { from: "src/images/poster.pdf", to: "images" } ])
+    new CopyWebpackPlugin([ { from: "src/images/poster.pdf", to: "images" } ]),
+    new CopyWebpackPlugin([ { from: "src/images/favicon.ico", to: "." } ])
     // new CopyWebpackPlugin([ { from: "./src/images/*", to: "./dist"} ])
     // new CopyWebpackPlugin([ { from: "src/images/", to: "images" } ])
   ],

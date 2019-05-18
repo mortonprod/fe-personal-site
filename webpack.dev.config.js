@@ -48,7 +48,8 @@ module.exports = {
     }),
     new HtmlWebpackInjector(),
     // new CopyWebpackPlugin([ { from: path.join(__dirname, "src" ,"images", 'demon.png'), to: path.join(__dirname, ".." ,'dist')} ])
-    new CopyWebpackPlugin([ { from: "src/images/poster.pdf", to: "images" } ])
+    new CopyWebpackPlugin([ { from: "src/images/poster.pdf", to: "images" } ]),
+    new CopyWebpackPlugin([ { from: "src/images/favicon.ico", to: "." } ])
 
   ],
   output: {

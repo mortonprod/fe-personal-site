@@ -211,18 +211,18 @@
             var verticalTimelines = document.getElementsByClassName("js-cd-timeline"),
                 verticalTimelinesArray = [],
                 scrolling = false;
-            console.log('Call' + verticalTimelines.length);
+            // console.log('Call' + verticalTimelines.length);
             if (verticalTimelines.length > 0) {
                 for (var i = 0; i < verticalTimelines.length; i++) {
                     (function (i) {
                         verticalTimelinesArray.push(new VerticalTimeline(verticalTimelines[i]));
                     })(i);
                 }
-                console.log('Add scroll');
+                // console.log('Add scroll');
                 const el = document.getElementById("scroll");
                 //show timeline blocks on scrolling
                 el.addEventListener("scroll", function (event) {
-                    console.log('Scroll');
+                    // console.log('Scroll');
                     if (!scrolling) {
                         scrolling = true;
                         (!window.requestAnimationFrame) ? setTimeout(checkTimelineScroll, 250): window.requestAnimationFrame(
