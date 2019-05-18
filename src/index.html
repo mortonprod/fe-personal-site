@@ -23,22 +23,16 @@
     <meta name="description" content="A portfolio template that uses Material Design Lite.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>Alexander Morton</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.grey-pink.min.css" />
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/101/three.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
 <body>
-    <div id="overlay">
-        <div id="progstat"></div>
-        <div id="progress"></div>
-    </div>
-    <div id="canvas"></div>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
             <div class="mdl-layout__header-row portfolio-logo-row">
@@ -60,19 +54,127 @@
         </header>
         <div class="mdl-layout__drawer mdl-layout--small-screen-only">
             <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
-                <a  class="mdl-navigation__link is-active" href="index.html">Overview</a>
-                <a  class="mdl-navigation__link" href="about.html">About</a>
-                <a  class="mdl-navigation__link" href="timeline.html">Timeline</a>
-                <a  class="mdl-navigation__link" href="service.html">Services</a>
-                <a  class="mdl-navigation__link" href="contact.html">Contact</a>
+                <a class="mdl-navigation__link is-active" href="index.html">Overview</a>
+                <a class="mdl-navigation__link" href="about.html">About</a>
+                <a class="mdl-navigation__link" href="timeline.html">Timeline</a>
+                <a class="mdl-navigation__link" href="service.html">Services</a>
+                <a class="mdl-navigation__link" href="contact.html">Contact</a>
             </nav>
         </div>
         <main class="mdl-layout__content">
             <div class="mdl-grid portfolio-max-width">
+
+                <div class="mdl-cell mdl-cell--12-col">
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text mdl-shadow--4dp">
+                            <p>
+                                A list of topics I have written about, contributed to or plan on writing about.
+                                The links include social media postings, research papers and the odd resource I have stored locally.
+                                Hopefully of use to myself and anyone of interest.
+                            </p>
+                            <!-- <p>
+                                <b>If you can't find a link below then I have not completed the write up due to time
+                                    constraints.</b>
+                            </p> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mdl-grid portfolio-max-width">
                 <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                        <div class="mdl-card__media">
+                            <img class="article-image" src="<%= require('./images/PnJunction.png') %>" border="0" alt="">
+                        </div>
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Test Beam Evaluation Paper</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                                Test beam evaluation of newly developed n-in-p planar pixel sensors for use
+                                in a high radiation environment.
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"
+                                href="http://eprints.gla.ac.uk/120050/">Read more</a>
+                        </div>
+                </div>
+                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                        <div class="mdl-card__media">
+                            <img class="article-image" src="<%= require('./images/CMS_Higgs-event.jpg') %>" border="0" alt="">
+                        </div>
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Exotic Physics Paper</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                                Search for a new resonance decaying to a WW or ZZ boson and a Higgs boson with the ATLAS Detector
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"
+                                href="https://cds.cern.ch/record/2004438?ln=en#">Read more</a>
+                        </div>
+                </div>
+                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                        <div class="mdl-card__media">
+                            <img class="article-image" src="<%= require('./images/atlas.jpg') %>" border="0" alt="">
+                        </div>
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">ATLAS Forward Proton Technical Design Report</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                                This report includes my contribution to ATLAS test beam strip sensors research.
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"
+                                href="https://cds.cern.ch/record/2017378#">Read more</a>
+                        </div>
+                </div>
+                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                        <div class="mdl-card__media">
+                            <img class="article-image" src="<%= require('./images/lhc.png') %>" border="0" alt="">
+                        </div>
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">EUTelescope Development</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                                EUTelescope 1.0: Reconstruction Software for the AIDA Testbeam Telescope
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"
+                                href="https://cds.cern.ch/record/2000969">Read more</a>
+                        </div>
+                </div>
+                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                        <div class="mdl-card__media">
+                            <img class="article-image" src="<%= require('./images/lhcb.jpg') %>" border="0" alt="">
+                        </div>
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Timepix Sensor Paper</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                                The Timepix Telescope for High Performance Particle Tracking
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"
+                                href="https://arxiv.org/abs/1304.5175">Read more</a>
+                        </div>
+                </div>
+                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                        <div class="mdl-card__media">
+                            <img class="article-image" src="<%= require('./images/alignment.png') %>" border="0" alt="">
+                        </div>
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Track Fitting with GBL</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            A poster which gives an overview on how I integrated GBL with EUTelescope.
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"
+                                href="/images/poster.pdf">Read more</a>
+                        </div>
+                    </div>
+                <!-- <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
                     <div class="mdl-card__media">
-                        <!-- <img  class="article-image" border="0" alt=""> -->
-                        <img  class="article-image" src="<%= require('./images/demon.png') %>" border="0" alt="">
+                        <img class="article-image" src="<%= require('./images/demon.png') %>" border="0" alt="">
                     </div>
                     <div class="mdl-card__title">
                         <h2 class="mdl-card__title-text">Maxwell's Demon</h2>
@@ -82,109 +184,113 @@
                         Built using three js which uses webgl to render the game.
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"
+                            href="portfolio-example01.html">Read more</a>
                     </div>
-                </div>
-                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                </div> -->
+                <!-- <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
                     <div class="mdl-card__media">
-                        <!-- <img class="article-image" src="images/monitor.png" border="0" alt=""> -->
-                        <img  class="article-image" src="<%= require('./images/monitor.png') %>" border="0" alt="">
-                        <!-- <img id="monitor" class="article-image" border="0" alt=""> -->
+                        <img class="article-image" src="<%= require('./images/monitor.png') %>" border="0" alt="">
                     </div>
                     <div class="mdl-card__title">
                         <h2 class="mdl-card__title-text">AWS Metrics</h2>
                     </div>
                     <div class="mdl-card__supporting-text">
-                        Building cloud infrastructure is complex so analysis of cloud metric is just as confusing. A few points to help you on your way.
+                        Building cloud infrastructure is complex so analysis of cloud metric is just as confusing. A few
+                        points to help you on your way.
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"
+                            href="portfolio-example01.html">Read more</a>
                     </div>
-                </div>
-                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                </div> -->
+                <!-- <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
                     <div class="mdl-card__media">
-                        <!-- <img class="article-image" src=" images/login.png" border="0" alt=""> -->
-                        <img  class="article-image" src="<%= require('./images/login.png') %>" border="0" alt="">
+                        <img class="article-image" src="<%= require('./images/login.png') %>" border="0" alt="">
                         <img id="login" class="article-image" border="0" alt="">
                     </div>
                     <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Cognito</h2>
+                        <h2 class="mdl-card__title-text">AWS Cognito</h2>
                     </div>
                     <div class="mdl-card__supporting-text">
-                        A quick introduction on how to use AWS cognito as a user directory and securing many different types of application.
+                        A quick introduction on how to use AWS cognito as a user directory and securing many different
+                        types of application.
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"
+                            href="portfolio-example01.html">Read more</a>
                     </div>
-                </div>
-                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                </div> -->
+                <!-- <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
                     <div class="mdl-card__media">
-                        <!-- <img class="article-image" src="images/edge.png" border="0" alt=""> -->
-                        <img  class="article-image" src="<%= require('./images/edge.png') %>" border="0" alt="">
+                        <img class="article-image" src="<%= require('./images/edge.png') %>" border="0" alt="">
                         <img id="edge" class="article-image" border="0" alt="">
                     </div>
                     <div class="mdl-card__title">
                         <h2 class="mdl-card__title-text">Cloudfront and Lambda Edge</h2>
                     </div>
                     <div class="mdl-card__supporting-text">
-                        The addition of lambda edge expands what is possible with cloudfront. A few use cases of mine which might be of help.
+                        The addition of lambda edge expands what is possible with cloudfront. A few use cases of mine
+                        which might be of help.
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"
+                            href="portfolio-example01.html">Read more</a>
                     </div>
-                </div>
-                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                </div> -->
+                <!-- <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
                     <div class="mdl-card__media">
-                        <!-- <img class="article-image" src="images/lambda.png" border="0" alt=""> -->
-                        <img  class="article-image" src="<%= require('./images/lambda.png') %>" border="0" alt="">
+                        <img class="article-image" src="<%= require('./images/lambda.png') %>" border="0" alt="">
                         <img id="lambda" class="article-image" border="0" alt="">
                     </div>
                     <div class="mdl-card__title">
                         <h2 class="mdl-card__title-text">Lambda Versioning with terraform on AWS</h2>
                     </div>
                     <div class="mdl-card__supporting-text">
-                        An example using terraform to build a fully configurable and versioned set of lambdas connected to API gateway.
+                        An example using terraform to build a fully configurable and versioned set of lambdas connected
+                        to API gateway.
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"
+                            href="portfolio-example01.html">Read more</a>
                     </div>
-                </div>
-                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                </div> -->
+                <!-- <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
                     <div class="mdl-card__media">
-                        <!-- <img class="article-image" src="images/cd.png" border="0" alt=""> -->
-                        <img  class="article-image" src="<%= require('./images/cd.png') %>" border="0" alt="">
+                        <img class="article-image" src="<%= require('./images/cd.png') %>" border="0" alt="">
                         <img id="cd" class="article-image" border="0" alt="">
                     </div>
                     <div class="mdl-card__title">
                         <h2 class="mdl-card__title-text">Codepipelines and nodejs</h2>
                     </div>
                     <div class="mdl-card__supporting-text">
-                        An overview on CI/CD pipelines to deploy nodejs apps to ECS fargate and lambdas to development and production environments.
+                        An overview on CI/CD pipelines to deploy nodejs apps to ECS fargate and lambdas to development
+                        and production environments.
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"
+                            href="portfolio-example01.html">Read more</a>
                     </div>
-                </div>
-                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                </div> -->
+                <!-- <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
                     <div class="mdl-card__media">
-                        <!-- <img class="article-image" src="images/ec2.png" border="0" alt=""> -->
-                        <img  class="article-image" src="<%= require('./images/ec2.png') %>" border="0" alt="">
+                        <img class="article-image" src="<%= require('./images/ec2.png') %>" border="0" alt="">
                         <img id="ec2" class="article-image" border="0" alt="">
                     </div>
                     <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Fargate in Production</h2>
+                        <h2 class="mdl-card__title-text">AWS Fargate</h2>
                     </div>
                     <div class="mdl-card__supporting-text">
                         A quick introduction to using fargate with load balancers and API gateway.
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"
+                            href="portfolio-example01.html">Read more</a>
                     </div>
-                </div>
-                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                </div> -->
+                <!-- <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
                     <div class="mdl-card__media">
-                        <!-- <img class="article-image" src="images/aws.png" border="0" alt=""> -->
-                        <img  class="article-image" src="<%= require('./images/aws.png') %>" border="0" alt="">
+                        <img class="article-image" src="<%= require('./images/aws.png') %>" border="0" alt="">
                         <img id="aws" class="article-image" border="0" alt="">
                     </div>
                     <div class="mdl-card__title">
@@ -194,25 +300,10 @@
                         A few notes on the basic concepts you should know to get started with AWS.
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"
+                            href="portfolio-example01.html">Read more</a>
                     </div>
-                </div>
-                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                    <div class="mdl-card__media">
-                        <!-- <img class="article-image" src="images/alignment.png" border="0" alt=""> -->
-                        <img  class="article-image" src="<%= require('./images/alignment.png') %>" border="0" alt="">
-                        <!-- <img id="alignment" class="article-image" border="0" alt=""> -->
-                    </div>
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Track Fitting with GBL</h2>
-                    </div>
-                    <div class="mdl-card__supporting-text">
-                        A poster which gives an overview on how I integrated GBL with EUTelescope.
-                    </div>
-                    <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
-                    </div>
-                </div>
+                </div> -->
             </div>
         </main>
     </div>
