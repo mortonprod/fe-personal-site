@@ -59,7 +59,12 @@ module.exports = {
     // publicPath: "src/images" // The location this dist folder can appear for web dev server.
   },
   module: {
-    rules: [{
+    rules: [
+      {
+        test: /\.svg$/,
+        loader: 'svg-inline-loader'
+      },
+      {
       test: /\.scss$/,
       use: [
         "style-loader", // creates styl e nodes from JS strings
