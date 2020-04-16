@@ -40,12 +40,12 @@ module.exports = {
       template: 'src/service.html',
       inject: 'body'
     }),
-    new HtmlWebpackPlugin({
-      title: 'Development',
-      filename: 'timeline.html',
-      template: 'src/timeline.html',
-      inject: 'body'
-    }),
+    // new HtmlWebpackPlugin({
+    //   title: 'Development',
+    //   filename: 'timeline.html',
+    //   template: 'src/timeline.html',
+    //   inject: 'body'
+    // }),
     new HtmlWebpackInjector(),
     // new CopyWebpackPlugin([ { from: path.join(__dirname, "src" ,"images", 'demon.png'), to: path.join(__dirname, ".." ,'dist')} ])
     new CopyWebpackPlugin([ { from: "src/images/poster.pdf", to: "images" } ]),
