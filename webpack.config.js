@@ -41,18 +41,6 @@ module.exports = {
       template: 'src/about.html',
       inject: 'body'
     }),
-    new HtmlWebpackPlugin({
-      title: 'Development',
-      filename: 'service.html',
-      template: 'src/service.html',
-      inject: 'body'
-    }),
-    // new HtmlWebpackPlugin({
-    //   title: 'Development',
-    //   filename: 'timeline.html',
-    //   template: 'src/timeline.html',
-    //   inject: 'body'
-    // }),
     new CopyWebpackPlugin([ { from: "src/images/poster.pdf", to: "images" } ]),
     new CopyWebpackPlugin([ { from: "src/images/favicon.ico", to: "." } ])
     // new CopyWebpackPlugin([ { from: "./src/images/*", to: "./dist"} ])
