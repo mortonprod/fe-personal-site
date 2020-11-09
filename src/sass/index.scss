@@ -1,6 +1,8 @@
 .portfolio-header {
   position: relative;
-  background-image: url(../images/header.jpg);
+  // background-image: url(../images/header.jpg);
+  background: rgb(2,0,36);
+  background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(15,27,180,1) 84%, rgba(102,136,249,1) 100%);
 }
 
 .portfolio-header .mdl-layout__header-row {
