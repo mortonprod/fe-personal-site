@@ -75,13 +75,13 @@ function submitToAPI(e) {
     
     success: function () {
       // clear form and show a success message
-      alert("Successfull");
+      alert("Message Sent");
       document.getElementById("contact-form").reset();
   location.reload();
     },
     error: function () {
       // show an error message
-      alert("UnSuccessfull");
+      alert("Something went wrong. Try contacting me through linkedin");
     }});
 }
 
