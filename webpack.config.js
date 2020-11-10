@@ -26,19 +26,21 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Production',
       template: 'src/index.html',
-      chunks: ["index", "index_head"]
+      chunks: ["index_head"]
 
     }),
     new HtmlWebpackPlugin({
       title: 'Development',
       filename: 'contact.html',
       template: 'src/contact.html',
+      chunks: ["index_head","index"],
       inject: 'body'
     }),
     new HtmlWebpackPlugin({
       title: 'Development',
       filename: 'about.html',
       template: 'src/about.html',
+      chunks: ["index_head"],
       inject: 'body'
     }),
     new CopyWebpackPlugin([ { from: "src/images/poster.pdf", to: "images" } ]),
