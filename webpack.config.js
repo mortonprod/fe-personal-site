@@ -5,7 +5,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const HtmlWebpackInjector = require('html-webpack-injector');
 
 module.exports = {
   mode: 'production',
@@ -45,12 +44,9 @@ module.exports = {
     }),
     new CopyWebpackPlugin([ { from: "src/images/poster.pdf", to: "images" } ]),
     new CopyWebpackPlugin([ { from: "src/images/favicon.ico", to: "." } ])
-    // new CopyWebpackPlugin([ { from: "./src/images/*", to: "./dist"} ])
-    // new CopyWebpackPlugin([ { from: "src/images/", to: "images" } ])
   ],
   output: {
     filename: '[name].bundle.js',
-    // path: path.resolve(__dirname)
     path: path.resolve(__dirname, 'dist')
   },
   module: {
@@ -67,11 +63,7 @@ module.exports = {
           },
           'css-loader',
           'sass-loader'
-        ] 
-        // use: ExtractTextPlugin.extract({
-        //   fallback: 'style-loader',
-        //   use: ['css-loader', 'sass-loader']
-        // })
+        ]
       },
       {
         test: /\.worker\.js$/,
@@ -93,7 +85,6 @@ module.exports = {
                 progressive: true,
                 quality: 65
               },
-              // optipng.enabled: false will disable optipng
               optipng: {
                 enabled: false,
               },
@@ -104,10 +95,6 @@ module.exports = {
               gifsicle: {
                 interlaced: false,
               }
-              // the webp option will enable WEBP
-              // webp: {
-              //   quality: 75
-              // }
             }
           },
         ],
