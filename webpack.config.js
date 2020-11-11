@@ -18,7 +18,6 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
-    // new ExtractTextPlugin("styles.css"),
     new MiniCssExtractPlugin({
       filename: `[name].css`
     }),
