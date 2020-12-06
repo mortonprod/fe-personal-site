@@ -19,7 +19,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new MiniCssExtractPlugin({
-      filename: `[name].css`
+      filename: `[name]-[hash].css`
     }),
     new HtmlWebpackPlugin({
       title: 'Production',
@@ -45,7 +45,7 @@ module.exports = {
     new CopyWebpackPlugin([ { from: "src/images/favicon.ico", to: "." } ])
   ],
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name]-[hash].bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
   module: {
