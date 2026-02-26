@@ -11,7 +11,6 @@ module.exports = {
     index_head: './src/sass/index.js'
   },
   externals: {
-    'three': 'THREE',
     'jquery': 'jQuery'
   },
   plugins: [
@@ -52,16 +51,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.svg$/,
-        loader: 'svg-inline-loader'
-      },
-      {
         test: /\.scss$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
-      },
-      {
-        test: /\.worker\.js$/,
-        use: { loader: 'worker-loader' }
       },
       {
         test: /\.(png|jpg|gif|jpeg)$/,

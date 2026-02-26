@@ -1,4 +1,3 @@
-// require("./splash-page/index");
 var $ = require('jquery');
 import dialogPolyfill from 'dialog-polyfill'
 $(document).ready(function() {
