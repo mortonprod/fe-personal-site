@@ -1,8 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlWebpackInjector = require('html-webpack-injector');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -15,36 +13,37 @@ module.exports = {
     'jquery': 'jQuery'
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       title: 'Development',
       template: 'src/index.html',
-      chunks: ["index", "index_head"]
-      // inject: 'body'
+      chunks: ['index', 'index_head'],
+      inject: 'body'
     }),
     new HtmlWebpackPlugin({
       title: 'Development',
       filename: 'contact.html',
       template: 'src/contact.html',
+      chunks: ['index_head', 'index'],
       inject: 'body'
     }),
     new HtmlWebpackPlugin({
       title: 'Development',
       filename: 'about.html',
       template: 'src/about.html',
+      chunks: ['index_head'],
       inject: 'body'
     }),
-    new HtmlWebpackInjector(),
-    // new CopyWebpackPlugin([ { from: path.join(__dirname, "src" ,"images", 'demon.png'), to: path.join(__dirname, ".." ,'dist')} ])
-    new CopyWebpackPlugin([ { from: "src/images/poster.pdf", to: "images" } ]),
-    new CopyWebpackPlugin([ { from: "src/images/favicon.ico", to: "." } ])
-
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'src/images/poster.pdf', to: 'images' },
+        { from: 'src/images/favicon.ico', to: '.' }
+      ]
+    })
   ],
   output: {
     filename: '[name].bundle.js',
-    // path: path.resolve(__dirname)
-    path: path.resolve(__dirname, 'dist')
-    // publicPath: "src/images" // The location this dist folder can appear for web dev server.
+    path: path.resolve(__dirname, 'dist'),
+    clean: true
   },
   module: {
     rules: [
@@ -53,26 +52,17 @@ module.exports = {
         loader: 'svg-inline-loader'
       },
       {
-      test: /\.scss$/,
-      use: [
-        "style-loader", // creates styl e nodes from JS strings
-        "css-loader", // translates CSS into CommonJS
-        "sass-loader" // compiles Sass to CSS, using Node Sass by default
-      ]
-    },
-    {
-      test: /\.worker\.js$/,
-      use: { loader: 'worker-loader' }
-    },
-    {
-      test: /\.(png|jpg|gif|jpeg)$/,
-      use: [
-        {
-          loader: 'file-loader',
-          options: {},
-        },
-      ],
-    }
-  ]
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.worker\.js$/,
+        use: { loader: 'worker-loader' }
+      },
+      {
+        test: /\.(png|jpg|gif|jpeg)$/,
+        type: 'asset/resource'
+      }
+    ]
   }
 };
