@@ -30,7 +30,7 @@ $(document).ready(function() {
         dialog.showModal();
         return;
      }
-     var reeamil = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,6})?$/;
+     var reeamil = /^[\w\-.]+@([\w-]+\.)+[\w-]{2,6}$/;
      if (!reeamil.test($("#Email").val())) {
           dialog_title.innerHTML = "Fix Me"
           dialog_paragraph.innerHTML = "Please enter valid email address";
